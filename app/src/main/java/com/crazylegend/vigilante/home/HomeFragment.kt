@@ -8,6 +8,9 @@ import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
 import com.crazylegend.vigilante.databinding.FragmentHomeBinding
 import com.crazylegend.vigilante.di.providers.PermissionProvider
+import com.crazylegend.vigilante.utils.isVigilanteRunning
+import com.crazylegend.vigilante.utils.startVigilante
+import com.crazylegend.vigilante.utils.stopVigilante
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -36,6 +39,9 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
     private fun disableTheService() {
         if (permissionProvider.isVigilanteRunning() && permissionProvider.isAccessibilityEnabled) {
             permissionProvider.askForAccessibilityPermissions()
+            if (requireContext().isVigilanteRunning()) {
+                requireContext().stopVigilante()
+            }
             longToast(R.string.disable_the_service)
         }
     }
@@ -45,6 +51,8 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
             uncheckControlSwitch()
             permissionProvider.askForAccessibilityPermissions()
             longToast(R.string.enable_the_service)
+        } else {
+            requireContext().startVigilante()
         }
     }
 

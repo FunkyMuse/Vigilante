@@ -69,9 +69,12 @@ dependencies {
     kapt "androidx.hilt:hilt-compiler:$hiltJetpackVersion"
 
 
+    implementation "androidx.lifecycle:lifecycle-service:$lifecycle"
+
 
     //my libs
     implementation "com.github.CraZyLegenD.Set-Of-Useful-Kotlin-Extensions-and-Helpers:viewbinding:$utilsVersion"
     implementation "com.github.CraZyLegenD.Set-Of-Useful-Kotlin-Extensions-and-Helpers:kotlinextensions:$utilsVersion"
     implementation "com.github.CraZyLegenD.Set-Of-Useful-Kotlin-Extensions-and-Helpers:navigation:$utilsVersion"
+    implementation "com.github.CraZyLegenD.Set-Of-Useful-Kotlin-Extensions-and-Helpers:coroutines:$utilsVersion"
 }

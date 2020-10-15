@@ -3,7 +3,6 @@ package com.crazylegend.vigilante.di.modules
 import android.app.Service
 import android.content.Context
 import com.crazylegend.vigilante.di.qualifiers.ServiceContext
-import com.crazylegend.vigilante.di.scopes.PerService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,7 +17,6 @@ import dagger.hilt.android.components.ServiceComponent
 object ServiceModule {
 
     @Provides
-    @PerService
     @ServiceContext
     fun serviceContext(service: Service): Context = service.applicationContext
 

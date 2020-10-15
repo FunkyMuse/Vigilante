@@ -1,12 +1,11 @@
 package com.crazylegend.vigilante
 
 import android.accessibilityservice.AccessibilityService
-import android.hardware.camera2.CameraManager
+import android.content.Intent
 import android.view.accessibility.AccessibilityEvent
-import com.crazylegend.kotlinextensions.context.cameraManager
-import com.crazylegend.kotlinextensions.dateAndTime.getCurrentTimeInFormat
-import com.crazylegend.kotlinextensions.log.debug
+import com.crazylegend.vigilante.di.providers.CameraProvider
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 /**
  * Created by crazy on 10/14/20 to long live and prosper !
@@ -15,53 +14,12 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class VigilanteService : AccessibilityService() {
 
-    private val dateFormat = "dd/MM/yyyy hh:mm:ss"
+    @Inject
+    lateinit var cameraProvider: CameraProvider
 
-    //camera
-    private lateinit var cameraCallback: CameraManager.AvailabilityCallback
-    private var packageUsingCamera: String? = null
-    private var wasCameraBeingUsed = false
-    private var cameraStartedUsageTime: String? = null
-    private val currentDate get() = getCurrentTimeInFormat(dateFormat)
-
-    override fun onCreate() {
-        super.onCreate()
-        cameraCallback = cameraListener()
-    }
 
     override fun onServiceConnected() {
-        cameraManager.registerAvailabilityCallback(cameraCallback, null)
-    }
-
-    private fun cameraListener(): CameraManager.AvailabilityCallback {
-        return object : CameraManager.AvailabilityCallback() {
-            override fun onCameraAvailable(cameraId: String) {
-                super.onCameraAvailable(cameraId)
-                setCameraNotUsed()
-            }
-
-            override fun onCameraUnavailable(cameraId: String) {
-                super.onCameraUnavailable(cameraId)
-                setCameraUsed()
-            }
-        }
-    }
-
-    private fun setCameraUsed() {
-        wasCameraBeingUsed = true
-        debug { "CAMERA IS BEING USED by $packageUsingCamera" }
-    }
-
-    private fun setCameraNotUsed() {
-        if (wasCameraBeingUsed) {
-            packageUsingCamera = null
-            wasCameraBeingUsed = false
-            debug {
-                "CAMERA IS NOT USED ANYMORE at $currentDate \n" +
-                        "STARTED USAGE AT $cameraStartedUsageTime"
-            }
-            cameraStartedUsageTime = null
-        }
+        cameraProvider.setServiceConnected()
     }
 
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {
@@ -69,17 +27,20 @@ class VigilanteService : AccessibilityService() {
         rememberEventPackageName(event)
     }
 
+    override fun onCreate() {
+        super.onCreate()
+        cameraProvider.initLifecycle()
+    }
+
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        cameraProvider.onStart()
+        return super.onStartCommand(intent, flags, startId)
+    }
+
     private fun rememberEventPackageName(event: AccessibilityEvent) {
         val eventPackageName = event.packageName
         if (event.eventType == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED && eventPackageName != null) {
-            if (!wasCameraBeingUsed) {
-                packageUsingCamera = eventPackageName.toString()
-            } else {
-                if (cameraStartedUsageTime == null)
-                    cameraStartedUsageTime = currentDate
-
-                debug { "CAMERA STARTED BEING USED AT $currentDate" }
-            }
+            cameraProvider.eventAction(eventPackageName)
         }
     }
 
@@ -88,7 +49,9 @@ class VigilanteService : AccessibilityService() {
     }
 
     override fun onDestroy() {
+        cameraProvider.cleanUp()
         super.onDestroy()
-        cameraManager.unregisterAvailabilityCallback(cameraCallback)
+
     }
+
 }

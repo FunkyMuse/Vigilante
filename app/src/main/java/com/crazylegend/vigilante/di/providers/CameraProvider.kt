@@ -2,8 +2,7 @@ package com.crazylegend.vigilante.di.providers
 
 import android.content.Context
 import android.hardware.camera2.CameraManager
-import androidx.lifecycle.*
-import com.crazylegend.coroutines.cancelIfActive
+import androidx.lifecycle.ServiceLifecycleDispatcher
 import com.crazylegend.kotlinextensions.context.cameraManager
 import com.crazylegend.kotlinextensions.currentTimeMillis
 import com.crazylegend.kotlinextensions.log.debug
@@ -17,84 +16,65 @@ import javax.inject.Inject
  * Created by crazy on 10/15/20 to long live and prosper !
  */
 @ServiceScoped
-class CameraProvider @Inject constructor(@ServiceContext private val context: Context) : LifecycleOwner, LifecycleObserver, ServiceCoroutines {
+class CameraProvider @Inject constructor(@ServiceContext private val context: Context) : ServiceCoroutines {
 
     //coroutines
     override lateinit var job: Job
 
     //lifecycle
-    private val serviceLifecycleDispatcher = ServiceLifecycleDispatcher(this)
-    override fun getLifecycle(): Lifecycle = serviceLifecycleDispatcher.lifecycle
+    override val serviceLifecycleDispatcher = ServiceLifecycleDispatcher(this)
 
     //camera
     private lateinit var cameraCallback: CameraManager.AvailabilityCallback
-    var packageUsingCamera: String? = null
-    var wasCameraBeingUsed = false
-    var cameraStartedUsageTime: Long? = null
+    private var packageUsingCamera: String? = null
+    private var wasCameraBeingUsed = false
+    private var cameraStartedUsageTime: Long? = null
 
-    fun initLifecycle() {
-        serviceLifecycleDispatcher.onServicePreSuperOnCreate()
-        serviceLifecycleDispatcher.lifecycle.addObserver(this)
+    override fun initVars() {
+        cameraCallback = cameraListener()
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-    fun initVars() {
-        debug { "CREATED" }
-        job = Job()
-        cameraCallback = cameraListener()
+    override fun registerCallbacks() {
         context.cameraManager.registerAvailabilityCallback(cameraCallback, null)
     }
 
-    fun setServiceConnected() {
-        serviceLifecycleDispatcher.onServicePreSuperOnStart()
+    override fun disposeResources() {
+        context.cameraManager.unregisterAvailabilityCallback(cameraCallback)
     }
 
-    private fun cameraListener(): CameraManager.AvailabilityCallback {
-        return object : CameraManager.AvailabilityCallback() {
-            override fun onCameraAvailable(cameraId: String) {
-                super.onCameraAvailable(cameraId)
-                setCameraNotUsed()
+    //region private
+    private fun cameraListener(): CameraManager.AvailabilityCallback =
+            object : CameraManager.AvailabilityCallback() {
+                override fun onCameraAvailable(cameraId: String) {
+                    super.onCameraAvailable(cameraId)
+                    setCameraNotUsed(cameraId)
+                }
+
+                override fun onCameraUnavailable(cameraId: String) {
+                    super.onCameraUnavailable(cameraId)
+                    setCameraUsed(cameraId)
+                }
             }
 
-            override fun onCameraUnavailable(cameraId: String) {
-                super.onCameraUnavailable(cameraId)
-                setCameraUsed()
-            }
-        }
-    }
-
-    private fun setCameraUsed() {
+    private fun setCameraUsed(cameraId: String) {
         wasCameraBeingUsed = true
-        debug { "CAMERA IS BEING USED by $packageUsingCamera" }
+        debug { "CAMERA $cameraId IS BEING USED by $packageUsingCamera" }
     }
 
-    private fun setCameraNotUsed() {
+    private fun setCameraNotUsed(cameraId: String) {
         if (wasCameraBeingUsed) {
             packageUsingCamera = null
             wasCameraBeingUsed = false
             cameraStartedUsageTime = null
             val cameraStoppedBeingUsedAt = currentTimeMillis
-            debug { "CAMERA NOT USED ANYMORE" }
+            debug { "CAMERA $cameraId NOT USED ANYMORE" }
         }
     }
+    //endregion
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    fun disposeResources() {
-        debug { "DESTROYED" }
-        job.cancelIfActive()
-        context.cameraManager.unregisterAvailabilityCallback(cameraCallback)
-    }
 
-    fun cleanUp() {
-        debug { "DESTROYING" }
-        serviceLifecycleDispatcher.onServicePreSuperOnDestroy()
-    }
-
-    fun onStart() {
-        serviceLifecycleDispatcher.onServicePreSuperOnStart()
-    }
-
-    fun eventAction(eventPackageName: CharSequence) {
+    //region public
+    override fun eventAction(eventPackageName: CharSequence) {
         if (!wasCameraBeingUsed) {
             packageUsingCamera = eventPackageName.toString()
         } else {
@@ -102,6 +82,7 @@ class CameraProvider @Inject constructor(@ServiceContext private val context: Co
                 cameraStartedUsageTime = currentTimeMillis
         }
     }
+    //endregion
 
 
 }

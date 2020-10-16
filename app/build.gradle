@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId "com.crazylegend.vigilante"
-        minSdkVersion 21
+        minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
         versionName "1.0.0"
@@ -48,6 +48,7 @@ dependencies {
     //core
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation "androidx.startup:startup-runtime:1.0.0-rc01"
 
     //tests
     testImplementation 'junit:junit:4.13.1'
@@ -69,6 +70,7 @@ dependencies {
     kapt "androidx.hilt:hilt-compiler:$hiltJetpackVersion"
 
 
+    //lifecycle
     implementation "androidx.lifecycle:lifecycle-service:$lifecycle"
 
 
@@ -77,4 +79,5 @@ dependencies {
     implementation "com.github.CraZyLegenD.Set-Of-Useful-Kotlin-Extensions-and-Helpers:kotlinextensions:$utilsVersion"
     implementation "com.github.CraZyLegenD.Set-Of-Useful-Kotlin-Extensions-and-Helpers:navigation:$utilsVersion"
     implementation "com.github.CraZyLegenD.Set-Of-Useful-Kotlin-Extensions-and-Helpers:coroutines:$utilsVersion"
+    implementation "com.github.CraZyLegenD:Crashy:$crashyVersion"
 }

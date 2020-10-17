@@ -7,8 +7,8 @@ import androidx.lifecycle.ServiceLifecycleDispatcher
 import com.crazylegend.kotlinextensions.context.audioManager
 import com.crazylegend.kotlinextensions.currentTimeMillis
 import com.crazylegend.kotlinextensions.log.debug
+import com.crazylegend.vigilante.contracts.service.ServiceCoroutines
 import com.crazylegend.vigilante.di.qualifiers.ServiceContext
-import com.crazylegend.vigilante.utils.ServiceCoroutines
 import kotlinx.coroutines.Job
 import javax.inject.Inject
 

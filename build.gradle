@@ -14,7 +14,7 @@ ext {
 buildscript {
     ext.kotlin_version = "1.4.10"
     ext.nav_version = '2.3.1'
-    ext.hilt_version = '2.28-alpha'
+    ext.hilt_version = '2.29.1-alpha'
     repositories {
         google()
         jcenter()

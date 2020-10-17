@@ -1,4 +1,4 @@
-package com.crazylegend.vigilante.utils
+package com.crazylegend.vigilante.contracts.permissions
 
 import android.content.Context
 import android.content.Intent

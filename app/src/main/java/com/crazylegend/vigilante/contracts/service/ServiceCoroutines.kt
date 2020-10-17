@@ -1,4 +1,4 @@
-package com.crazylegend.vigilante.utils
+package com.crazylegend.vigilante.contracts.service
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.OnLifecycleEvent

@@ -24,8 +24,8 @@ class PermissionProvider @Inject constructor(
     val isAccessibilityEnabled get() = context.accessibilityManager?.isEnabled ?: false
 
     fun isVigilanteRunning(): Boolean {
-        val prefString = Settings.Secure.getString(contentResolver, Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES)
-        return prefString != null && prefString.contains(context.packageName + "/" + VigilanteService::class.java.name)
+        val settingsString = Settings.Secure.getString(contentResolver, Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES)
+        return settingsString != null && settingsString.contains("${context.packageName}/${VigilanteService::class.java.name}")
     }
 
     fun askForAccessibilityPermissions() = context.startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))

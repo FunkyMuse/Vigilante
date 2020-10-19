@@ -1,4 +1,4 @@
-package com.crazylegend.vigilante.di.providers
+package com.crazylegend.vigilante.microphone
 
 import android.content.Context
 import android.media.AudioManager
@@ -7,7 +7,7 @@ import androidx.lifecycle.ServiceLifecycleDispatcher
 import com.crazylegend.kotlinextensions.context.audioManager
 import com.crazylegend.kotlinextensions.currentTimeMillis
 import com.crazylegend.kotlinextensions.log.debug
-import com.crazylegend.vigilante.contracts.service.ServiceCoroutines
+import com.crazylegend.vigilante.contracts.service.ServiceProviderCoroutines
 import com.crazylegend.vigilante.di.qualifiers.ServiceContext
 import kotlinx.coroutines.Job
 import javax.inject.Inject
@@ -16,7 +16,7 @@ import javax.inject.Inject
  * Created by crazy on 10/16/20 to long live and prosper !
  */
 
-class MicrophoneProvider @Inject constructor(@ServiceContext private val context: Context) : ServiceCoroutines {
+class MicrophoneProvider @Inject constructor(@ServiceContext private val context: Context) : ServiceProviderCoroutines {
 
     private lateinit var microphoneCallback: AudioManager.AudioRecordingCallback
     override val serviceLifecycleDispatcher = ServiceLifecycleDispatcher(this)
@@ -66,7 +66,7 @@ class MicrophoneProvider @Inject constructor(@ServiceContext private val context
         context.audioManager.unregisterAudioRecordingCallback(microphoneCallback)
     }
 
-    override fun eventAction(eventPackageName: CharSequence) {
+    override fun eventActionByPackageName(eventPackageName: CharSequence) {
         if (!wasMicrophoneBeingUsed) {
             packageUsingMicrophone = eventPackageName.toString()
         } else {

@@ -11,7 +11,7 @@ import kotlin.coroutines.CoroutineContext
 /**
  * Created by crazy on 10/15/20 to long live and prosper !
  */
-interface ServiceCoroutines : ServiceLifecycle {
+interface ServiceProviderCoroutines : ServiceLifecycle {
 
     var job: Job
 

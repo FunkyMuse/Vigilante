@@ -3,39 +3,31 @@ package com.crazylegend.vigilante.gps
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.provider.Settings
+import android.location.LocationManager.PROVIDERS_CHANGED_ACTION
+import com.crazylegend.kotlinextensions.currentTimeMillis
+import com.crazylegend.kotlinextensions.dateAndTime.toString
 import com.crazylegend.kotlinextensions.log.debug
+import com.crazylegend.vigilante.VigilanteService
+import com.crazylegend.vigilante.utils.isGpsEnabled
+import java.util.*
 
 
 /**
  * Created by crazy on 10/17/20 to long live and prosper !
  */
 class GPSReceiver : BroadcastReceiver() {
+
+    private val currentPackageString: String? get() = VigilanteService.currentPackageString
+
     override fun onReceive(context: Context?, intent: Intent?) {
         intent ?: return
         context ?: return
-        debug { "LOCATION ALRIGHT ${isGpsEnabled(context)}" }
+
+        if (intent.action == PROVIDERS_CHANGED_ACTION)
+            debug { "LOCATION ALRIGHT ${context.isGpsEnabled(currentPackageString)} ${Date(currentTimeMillis).toString("dd.MM.yyyy HH:mm:ss")}" }
+
+        debug { "CURRENT PACKAGE USING LOCATION $currentPackageString" }
     }
 
-    private fun isGpsEnabled(context: Context): GPSModel {
-        val mode = Settings.Secure.getInt(context.contentResolver, Settings.Secure.LOCATION_MODE, Settings.Secure.LOCATION_MODE_OFF)
-        return if (mode != Settings.Secure.LOCATION_MODE_OFF) {
-            val locationMode = when (mode) {
-                Settings.Secure.LOCATION_MODE_HIGH_ACCURACY -> {
-                    "High accuracy. Uses GPS, Wi-Fi, and mobile networks to determine location";
-                }
-                Settings.Secure.LOCATION_MODE_SENSORS_ONLY -> {
-                    "Device only. Uses GPS to determine location";
-                }
-                Settings.Secure.LOCATION_MODE_BATTERY_SAVING -> {
-                    "Battery saving. Uses Wi-Fi and mobile networks to determine location";
-                }
-                else -> null
-            }
-            GPSModel(true, locationMode)
-        } else {
-            GPSModel(false)
-        }
-    }
 
 }

@@ -16,5 +16,5 @@ interface LifecycleProviderContract {
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     fun disposeResources()
 
-    fun eventAction(eventPackageName: CharSequence)
+    fun eventActionByPackageName(eventPackageName: CharSequence)
 }

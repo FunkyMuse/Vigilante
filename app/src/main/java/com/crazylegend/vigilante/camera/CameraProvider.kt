@@ -1,4 +1,4 @@
-package com.crazylegend.vigilante.di.providers
+package com.crazylegend.vigilante.camera
 
 import android.content.Context
 import android.hardware.camera2.CameraManager
@@ -6,7 +6,7 @@ import androidx.lifecycle.ServiceLifecycleDispatcher
 import com.crazylegend.kotlinextensions.context.cameraManager
 import com.crazylegend.kotlinextensions.currentTimeMillis
 import com.crazylegend.kotlinextensions.log.debug
-import com.crazylegend.vigilante.contracts.service.ServiceCoroutines
+import com.crazylegend.vigilante.contracts.service.ServiceProviderCoroutines
 import com.crazylegend.vigilante.di.qualifiers.ServiceContext
 import dagger.hilt.android.scopes.ServiceScoped
 import kotlinx.coroutines.Job
@@ -16,7 +16,7 @@ import javax.inject.Inject
  * Created by crazy on 10/15/20 to long live and prosper !
  */
 @ServiceScoped
-class CameraProvider @Inject constructor(@ServiceContext private val context: Context) : ServiceCoroutines {
+class CameraProvider @Inject constructor(@ServiceContext private val context: Context) : ServiceProviderCoroutines {
 
     //coroutines
     override lateinit var job: Job
@@ -74,7 +74,7 @@ class CameraProvider @Inject constructor(@ServiceContext private val context: Co
 
 
     //region public
-    override fun eventAction(eventPackageName: CharSequence) {
+    override fun eventActionByPackageName(eventPackageName: CharSequence) {
         if (!wasCameraBeingUsed) {
             packageUsingCamera = eventPackageName.toString()
         } else {

@@ -3,6 +3,7 @@ package com.crazylegend.vigilante.home
 import android.os.Bundle
 import android.view.View
 import com.crazylegend.kotlinextensions.fragments.longToast
+import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
@@ -25,15 +26,18 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
 
     override val binding by viewBinding(FragmentHomeBinding::bind)
 
+    private val isServiceEnabled get() = permissionProvider.isAccessibilityEnabled
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.controlSwitch.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                enableTheService()
-            } else {
-                disableTheService()
-            }
+
+        binding.controlSwitch.setOnClickListenerCooldown {
+            dispatchLogic()
         }
+    }
+
+    private fun dispatchLogic() {
+        if (isServiceEnabled) disableTheService() else enableTheService()
     }
 
     private fun disableTheService() {
@@ -48,7 +52,6 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
 
     private fun enableTheService() {
         if (!permissionProvider.hasAccessibilityPermission()) {
-            uncheckControlSwitch()
             permissionProvider.askForAccessibilityPermissions()
             longToast(R.string.enable_the_service)
         } else {
@@ -56,12 +59,10 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
         }
     }
 
-    private fun uncheckControlSwitch() {
-        binding.controlSwitch.isChecked = false
-    }
+    private val statusImage get() = if (permissionProvider.isAccessibilityEnabled) R.drawable.ic_check else R.drawable.ic_closed
 
     override fun onResume() {
         super.onResume()
-        binding.controlSwitch.isChecked = permissionProvider.hasAccessibilityPermission()
+        binding.controlSwitch.setImageResource(statusImage)
     }
 }

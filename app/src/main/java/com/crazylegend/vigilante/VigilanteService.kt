@@ -15,12 +15,12 @@ import android.widget.FrameLayout
 import com.crazylegend.kotlinextensions.context.inflater
 import com.crazylegend.kotlinextensions.context.windowManager
 import com.crazylegend.kotlinextensions.log.debug
-import com.crazylegend.vigilante.camera.CameraManager
-import com.crazylegend.vigilante.clipboard.ClipboardManager
+import com.crazylegend.vigilante.camera.CameraProcessor
+import com.crazylegend.vigilante.clipboard.ClipboardProcessor
 import com.crazylegend.vigilante.gps.GPSReceiver
-import com.crazylegend.vigilante.microphone.MicrophoneManager
+import com.crazylegend.vigilante.microphone.MicrophoneProcessor
 import com.crazylegend.vigilante.notifications.NotificationsProvider
-import com.crazylegend.vigilante.permissions.PermissionsManager
+import com.crazylegend.vigilante.permissions.PermissionsProcessor
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -39,19 +39,19 @@ class VigilanteService : AccessibilityService() {
     private lateinit var gpsReceiver: GPSReceiver
 
     @Inject
-    lateinit var cameraManager: CameraManager
+    lateinit var cameraProcessor: CameraProcessor
 
     @Inject
-    lateinit var microphoneManager: MicrophoneManager
+    lateinit var microphoneProcessor: MicrophoneProcessor
 
     @Inject
-    lateinit var clipboardManager: ClipboardManager
+    lateinit var clipboardProcessor: ClipboardProcessor
 
     @Inject
     lateinit var notificationsProvider: NotificationsProvider
 
     @Inject
-    lateinit var permissionsManager: PermissionsManager
+    lateinit var permissionsProcessor: PermissionsProcessor
 
     private lateinit var outerFrame: FrameLayout
     private lateinit var outerFrameParams: WindowManager.LayoutParams
@@ -62,8 +62,8 @@ class VigilanteService : AccessibilityService() {
 
     @SuppressLint("MissingPermission")
     override fun onServiceConnected() {
-        cameraManager.setServiceConnected()
-        microphoneManager.setServiceConnected()
+        cameraProcessor.setServiceConnected()
+        microphoneProcessor.setServiceConnected()
         gpsReceiver = GPSReceiver()
 
         setupHoverLayout()
@@ -94,20 +94,20 @@ class VigilanteService : AccessibilityService() {
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {
         event ?: return
         rememberEventPackageName(event)
-        clipboardManager.processEvent(event)
+        clipboardProcessor.processEvent(event)
         notificationsProvider.processEvent(event)
     }
 
     override fun onCreate() {
         super.onCreate()
         //region init
-        cameraManager.initLifecycle()
-        microphoneManager.initLifecycle()
+        cameraProcessor.initLifecycle()
+        microphoneProcessor.initLifecycle()
         //endregion
 
         //region start
-        cameraManager.onStart()
-        microphoneManager.onStart()
+        cameraProcessor.onStart()
+        microphoneProcessor.onStart()
         //endregion
     }
 
@@ -115,8 +115,8 @@ class VigilanteService : AccessibilityService() {
         val eventPackageName = event.packageName
         currentPackageString = eventPackageName?.toString() ?: packageName
         if (event.eventType == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED && eventPackageName != null) {
-            cameraManager.eventActionByPackageName(eventPackageName)
-            microphoneManager.eventActionByPackageName(eventPackageName)
+            cameraProcessor.eventActionByPackageName(eventPackageName)
+            microphoneProcessor.eventActionByPackageName(eventPackageName)
             //logViewHierarchy(event.source)
             extractPermission(event.source)
         }
@@ -161,8 +161,8 @@ class VigilanteService : AccessibilityService() {
     override fun onInterrupt() {}
 
     override fun onDestroy() {
-        cameraManager.cleanUp()
-        microphoneManager.cleanUp()
+        cameraProcessor.cleanUp()
+        microphoneProcessor.cleanUp()
         unregisterReceiver(gpsReceiver)
         windowManager?.removeView(outerFrame)
         currentPackageString = null

@@ -9,7 +9,7 @@ import javax.inject.Inject
  * Created by crazy on 10/21/20 to long live and prosper !
  */
 @ServiceScoped
-class PermissionsManager @Inject constructor(
+class PermissionsProcessor @Inject constructor(
         @ServiceContext private val context: Context) {
 
 

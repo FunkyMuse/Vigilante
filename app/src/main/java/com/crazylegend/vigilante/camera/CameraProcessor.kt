@@ -16,7 +16,7 @@ import javax.inject.Inject
  * Created by crazy on 10/15/20 to long live and prosper !
  */
 @ServiceScoped
-class CameraManager @Inject constructor(@ServiceContext private val context: Context) : ServiceManagersCoroutines {
+class CameraProcessor @Inject constructor(@ServiceContext private val context: Context) : ServiceManagersCoroutines {
 
     //coroutines
     override lateinit var job: Job
@@ -25,7 +25,7 @@ class CameraManager @Inject constructor(@ServiceContext private val context: Con
     override val serviceLifecycleDispatcher = ServiceLifecycleDispatcher(this)
 
     //camera
-    private lateinit var cameraCallback: CameraManager.AvailabilityCallback.AvailabilityCallback
+    private lateinit var cameraCallback: CameraManager.AvailabilityCallback
     private var packageUsingCamera: String? = null
     private var wasCameraBeingUsed = false
     private var cameraStartedUsageTime: Long? = null
@@ -43,8 +43,8 @@ class CameraManager @Inject constructor(@ServiceContext private val context: Con
     }
 
     //region private
-    private fun cameraListener(): CameraManager.AvailabilityCallback.AvailabilityCallback =
-            object : CameraManager.AvailabilityCallback.AvailabilityCallback() {
+    private fun cameraListener(): CameraManager.AvailabilityCallback =
+            object : CameraManager.AvailabilityCallback() {
                 override fun onCameraAvailable(cameraId: String) {
                     super.onCameraAvailable(cameraId)
                     setCameraNotUsed(cameraId)

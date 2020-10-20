@@ -17,7 +17,7 @@ import javax.inject.Inject
  * Created by crazy on 10/16/20 to long live and prosper !
  */
 @ServiceScoped
-class MicrophoneManager @Inject constructor(@ServiceContext private val context: Context) : ServiceManagersCoroutines {
+class MicrophoneProcessor @Inject constructor(@ServiceContext private val context: Context) : ServiceManagersCoroutines {
 
     private lateinit var microphoneCallback: AudioManager.AudioRecordingCallback
     override val serviceLifecycleDispatcher = ServiceLifecycleDispatcher(this)

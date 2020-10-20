@@ -1,4 +1,4 @@
-package com.crazylegend.vigilante.contracts.service
+package com.crazylegend.vigilante.contracts
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.OnLifecycleEvent
@@ -6,7 +6,7 @@ import androidx.lifecycle.OnLifecycleEvent
 /**
  * Created by crazy on 10/16/20 to long live and prosper !
  */
-interface LifecycleProviderContract {
+interface LifecycleManagersContract {
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun initVars()
 

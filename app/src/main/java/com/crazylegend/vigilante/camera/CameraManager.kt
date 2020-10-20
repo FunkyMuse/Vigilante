@@ -6,7 +6,7 @@ import androidx.lifecycle.ServiceLifecycleDispatcher
 import com.crazylegend.kotlinextensions.context.cameraManager
 import com.crazylegend.kotlinextensions.currentTimeMillis
 import com.crazylegend.kotlinextensions.log.debug
-import com.crazylegend.vigilante.contracts.service.ServiceProviderCoroutines
+import com.crazylegend.vigilante.contracts.service.ServiceManagersCoroutines
 import com.crazylegend.vigilante.di.qualifiers.ServiceContext
 import dagger.hilt.android.scopes.ServiceScoped
 import kotlinx.coroutines.Job
@@ -16,7 +16,7 @@ import javax.inject.Inject
  * Created by crazy on 10/15/20 to long live and prosper !
  */
 @ServiceScoped
-class CameraProvider @Inject constructor(@ServiceContext private val context: Context) : ServiceProviderCoroutines {
+class CameraManager @Inject constructor(@ServiceContext private val context: Context) : ServiceManagersCoroutines {
 
     //coroutines
     override lateinit var job: Job
@@ -25,7 +25,7 @@ class CameraProvider @Inject constructor(@ServiceContext private val context: Co
     override val serviceLifecycleDispatcher = ServiceLifecycleDispatcher(this)
 
     //camera
-    private lateinit var cameraCallback: CameraManager.AvailabilityCallback
+    private lateinit var cameraCallback: CameraManager.AvailabilityCallback.AvailabilityCallback
     private var packageUsingCamera: String? = null
     private var wasCameraBeingUsed = false
     private var cameraStartedUsageTime: Long? = null
@@ -43,8 +43,8 @@ class CameraProvider @Inject constructor(@ServiceContext private val context: Co
     }
 
     //region private
-    private fun cameraListener(): CameraManager.AvailabilityCallback =
-            object : CameraManager.AvailabilityCallback() {
+    private fun cameraListener(): CameraManager.AvailabilityCallback.AvailabilityCallback =
+            object : CameraManager.AvailabilityCallback.AvailabilityCallback() {
                 override fun onCameraAvailable(cameraId: String) {
                     super.onCameraAvailable(cameraId)
                     setCameraNotUsed(cameraId)

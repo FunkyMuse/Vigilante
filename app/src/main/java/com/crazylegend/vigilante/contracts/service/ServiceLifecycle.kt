@@ -4,11 +4,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ServiceLifecycleDispatcher
+import com.crazylegend.vigilante.contracts.LifecycleManagersContract
 
 /**
  * Created by crazy on 10/16/20 to long live and prosper !
  */
-interface ServiceLifecycle : LifecycleOwner, LifecycleObserver, LifecycleProviderContract {
+interface ServiceLifecycle : LifecycleOwner, LifecycleObserver, LifecycleManagersContract {
 
     val serviceLifecycleDispatcher: ServiceLifecycleDispatcher
     override fun getLifecycle(): Lifecycle = serviceLifecycleDispatcher.lifecycle

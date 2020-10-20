@@ -16,7 +16,7 @@ import javax.inject.Inject
  */
 @SuppressLint("DefaultLocale")
 @ServiceScoped
-class ClipboardProvider @Inject constructor(
+class ClipboardManager @Inject constructor(
         @ServiceContext private val context: Context) {
 
     private var selectedText: String? = null

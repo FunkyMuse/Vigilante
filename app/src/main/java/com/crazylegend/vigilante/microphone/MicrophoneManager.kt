@@ -7,16 +7,17 @@ import androidx.lifecycle.ServiceLifecycleDispatcher
 import com.crazylegend.kotlinextensions.context.audioManager
 import com.crazylegend.kotlinextensions.currentTimeMillis
 import com.crazylegend.kotlinextensions.log.debug
-import com.crazylegend.vigilante.contracts.service.ServiceProviderCoroutines
+import com.crazylegend.vigilante.contracts.service.ServiceManagersCoroutines
 import com.crazylegend.vigilante.di.qualifiers.ServiceContext
+import dagger.hilt.android.scopes.ServiceScoped
 import kotlinx.coroutines.Job
 import javax.inject.Inject
 
 /**
  * Created by crazy on 10/16/20 to long live and prosper !
  */
-
-class MicrophoneProvider @Inject constructor(@ServiceContext private val context: Context) : ServiceProviderCoroutines {
+@ServiceScoped
+class MicrophoneManager @Inject constructor(@ServiceContext private val context: Context) : ServiceManagersCoroutines {
 
     private lateinit var microphoneCallback: AudioManager.AudioRecordingCallback
     override val serviceLifecycleDispatcher = ServiceLifecycleDispatcher(this)

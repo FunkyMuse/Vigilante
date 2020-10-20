@@ -12,12 +12,11 @@ import android.view.accessibility.AccessibilityEvent
 import android.widget.FrameLayout
 import com.crazylegend.kotlinextensions.context.inflater
 import com.crazylegend.kotlinextensions.context.windowManager
-import com.crazylegend.kotlinextensions.log.debug
 import com.crazylegend.vigilante.camera.CameraProvider
 import com.crazylegend.vigilante.clipboard.ClipboardProvider
 import com.crazylegend.vigilante.gps.GPSReceiver
 import com.crazylegend.vigilante.microphone.MicrophoneProvider
-import com.crazylegend.vigilante.utils.isGpsEnabled
+import com.crazylegend.vigilante.notifications.NotificationsProvider
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -43,6 +42,9 @@ class VigilanteService : AccessibilityService() {
 
     @Inject
     lateinit var clipboardProvider: ClipboardProvider
+
+    @Inject
+    lateinit var notificationsProvider: NotificationsProvider
 
     private lateinit var outerFrame: FrameLayout
     private lateinit var outerFrameParams: WindowManager.LayoutParams
@@ -78,13 +80,13 @@ class VigilanteService : AccessibilityService() {
         val filter = IntentFilter(LocationManager.PROVIDERS_CHANGED_ACTION)
         filter.addAction(Intent.ACTION_PROVIDER_CHANGED)
         registerReceiver(gpsReceiver, filter)
-        debug { "CHECK IF GPS IS ENABLED ON INITIAL LOAD ${isGpsEnabled(currentPackage)}" }
     }
 
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {
         event ?: return
         rememberEventPackageName(event)
         clipboardProvider.processEvent(event)
+        notificationsProvider.processEvent(event)
     }
 
     override fun onCreate() {

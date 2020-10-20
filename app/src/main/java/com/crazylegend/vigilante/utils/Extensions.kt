@@ -4,12 +4,11 @@ package com.crazylegend.vigilante.utils
 
 import android.content.ComponentName
 import android.content.Context
-import android.content.Intent
-import android.os.Build
 import android.provider.Settings
 import android.text.TextUtils
 import com.crazylegend.kotlinextensions.activity.newIntent
-import com.crazylegend.kotlinextensions.context.activityManager
+import com.crazylegend.kotlinextensions.services.isServiceRunning
+import com.crazylegend.kotlinextensions.services.startForegroundService
 import com.crazylegend.vigilante.VigilanteService
 import com.crazylegend.vigilante.gps.GPSModel
 
@@ -18,12 +17,7 @@ import com.crazylegend.vigilante.gps.GPSModel
  */
 
 fun Context.startVigilante() {
-    val serviceIntent = Intent(this, VigilanteService::class.java)
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-        startForegroundService(serviceIntent)
-    } else {
-        startService(serviceIntent)
-    }
+    startForegroundService<VigilanteService>()
 }
 
 fun Context.stopVigilante(): Boolean {
@@ -31,14 +25,7 @@ fun Context.stopVigilante(): Boolean {
     return stopService(intent)
 }
 
-fun Context.isVigilanteRunning(): Boolean {
-    for (service in activityManager.getRunningServices(Integer.MAX_VALUE)) {
-        if (VigilanteService::class.java.name == service.service.className) {
-            return true
-        }
-    }
-    return false
-}
+fun Context.isVigilanteRunning() = isServiceRunning<VigilanteService>()
 
 /**
  * Based on {@link com.android.settingslib.accessibility.AccessibilityUtils#getEnabledServicesFromSettings(Context,int)}

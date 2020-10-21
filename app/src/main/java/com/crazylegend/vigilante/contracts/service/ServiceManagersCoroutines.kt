@@ -6,6 +6,7 @@ import com.crazylegend.coroutines.cancelIfActive
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancel
 import kotlin.coroutines.CoroutineContext
 
 /**
@@ -28,6 +29,7 @@ interface ServiceManagersCoroutines : ServiceLifecycle {
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     fun disposeJob() {
         job.cancelIfActive()
+        scope.cancel()
     }
 
 

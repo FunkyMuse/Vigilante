@@ -9,7 +9,6 @@ import com.crazylegend.kotlinextensions.log.debug
 import com.crazylegend.vigilante.contracts.service.ServiceManagersCoroutines
 import com.crazylegend.vigilante.di.qualifiers.ServiceContext
 import dagger.hilt.android.scopes.ServiceScoped
-import kotlinx.coroutines.Job
 import javax.inject.Inject
 
 /**
@@ -17,9 +16,6 @@ import javax.inject.Inject
  */
 @ServiceScoped
 class CameraProcessor @Inject constructor(@ServiceContext private val context: Context) : ServiceManagersCoroutines {
-
-    //coroutines
-    override lateinit var job: Job
 
     //lifecycle
     override val serviceLifecycleDispatcher = ServiceLifecycleDispatcher(this)

@@ -10,7 +10,6 @@ import com.crazylegend.kotlinextensions.log.debug
 import com.crazylegend.vigilante.contracts.service.ServiceManagersCoroutines
 import com.crazylegend.vigilante.di.qualifiers.ServiceContext
 import dagger.hilt.android.scopes.ServiceScoped
-import kotlinx.coroutines.Job
 import javax.inject.Inject
 
 /**
@@ -21,7 +20,6 @@ class MicrophoneProcessor @Inject constructor(@ServiceContext private val contex
 
     private lateinit var microphoneCallback: AudioManager.AudioRecordingCallback
     override val serviceLifecycleDispatcher = ServiceLifecycleDispatcher(this)
-    override lateinit var job: Job
 
     private var packageUsingMicrophone: String? = null
     private var wasMicrophoneBeingUsed = false

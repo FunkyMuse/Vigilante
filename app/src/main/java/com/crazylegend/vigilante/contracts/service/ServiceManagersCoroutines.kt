@@ -2,10 +2,8 @@ package com.crazylegend.vigilante.contracts.service
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.OnLifecycleEvent
-import com.crazylegend.coroutines.cancelIfActive
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
 import kotlin.coroutines.CoroutineContext
 
@@ -14,21 +12,13 @@ import kotlin.coroutines.CoroutineContext
  */
 interface ServiceManagersCoroutines : ServiceLifecycle {
 
-    var job: Job
-
     val coroutineContext: CoroutineContext
-        get() = job + Dispatchers.Main
+        get() = Dispatchers.Main
 
     val scope get() = CoroutineScope(coroutineContext)
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-    fun createJob() {
-        job = Job()
-    }
-
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     fun disposeJob() {
-        job.cancelIfActive()
         scope.cancel()
     }
 

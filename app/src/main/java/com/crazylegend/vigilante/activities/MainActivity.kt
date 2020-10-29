@@ -1,14 +1,12 @@
 package com.crazylegend.vigilante.activities
 
 import android.os.Bundle
-import android.provider.Settings
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
 import com.crazylegend.navigation.setupWithNavController
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
-import com.crazylegend.vigilante.VigilanteService
 import com.crazylegend.vigilante.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,11 +20,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
         if (savedInstanceState == null) {
             setupBottomNavigationBar()
         } // Else, need to wait for onRestoreInstanceState
-
 
     }
 
@@ -61,12 +57,5 @@ class MainActivity : AppCompatActivity() {
         super.onRestoreInstanceState(savedInstanceState)
         setupBottomNavigationBar()
     }
-
-
-    private fun isVigilanteRunning(): Boolean {
-        val prefString = Settings.Secure.getString(contentResolver, Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES)
-        return prefString != null && prefString.contains(packageName + "/" + VigilanteService::class.java.name)
-    }
-
 
 }

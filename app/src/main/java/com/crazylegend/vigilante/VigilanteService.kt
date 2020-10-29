@@ -14,7 +14,6 @@ import android.view.accessibility.AccessibilityNodeInfo
 import android.widget.FrameLayout
 import com.crazylegend.kotlinextensions.context.inflater
 import com.crazylegend.kotlinextensions.context.windowManager
-import com.crazylegend.kotlinextensions.log.debug
 import com.crazylegend.vigilante.camera.CameraProcessor
 import com.crazylegend.vigilante.clipboard.ClipboardProcessor
 import com.crazylegend.vigilante.gps.GPSReceiver
@@ -57,10 +56,6 @@ class VigilanteService : AccessibilityService() {
     private lateinit var outerFrameParams: WindowManager.LayoutParams
 
     private val currentPackage get() = currentPackageString ?: packageName
-
-    private var denyButtonId: String? = null
-    private var allowButtonId: String? = null
-    private var doNotAskButtonId: String? = null
 
     @SuppressLint("MissingPermission")
     override fun onServiceConnected() {
@@ -121,57 +116,10 @@ class VigilanteService : AccessibilityService() {
         if (event.eventType == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED && eventPackageName != null) {
             cameraProcessor.eventActionByPackageName(eventPackageName)
             microphoneProcessor.eventActionByPackageName(eventPackageName)
-            logViewHierarchy(event.source)
-            extractPermission(event.source)
+            //logViewHierarchy(event.source)
+            permissionsProcessor.extractPermission(event.source, 0)
         }
-        if (event.eventType == AccessibilityEvent.TYPE_VIEW_CLICKED && event.source != null) {
-            val denyButton = denyButtonId
-            if (denyButton != null && event.source.viewIdResourceName != null && event.source.viewIdResourceName == denyButton) {
-                debug { "CLICKED DENY ${event.source.text}" }
-                denyButtonId = null
-            }
-
-            val allowButton = allowButtonId
-            if (allowButton != null && event.source.viewIdResourceName != null && event.source.viewIdResourceName == allowButton) {
-                debug { "CLICKED ALLOW ${event.source.text}" }
-                allowButtonId = null
-            }
-
-            val doNotAskButton = doNotAskButtonId
-            if (doNotAskButton != null && event.source.viewIdResourceName != null && event.source.viewIdResourceName == doNotAskButton) {
-                debug { "CLICKED DO NOT ASK ${event.source.text}" }
-                doNotAskButtonId = null
-            }
-        }
-    }
-
-    private fun extractPermission(nodeInfo: AccessibilityNodeInfo?, depth: Int = 0) {
-        if (nodeInfo == null) return
-        //Log the info you care about here... I choce classname and view resource name, because they are simple, but interesting.
-        val viewIdResource = nodeInfo.viewIdResourceName
-        if (viewIdResource != null && viewIdResource.contains("id/permission_message", true)) {
-            debug { "PERMISSION MESSAGE ${nodeInfo.text?.toString()}" }
-        }
-
-        if (viewIdResource != null && viewIdResource.contains("id/permission_deny", true)) {
-            denyButtonId = viewIdResource
-            debug { "DENY ${nodeInfo.text?.toString()} -> $denyButtonId" }
-        }
-
-        if (viewIdResource != null && viewIdResource.contains("id/permission_allow", true)) {
-            allowButtonId = viewIdResource
-            debug { "ALLOW ${nodeInfo.text?.toString()} -> $allowButtonId" }
-        }
-
-        if (viewIdResource != null && viewIdResource.contains("id/do_not_ask", true)) {
-            doNotAskButtonId = viewIdResource
-            debug { "DO NOT ASK ${nodeInfo.text?.toString()} -> $allowButtonId" }
-
-        }
-
-        for (i in 0 until nodeInfo.childCount) {
-            extractPermission(nodeInfo.getChild(i), depth + 1)
-        }
+        permissionsProcessor.listenForPermissionClicks(event.eventType, event.source)
     }
 
     private fun logViewHierarchy(nodeInfo: AccessibilityNodeInfo?, depth: Int = 0) {

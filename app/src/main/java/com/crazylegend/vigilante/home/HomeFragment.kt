@@ -2,7 +2,9 @@ package com.crazylegend.vigilante.home
 
 import android.os.Bundle
 import android.view.View
+import com.crazylegend.kotlinextensions.context.getSystemProperty
 import com.crazylegend.kotlinextensions.fragments.longToast
+import com.crazylegend.kotlinextensions.log.debug
 import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
@@ -34,6 +36,7 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
         binding.controlSwitch.setOnClickListenerCooldown {
             dispatchLogic()
         }
+
     }
 
     private fun dispatchLogic() {
@@ -63,6 +66,13 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
 
     override fun onResume() {
         super.onResume()
+        val tes = getSystemProperty("ro.crypto.state") == "encrypted"
+        debug { "IS ENCRYPTED $tes" }
         binding.controlSwitch.setImageResource(statusImage)
+        if (permissionProvider.hasUsageStatsPermission()) {
+            debug { "GIVEN USAGE STATS PERMISSIONS " }
+        } else {
+            permissionProvider.askForUsageStatsPermission()
+        }
     }
 }

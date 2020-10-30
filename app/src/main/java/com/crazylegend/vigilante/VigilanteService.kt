@@ -3,20 +3,19 @@ package com.crazylegend.vigilante
 import android.accessibilityservice.AccessibilityService
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.IntentFilter
 import android.graphics.PixelFormat
-import android.location.LocationManager
 import android.util.Log
 import android.view.Gravity
 import android.view.WindowManager
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
 import android.widget.FrameLayout
+import com.crazylegend.kotlinextensions.batteryStatusIntent
 import com.crazylegend.kotlinextensions.context.inflater
 import com.crazylegend.kotlinextensions.context.windowManager
 import com.crazylegend.vigilante.camera.CameraProcessor
 import com.crazylegend.vigilante.clipboard.ClipboardProcessor
-import com.crazylegend.vigilante.gps.GPSReceiver
+import com.crazylegend.vigilante.di.providers.BroadcastProvider
 import com.crazylegend.vigilante.microphone.MicrophoneProcessor
 import com.crazylegend.vigilante.notifications.NotificationsProvider
 import com.crazylegend.vigilante.permissions.PermissionsProcessor
@@ -35,7 +34,8 @@ class VigilanteService : AccessibilityService() {
         var currentPackageString: String? = null
     }
 
-    private lateinit var gpsReceiver: GPSReceiver
+    @Inject
+    lateinit var broadcastProvider: BroadcastProvider
 
     @Inject
     lateinit var cameraProcessor: CameraProcessor
@@ -57,15 +57,15 @@ class VigilanteService : AccessibilityService() {
 
     private val currentPackage get() = currentPackageString ?: packageName
 
+    private val batteryInfo get() = batteryStatusIntent
+
     @SuppressLint("MissingPermission")
     override fun onServiceConnected() {
         cameraProcessor.setServiceConnected()
         microphoneProcessor.setServiceConnected()
-        gpsReceiver = GPSReceiver()
+        broadcastProvider.setServiceConnected()
 
-        setupHoverLayout()
-
-        registerGPSReceiver()
+        //setupHoverLayout()
     }
 
     private fun setupHoverLayout() {
@@ -82,11 +82,6 @@ class VigilanteService : AccessibilityService() {
         windowManager?.addView(outerFrame, outerFrameParams)
     }
 
-    private fun registerGPSReceiver() {
-        val filter = IntentFilter(LocationManager.PROVIDERS_CHANGED_ACTION)
-        filter.addAction(Intent.ACTION_PROVIDER_CHANGED)
-        registerReceiver(gpsReceiver, filter)
-    }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int = START_STICKY
 
@@ -102,11 +97,13 @@ class VigilanteService : AccessibilityService() {
         //region init
         cameraProcessor.initLifecycle()
         microphoneProcessor.initLifecycle()
+        broadcastProvider.initLifecycle()
         //endregion
 
         //region start
         cameraProcessor.onStart()
         microphoneProcessor.onStart()
+        broadcastProvider.onStart()
         //endregion
     }
 
@@ -141,8 +138,8 @@ class VigilanteService : AccessibilityService() {
     override fun onDestroy() {
         cameraProcessor.cleanUp()
         microphoneProcessor.cleanUp()
-        unregisterReceiver(gpsReceiver)
-        windowManager?.removeView(outerFrame)
+        broadcastProvider.cleanUp()
+        //windowManager?.removeView(outerFrame)
         currentPackageString = null
         super.onDestroy()
     }

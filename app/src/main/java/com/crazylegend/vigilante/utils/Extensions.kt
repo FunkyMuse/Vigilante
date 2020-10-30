@@ -3,6 +3,7 @@
 package com.crazylegend.vigilante.utils
 
 import android.content.Context
+import android.content.Intent
 import android.provider.Settings
 import com.crazylegend.kotlinextensions.activity.newIntent
 import com.crazylegend.kotlinextensions.services.isServiceRunning
@@ -45,4 +46,9 @@ fun Context.isGpsEnabled(currentPackageString: String? = null): GPSModel {
     } else {
         GPSModel(false, currentPackage = currentPackageString)
     }
+}
+
+
+inline fun Intent.onAction(intentAction: String, function: () -> Unit) {
+    if (action == intentAction) function()
 }

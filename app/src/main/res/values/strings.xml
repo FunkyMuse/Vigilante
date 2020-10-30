@@ -8,4 +8,7 @@
     <string name="copy">copy</string>
     <string name="paste">paste</string>
     <string name="cut">cut</string>
+    <string name="high_accuracy_location">High accuracy. Uses GPS, Wi-Fi, and mobile networks to determine location</string>
+    <string name="device_only_location">Device only. Uses GPS to determine location</string>
+    <string name="battery_saving_location">Battery saving. Uses Wi-Fi and mobile networks to determine location</string>
 </resources>

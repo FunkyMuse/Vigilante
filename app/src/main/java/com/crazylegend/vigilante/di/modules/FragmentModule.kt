@@ -1,7 +1,5 @@
 package com.crazylegend.vigilante.di.modules
 
-import android.content.ContentResolver
-import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import com.crazylegend.vigilante.di.qualifiers.FragmentContext
@@ -24,8 +22,5 @@ object FragmentModule {
 
     @Provides
     fun viewLifecycleOwner(fragment: Fragment): LifecycleOwner = fragment.viewLifecycleOwner
-
-    @Provides
-    fun contentResolver(@FragmentContext context: Context): ContentResolver = context.contentResolver
 
 }

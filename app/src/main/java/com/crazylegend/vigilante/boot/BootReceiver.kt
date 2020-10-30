@@ -3,7 +3,8 @@ package com.crazylegend.vigilante.boot
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import com.crazylegend.vigilante.utils.hasAccessibilityPermission
+import com.crazylegend.kotlinextensions.accessibility.hasAccessibilityPermission
+import com.crazylegend.vigilante.VigilanteService
 import com.crazylegend.vigilante.utils.isVigilanteRunning
 import com.crazylegend.vigilante.utils.startVigilante
 
@@ -18,7 +19,7 @@ class BootReceiver : BroadcastReceiver() {
         val action = intent.action ?: return
 
         if (action == Intent.ACTION_BOOT_COMPLETED || action == Intent.ACTION_LOCKED_BOOT_COMPLETED) {
-            if (context.hasAccessibilityPermission() && !context.isVigilanteRunning()) {
+            if (context.hasAccessibilityPermission<VigilanteService>() && !context.isVigilanteRunning()) {
                 context.startVigilante()
             }
         }

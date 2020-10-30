@@ -1,10 +1,13 @@
 package com.crazylegend.vigilante.home
 
+import android.app.usage.UsageStatsManager
 import android.os.Bundle
 import android.view.View
-import com.crazylegend.kotlinextensions.context.getSystemProperty
+import com.crazylegend.kotlinextensions.context.usageStatsManager
+import com.crazylegend.kotlinextensions.dateAndTime.toString
 import com.crazylegend.kotlinextensions.fragments.longToast
 import com.crazylegend.kotlinextensions.log.debug
+import com.crazylegend.kotlinextensions.storage.isDiskEncrypted
 import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
@@ -15,7 +18,9 @@ import com.crazylegend.vigilante.utils.isVigilanteRunning
 import com.crazylegend.vigilante.utils.startVigilante
 import com.crazylegend.vigilante.utils.stopVigilante
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 import javax.inject.Inject
+
 
 /**
  * Created by crazy on 10/14/20 to long live and prosper !
@@ -36,6 +41,7 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
         binding.controlSwitch.setOnClickListenerCooldown {
             dispatchLogic()
         }
+
 
     }
 
@@ -66,13 +72,23 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
 
     override fun onResume() {
         super.onResume()
-        val tes = getSystemProperty("ro.crypto.state") == "encrypted"
-        debug { "IS ENCRYPTED $tes" }
+        debug { "IS ENCRYPTED $isDiskEncrypted" }
         binding.controlSwitch.setImageResource(statusImage)
         if (permissionProvider.hasUsageStatsPermission()) {
-            debug { "GIVEN USAGE STATS PERMISSIONS " }
+            val cal: Calendar = Calendar.getInstance()
+            cal.add(Calendar.YEAR, -1)
+            val queryUsageStats = requireContext().usageStatsManager?.queryUsageStats(UsageStatsManager.INTERVAL_DAILY,
+                    cal.timeInMillis, System.currentTimeMillis())
+            queryUsageStats?.asSequence()?.forEach {
+
+            }
         } else {
             permissionProvider.askForUsageStatsPermission()
         }
     }
+
+    private fun Long.toDate(): String = Date(this).toString("dd.MM.yyyy HH:mm:ss")
+
 }
+
+

@@ -7,6 +7,8 @@ import com.crazylegend.kotlinextensions.context.usageStatsManager
 import com.crazylegend.kotlinextensions.dateAndTime.toString
 import com.crazylegend.kotlinextensions.fragments.longToast
 import com.crazylegend.kotlinextensions.log.debug
+import com.crazylegend.kotlinextensions.misc.requestBatteryOptimizations
+import com.crazylegend.kotlinextensions.power.isIgnoringBatteryOptimization
 import com.crazylegend.kotlinextensions.storage.isDiskEncrypted
 import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
 import com.crazylegend.viewbinding.viewBinding
@@ -42,7 +44,10 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
             dispatchLogic()
         }
 
-
+        val ignoring = requireContext().isIgnoringBatteryOptimization ?: false
+        if (!ignoring) {
+            requireContext().requestBatteryOptimizations()
+        }
     }
 
     private fun dispatchLogic() {

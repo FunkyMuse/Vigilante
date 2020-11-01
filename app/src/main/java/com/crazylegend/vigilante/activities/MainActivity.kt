@@ -1,12 +1,8 @@
 package com.crazylegend.vigilante.activities
 
-import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.LiveData
-import androidx.navigation.NavController
-import com.crazylegend.navigation.setupWithNavController
+import androidx.navigation.findNavController
 import com.crazylegend.viewbinding.viewBinding
-import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -16,46 +12,6 @@ class MainActivity : AppCompatActivity() {
 
     private val binding by viewBinding(ActivityMainBinding::inflate)
 
-    private var currentNavController: LiveData<NavController>? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        if (savedInstanceState == null) {
-            setupBottomNavigationBar()
-        } // Else, need to wait for onRestoreInstanceState
-
-    }
-
-    /**
-     * Called on first creation and when restoring state.
-     */
-    private fun setupBottomNavigationBar() {
-        val navGraphIds = listOf(R.navigation.home)
-
-
-        // Setup the bottom navigation view with a list of navigation graphs
-        val controller = binding.bottomNavigation.setupWithNavController(
-                navGraphIds = navGraphIds,
-                fragmentManager = supportFragmentManager,
-                containerId = R.id.navHostContainer,
-                intent = intent,
-                R.anim.fade_in_interpolated,
-                R.anim.fade_out_interpolated,
-                R.anim.fade_in_interpolated,
-                R.anim.fade_out_interpolated
-        )
-        // Whenever the selected controller changes, setup the action bar.
-        controller.observe(this) { navController ->
-            //addDestinationListener(navController)
-        }
-        currentNavController = controller
-    }
-
-    override fun onSupportNavigateUp() = currentNavController?.value?.navigateUp() ?: false
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-        setupBottomNavigationBar()
-    }
+    override fun onSupportNavigateUp() = binding.navHostContainer.findNavController().navigateUp()
 
 }

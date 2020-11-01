@@ -6,5 +6,7 @@
     <color name="secondary">#80CED7</color>
     <color name="secondaryVariant">#9AD1D4</color>
     <color name="helperColor">#CCDBDC</color>
-    <color name="iconsColor">#c14f1a</color>
+    <color name="iconsColor">#007BEF</color>
+    <color name="offline">#C1251A</color>
+    <color name="online">#2D7C7B</color>
 </resources>

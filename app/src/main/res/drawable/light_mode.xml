@@ -1,0 +1,33 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="16dp"
+    android:height="16dp"
+    android:viewportWidth="16"
+    android:viewportHeight="16">
+  <path
+      android:pathData="M7.5,1H8.5V3.5H7.5V1Z"
+      android:fillColor="@color/iconsColor" />
+  <path
+      android:pathData="M10.8435,4.45L12.5965,2.6965L13.3035,3.404L11.5505,5.157L10.8435,4.45Z"
+      android:fillColor="@color/iconsColor" />
+  <path
+      android:pathData="M12.5,7.5H15V8.5H12.5V7.5Z"
+      android:fillColor="@color/iconsColor" />
+  <path
+      android:pathData="M10.8435,11.55L11.5505,10.843L13.3035,12.596L12.5965,13.3035L10.8435,11.55Z"
+      android:fillColor="@color/iconsColor" />
+  <path
+      android:pathData="M7.5,12.5H8.5V15H7.5V12.5Z"
+      android:fillColor="@color/iconsColor" />
+  <path
+      android:pathData="M2.697,12.596L4.45,10.843L5.157,11.5505L3.404,13.3035L2.697,12.596Z"
+      android:fillColor="@color/iconsColor" />
+  <path
+      android:pathData="M1,7.5H3.5V8.5H1V7.5Z"
+      android:fillColor="@color/iconsColor" />
+  <path
+      android:pathData="M2.697,3.404L3.404,2.6965L5.157,4.45L4.45,5.157L2.697,3.404Z"
+      android:fillColor="@color/iconsColor" />
+  <path
+      android:pathData="M8,6C8.3956,6 8.7822,6.1173 9.1111,6.3371C9.44,6.5568 9.6964,6.8692 9.8478,7.2346C9.9991,7.6001 10.0387,8.0022 9.9616,8.3902C9.8844,8.7781 9.6939,9.1345 9.4142,9.4142C9.1345,9.6939 8.7781,9.8844 8.3902,9.9616C8.0022,10.0387 7.6001,9.9991 7.2346,9.8478C6.8692,9.6964 6.5568,9.44 6.3371,9.1111C6.1173,8.7822 6,8.3956 6,8C6.0007,7.4698 6.2116,6.9615 6.5865,6.5865C6.9615,6.2116 7.4698,6.0007 8,6ZM8,5C7.4067,5 6.8266,5.176 6.3333,5.5056C5.8399,5.8352 5.4554,6.3038 5.2284,6.852C5.0013,7.4001 4.9419,8.0033 5.0577,8.5853C5.1734,9.1672 5.4591,9.7018 5.8787,10.1213C6.2982,10.5409 6.8328,10.8266 7.4147,10.9424C7.9967,11.0581 8.5999,10.9987 9.1481,10.7716C9.6962,10.5446 10.1648,10.1601 10.4944,9.6667C10.8241,9.1734 11,8.5933 11,8C11,7.2043 10.6839,6.4413 10.1213,5.8787C9.5587,5.3161 8.7956,5 8,5Z"
+      android:fillColor="@color/iconsColor" />
+</vector>

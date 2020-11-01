@@ -79,5 +79,6 @@ dependencies {
     implementation "com.github.CraZyLegenD.Set-Of-Useful-Kotlin-Extensions-and-Helpers:kotlinextensions:$utilsVersion"
     implementation "com.github.CraZyLegenD.Set-Of-Useful-Kotlin-Extensions-and-Helpers:navigation:$utilsVersion"
     implementation "com.github.CraZyLegenD.Set-Of-Useful-Kotlin-Extensions-and-Helpers:coroutines:$utilsVersion"
+    implementation "com.github.CraZyLegenD.Set-Of-Useful-Kotlin-Extensions-and-Helpers:customviews:$utilsVersion"
     implementation "com.github.CraZyLegenD:Crashy:$crashyVersion"
 }

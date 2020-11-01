@@ -3,7 +3,7 @@
     <style name="Theme.Vigilante" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="fontFamily">@font/monsterrat_regular</item>
-        <item name="colorPrimaryDark">@color/primaryDark</item>
+        <item name="colorPrimaryDark">@color/primary</item>
         <item name="colorPrimaryVariant">@color/primary</item>
         <item name="colorOnPrimary">@android:color/white</item>
         <item name="colorSecondary">@color/secondary</item>

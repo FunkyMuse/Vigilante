@@ -52,6 +52,7 @@ class VigilanteService : AccessibilityService() {
     @Inject
     lateinit var permissionsProcessor: PermissionsProcessor
 
+
     private lateinit var outerFrame: FrameLayout
     private lateinit var outerFrameParams: WindowManager.LayoutParams
 

@@ -2,8 +2,10 @@ package com.crazylegend.vigilante.settings
 
 import android.os.Bundle
 import android.view.View
+import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
+import com.crazylegend.kotlinextensions.context.packageVersionName
 import com.crazylegend.kotlinextensions.preferences.booleanChangeListener
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.di.providers.PrefsProvider
@@ -20,14 +22,17 @@ class SettingsFragment : PreferenceFragmentCompat() {
     lateinit var prefsProvider: PrefsProvider
 
     private var notificationsSwitch: SwitchPreferenceCompat? = null
+    private var version: Preference? = null
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.settings)
         notificationsSwitch = findPreference(NOTIFICATIONS_PREF_KEY)
+        version = findPreference(VERSION_PREF_KEY)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        version?.summary = requireContext().packageVersionName
         notificationsSwitch.booleanChangeListener { _, newValue ->
             prefsProvider.updateNotificationsValue(newValue)
             updateNotificationSwitch()

@@ -5,7 +5,6 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.crazylegend.crashyreporter.CrashyReporter
-import com.crazylegend.kotlinextensions.context.isLandscape
 import com.crazylegend.kotlinextensions.dateAndTime.toString
 import com.crazylegend.kotlinextensions.fragments.shortToast
 import com.crazylegend.kotlinextensions.storage.isDiskEncrypted
@@ -54,13 +53,13 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val guideLineAttr = if (requireContext().isLandscape) 0.55f else 0.4f
-        binding.headerGuideline.setGuidelinePercent(guideLineAttr)
+
 
         binding.sections.apply {
             layoutManager = GridLayoutManager(requireContext(), 2)
             setHasFixedSize(false)
             adapter = sectionAdapter
+            isNestedScrollingEnabled = false
         }
         sectionAdapter.submitList(sectionList)
 

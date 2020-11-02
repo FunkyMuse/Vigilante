@@ -8,4 +8,5 @@ package com.crazylegend.vigilante.settings
 
 const val NOTIFICATIONS_PREF_KEY = "pref_notifications"
 const val THEME_PREF_KEY = "pref_theme"
+const val VERSION_PREF_KEY = "pref_version"
 

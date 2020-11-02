@@ -1,152 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <FrameLayout
-        android:id="@+id/themeSwitcher"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/half_oval"
-        android:rotation="-90"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/themeIcon"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </FrameLayout>
-
-
-    <FrameLayout
-        android:id="@+id/crashes"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/half_oval"
-        android:rotation="-90"
-        app:layout_constraintBottom_toBottomOf="@id/dividerView"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:rotation="90"
-            app:srcCompat="@drawable/bug" />
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/settings"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/half_oval"
-        android:rotation="90"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/settings" />
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/customizations"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/half_oval"
-        android:rotation="90"
-        app:layout_constraintBottom_toBottomOf="@id/dividerView"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:rotation="-90"
-            app:srcCompat="@drawable/settings_adjsut" />
-
-    </FrameLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/statusButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/click_ripple"
-        app:layout_constraintBottom_toTopOf="@+id/headerGuideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/statusText"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="3dp"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="@+id/innerIndicator"
-            app:layout_constraintEnd_toEndOf="@+id/innerIndicator"
-            app:layout_constraintStart_toStartOf="@+id/innerIndicator"
-            app:layout_constraintTop_toTopOf="@+id/innerIndicator" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/innerIndicator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="230dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_inner_ellipse_enable" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/outerIndicator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            <FrameLayout
+                android:id="@+id/themeSwitcher"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/half_oval"
+                android:rotation="-90"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/themeIcon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:id="@+id/crashes"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/half_oval"
+                android:rotation="-90"
+                app:layout_constraintBottom_toBottomOf="@id/dividerView"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:rotation="90"
+                    app:srcCompat="@drawable/bug" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/settings"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/half_oval"
+                android:rotation="90"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/settings" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/customizations"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/half_oval"
+                android:rotation="90"
+                app:layout_constraintBottom_toBottomOf="@id/dividerView"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:rotation="-90"
+                    app:srcCompat="@drawable/settings_adjsut" />
+
+            </FrameLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/statusButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/click_ripple"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/statusText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elevation="3dp"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/innerIndicator"
+                    app:layout_constraintEnd_toEndOf="@+id/innerIndicator"
+                    app:layout_constraintStart_toStartOf="@+id/innerIndicator"
+                    app:layout_constraintTop_toTopOf="@+id/innerIndicator" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/innerIndicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_inner_ellipse_enable" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/outerIndicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_outer_ellipse_enable" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.crazylegend.customviews.DividerView
+                android:id="@+id/dividerView"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                app:color="@color/helperColor"
+                app:dashGap="0dp"
+                app:dashThickness="1dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.4"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/sections"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_outer_ellipse_enable" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <com.crazylegend.customviews.DividerView
-        android:id="@+id/dividerView"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        app:color="@color/helperColor"
-        app:dashGap="0dp"
-        app:dashThickness="1dp"
-        app:layout_constraintBottom_toTopOf="@+id/headerGuideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.4"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/headerGuideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.4" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/sections"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:scrollbars="none"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/headerGuideline" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

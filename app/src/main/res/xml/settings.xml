@@ -3,10 +3,15 @@
 
 
     <SwitchPreferenceCompat
-        app:icon="@drawable/notification"
+        app:iconSpaceReserved="false"
         app:key="pref_notifications"
         app:summary="@string/notifications_usage_expl"
         app:title="@string/notifications_usage_title" />
 
+
+    <Preference
+        app:iconSpaceReserved="false"
+        app:title="@string/version"
+        app:key="pref_version" />
 
 </PreferenceScreen>

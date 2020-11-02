@@ -10,8 +10,6 @@
     <string name="cut">cut</string>
     <string name="disable_text">Disable</string>
     <string name="enable_text">Enable</string>
-    <string name="offline">Offline</string>
-    <string name="online">Online</string>
     <string name="disk_not_encrypted">Disk not encrypted</string>
     <string name="disk_encrypted">Disk encrypted</string>
     <string name="camera_history">Camera history</string>

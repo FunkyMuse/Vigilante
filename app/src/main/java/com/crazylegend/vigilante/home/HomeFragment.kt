@@ -5,13 +5,9 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.crazylegend.crashyreporter.CrashyReporter
+import com.crazylegend.kotlinextensions.context.isLandscape
 import com.crazylegend.kotlinextensions.dateAndTime.toString
-import com.crazylegend.kotlinextensions.fragments.compatColor
-import com.crazylegend.kotlinextensions.fragments.longToast
 import com.crazylegend.kotlinextensions.fragments.shortToast
-import com.crazylegend.kotlinextensions.internetdetector.InternetDetector
-import com.crazylegend.kotlinextensions.misc.requestBatteryOptimizations
-import com.crazylegend.kotlinextensions.power.isIgnoringBatteryOptimization
 import com.crazylegend.kotlinextensions.storage.isDiskEncrypted
 import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
 import com.crazylegend.navigation.navigateSafe
@@ -21,9 +17,6 @@ import com.crazylegend.vigilante.abstracts.AbstractFragment
 import com.crazylegend.vigilante.databinding.FragmentHomeBinding
 import com.crazylegend.vigilante.di.providers.PermissionProvider
 import com.crazylegend.vigilante.home.section.SectionItem
-import com.crazylegend.vigilante.utils.isVigilanteRunning
-import com.crazylegend.vigilante.utils.startVigilante
-import com.crazylegend.vigilante.utils.stopVigilante
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import javax.inject.Inject
@@ -38,9 +31,6 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
 
     @Inject
     lateinit var permissionProvider: PermissionProvider
-
-    @Inject
-    lateinit var internetDetector: InternetDetector
 
     private val sectionAdapter by lazy {
         adapterProvider.sectionAdapter
@@ -60,10 +50,12 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
 
     override val binding by viewBinding(FragmentHomeBinding::bind)
 
-    private val isServiceEnabled get() = permissionProvider.isAccessibilityEnabled
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val guideLineAttr = if (requireContext().isLandscape) 0.55f else 0.4f
+        binding.headerGuideline.setGuidelinePercent(guideLineAttr)
 
         binding.sections.apply {
             layoutManager = GridLayoutManager(requireContext(), 2)
@@ -73,21 +65,8 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
         sectionAdapter.submitList(sectionList)
 
 
-        internetDetector.observe(viewLifecycleOwner) {
-            updateInternetStatusUI(it)
-        }
-
         binding.statusButton.setOnClickListenerCooldown {
-            dispatchLogic()
-        }
-
-        val ignoring = requireContext().isIgnoringBatteryOptimization ?: false
-        if (!ignoring) {
-            requireContext().requestBatteryOptimizations()
-        }
-
-        binding.crashes.setOnClickListenerCooldown {
-            shortToast("EYE")
+            permissionProvider.dispatchServiceLogic()
         }
 
         binding.settings.setOnClickListenerCooldown {
@@ -105,36 +84,6 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
             } else {
                 findNavController().navigateSafe(HomeFragmentDirections.destinationCrashes())
             }
-        }
-    }
-
-    private fun updateInternetStatusUI(trigger: Boolean?) {
-        val internetText = if (trigger == true) R.string.online else R.string.offline
-        val internetColor = if (trigger == true) R.color.online else R.color.offline
-        binding.networkText.text = getString(internetText)
-        binding.networkStatus.setCardBackgroundColor(compatColor(internetColor))
-    }
-
-    private fun dispatchLogic() {
-        if (isServiceEnabled) disableTheService() else enableTheService()
-    }
-
-    private fun disableTheService() {
-        if (permissionProvider.isVigilanteRunning() && permissionProvider.isAccessibilityEnabled) {
-            permissionProvider.askForAccessibilityPermissions()
-            if (requireContext().isVigilanteRunning()) {
-                requireContext().stopVigilante()
-            }
-            longToast(R.string.disable_the_service)
-        }
-    }
-
-    private fun enableTheService() {
-        if (!permissionProvider.hasAccessibilityPermission()) {
-            permissionProvider.askForAccessibilityPermissions()
-            longToast(R.string.enable_the_service)
-        } else {
-            requireContext().startVigilante()
         }
     }
 
@@ -159,7 +108,7 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
         binding.statusText.text = getString(buttonText)
         binding.innerIndicator.setImageResource(buttonInnerCircle)
         binding.outerIndicator.setImageResource(buttonOuterCircle)
-        binding.diskText.text = getString(diskEncryptionText)
+        // binding.diskText.text = getString(diskEncryptionText)
 
         /*if (permissionProvider.hasUsageStatsPermission()) {
             val cal: Calendar = Calendar.getInstance()

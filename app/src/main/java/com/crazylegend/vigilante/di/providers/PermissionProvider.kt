@@ -6,9 +6,13 @@ import android.provider.Settings
 import com.crazylegend.kotlinextensions.accessibility.hasAccessibilityPermission
 import com.crazylegend.kotlinextensions.accessibility.isAccessibilityServiceRunning
 import com.crazylegend.kotlinextensions.context.accessibilityManager
+import com.crazylegend.kotlinextensions.context.longToast
 import com.crazylegend.kotlinextensions.permissions.hasUsageStatsPermission
+import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.VigilanteService
 import com.crazylegend.vigilante.di.qualifiers.FragmentContext
+import com.crazylegend.vigilante.utils.startVigilante
+import com.crazylegend.vigilante.utils.stopVigilante
 import dagger.hilt.android.scopes.FragmentScoped
 import javax.inject.Inject
 
@@ -23,13 +27,36 @@ class PermissionProvider @Inject constructor(
 
     val isAccessibilityEnabled get() = context.accessibilityManager?.isEnabled ?: false
 
-    fun isVigilanteRunning() = context.isAccessibilityServiceRunning<VigilanteService>()
+    private fun isVigilanteRunning() = context.isAccessibilityServiceRunning<VigilanteService>()
 
-    fun askForAccessibilityPermissions() = context.startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
+    private fun askForAccessibilityPermissions() = context.startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
 
-    fun hasAccessibilityPermission() = context.hasAccessibilityPermission<VigilanteService>()
+    private fun hasAccessibilityPermission() = context.hasAccessibilityPermission<VigilanteService>()
 
     fun askForUsageStatsPermission() = context.startActivity(Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS))
 
     fun hasUsageStatsPermission(): Boolean = context.hasUsageStatsPermission()
+
+    fun dispatchServiceLogic() {
+        if (isAccessibilityEnabled) disableTheService() else enableTheService()
+    }
+
+    private fun disableTheService() {
+        if (isVigilanteRunning() && isAccessibilityEnabled) {
+            askForAccessibilityPermissions()
+            if (isVigilanteRunning()) {
+                context.longToast(R.string.disable_the_service)
+                context.stopVigilante()
+            }
+        }
+    }
+
+    private fun enableTheService() {
+        if (!hasAccessibilityPermission()) {
+            context.longToast(R.string.enable_the_service)
+            askForAccessibilityPermissions()
+        } else {
+            context.startVigilante()
+        }
+    }
 }

@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.crazylegend.kotlinextensions.misc.requestBatteryOptimizations
+import com.crazylegend.kotlinextensions.power.isIgnoringBatteryOptimization
 import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
 import com.crazylegend.navigation.navigateUpSafe
 import com.crazylegend.viewbinding.viewBinding
@@ -27,6 +29,15 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp() = navController.navigateUp()
 
     private val showBackButtonList get() = listOf(R.id.settingsFragment, R.id.crashFragment)
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        if (isIgnoringBatteryOptimization != true) {
+            //show a dialog maybe?
+            requestBatteryOptimizations()
+        }
+    }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)

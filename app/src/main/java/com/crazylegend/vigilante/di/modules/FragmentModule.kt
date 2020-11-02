@@ -23,4 +23,5 @@ object FragmentModule {
     @Provides
     fun viewLifecycleOwner(fragment: Fragment): LifecycleOwner = fragment.viewLifecycleOwner
 
+
 }

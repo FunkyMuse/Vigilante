@@ -7,5 +7,31 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.crazylegend.vigilante.home.HomeFragment"
+        android:label="">
+
+        <action
+            android:id="@+id/destination_settings"
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_right"
+            app:popEnterAnim="@anim/enter_from_right"
+            app:popExitAnim="@anim/exit_to_right" />
+
+        <action
+            android:id="@+id/destination_crashes"
+            app:destination="@id/crashFragment"
+            app:enterAnim="@anim/enter_from_left"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/fade_out" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.crazylegend.vigilante.settings.SettingsFragment"
         android:label="" />
+    <fragment
+        android:id="@+id/crashFragment"
+        android:name="com.crazylegend.vigilante.crashes.CrashFragment"
+        android:label="CrashFragment" />
 </navigation>

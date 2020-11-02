@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:id="@+id/themeSwitcher"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -17,28 +17,16 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:id="@+id/themeIcon"
             android:layout_gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/light_mode" />
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/click_ripple"
-            android:clickable="true"
-            android:id="@+id/themeButton"
-            android:elevation="2dp"
-            android:focusable="true"
-            android:focusableInTouchMode="true">
+    </FrameLayout>
 
-        </FrameLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:id="@+id/crashes"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -52,25 +40,11 @@
             android:layout_height="30dp"
             android:layout_gravity="center"
             android:rotation="90"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/bug" />
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/click_ripple"
-            android:clickable="true"
-            android:elevation="2dp"
-            android:id="@+id/crashesButton"
-            android:focusable="true"
-            android:focusableInTouchMode="true" />
+    </FrameLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:id="@+id/settings"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -82,25 +56,12 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_gravity="center"
             app:srcCompat="@drawable/settings" />
 
-        <FrameLayout
-            android:id="@+id/settingsButton"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/click_ripple"
-            android:clickable="true"
-            android:elevation="2dp"
-            android:focusable="true"
-            android:focusableInTouchMode="true" />
+    </FrameLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:id="@+id/customizations"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -109,27 +70,15 @@
         app:layout_constraintBottom_toBottomOf="@id/dividerView"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/click_ripple"
-            android:clickable="true"
-            android:elevation="2dp"
-            android:id="@+id/customizationsButton"
-            android:focusable="true"
-            android:focusableInTouchMode="true" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:rotation="-90"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_gravity="center"
             app:srcCompat="@drawable/settings_adjsut" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/networkStatus"
@@ -193,7 +142,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:elevation="3dp"
-            android:text="Enable"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@+id/innerIndicator"
             app:layout_constraintEnd_toEndOf="@+id/innerIndicator"
@@ -238,5 +186,15 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.4" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scrollbars="none"
+        android:id="@+id/sections"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerGuideline" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

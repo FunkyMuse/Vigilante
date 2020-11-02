@@ -20,5 +20,4 @@ object ServiceModule {
     @ServiceContext
     fun serviceContext(service: Service): Context = service.applicationContext
 
-
 }

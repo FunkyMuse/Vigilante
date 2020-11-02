@@ -2,6 +2,9 @@ package com.crazylegend.vigilante.home
 
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import com.crazylegend.crashyreporter.CrashyReporter
 import com.crazylegend.kotlinextensions.dateAndTime.toString
 import com.crazylegend.kotlinextensions.fragments.compatColor
 import com.crazylegend.kotlinextensions.fragments.longToast
@@ -11,11 +14,13 @@ import com.crazylegend.kotlinextensions.misc.requestBatteryOptimizations
 import com.crazylegend.kotlinextensions.power.isIgnoringBatteryOptimization
 import com.crazylegend.kotlinextensions.storage.isDiskEncrypted
 import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
+import com.crazylegend.navigation.navigateSafe
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
 import com.crazylegend.vigilante.databinding.FragmentHomeBinding
 import com.crazylegend.vigilante.di.providers.PermissionProvider
+import com.crazylegend.vigilante.home.section.SectionItem
 import com.crazylegend.vigilante.utils.isVigilanteRunning
 import com.crazylegend.vigilante.utils.startVigilante
 import com.crazylegend.vigilante.utils.stopVigilante
@@ -30,11 +35,28 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
+
     @Inject
     lateinit var permissionProvider: PermissionProvider
 
     @Inject
     lateinit var internetDetector: InternetDetector
+
+    private val sectionAdapter by lazy {
+        adapterProvider.sectionAdapter
+    }
+
+    private val sectionList
+        get() = listOf(
+                SectionItem(R.string.camera_history, R.drawable.camera),
+                SectionItem(R.string.microphone_history, R.drawable.microphone),
+                SectionItem(R.string.permissions_history, R.drawable.security),
+                SectionItem(R.string.clipboard_history, R.drawable.clipboard),
+                SectionItem(R.string.headset_history, R.drawable.headphones),
+                SectionItem(R.string.notifications_history, R.drawable.notification_new),
+                SectionItem(R.string.lock_screen_history, R.drawable.lock),
+                SectionItem(R.string.apps_usage_history, R.drawable.data),
+        )
 
     override val binding by viewBinding(FragmentHomeBinding::bind)
 
@@ -43,11 +65,16 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.sections.apply {
+            layoutManager = GridLayoutManager(requireContext(), 2)
+            setHasFixedSize(false)
+            adapter = sectionAdapter
+        }
+        sectionAdapter.submitList(sectionList)
+
+
         internetDetector.observe(viewLifecycleOwner) {
-            val internetText = if (it == true) R.string.online else R.string.offline
-            val internetColor = if (it == true) R.color.online else R.color.offline
-            binding.networkText.text = getString(internetText)
-            binding.networkStatus.setCardBackgroundColor(compatColor(internetColor))
+            updateInternetStatusUI(it)
         }
 
         binding.statusButton.setOnClickListenerCooldown {
@@ -59,9 +86,33 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
             requireContext().requestBatteryOptimizations()
         }
 
-        binding.crashesButton.setOnClickListenerCooldown {
+        binding.crashes.setOnClickListenerCooldown {
             shortToast("EYE")
         }
+
+        binding.settings.setOnClickListenerCooldown {
+            findNavController().navigateSafe(HomeFragmentDirections.destinationSettings())
+        }
+
+        binding.themeSwitcher.setOnClickListenerCooldown {
+            prefsProvider.changeTheme()
+            updateDarkThemeIcon()
+        }
+
+        binding.crashes.setOnClickListenerCooldown {
+            if (CrashyReporter.getLogsAsStrings().isNullOrEmpty()) {
+                shortToast(R.string.no_crashes)
+            } else {
+                findNavController().navigateSafe(HomeFragmentDirections.destinationCrashes())
+            }
+        }
+    }
+
+    private fun updateInternetStatusUI(trigger: Boolean?) {
+        val internetText = if (trigger == true) R.string.online else R.string.offline
+        val internetColor = if (trigger == true) R.color.online else R.color.offline
+        binding.networkText.text = getString(internetText)
+        binding.networkStatus.setCardBackgroundColor(compatColor(internetColor))
     }
 
     private fun dispatchLogic() {
@@ -87,6 +138,11 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
         }
     }
 
+    private val darkThemeIcon get() = if (prefsProvider.isDarkThemeEnabled) R.drawable.dark_mode else R.drawable.light_mode
+    private fun updateDarkThemeIcon() {
+        binding.themeIcon.setImageResource(darkThemeIcon)
+    }
+
     private val buttonInnerCircle get() = if (permissionProvider.isAccessibilityEnabled) R.drawable.ic_inner_ellipse_disable else R.drawable.ic_inner_ellipse_enable
     private val buttonOuterCircle get() = if (permissionProvider.isAccessibilityEnabled) R.drawable.ic_outer_ellipse_disable else R.drawable.ic_outer_ellipse_enable
     private val buttonText get() = if (permissionProvider.isAccessibilityEnabled) R.string.disable_text else R.string.enable_text
@@ -99,6 +155,7 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
 
     override fun onResume() {
         super.onResume()
+        updateDarkThemeIcon()
         binding.statusText.text = getString(buttonText)
         binding.innerIndicator.setImageResource(buttonInnerCircle)
         binding.outerIndicator.setImageResource(buttonOuterCircle)

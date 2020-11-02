@@ -14,4 +14,16 @@
     <string name="online">Online</string>
     <string name="disk_not_encrypted">Disk not encrypted</string>
     <string name="disk_encrypted">Disk encrypted</string>
+    <string name="camera_history">Camera history</string>
+    <string name="microphone_history">Microphone history</string>
+    <string name="permissions_history">Permissions history</string>
+    <string name="clipboard_history">Clipboard history</string>
+    <string name="headset_history">Headset history</string>
+    <string name="notifications_history">Notifications history</string>
+    <string name="lock_screen_history">Lock screen history</string>
+    <string name="apps_usage_history">Apps usage history</string>
+    <string name="notifications_usage_expl">By enabling this option, you\'ll be receiving notifications when camera/microphone/etc.. is used, if/when possible.</string>
+    <string name="notifications_usage_title">Enable usage notifications</string>
+    <string name="crash_report">Crash report #%1$d</string>
+    <string name="no_crashes">There are no crashes recorded!</string>
 </resources>

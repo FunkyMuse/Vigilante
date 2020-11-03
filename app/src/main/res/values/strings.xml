@@ -27,4 +27,5 @@
     <string name="version">Version</string>
     <string name="date_format">Date format</string>
     <string name="current_date_format">Current date format: %1$s</string>
+    <string name="no_results_expl">There are no results chief, try coming back later, we\'ll keep on looking!</string>
 </resources>

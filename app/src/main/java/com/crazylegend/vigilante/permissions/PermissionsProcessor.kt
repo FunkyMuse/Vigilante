@@ -39,14 +39,15 @@ class PermissionsProcessor @Inject constructor(
 
     fun extractPermission(nodeInfo: AccessibilityNodeInfo?, depth: Int = 0) {
         if (nodeInfo == null) return
-        //Log the info you care about here... I choce classname and view resource name, because they are simple, but interesting.
-        val newPermissionMessage = nodeInfo.getTextForViewId("com.android.permissioncontroller:id/permission_message",
+        val newPermissionMessage = nodeInfo.getTextForViewId(
+                "com.android.permissioncontroller:id/permission_message",
                 "com.android.packageinstaller:id/permission_message")
 
         if (newPermissionMessage.isNotNullOrEmpty()) {
             if (!newPermissionMessage.equals(permissionMessage, true)) {
                 //send notification
                 debug { "SEND PERMISSION NOTIFICATION $newPermissionMessage" }
+
             }
             permissionMessage = newPermissionMessage
         }

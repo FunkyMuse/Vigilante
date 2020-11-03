@@ -5,17 +5,14 @@
         <item>dd.MM.yyyy HH:mm:ss</item>
         <item>MM.dd.yyyy HH:mm:ss</item>
         <item>yyyy.dd.MM HH:mm:ss</item>
-        <item>yyyy.dd.MM hh:mm:ss tt</item>
 
         <item>dd/MM/yyyy HH:mm:ss</item>
         <item>MM/dd/yyyy HH:mm:ss</item>
         <item>yyyy/dd/MM HH:mm:ss</item>
-        <item>yyyy/dd/MM hh:mm:ss tt</item>
 
         <item>dd-MM-yyyy HH:mm:ss</item>
         <item>MM-dd-yyyy HH:mm:ss</item>
         <item>yyyy-dd-MM HH:mm:ss</item>
-        <item>yyyy-dd-MM hh:mm:ss tt</item>
     </string-array>
 
 </resources>

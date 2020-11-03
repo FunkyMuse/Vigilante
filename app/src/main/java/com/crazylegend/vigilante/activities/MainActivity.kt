@@ -30,7 +30,8 @@ class MainActivity : AppCompatActivity() {
 
     private val showBackButtonList
         get() = listOf(
-                R.id.settingsFragment, R.id.crashFragment, R.id.cameraAccessFragment
+                R.id.settingsFragment, R.id.crashFragment, R.id.cameraAccessFragment,
+                R.id.microphoneAccessFragment
         )
 
     override fun onCreate(savedInstanceState: Bundle?) {

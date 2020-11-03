@@ -27,13 +27,26 @@
         <action
             android:id="@+id/destination_apps_usage"
             app:destination="@id/appsUsageFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
-            app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out" />
+            app:enterAnim="@anim/scale"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/scale"
+            app:popExitAnim="@anim/fade_out" />
+
         <action
             android:id="@+id/destination_camera_history"
-            app:destination="@id/cameraAccessFragment" />
+            app:destination="@id/cameraAccessFragment"
+            app:enterAnim="@anim/scale"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/scale"
+            app:popExitAnim="@anim/fade_out" />
+
+        <action
+            android:id="@+id/destination_microphone_history"
+            app:destination="@id/microphoneAccessFragment"
+            app:enterAnim="@anim/scale"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/scale"
+            app:popExitAnim="@anim/fade_out" />
 
     </fragment>
     <fragment
@@ -51,5 +64,9 @@
     <fragment
         android:id="@+id/cameraAccessFragment"
         android:name="com.crazylegend.vigilante.camera.ui.CameraAccessFragment"
+        android:label="" />
+    <fragment
+        android:id="@+id/microphoneAccessFragment"
+        android:name="com.crazylegend.vigilante.microphone.ui.MicrophoneAccessFragment"
         android:label="" />
 </navigation>

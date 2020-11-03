@@ -68,7 +68,7 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
                     findNavController().navigateSafe(HomeFragmentDirections.destinationCameraHistory())
                 }
                 SectionItem.SectionItemAction.MIC -> {
-
+                    findNavController().navigateSafe(HomeFragmentDirections.destinationMicrophoneHistory())
                 }
                 SectionItem.SectionItemAction.PERMISSIONS -> {
 

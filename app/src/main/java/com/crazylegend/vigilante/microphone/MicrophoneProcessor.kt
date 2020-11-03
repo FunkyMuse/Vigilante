@@ -4,26 +4,35 @@ import android.content.Context
 import android.media.AudioManager
 import android.media.AudioRecordingConfiguration
 import androidx.lifecycle.ServiceLifecycleDispatcher
+import com.crazylegend.database.coroutines.makeDBCall
 import com.crazylegend.kotlinextensions.context.audioManager
 import com.crazylegend.kotlinextensions.currentTimeMillis
-import com.crazylegend.kotlinextensions.log.debug
+import com.crazylegend.vigilante.VigilanteService
 import com.crazylegend.vigilante.contracts.service.ServiceManagersCoroutines
 import com.crazylegend.vigilante.di.qualifiers.ServiceContext
+import com.crazylegend.vigilante.microphone.db.MicrophoneModel
+import com.crazylegend.vigilante.microphone.db.MicrophoneRepository
 import dagger.hilt.android.scopes.ServiceScoped
+import java.util.*
+import java.util.concurrent.atomic.AtomicBoolean
+import java.util.concurrent.atomic.AtomicLong
+import java.util.concurrent.atomic.AtomicReference
 import javax.inject.Inject
 
 /**
  * Created by crazy on 10/16/20 to long live and prosper !
  */
 @ServiceScoped
-class MicrophoneProcessor @Inject constructor(@ServiceContext private val context: Context) : ServiceManagersCoroutines {
+class MicrophoneProcessor @Inject constructor(
+        @ServiceContext private val context: Context,
+        private val microphoneRepository: MicrophoneRepository) : ServiceManagersCoroutines {
 
     private lateinit var microphoneCallback: AudioManager.AudioRecordingCallback
     override val serviceLifecycleDispatcher = ServiceLifecycleDispatcher(this)
 
-    private var packageUsingMicrophone: String? = null
-    private var wasMicrophoneBeingUsed = false
-    private var microphoneStartedUsageTime: Long? = null
+    private val packageUsingMicrophone: AtomicReference<String?> = AtomicReference(VigilanteService.currentPackageString)
+    private var wasMicrophoneBeingUsed: AtomicBoolean = AtomicBoolean(false)
+    private val microphoneStartedUsageTime: AtomicLong = AtomicLong(-1)
 
     override fun initVars() {
         microphoneCallback = microphoneListener()
@@ -43,17 +52,20 @@ class MicrophoneProcessor @Inject constructor(@ServiceContext private val contex
             }
 
     private fun setMicrophoneIsNotUsed() {
-        wasMicrophoneBeingUsed = false
-        debug { "PACKAGE NOT USING MICROPHONE $packageUsingMicrophone" }
-        val microphoneEndedUsedAtTime = currentTimeMillis
-        microphoneStartedUsageTime = null
-        packageUsingMicrophone = null
+        if (wasMicrophoneBeingUsed.get()) {
+            val cameraStoppedBeingUsedAt = currentTimeMillis
+            val microphoneModel = MicrophoneModel(Date(microphoneStartedUsageTime.getAndSet(-1)),
+                    packageUsingMicrophone.getAndSet(null), Date(cameraStoppedBeingUsedAt))
+            scope.makeDBCall {
+                microphoneRepository.insertMicrophoneRecord(microphoneModel)
+            }
+            wasMicrophoneBeingUsed.set(false)
+        }
     }
 
     private fun setMicrophoneIsUsed() {
-        wasMicrophoneBeingUsed = true
-        microphoneStartedUsageTime = currentTimeMillis
-        debug { "PACKAGE USING MICROPHONE $packageUsingMicrophone" }
+        wasMicrophoneBeingUsed.set(true)
+        packageUsingMicrophone.set(VigilanteService.currentPackageString)
     }
 
 
@@ -66,11 +78,11 @@ class MicrophoneProcessor @Inject constructor(@ServiceContext private val contex
     }
 
     override fun eventActionByPackageName(eventPackageName: CharSequence) {
-        if (!wasMicrophoneBeingUsed) {
-            packageUsingMicrophone = eventPackageName.toString()
+        if (!wasMicrophoneBeingUsed.get()) {
+            packageUsingMicrophone.set(eventPackageName.toString())
         } else {
-            if (microphoneStartedUsageTime == null)
-                microphoneStartedUsageTime = currentTimeMillis
+            if (microphoneStartedUsageTime.get() == -1L)
+                microphoneStartedUsageTime.set(currentTimeMillis)
         }
     }
 }

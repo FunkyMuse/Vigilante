@@ -28,7 +28,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp() = navController.navigateUp()
 
-    private val showBackButtonList get() = listOf(R.id.settingsFragment, R.id.crashFragment)
+    private val showBackButtonList
+        get() = listOf(
+                R.id.settingsFragment, R.id.crashFragment, R.id.cameraAccessFragment
+        )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

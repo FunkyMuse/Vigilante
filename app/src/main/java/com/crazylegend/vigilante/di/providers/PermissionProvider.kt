@@ -59,4 +59,12 @@ class PermissionProvider @Inject constructor(
             context.startVigilante()
         }
     }
+
+    inline fun propagateAppsUsageClick(permissionAvailable: () -> Unit) {
+        if (hasUsageStatsPermission()) {
+            permissionAvailable()
+        } else {
+            askForUsageStatsPermission()
+        }
+    }
 }

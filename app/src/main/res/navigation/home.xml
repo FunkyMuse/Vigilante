@@ -24,6 +24,16 @@
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/enter_from_left"
             app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/destination_apps_usage"
+            app:destination="@id/appsUsageFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/destination_camera_history"
+            app:destination="@id/cameraAccessFragment" />
 
     </fragment>
     <fragment
@@ -33,5 +43,13 @@
     <fragment
         android:id="@+id/crashFragment"
         android:name="com.crazylegend.vigilante.crashes.CrashFragment"
-        android:label="CrashFragment" />
+        android:label="" />
+    <fragment
+        android:id="@+id/appsUsageFragment"
+        android:name="com.crazylegend.vigilante.appsUsage.AppsUsageFragment"
+        android:label="" />
+    <fragment
+        android:id="@+id/cameraAccessFragment"
+        android:name="com.crazylegend.vigilante.camera.ui.CameraAccessFragment"
+        android:label="" />
 </navigation>

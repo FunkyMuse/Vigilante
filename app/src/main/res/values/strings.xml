@@ -25,4 +25,6 @@
     <string name="crash_report">Crash report #%1$d</string>
     <string name="no_crashes">There are no crashes recorded!</string>
     <string name="version">Version</string>
+    <string name="date_format">Date format</string>
+    <string name="current_date_format">Current date format: %1$s</string>
 </resources>

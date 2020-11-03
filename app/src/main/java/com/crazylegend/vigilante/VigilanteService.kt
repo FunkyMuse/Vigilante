@@ -10,7 +10,6 @@ import android.view.WindowManager
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
 import android.widget.FrameLayout
-import com.crazylegend.kotlinextensions.batteryStatusIntent
 import com.crazylegend.kotlinextensions.context.inflater
 import com.crazylegend.kotlinextensions.context.windowManager
 import com.crazylegend.vigilante.camera.CameraProcessor
@@ -55,10 +54,6 @@ class VigilanteService : AccessibilityService() {
 
     private lateinit var outerFrame: FrameLayout
     private lateinit var outerFrameParams: WindowManager.LayoutParams
-
-    private val currentPackage get() = currentPackageString ?: packageName
-
-    private val batteryInfo get() = batteryStatusIntent
 
     @SuppressLint("MissingPermission")
     override fun onServiceConnected() {

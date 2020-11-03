@@ -10,6 +10,7 @@ import com.crazylegend.kotlinextensions.fragments.shortToast
 import com.crazylegend.kotlinextensions.storage.isDiskEncrypted
 import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
 import com.crazylegend.navigation.navigateSafe
+import com.crazylegend.recyclerview.clickListeners.forItemClickListener
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
@@ -37,14 +38,14 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
 
     private val sectionList
         get() = listOf(
-                SectionItem(R.string.camera_history, R.drawable.camera),
-                SectionItem(R.string.microphone_history, R.drawable.microphone),
-                SectionItem(R.string.permissions_history, R.drawable.security),
-                SectionItem(R.string.clipboard_history, R.drawable.clipboard),
-                SectionItem(R.string.headset_history, R.drawable.headphones),
-                SectionItem(R.string.notifications_history, R.drawable.notification_new),
-                SectionItem(R.string.lock_screen_history, R.drawable.lock),
-                SectionItem(R.string.apps_usage_history, R.drawable.data),
+                SectionItem(R.string.camera_history, R.drawable.camera, SectionItem.SectionItemAction.CAMERA),
+                SectionItem(R.string.microphone_history, R.drawable.microphone, SectionItem.SectionItemAction.MIC),
+                SectionItem(R.string.permissions_history, R.drawable.security, SectionItem.SectionItemAction.PERMISSIONS),
+                SectionItem(R.string.clipboard_history, R.drawable.clipboard, SectionItem.SectionItemAction.CLIPBOARD),
+                SectionItem(R.string.headset_history, R.drawable.headphones, SectionItem.SectionItemAction.HEADSET),
+                SectionItem(R.string.notifications_history, R.drawable.notification_new, SectionItem.SectionItemAction.NOTIFICATIONS),
+                SectionItem(R.string.lock_screen_history, R.drawable.lock, SectionItem.SectionItemAction.LOCK_SCREEN),
+                SectionItem(R.string.apps_usage_history, R.drawable.data, SectionItem.SectionItemAction.APPS_USAGE),
         )
 
     override val binding by viewBinding(FragmentHomeBinding::bind)
@@ -53,8 +54,6 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
         binding.sections.apply {
             layoutManager = GridLayoutManager(requireContext(), 2)
             setHasFixedSize(false)
@@ -62,6 +61,38 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
             isNestedScrollingEnabled = false
         }
         sectionAdapter.submitList(sectionList)
+
+        sectionAdapter.forItemClickListener = forItemClickListener { _, item, _ ->
+            when (item.action) {
+                SectionItem.SectionItemAction.CAMERA -> {
+                    findNavController().navigateSafe(HomeFragmentDirections.destinationCameraHistory())
+                }
+                SectionItem.SectionItemAction.MIC -> {
+
+                }
+                SectionItem.SectionItemAction.PERMISSIONS -> {
+
+                }
+                SectionItem.SectionItemAction.CLIPBOARD -> {
+
+                }
+                SectionItem.SectionItemAction.HEADSET -> {
+
+                }
+                SectionItem.SectionItemAction.NOTIFICATIONS -> {
+
+                }
+                SectionItem.SectionItemAction.LOCK_SCREEN -> {
+
+                }
+                SectionItem.SectionItemAction.APPS_USAGE -> {
+                    permissionProvider.propagateAppsUsageClick {
+                        findNavController().navigateSafe(HomeFragmentDirections.destinationAppsUsage())
+                    }
+                }
+            }
+        }
+
 
 
         binding.statusButton.setOnClickListenerCooldown {
@@ -107,19 +138,6 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
         binding.statusText.text = getString(buttonText)
         binding.innerIndicator.setImageResource(buttonInnerCircle)
         binding.outerIndicator.setImageResource(buttonOuterCircle)
-        // binding.diskText.text = getString(diskEncryptionText)
-
-        /*if (permissionProvider.hasUsageStatsPermission()) {
-            val cal: Calendar = Calendar.getInstance()
-            cal.add(Calendar.YEAR, -1)
-            val queryUsageStats = requireContext().usageStatsManager?.queryUsageStats(UsageStatsManager.INTERVAL_DAILY,
-                    cal.timeInMillis, System.currentTimeMillis())
-            queryUsageStats?.asSequence()?.forEach {
-
-            }
-        } else {
-            permissionProvider.askForUsageStatsPermission()
-        }*/
     }
 
     private fun Long.toDate(): String = Date(this).toString("dd.MM.yyyy HH:mm:ss")

@@ -3,28 +3,37 @@ package com.crazylegend.vigilante.camera
 import android.content.Context
 import android.hardware.camera2.CameraManager
 import androidx.lifecycle.ServiceLifecycleDispatcher
+import com.crazylegend.database.coroutines.makeDBCall
 import com.crazylegend.kotlinextensions.context.cameraManager
 import com.crazylegend.kotlinextensions.currentTimeMillis
-import com.crazylegend.kotlinextensions.log.debug
+import com.crazylegend.vigilante.VigilanteService.Companion.currentPackageString
+import com.crazylegend.vigilante.camera.db.CameraModel
+import com.crazylegend.vigilante.camera.db.CameraRepository
 import com.crazylegend.vigilante.contracts.service.ServiceManagersCoroutines
 import com.crazylegend.vigilante.di.qualifiers.ServiceContext
 import dagger.hilt.android.scopes.ServiceScoped
+import java.util.*
+import java.util.concurrent.atomic.AtomicBoolean
+import java.util.concurrent.atomic.AtomicLong
+import java.util.concurrent.atomic.AtomicReference
 import javax.inject.Inject
 
 /**
  * Created by crazy on 10/15/20 to long live and prosper !
  */
 @ServiceScoped
-class CameraProcessor @Inject constructor(@ServiceContext private val context: Context) : ServiceManagersCoroutines {
+class CameraProcessor @Inject constructor(
+        @ServiceContext private val context: Context,
+        private val cameraRepository: CameraRepository) : ServiceManagersCoroutines {
 
     //lifecycle
     override val serviceLifecycleDispatcher = ServiceLifecycleDispatcher(this)
 
     //camera
     private lateinit var cameraCallback: CameraManager.AvailabilityCallback
-    private var packageUsingCamera: String? = null
-    private var wasCameraBeingUsed = false
-    private var cameraStartedUsageTime: Long? = null
+    private val packageUsingCamera: AtomicReference<String?> = AtomicReference(currentPackageString)
+    private var wasCameraBeingUsed: AtomicBoolean = AtomicBoolean(false)
+    private val cameraStartedUsageTime: AtomicLong = AtomicLong(-1)
 
     override fun initVars() {
         cameraCallback = cameraListener()
@@ -48,22 +57,24 @@ class CameraProcessor @Inject constructor(@ServiceContext private val context: C
 
                 override fun onCameraUnavailable(cameraId: String) {
                     super.onCameraUnavailable(cameraId)
-                    setCameraUsed(cameraId)
+                    setCameraUsed()
                 }
             }
 
-    private fun setCameraUsed(cameraId: String) {
-        wasCameraBeingUsed = true
-        debug { "CAMERA $cameraId IS BEING USED by $packageUsingCamera" }
+    private fun setCameraUsed() {
+        wasCameraBeingUsed.set(true)
+        packageUsingCamera.set(currentPackageString)
     }
 
     private fun setCameraNotUsed(cameraId: String) {
-        if (wasCameraBeingUsed) {
-            packageUsingCamera = null
-            wasCameraBeingUsed = false
-            cameraStartedUsageTime = null
+        if (wasCameraBeingUsed.get()) {
             val cameraStoppedBeingUsedAt = currentTimeMillis
-            debug { "CAMERA $cameraId NOT USED ANYMORE" }
+            val cameraModel = CameraModel(Date(cameraStartedUsageTime.getAndSet(-1)),
+                    packageUsingCamera.getAndSet(null), cameraId, Date(cameraStoppedBeingUsedAt))
+            scope.makeDBCall {
+                cameraRepository.insertCameraRecord(cameraModel)
+            }
+            wasCameraBeingUsed.set(false)
         }
     }
     //endregion
@@ -71,11 +82,11 @@ class CameraProcessor @Inject constructor(@ServiceContext private val context: C
 
     //region public
     override fun eventActionByPackageName(eventPackageName: CharSequence) {
-        if (!wasCameraBeingUsed) {
-            packageUsingCamera = eventPackageName.toString()
+        if (!wasCameraBeingUsed.get()) {
+            packageUsingCamera.set(eventPackageName.toString())
         } else {
-            if (cameraStartedUsageTime == null)
-                cameraStartedUsageTime = currentTimeMillis
+            if (cameraStartedUsageTime.get() == -1L)
+                cameraStartedUsageTime.set(currentTimeMillis)
         }
     }
     //endregion

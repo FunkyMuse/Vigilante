@@ -9,6 +9,14 @@
         app:title="@string/notifications_usage_title" />
 
 
+    <ListPreference
+        app:iconSpaceReserved="false"
+        app:key="pref_date"
+        app:entries="@array/date_formats"
+        app:entryValues="@array/date_formats"
+        app:defaultValue="dd.MM.yyyy HH:mm:ss"
+        app:title="@string/date_format" />
+
     <Preference
         app:iconSpaceReserved="false"
         app:title="@string/version"

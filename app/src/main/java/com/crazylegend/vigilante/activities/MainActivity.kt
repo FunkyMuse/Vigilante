@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         get() = listOf(
                 R.id.settingsFragment, R.id.crashFragment, R.id.cameraAccessFragment,
                 R.id.microphoneAccessFragment, R.id.appsUsageFragment, R.id.screenAccessFragment,
-                R.id.listFilterBottomSheet
+                R.id.listFilterBottomSheet, R.id.notificationsFragment
         )
 
     override fun onCreate(savedInstanceState: Bundle?) {

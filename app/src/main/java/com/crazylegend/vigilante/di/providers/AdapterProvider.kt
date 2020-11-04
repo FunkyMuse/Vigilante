@@ -13,6 +13,7 @@ import com.crazylegend.vigilante.filter.ListFilterViewHolder
 import com.crazylegend.vigilante.home.section.SectionItem
 import com.crazylegend.vigilante.home.section.SectionViewHolder
 import com.crazylegend.vigilante.microphone.db.MicrophoneModel
+import com.crazylegend.vigilante.notifications.db.NotificationsModel
 import com.crazylegend.vigilante.paging.generatePagingRecycler
 import com.crazylegend.vigilante.screen.db.ScreenModel
 import com.crazylegend.vigilante.utils.LogViewHolder
@@ -74,4 +75,14 @@ class AdapterProvider @Inject constructor(
             item?.let { holder.bind(it) }
         }
     }
+
+    val notificationsAdapter by lazy(LazyThreadSafetyMode.NONE) {
+        generatePagingRecycler<NotificationsModel, LogViewHolder, ItemviewLogBinding>({
+            LogViewHolder(it, prefsProvider)
+        }, ItemviewLogBinding::inflate) { item, holder, _, _ ->
+            item?.let { holder.bind(it) }
+        }
+    }
+
+
 }

@@ -54,6 +54,13 @@
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/scale"
             app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/destination_notifications"
+            app:destination="@id/notificationsFragment"
+            app:enterAnim="@anim/scale"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/scale"
+            app:popExitAnim="@anim/fade_out" />
 
     </fragment>
     <fragment
@@ -90,4 +97,8 @@
     </fragment>
 
     <include app:graph="@navigation/bottom_list_filter" />
+    <fragment
+        android:id="@+id/notificationsFragment"
+        android:name="com.crazylegend.vigilante.notifications.ui.NotificationsFragment"
+        android:label="" />
 </navigation>

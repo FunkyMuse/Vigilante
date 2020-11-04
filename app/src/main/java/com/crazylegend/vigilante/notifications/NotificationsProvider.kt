@@ -1,12 +1,16 @@
 package com.crazylegend.vigilante.notifications
 
 import android.app.Notification
-import android.content.Context
 import android.os.Build
 import android.view.accessibility.AccessibilityEvent
+import androidx.lifecycle.ServiceLifecycleDispatcher
+import com.crazylegend.coroutines.makeIOCall
 import com.crazylegend.kotlinextensions.currentTimeMillis
-import com.crazylegend.vigilante.di.qualifiers.ServiceContext
+import com.crazylegend.vigilante.contracts.service.ServiceManagersCoroutines
+import com.crazylegend.vigilante.notifications.db.NotificationsModel
+import com.crazylegend.vigilante.notifications.db.NotificationsRepo
 import dagger.hilt.android.scopes.ServiceScoped
+import java.util.*
 import javax.inject.Inject
 
 /**
@@ -14,8 +18,8 @@ import javax.inject.Inject
  */
 @ServiceScoped
 class NotificationsProvider @Inject constructor(
-        @ServiceContext private val context: Context) {
-
+        private val notificationsRepo: NotificationsRepo
+) : ServiceManagersCoroutines {
 
     fun processEvent(event: AccessibilityEvent) {
         if (event.eventType == AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED) {
@@ -35,21 +39,26 @@ class NotificationsProvider @Inject constructor(
                 null
             }
             val sentByPackage = event.packageName?.toString()
-            val notificationModel = createNotificationModel(title, bigText, text, visibility, category, color, flags, group, channelId,
-                    sentByPackage, currentTimeMillis)
+            val notificationModel = NotificationsModel(title, bigText, text,
+                    visibility, category, color, flags, group, channelId, sentByPackage, Date(currentTimeMillis))
             saveNotification(notificationModel)
         }
     }
 
     private fun saveNotification(notificationModel: NotificationsModel) {
-
+        scope.makeIOCall {
+            notificationsRepo.insertNotification(notificationModel)
+        }
     }
 
-    private fun createNotificationModel(title: String?, bigText: String?, text: String?, visibility: Int?,
-                                        category: String?, color: Int?, flags: Int?, group: String?, channelId: String?,
-                                        sentByPackage: String?,
-                                        currentTimeMillis: Long) = NotificationsModel(title, bigText, text,
-            visibility, category, color, flags, group, channelId, sentByPackage, currentTimeMillis)
+    override val serviceLifecycleDispatcher: ServiceLifecycleDispatcher = ServiceLifecycleDispatcher(this)
 
+    override fun initVars() {}
+
+    override fun registerCallbacks() {}
+
+    override fun disposeResources() {}
+
+    override fun eventActionByPackageName(eventPackageName: CharSequence) {}
 
 }

@@ -58,6 +58,7 @@ class VigilanteService : AccessibilityService() {
         cameraProcessor.setServiceConnected()
         microphoneProcessor.setServiceConnected()
         broadcastProvider.setServiceConnected()
+        notificationsProvider.setServiceConnected()
 
         //setupHoverLayout()
     }
@@ -92,12 +93,14 @@ class VigilanteService : AccessibilityService() {
         cameraProcessor.initLifecycle()
         microphoneProcessor.initLifecycle()
         broadcastProvider.initLifecycle()
+        notificationsProvider.initLifecycle()
         //endregion
 
         //region start
         cameraProcessor.onStart()
         microphoneProcessor.onStart()
         broadcastProvider.onStart()
+        notificationsProvider.onStart()
         //endregion
     }
 
@@ -118,6 +121,7 @@ class VigilanteService : AccessibilityService() {
         cameraProcessor.cleanUp()
         microphoneProcessor.cleanUp()
         broadcastProvider.cleanUp()
+        notificationsProvider.cleanUp()
         //windowManager?.removeView(outerFrame)
         currentPackageString = null
         super.onDestroy()

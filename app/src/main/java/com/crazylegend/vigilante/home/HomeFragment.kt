@@ -80,7 +80,7 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
 
                 }
                 SectionItem.SectionItemAction.NOTIFICATIONS -> {
-
+                    findNavController().navigateSafe(HomeFragmentDirections.destinationNotifications())
                 }
                 SectionItem.SectionItemAction.LOCK_SCREEN -> {
                     findNavController().navigateSafe(HomeFragmentDirections.destinationScreenHistory())

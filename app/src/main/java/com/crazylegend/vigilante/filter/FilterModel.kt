@@ -11,4 +11,4 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 @Keep
-data class FilterModel(@StringRes val title: Int, var isChecked: Boolean) : Parcelable
+data class FilterModel(@StringRes val title: Int, var isChecked: Boolean = false) : Parcelable

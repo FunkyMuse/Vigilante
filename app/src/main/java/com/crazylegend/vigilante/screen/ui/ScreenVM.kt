@@ -22,9 +22,6 @@ class ScreenVM @ViewModelInject constructor(
 
     fun updateFilterPosition(position: Int) {
         savedStateHandle[FILTER_MODEL_KEY] = position
-        defaultFilterList.forEachIndexed { index, filterModel ->
-            filterModel.isChecked = index == position
-        }
     }
 
     companion object {
@@ -33,17 +30,15 @@ class ScreenVM @ViewModelInject constructor(
 
     val filterPosition get() = savedStateHandle.get<Int>(FILTER_MODEL_KEY) ?: 0
 
-    private val defaultFilterList = listOf(
-            FilterModel(R.string.locks_and_unlocks, true),
-            FilterModel(R.string.locks_only, false),
-            FilterModel(R.string.unlocks_only, false),
-    )
 
-    fun getFilterList(): List<FilterModel> {
-        if (!defaultFilterList[filterPosition].isChecked) {
-            defaultFilterList[filterPosition].isChecked = true
+    fun getFilterList(): Array<FilterModel> {
+        return arrayOf(
+                FilterModel(R.string.locks_and_unlocks),
+                FilterModel(R.string.locks_only),
+                FilterModel(R.string.unlocks_only),
+        ).also {
+            it[filterPosition].isChecked = true
         }
-        return defaultFilterList
     }
 
 

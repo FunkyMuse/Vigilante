@@ -49,7 +49,7 @@ class ScreenAccessFragment : AbstractFragment<FragmentScreenAccessBinding>(R.lay
         }
 
         binding.filter.setOnClickListenerCooldown {
-            findNavController().navigateSafe(ScreenAccessFragmentDirections.actionFilter(screenVM.getFilterList().toTypedArray()))
+            findNavController().navigateSafe(ScreenAccessFragmentDirections.actionFilter(screenVM.getFilterList()))
         }
 
         viewLifecycleOwnerLifecycle.coroutineScope.launchWhenResumed {

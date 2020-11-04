@@ -28,4 +28,13 @@
     <string name="date_format">Date format</string>
     <string name="current_date_format">Current date format: %1$s</string>
     <string name="no_results_expl">There are no results chief, try coming back later, we\'ll keep on looking!</string>
+    <string name="screen_unlocked">Screen unlocked</string>
+    <string name="screen_locked">Screen locked</string>
+    <string name="total">Total</string>
+    <string name="locks">Locks</string>
+    <string name="unlocks">Unlocks</string>
+    <string name="content_description_lock_screen_filter">Lock screen filter</string>
+    <string name="locks_and_unlocks">Locks and unlocks</string>
+    <string name="locks_only">Locks only</string>
+    <string name="unlocks_only">Unlocks only</string>
 </resources>

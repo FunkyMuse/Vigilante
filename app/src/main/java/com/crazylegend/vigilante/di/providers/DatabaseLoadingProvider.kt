@@ -2,12 +2,14 @@ package com.crazylegend.vigilante.di.providers
 
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.*
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.lifecycleScope
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
 import com.crazylegend.coroutines.withMainContext
 import com.crazylegend.kotlinextensions.fragments.observeLifecycleOwnerThroughLifecycleCreation
-import com.crazylegend.kotlinextensions.log.debug
 import com.crazylegend.kotlinextensions.views.visibleIfTrueGoneOtherwise
 import com.crazylegend.recyclerview.isEmpty
 import com.crazylegend.vigilante.paging.AbstractPagingAdapter
@@ -54,25 +56,6 @@ class DatabaseLoadingProvider @Inject constructor(private val fragment: Fragment
                 }
             }
         }
-    }
-
-    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    fun disposeObserver() {
-    }
-
-    @OnLifecycleEvent(Lifecycle.Event.ON_START)
-    fun onStart() {
-        debug { "ON STARTED" }
-    }
-
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-    fun onCreated() {
-        debug { "ON ON_CREATE" }
-    }
-
-    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    fun onResumed() {
-        debug { "ON ON_RESUME" }
     }
 
 }

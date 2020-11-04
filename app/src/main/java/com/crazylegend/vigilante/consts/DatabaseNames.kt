@@ -6,3 +6,4 @@ package com.crazylegend.vigilante.consts
 
 const val MICROPHONE_DB_NAME = "microphone-db"
 const val CAMERA_DB_NAME = "camera-db"
+const val SCREEN_DB_NAME = "screen-db"

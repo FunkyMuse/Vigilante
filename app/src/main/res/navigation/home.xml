@@ -47,6 +47,13 @@
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/scale"
             app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/destination_screen_history"
+            app:destination="@id/screenAccessFragment"
+            app:enterAnim="@anim/scale"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/scale"
+            app:popExitAnim="@anim/fade_out" />
 
     </fragment>
     <fragment
@@ -69,4 +76,18 @@
         android:id="@+id/microphoneAccessFragment"
         android:name="com.crazylegend.vigilante.microphone.ui.MicrophoneAccessFragment"
         android:label="" />
+    <fragment
+        android:id="@+id/screenAccessFragment"
+        android:name="com.crazylegend.vigilante.screen.ui.ScreenAccessFragment"
+        android:label="">
+        <action
+            android:id="@+id/action_filter"
+            app:destination="@id/bottom_list_filter">
+            <argument
+                android:name="adapterList"
+                app:argType="com.crazylegend.vigilante.filter.FilterModel[]" />
+        </action>
+    </fragment>
+
+    <include app:graph="@navigation/bottom_list_filter" />
 </navigation>

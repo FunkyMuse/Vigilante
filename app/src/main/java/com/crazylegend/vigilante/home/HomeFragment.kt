@@ -83,7 +83,7 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
 
                 }
                 SectionItem.SectionItemAction.LOCK_SCREEN -> {
-
+                    findNavController().navigateSafe(HomeFragmentDirections.destinationScreenHistory())
                 }
                 SectionItem.SectionItemAction.APPS_USAGE -> {
                     permissionProvider.propagateAppsUsageClick {

@@ -30,6 +30,6 @@ class MicrophoneAccessFragment : AbstractFragment<LayoutRecyclerBinding>(R.layou
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         databaseLoadingProvider.provideListState(microphoneAccessVM.microphoneAccess, binding.recycler, binding.noDataView,
-                micAccessAdapter, binding.loadingIndicator)
+                micAccessAdapter)
     }
 }

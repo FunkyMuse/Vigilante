@@ -2,12 +2,10 @@ package com.crazylegend.vigilante.microphone.ui
 
 import android.app.Application
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.crazylegend.database.DBResult
-import com.crazylegend.database.coroutines.makeDBCallListFlow
-import com.crazylegend.vigilante.microphone.db.MicrophoneModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.cachedIn
+import com.crazylegend.vigilante.abstracts.AbstractAVM
 import com.crazylegend.vigilante.microphone.db.MicrophoneRepository
 
 /**
@@ -15,18 +13,9 @@ import com.crazylegend.vigilante.microphone.db.MicrophoneRepository
  */
 class MicrophoneAccessVM @ViewModelInject constructor(
         private val microphoneRepository: MicrophoneRepository,
-        application: Application) : AndroidViewModel(application) {
+        application: Application) : AbstractAVM(application) {
 
-    private val microphoneDataList: MutableLiveData<DBResult<List<MicrophoneModel>>> = MutableLiveData()
-    val microphoneAccess: LiveData<DBResult<List<MicrophoneModel>>> = microphoneDataList
-
-    init {
-        getAll()
-    }
-
-    private fun getAll() {
-        makeDBCallListFlow(microphoneDataList) {
-            microphoneRepository.getAllMicrophoneRecords()
-        }
-    }
+    val microphoneAccess = Pager(pagingConfig) {
+        microphoneRepository.getAllMicrophoneRecords()
+    }.flow.cachedIn(viewModelScope)
 }

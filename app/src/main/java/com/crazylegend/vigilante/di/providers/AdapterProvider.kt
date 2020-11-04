@@ -9,6 +9,7 @@ import com.crazylegend.vigilante.databinding.ItemviewSectionBinding
 import com.crazylegend.vigilante.home.section.SectionItem
 import com.crazylegend.vigilante.home.section.SectionViewHolder
 import com.crazylegend.vigilante.microphone.db.MicrophoneModel
+import com.crazylegend.vigilante.paging.generatePagingRecycler
 import com.crazylegend.vigilante.utils.LogViewHolder
 import dagger.hilt.android.scopes.FragmentScoped
 import javax.inject.Inject
@@ -34,18 +35,18 @@ class AdapterProvider @Inject constructor(
     }
 
     val cameraAccessAdapter by lazy(LazyThreadSafetyMode.NONE) {
-        generateRecycler<CameraModel, LogViewHolder, ItemviewLogBinding>({
+        generatePagingRecycler<CameraModel, LogViewHolder, ItemviewLogBinding>({
             LogViewHolder(it, prefsProvider)
         }, ItemviewLogBinding::inflate) { item, holder, _, _ ->
-            holder.bind(item)
+            item?.let { holder.bind(it) }
         }
     }
 
     val micAccessAdapter by lazy(LazyThreadSafetyMode.NONE) {
-        generateRecycler<MicrophoneModel, LogViewHolder, ItemviewLogBinding>({
+        generatePagingRecycler<MicrophoneModel, LogViewHolder, ItemviewLogBinding>({
             LogViewHolder(it, prefsProvider)
         }, ItemviewLogBinding::inflate) { item, holder, _, _ ->
-            holder.bind(item)
+            item?.let { holder.bind(it) }
         }
     }
 

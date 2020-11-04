@@ -2,12 +2,10 @@ package com.crazylegend.vigilante.camera.ui
 
 import android.app.Application
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.crazylegend.database.DBResult
-import com.crazylegend.database.coroutines.makeDBCallListFlow
-import com.crazylegend.vigilante.camera.db.CameraModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.cachedIn
+import com.crazylegend.vigilante.abstracts.AbstractAVM
 import com.crazylegend.vigilante.camera.db.CameraRepository
 
 /**
@@ -15,18 +13,10 @@ import com.crazylegend.vigilante.camera.db.CameraRepository
  */
 class CameraAccessVM @ViewModelInject constructor(
         private val cameraRepository: CameraRepository,
-        application: Application) : AndroidViewModel(application) {
+        application: Application) : AbstractAVM(application) {
 
-    private val cameraDataList: MutableLiveData<DBResult<List<CameraModel>>> = MutableLiveData()
-    val cameraAccess: LiveData<DBResult<List<CameraModel>>> = cameraDataList
+    val cameraAccess = Pager(pagingConfig) {
+        cameraRepository.getAllCameraRecords()
+    }.flow.cachedIn(viewModelScope)
 
-    init {
-        getAll()
-    }
-
-    private fun getAll() {
-        makeDBCallListFlow(cameraDataList) {
-            cameraRepository.getAllCameraRecords()
-        }
-    }
 }

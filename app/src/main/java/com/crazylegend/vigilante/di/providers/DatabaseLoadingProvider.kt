@@ -2,20 +2,20 @@ package com.crazylegend.vigilante.di.providers
 
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LiveData
+import androidx.lifecycle.*
+import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
-import com.crazylegend.customviews.ui.ColorProgressBar
-import com.crazylegend.database.DBResult
-import com.crazylegend.database.handle
+import com.crazylegend.coroutines.withMainContext
 import com.crazylegend.kotlinextensions.fragments.observeLifecycleOwnerThroughLifecycleCreation
-import com.crazylegend.kotlinextensions.views.gone
+import com.crazylegend.kotlinextensions.log.debug
 import com.crazylegend.kotlinextensions.views.visibleIfTrueGoneOtherwise
-import com.crazylegend.recyclerview.AbstractViewBindingAdapter
 import com.crazylegend.recyclerview.isEmpty
+import com.crazylegend.vigilante.paging.AbstractPagingAdapter
+import com.crazylegend.vigilante.paging.LoadStateFooter
 import dagger.hilt.android.scopes.FragmentScoped
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
 
 /**
@@ -23,6 +23,7 @@ import javax.inject.Inject
  */
 @FragmentScoped
 class DatabaseLoadingProvider @Inject constructor(private val fragment: Fragment) : LifecycleObserver, LifecycleOwner {
+
 
     override fun getLifecycle(): Lifecycle = fragment.viewLifecycleOwner.lifecycle
 
@@ -32,31 +33,46 @@ class DatabaseLoadingProvider @Inject constructor(private val fragment: Fragment
         }
     }
 
-    fun <T> provideListState(liveData: LiveData<DBResult<List<T>>>,
-                             recycler: RecyclerView, noDataView: ConstraintLayout,
-                             adapter: AbstractViewBindingAdapter<T, *, *>, loadingIndicator: ColorProgressBar) {
+    fun <T : Any> provideListState(flow: Flow<PagingData<T>>,
+                                   recycler: RecyclerView, noDataView: ConstraintLayout,
+                                   adapter: AbstractPagingAdapter<T, *, *>) {
 
-        recycler.adapter = adapter
-        liveData.observe(this) {
-            loadingIndicator.visibleIfTrueGoneOtherwise(it is DBResult.Querying)
-            it.handle(
-                    queryingDB = {
-                        noDataView.gone()
-                    },
-                    emptyDB = {
-                        noDataView.visibleIfTrueGoneOtherwise(adapter.isEmpty)
-                    },
-                    dbError = { throwable ->
-                        throwable.printStackTrace()
-                        noDataView.visibleIfTrueGoneOtherwise(adapter.isEmpty)
-                    },
-                    success = {
-                        noDataView.visibleIfTrueGoneOtherwise(adapter.isEmpty && isNullOrEmpty())
-                        adapter.submitList(this)
-                    }
-            )
+        recycler.adapter = adapter.withLoadStateHeaderAndFooter(
+                header = LoadStateFooter(),
+                footer = LoadStateFooter()
+        )
+        fragment.viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            flow.collect {
+                adapter.submitData(it)
+            }
+        }
+
+        fragment.viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            adapter.loadStateFlow.collectLatest {
+                withMainContext {
+                    noDataView.visibleIfTrueGoneOtherwise(adapter.isEmpty)
+                }
+            }
         }
     }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    fun disposeObserver() {
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_START)
+    fun onStart() {
+        debug { "ON STARTED" }
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+    fun onCreated() {
+        debug { "ON ON_CREATE" }
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    fun onResumed() {
+        debug { "ON ON_RESUME" }
+    }
 
 }

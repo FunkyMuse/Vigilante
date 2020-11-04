@@ -1,10 +1,10 @@
 package com.crazylegend.vigilante.camera.db
 
+import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import kotlinx.coroutines.flow.Flow
 
 /**
  * Created by crazy on 11/3/20 to long live and prosper !
@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.Flow
 interface CameraDao {
 
     @Query("select * from cameraAccesses")
-    fun getAllCameraRecords(): Flow<List<CameraModel>>
+    fun getAllCameraRecords(): PagingSource<Int, CameraModel>
 
     @Insert
     suspend fun addCameraRecord(cameraModel: CameraModel)

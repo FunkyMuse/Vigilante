@@ -36,7 +36,7 @@ class DatabaseLoadingProvider @Inject constructor(private val fragment: Fragment
 
     fun <T : Any> provideListState(flow: Flow<PagingData<T>>,
                                    recycler: RecyclerView, noDataView: ConstraintLayout,
-                                   adapter: AbstractPagingAdapter<T, *, *>) {
+                                   adapter: AbstractPagingAdapter<T, *, *>, onAdapterCount: (Boolean) -> Unit = {}) {
 
         recycler.adapter = adapter.withLoadStateHeaderAndFooter(
                 header = LoadStateFooter(),
@@ -51,6 +51,8 @@ class DatabaseLoadingProvider @Inject constructor(private val fragment: Fragment
         fragment.viewLifecycleOwner.lifecycleScope.launchWhenResumed {
             adapter.loadStateFlow.collectLatest {
                 noDataView.visibleIfTrueGoneOtherwise(adapter.isEmpty)
+                onAdapterCount(adapter.isEmpty)
+
             }
         }
     }

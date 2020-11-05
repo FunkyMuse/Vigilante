@@ -68,6 +68,13 @@
             app:popEnterAnim="@anim/scale"
             app:popExitAnim="@anim/fade_out"
             app:destination="@id/headsetFragment" />
+        <action
+            android:id="@+id/destination_permission_requests"
+            app:enterAnim="@anim/scale"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/scale"
+            app:popExitAnim="@anim/fade_out"
+            app:destination="@id/permissionRequestFragment" />
 
     </fragment>
     <fragment
@@ -111,5 +118,9 @@
     <fragment
         android:id="@+id/headsetFragment"
         android:name="com.crazylegend.vigilante.headset.ui.HeadsetFragment"
-        android:label="HeadsetFragment" />
+        android:label="" />
+    <fragment
+        android:id="@+id/permissionRequestFragment"
+        android:name="com.crazylegend.vigilante.permissions.requests.ui.PermissionRequestsFragment"
+        android:label="" />
 </navigation>

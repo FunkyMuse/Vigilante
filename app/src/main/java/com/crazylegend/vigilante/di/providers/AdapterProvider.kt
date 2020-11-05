@@ -16,6 +16,7 @@ import com.crazylegend.vigilante.home.section.SectionViewHolder
 import com.crazylegend.vigilante.microphone.db.MicrophoneModel
 import com.crazylegend.vigilante.notifications.db.NotificationsModel
 import com.crazylegend.vigilante.paging.generatePagingRecycler
+import com.crazylegend.vigilante.permissions.requests.db.PermissionRequestModel
 import com.crazylegend.vigilante.screen.db.ScreenModel
 import com.crazylegend.vigilante.utils.LogViewHolder
 import dagger.hilt.android.scopes.FragmentScoped
@@ -28,6 +29,7 @@ import javax.inject.Inject
 class AdapterProvider @Inject constructor(
         private val prefsProvider: PrefsProvider
 ) {
+
 
     val listFilterAdapter by lazy(LazyThreadSafetyMode.NONE) {
         generateRecycler<FilterModel, ListFilterViewHolder, ItemviewFilterBinding>(::ListFilterViewHolder, ItemviewFilterBinding::inflate) { item, holder, position, itemCount ->
@@ -87,6 +89,14 @@ class AdapterProvider @Inject constructor(
 
     val headsetAdapter by lazy(LazyThreadSafetyMode.NONE) {
         generatePagingRecycler<HeadsetModel, LogViewHolder, ItemviewLogBinding>({
+            LogViewHolder(it, prefsProvider)
+        }, ItemviewLogBinding::inflate) { item, holder, _, _ ->
+            item?.let { holder.bind(it) }
+        }
+    }
+
+    val permissionRequestAdapter by lazy {
+        generatePagingRecycler<PermissionRequestModel, LogViewHolder, ItemviewLogBinding>({
             LogViewHolder(it, prefsProvider)
         }, ItemviewLogBinding::inflate) { item, holder, _, _ ->
             item?.let { holder.bind(it) }

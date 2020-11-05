@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.crazylegend.kotlinextensions.dateAndTime.now
+import com.crazylegend.kotlinextensions.currentTimeMillis
 import com.crazylegend.kotlinextensions.randomUUIDstring
 import com.crazylegend.vigilante.R
 import java.util.*
@@ -16,7 +16,7 @@ import java.util.*
 @Entity(tableName = "screenActions")
 data class ScreenModel(
         @ColumnInfo(name = "screenActionTime")
-        val screenActionTime: Date = Date(now),
+        val screenActionTime: Date = Date(currentTimeMillis),
 
         @ColumnInfo(name = "wasScreenLocked")
         val wasScreenLocked: Boolean = false,

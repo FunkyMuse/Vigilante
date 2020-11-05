@@ -4,9 +4,11 @@ import android.accessibilityservice.AccessibilityService
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.PixelFormat
+import android.util.Log
 import android.view.Gravity
 import android.view.WindowManager
 import android.view.accessibility.AccessibilityEvent
+import android.view.accessibility.AccessibilityNodeInfo
 import android.widget.FrameLayout
 import com.crazylegend.kotlinextensions.context.inflater
 import com.crazylegend.kotlinextensions.context.windowManager
@@ -109,16 +111,31 @@ class VigilanteService : AccessibilityService() {
 
     private fun rememberEventPackageName(event: AccessibilityEvent) {
         val eventPackageName = event.packageName
-
         currentPackageString = eventPackageName?.toString() ?: packageName
         if (event.eventType == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED && eventPackageName != null) {
             cameraProcessor.eventActionByPackageName(eventPackageName)
             permissionsProcessor.eventActionByPackageName(eventPackageName)
             microphoneProcessor.eventActionByPackageName(eventPackageName)
-            permissionsProcessor.extractPermission(event.source, 0)
+            permissionsProcessor.extractPermissionButtons(event.source, 0)
+            logViewHierarchy(event.source)
+            permissionsProcessor.extractPermissionMessage(event.source, 0)
         }
         permissionsProcessor.listenForPermissionClicks(event.eventType, event.source)
     }
+
+    private fun logViewHierarchy(nodeInfo: AccessibilityNodeInfo?, depth: Int = 0) {
+        if (nodeInfo == null) return
+        var spacerString = ""
+        for (i in 0 until depth) {
+            spacerString += '-'
+        }
+        //Log the info you care about here... I choce classname and view resource name, because they are simple, but interesting.
+        Log.d("TAG", spacerString + nodeInfo.className + " " + nodeInfo.viewIdResourceName)
+        for (i in 0 until nodeInfo.childCount) {
+            logViewHierarchy(nodeInfo.getChild(i), depth + 1)
+        }
+    }
+
 
     override fun onInterrupt() {}
 

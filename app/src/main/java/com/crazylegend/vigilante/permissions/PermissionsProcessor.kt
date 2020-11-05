@@ -1,193 +1,156 @@
 package com.crazylegend.vigilante.permissions
 
-import android.content.Context
+import android.annotation.SuppressLint
+import android.util.ArrayMap
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
 import androidx.lifecycle.ServiceLifecycleDispatcher
+import com.crazylegend.coroutines.makeIOCall
 import com.crazylegend.kotlinextensions.log.debug
 import com.crazylegend.kotlinextensions.string.isNotNullOrEmpty
 import com.crazylegend.kotlinextensions.toggle
 import com.crazylegend.vigilante.contracts.service.ServiceManagersCoroutines
-import com.crazylegend.vigilante.di.qualifiers.ServiceContext
+import com.crazylegend.vigilante.permissions.clicks.PermissionClickModel
+import com.crazylegend.vigilante.permissions.requests.db.PermissionRequestModel
+import com.crazylegend.vigilante.permissions.requests.db.PermissionRequestsRepository
 import dagger.hilt.android.scopes.ServiceScoped
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
  * Created by crazy on 10/21/20 to long live and prosper !
  */
 @ServiceScoped
+@SuppressLint("DefaultLocale")
 class PermissionsProcessor @Inject constructor(
-        @ServiceContext private val context: Context) : ServiceManagersCoroutines {
+        private val permissionRequestsRepository: PermissionRequestsRepository
+) : ServiceManagersCoroutines {
 
     override val serviceLifecycleDispatcher: ServiceLifecycleDispatcher = ServiceLifecycleDispatcher(this)
 
     override fun initVars() {}
 
-    override fun registerCallbacks() {}
+    override fun registerCallbacks() {
+        scope.launch {
+            permissionFlow.collectLatest {
+                sendNotification(it)
+            }
+        }
+    }
+
+    private fun sendNotification(newPermissionMessage: String) {
+        if (newPermissionMessage.isNotBlank()) {
+            val currentPackageRef = packageRequestingPermission
+            val permissionRequestModel = PermissionRequestModel(newPermissionMessage, currentPackageRef)
+            scope.makeIOCall {
+                permissionRequestsRepository.insertPermissionRequest(permissionRequestModel)
+            }
+        }
+    }
 
     override fun disposeResources() {}
 
+    private val dismissPackages = setOf(
+            "com.google.android.permissioncontroller",
+            "com.android.systemui",
+            "com.google.android.packageinstaller",
+            "com.android.packageinstaller",
+    )
+
     override fun eventActionByPackageName(eventPackageName: CharSequence) {
-        if (!(eventPackageName == "com.google.android.permissioncontroller" ||
-                        eventPackageName == "com.android.systemui" ||
-                        eventPackageName == "com.android.packageinstaller")) {
-            currentPackageString = eventPackageName.toString()
+        if (eventPackageName !in dismissPackages) {
+            debug { "CURRENT PACKAGE STRING ${eventPackageName.toString()}" }
+            packageRequestingPermission = eventPackageName.toString()
         }
     }
 
     private var permissionMessage: String? = null
-    private var currentPackageString: String? = null
-
-    private var denyButtonId: String? = null
-    private var allowButtonId: String? = null
-    private var doNotAskButtonId: String? = null
-    private var onlyForegroundButtonId: String? = null
-    private var alwaysAllowButtonId: String? = null
-    private var allowOneTimeButtonId: String? = null
-    private var denyAndDoNotAskAgainButtonId: String? = null
-    private var denyAndDoNotAskAgainCheckboxButtonId: String? = null
+    private var packageRequestingPermission: String? = null
     private var clickedDenyAndDoNotAskAgainCheckBox = false
+    private val permissionFlow = MutableStateFlow("")
+    private val buttonsMap = ArrayMap<String, String>()
 
-    //from settings
-    private var allowSettingsButtonId: String? = null
-    private var permissionsFromSettings = false
-    private var alwaysAllowSettingsButtonId: String? = null
-    private var allowForegroundOnlySettingsButtonId: String? = null
-    private var askEveryTimeSettingsButtonId: String? = null
-    private var denySettingsButtonId: String? = null
-
-
-    fun extractPermission(nodeInfo: AccessibilityNodeInfo?, depth: Int = 0) {
+    fun extractPermissionMessage(nodeInfo: AccessibilityNodeInfo?, depth: Int = 0) {
         if (nodeInfo == null) return
         val newPermissionMessage = nodeInfo.getTextForViewId(
                 "com.android.permissioncontroller:id/permission_message",
                 "com.android.packageinstaller:id/permission_message")
 
         if (newPermissionMessage.isNotNullOrEmpty()) {
-            val permissionRequestModel = PermissionRequestModel(newPermissionMessage)
-            debug { "SEND PERMISSION NOTIFICATION $newPermissionMessage $currentPackageString" }
-
             permissionMessage = newPermissionMessage
+            scope.launch {
+                permissionFlow.emit(newPermissionMessage ?: "")
+            }
+        } else {
+            for (i in 0 until nodeInfo.childCount) {
+                extractPermissionMessage(nodeInfo.getChild(i), depth + 1)
+            }
         }
+    }
 
-        nodeInfo.onResourceFound("com.android.permissioncontroller:id/app_permission_root") {
-            permissionsFromSettings = true
-        }
+    fun extractPermissionButtons(nodeInfo: AccessibilityNodeInfo?, depth: Int = 0) {
+        if (nodeInfo == null) return
 
-        nodeInfo.onResourceFound("com.android.permissioncontroller:id/allow_always_radio_button") {
-            alwaysAllowSettingsButtonId = it
-        }
-
-        nodeInfo.onResourceFound("com.android.packageinstaller:id/permission_allow_button") {
-            allowButtonId = it
-        }
-
-        nodeInfo.onResourceFound("com.android.permissioncontroller:id/allow_radio_button") {
-            allowSettingsButtonId = it
-        }
-
-        nodeInfo.onResourceFound("com.android.permissioncontroller:id/allow_foreground_only_radio_button",
-                "com.android.permissioncontroller:id/foreground_only_radio_button") {
-            allowForegroundOnlySettingsButtonId = it
-        }
-
-        nodeInfo.onResourceFound("com.android.permissioncontroller:id/ask_radio_button") {
-            askEveryTimeSettingsButtonId = it
-        }
-
-        nodeInfo.onResourceFound("com.android.permissioncontroller:id/deny_radio_button") {
-            denySettingsButtonId = it
-        }
-
-        nodeInfo.onResourceFound("com.android.permissioncontroller:id/permission_allow_foreground_only_button") {
-            onlyForegroundButtonId = it
-        }
-
-        nodeInfo.onResourceFound("com.android.permissioncontroller:id/permission_deny_button",
-                "com.android.packageinstaller:id/permission_deny_button") {
-            denyButtonId = it
-        }
-
-        nodeInfo.onResourceFound("com.android.permissioncontroller:id/permission_allow_always_button") {
-            alwaysAllowButtonId = it
-        }
-
-        nodeInfo.onResourceFound("com.android.permissioncontroller:id/permission_allow_one_time_button") {
-            allowOneTimeButtonId = it
-        }
-
-        nodeInfo.onResourceFound("com.android.permissioncontroller:id/permission_deny_and_dont_ask_again_button") {
-            denyAndDoNotAskAgainButtonId = it
-        }
-
-        nodeInfo.onResourceFound(
-                "com.android.packageinstaller:id/do_not_ask_checkbox") {
-            denyAndDoNotAskAgainCheckboxButtonId = it
-        }
-
+        nodeInfo.findButtons(PermissionType.values().map { it.res.toLowerCase() })
 
         for (i in 0 until nodeInfo.childCount) {
-            extractPermission(nodeInfo.getChild(i), depth + 1)
+            extractPermissionButtons(nodeInfo.getChild(i), depth + 1)
         }
     }
 
     fun listenForPermissionClicks(eventType: Int, source: AccessibilityNodeInfo?) {
         if (eventType == AccessibilityEvent.TYPE_VIEW_CLICKED && source != null) {
-            checkOnClick(denyButtonId, source) {
-                if (clickedDenyAndDoNotAskAgainCheckBox) {
-                    debug { "CLICKED DENY AND DO NOT ASK AGAIN" }
-                    clickedDenyAndDoNotAskAgainCheckBox = false
-                }
-            }
-            checkOnClick(allowButtonId, source)
-            checkOnClick(doNotAskButtonId, source)
-            checkOnClick(onlyForegroundButtonId, source)
-            checkOnClick(alwaysAllowButtonId, source)
-            checkOnClick(allowOneTimeButtonId, source)
-            checkOnClick(denyAndDoNotAskAgainButtonId, source)
-            checkOnClick(denyAndDoNotAskAgainCheckboxButtonId, source) {
-                clickedDenyAndDoNotAskAgainCheckBox = clickedDenyAndDoNotAskAgainCheckBox.toggle()
-            }
-
-            if (permissionsFromSettings) {
-                checkOnClick(alwaysAllowSettingsButtonId, source)
-                checkOnClick(allowSettingsButtonId, source)
-                checkOnClick(allowForegroundOnlySettingsButtonId, source)
-                checkOnClick(askEveryTimeSettingsButtonId, source)
-                checkOnClick(denySettingsButtonId, source)
-            }
+            checkOnClick(source)
         }
     }
 
-    private inline fun checkOnClick(buttonId: String?, source: AccessibilityNodeInfo, onClickFunction: () -> Unit = {}) {
-        if (buttonId != null && source.viewIdResourceName != null && source.viewIdResourceName == buttonId) {
-            onClickFunction()
-            debug { "CLICKED on $buttonId $permissionMessage ${currentPackageString}" }
-        }
-    }
-
-    private fun AccessibilityNodeInfo?.getTextForViewId(comparator: String): String? =
-            if (this != null && viewIdResourceName?.contains(comparator, true) == true) {
-                text?.toString()
-            } else {
-                null
-            }
-
-    private inline fun AccessibilityNodeInfo?.onResourceFound(comparator: String, onResourceFound: (buttonID: String) -> Unit) = run {
-        if (this != null && viewIdResourceName?.contains(comparator, true) == true) {
-            onResourceFound(viewIdResourceName)
-        }
-    }
-
-    private inline fun AccessibilityNodeInfo?.onResourceFound(comparator1: String, comparator2: String, onResourceFound: (buttonID: String) -> Unit) = run {
+    private fun AccessibilityNodeInfo?.findButtons(list: List<String>) {
         if (this != null) {
-            when {
-                viewIdResourceName?.contains(comparator1, true) == true -> {
-                    onResourceFound(viewIdResourceName)
+            list.find { viewIdResourceName?.toLowerCase() == it }?.apply {
+                buttonsMap[this.toLowerCase()] = this.toLowerCase()
+            }
+        }
+    }
+
+    private val allowedPermissionTypes = arrayOf(
+            PermissionType.ALLOW,
+            PermissionType.ALLOW_FOREGROUND_ONLY,
+            PermissionType.ALLOW_FOREGROUND_ONLY,
+            PermissionType.ALWAYS_ALLOW,
+            PermissionType.ALLOW_ONE_TIME,
+            PermissionType.ALWAYS_ALLOW_SETTINGS,
+            PermissionType.ALLOW_SETTINGS,
+            PermissionType.ALLOW_FOREGROUND_ONLY_SETTINGS,
+            PermissionType.ALLOW_FOREGROUND_ONLY_SETTINGS2,
+    )
+
+    /**
+     * This implementation doesn't work on all devices, LG and their shitty accessibility information
+     * my LG G4 cries in pieces after discovering LG V20 doesn't handle this at all, shame
+     * @param source AccessibilityNodeInfo
+     */
+    private fun checkOnClick(source: AccessibilityNodeInfo) {
+        if (source.viewIdResourceName != null) {
+            buttonsMap[source.viewIdResourceName.toLowerCase()]?.let { clickedButtonID ->
+                if (clickedButtonID == PermissionType.DENY_DO_NOT_ASK_AGAIN_CHECKBOX.res) {
+                    clickedDenyAndDoNotAskAgainCheckBox = clickedDenyAndDoNotAskAgainCheckBox.toggle()
                 }
-                viewIdResourceName?.contains(comparator2, true) == true -> {
-                    onResourceFound(viewIdResourceName)
+                val hasUserClockedDenyAndDoNotAskAgainWhenDenying = if (clickedButtonID == PermissionType.DENY.res) {
+                    if (clickedDenyAndDoNotAskAgainCheckBox) {
+                        clickedDenyAndDoNotAskAgainCheckBox = false
+                        true
+                    } else {
+                        false
+                    }
+                } else {
+                    false
                 }
+                val permissionClickModel = PermissionClickModel(
+                        packageRequestingPermission, permissionMessage,
+                        permissionClickType = clickedButtonID)
+                debug { "CLICKED on $permissionClickModel" }
             }
         }
     }
@@ -202,6 +165,8 @@ class PermissionsProcessor @Inject constructor(
             } else {
                 null
             }
-
 }
+
+
+
 

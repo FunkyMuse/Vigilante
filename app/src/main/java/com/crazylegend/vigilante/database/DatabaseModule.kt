@@ -39,5 +39,8 @@ object DatabaseModule {
     @Singleton
     fun screenDao(database: VigilanteDatabase) = database.screenDAO()
 
+    @Provides
+    @Singleton
+    fun permissionRequestsDao(database: VigilanteDatabase) = database.permissionRequestsDAO()
 
 }

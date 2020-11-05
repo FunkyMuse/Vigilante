@@ -71,7 +71,7 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
                 val directions = when (item.action) {
                     SectionItem.SectionItemAction.CAMERA -> HomeFragmentDirections.destinationCameraHistory()
                     SectionItem.SectionItemAction.MIC -> HomeFragmentDirections.destinationMicrophoneHistory()
-                    SectionItem.SectionItemAction.PERMISSIONS -> null
+                    SectionItem.SectionItemAction.PERMISSIONS -> HomeFragmentDirections.destinationPermissionRequests()
                     SectionItem.SectionItemAction.CLIPBOARD -> null
                     SectionItem.SectionItemAction.HEADSET -> HomeFragmentDirections.destinationHeadset()
                     SectionItem.SectionItemAction.NOTIFICATIONS -> HomeFragmentDirections.destinationNotifications()

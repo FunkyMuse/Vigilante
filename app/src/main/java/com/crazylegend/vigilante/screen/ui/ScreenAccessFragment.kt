@@ -7,7 +7,9 @@ import androidx.lifecycle.coroutineScope
 import androidx.navigation.fragment.findNavController
 import com.crazylegend.kotlinextensions.fragments.fragmentIntResult
 import com.crazylegend.kotlinextensions.fragments.viewLifecycleOwnerLifecycle
+import com.crazylegend.kotlinextensions.views.hideViews
 import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
+import com.crazylegend.kotlinextensions.views.showViews
 import com.crazylegend.navigation.navigateSafe
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
@@ -71,7 +73,19 @@ class ScreenAccessFragment : AbstractFragment<FragmentScreenAccessBinding>(R.lay
         }
     }
 
+    private val viewProneToVisibilityChange: Array<View>
+        get() = arrayOf(
+                binding.filter, binding.totalActions, binding.totalActionsTitle, binding.totalLocks, binding.totalLocksTitle,
+                binding.totalUnlocks, binding.totalUnlocksTitle
+        )
+
     private fun provideAdapterDataByFilterOrDefault() {
-        databaseLoadingProvider.provideListState(screenVM.screenAccessData, binding.recycler, binding.noDataView, adapter)
+        databaseLoadingProvider.provideListState(screenVM.screenAccessData, binding.recycler, binding.noDataView, adapter) {
+            if (it) {
+                hideViews(*viewProneToVisibilityChange)
+            } else {
+                showViews(*viewProneToVisibilityChange)
+            }
+        }
     }
 }

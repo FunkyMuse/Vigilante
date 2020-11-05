@@ -8,7 +8,6 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
-import com.crazylegend.coroutines.withMainContext
 import com.crazylegend.kotlinextensions.fragments.observeLifecycleOwnerThroughLifecycleCreation
 import com.crazylegend.kotlinextensions.views.visibleIfTrueGoneOtherwise
 import com.crazylegend.recyclerview.isEmpty
@@ -51,9 +50,7 @@ class DatabaseLoadingProvider @Inject constructor(private val fragment: Fragment
 
         fragment.viewLifecycleOwner.lifecycleScope.launchWhenResumed {
             adapter.loadStateFlow.collectLatest {
-                withMainContext {
-                    noDataView.visibleIfTrueGoneOtherwise(adapter.isEmpty)
-                }
+                noDataView.visibleIfTrueGoneOtherwise(adapter.isEmpty)
             }
         }
     }

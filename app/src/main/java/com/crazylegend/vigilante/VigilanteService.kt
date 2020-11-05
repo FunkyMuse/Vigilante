@@ -59,6 +59,7 @@ class VigilanteService : AccessibilityService() {
         microphoneProcessor.setServiceConnected()
         broadcastProvider.setServiceConnected()
         notificationsProvider.setServiceConnected()
+        permissionsProcessor.setServiceConnected()
 
         //setupHoverLayout()
     }
@@ -94,6 +95,7 @@ class VigilanteService : AccessibilityService() {
         microphoneProcessor.initLifecycle()
         broadcastProvider.initLifecycle()
         notificationsProvider.initLifecycle()
+        permissionsProcessor.initLifecycle()
         //endregion
 
         //region start
@@ -101,14 +103,17 @@ class VigilanteService : AccessibilityService() {
         microphoneProcessor.onStart()
         broadcastProvider.onStart()
         notificationsProvider.onStart()
+        permissionsProcessor.onStart()
         //endregion
     }
 
     private fun rememberEventPackageName(event: AccessibilityEvent) {
         val eventPackageName = event.packageName
+
         currentPackageString = eventPackageName?.toString() ?: packageName
         if (event.eventType == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED && eventPackageName != null) {
             cameraProcessor.eventActionByPackageName(eventPackageName)
+            permissionsProcessor.eventActionByPackageName(eventPackageName)
             microphoneProcessor.eventActionByPackageName(eventPackageName)
             permissionsProcessor.extractPermission(event.source, 0)
         }
@@ -122,6 +127,7 @@ class VigilanteService : AccessibilityService() {
         microphoneProcessor.cleanUp()
         broadcastProvider.cleanUp()
         notificationsProvider.cleanUp()
+        permissionsProcessor.cleanUp()
         //windowManager?.removeView(outerFrame)
         currentPackageString = null
         super.onDestroy()

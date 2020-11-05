@@ -3,9 +3,11 @@ package com.crazylegend.vigilante.permissions
 import android.content.Context
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
+import androidx.lifecycle.ServiceLifecycleDispatcher
 import com.crazylegend.kotlinextensions.log.debug
 import com.crazylegend.kotlinextensions.string.isNotNullOrEmpty
 import com.crazylegend.kotlinextensions.toggle
+import com.crazylegend.vigilante.contracts.service.ServiceManagersCoroutines
 import com.crazylegend.vigilante.di.qualifiers.ServiceContext
 import dagger.hilt.android.scopes.ServiceScoped
 import javax.inject.Inject
@@ -15,9 +17,26 @@ import javax.inject.Inject
  */
 @ServiceScoped
 class PermissionsProcessor @Inject constructor(
-        @ServiceContext private val context: Context) {
+        @ServiceContext private val context: Context) : ServiceManagersCoroutines {
+
+    override val serviceLifecycleDispatcher: ServiceLifecycleDispatcher = ServiceLifecycleDispatcher(this)
+
+    override fun initVars() {}
+
+    override fun registerCallbacks() {}
+
+    override fun disposeResources() {}
+
+    override fun eventActionByPackageName(eventPackageName: CharSequence) {
+        if (!(eventPackageName == "com.google.android.permissioncontroller" ||
+                        eventPackageName == "com.android.systemui" ||
+                        eventPackageName == "com.android.packageinstaller")) {
+            currentPackageString = eventPackageName.toString()
+        }
+    }
 
     private var permissionMessage: String? = null
+    private var currentPackageString: String? = null
 
     private var denyButtonId: String? = null
     private var allowButtonId: String? = null
@@ -37,6 +56,7 @@ class PermissionsProcessor @Inject constructor(
     private var askEveryTimeSettingsButtonId: String? = null
     private var denySettingsButtonId: String? = null
 
+
     fun extractPermission(nodeInfo: AccessibilityNodeInfo?, depth: Int = 0) {
         if (nodeInfo == null) return
         val newPermissionMessage = nodeInfo.getTextForViewId(
@@ -44,19 +64,15 @@ class PermissionsProcessor @Inject constructor(
                 "com.android.packageinstaller:id/permission_message")
 
         if (newPermissionMessage.isNotNullOrEmpty()) {
-            if (!newPermissionMessage.equals(permissionMessage, true)) {
-                //send notification
-                debug { "SEND PERMISSION NOTIFICATION $newPermissionMessage" }
+            val permissionRequestModel = PermissionRequestModel(newPermissionMessage)
+            debug { "SEND PERMISSION NOTIFICATION $newPermissionMessage $currentPackageString" }
 
-            }
             permissionMessage = newPermissionMessage
         }
-
 
         nodeInfo.onResourceFound("com.android.permissioncontroller:id/app_permission_root") {
             permissionsFromSettings = true
         }
-
 
         nodeInfo.onResourceFound("com.android.permissioncontroller:id/allow_always_radio_button") {
             alwaysAllowSettingsButtonId = it
@@ -122,62 +138,31 @@ class PermissionsProcessor @Inject constructor(
                     debug { "CLICKED DENY AND DO NOT ASK AGAIN" }
                     clickedDenyAndDoNotAskAgainCheckBox = false
                 }
-                denyButtonId = null
             }
-            checkOnClick(allowButtonId, source) {
-                allowButtonId = null
-            }
-            checkOnClick(doNotAskButtonId, source) {
-                doNotAskButtonId = null
-            }
-            checkOnClick(onlyForegroundButtonId, source) {
-                onlyForegroundButtonId = null
-            }
-            checkOnClick(alwaysAllowButtonId, source) {
-                alwaysAllowButtonId = null
-            }
-
-            checkOnClick(allowOneTimeButtonId, source) {
-                allowOneTimeButtonId = null
-            }
-
-            checkOnClick(denyAndDoNotAskAgainButtonId, source) {
-                denyAndDoNotAskAgainButtonId = null
-            }
-
+            checkOnClick(allowButtonId, source)
+            checkOnClick(doNotAskButtonId, source)
+            checkOnClick(onlyForegroundButtonId, source)
+            checkOnClick(alwaysAllowButtonId, source)
+            checkOnClick(allowOneTimeButtonId, source)
+            checkOnClick(denyAndDoNotAskAgainButtonId, source)
             checkOnClick(denyAndDoNotAskAgainCheckboxButtonId, source) {
                 clickedDenyAndDoNotAskAgainCheckBox = clickedDenyAndDoNotAskAgainCheckBox.toggle()
-                denyAndDoNotAskAgainCheckboxButtonId = null
             }
 
             if (permissionsFromSettings) {
-                checkOnClick(alwaysAllowSettingsButtonId, source) {
-                    alwaysAllowSettingsButtonId = null
-                }
-
-                checkOnClick(allowSettingsButtonId, source) {
-                    allowSettingsButtonId = null
-                }
-
-                checkOnClick(allowForegroundOnlySettingsButtonId, source) {
-                    allowForegroundOnlySettingsButtonId = null
-                }
-
-                checkOnClick(askEveryTimeSettingsButtonId, source) {
-                    askEveryTimeSettingsButtonId = null
-                }
-
-                checkOnClick(denySettingsButtonId, source) {
-                    denySettingsButtonId = null
-                }
+                checkOnClick(alwaysAllowSettingsButtonId, source)
+                checkOnClick(allowSettingsButtonId, source)
+                checkOnClick(allowForegroundOnlySettingsButtonId, source)
+                checkOnClick(askEveryTimeSettingsButtonId, source)
+                checkOnClick(denySettingsButtonId, source)
             }
         }
     }
 
-    private inline fun checkOnClick(buttonId: String?, source: AccessibilityNodeInfo, onClickFunction: () -> Unit) {
+    private inline fun checkOnClick(buttonId: String?, source: AccessibilityNodeInfo, onClickFunction: () -> Unit = {}) {
         if (buttonId != null && source.viewIdResourceName != null && source.viewIdResourceName == buttonId) {
             onClickFunction()
-            permissionMessage = null
+            debug { "CLICKED on $buttonId $permissionMessage ${currentPackageString}" }
         }
     }
 

@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
  */
 
 @Dao
-interface ScreenDao {
+interface ScreenDAO {
 
     @Query("select * from screenActions")
     fun getAllScreenActions(): PagingSource<Int, ScreenModel>

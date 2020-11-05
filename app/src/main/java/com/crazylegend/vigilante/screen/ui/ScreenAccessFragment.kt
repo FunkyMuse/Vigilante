@@ -40,12 +40,12 @@ class ScreenAccessFragment : AbstractFragment<FragmentScreenAccessBinding>(R.lay
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        provideAdapterDataOnPosition(screenVM.filterPosition)
+        provideAdapterDataByFilterOrDefault()
 
         fragmentIntResult(ListFilterBottomSheet.RESULT_REQUEST_KEY, ListFilterBottomSheet.BUNDLE_ARGUMENT_KEy) {
             this ?: return@fragmentIntResult
             screenVM.updateFilterPosition(this)
-            provideAdapterDataOnPosition(this)
+            provideAdapterDataByFilterOrDefault()
         }
 
         binding.filter.setOnClickListenerCooldown {
@@ -71,30 +71,7 @@ class ScreenAccessFragment : AbstractFragment<FragmentScreenAccessBinding>(R.lay
         }
     }
 
-    private fun provideAdapterDataOnPosition(position: Int) {
-        when (position) {
-            0 -> {
-                provideAllScreen()
-            }
-            1 -> {
-                provideLocksOnly()
-            }
-            2 -> {
-                provideUnlocksOnly()
-            }
-        }
-    }
-
-    private fun provideUnlocksOnly() {
-        databaseLoadingProvider.provideListState(screenVM.allScreenUnLocks, binding.recycler, binding.noDataView, adapter)
-    }
-
-    private fun provideLocksOnly() {
-        databaseLoadingProvider.provideListState(screenVM.allScreenLocks, binding.recycler, binding.noDataView, adapter)
-    }
-
-    private fun provideAllScreen() {
-        databaseLoadingProvider.provideListState(screenVM.allScreenAccess, binding.recycler, binding.noDataView, adapter)
-
+    private fun provideAdapterDataByFilterOrDefault() {
+        databaseLoadingProvider.provideListState(screenVM.screenAccessData, binding.recycler, binding.noDataView, adapter)
     }
 }

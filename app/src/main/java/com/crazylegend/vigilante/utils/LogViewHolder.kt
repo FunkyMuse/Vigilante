@@ -8,9 +8,11 @@ import com.crazylegend.kotlinextensions.dateAndTime.toString
 import com.crazylegend.kotlinextensions.tryOrNull
 import com.crazylegend.kotlinextensions.views.setPrecomputedText
 import com.crazylegend.recyclerview.context
+import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.camera.db.CameraModel
 import com.crazylegend.vigilante.databinding.ItemviewLogBinding
 import com.crazylegend.vigilante.di.providers.PrefsProvider
+import com.crazylegend.vigilante.headset.database.HeadsetModel
 import com.crazylegend.vigilante.microphone.db.MicrophoneModel
 import com.crazylegend.vigilante.notifications.db.NotificationsModel
 import com.crazylegend.vigilante.screen.db.ScreenModel
@@ -52,5 +54,11 @@ class LogViewHolder(private val binding: ItemviewLogBinding,
         binding.title.setPrecomputedText(tryOrNull { context.getAppName(item.sentByPackage.toString()) })
         binding.image.setImageDrawable(tryOrNull { context.getAppIcon(item.sentByPackage.toString()) })
         binding.content.setPrecomputedText(item.showTime.toString(prefsProvider.getDateFormat))
+    }
+
+    fun bind(item: HeadsetModel) {
+        binding.title.setPrecomputedText(item.connectionTypeTitle(context))
+        binding.image.setImageResource(R.drawable.headphones)
+        binding.content.setPrecomputedText(item.headsetActionTime?.toString(prefsProvider.getDateFormat))
     }
 }

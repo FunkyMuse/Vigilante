@@ -63,37 +63,24 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
         sectionAdapter.submitList(sectionList)
 
         sectionAdapter.forItemClickListener = forItemClickListener { _, item, _ ->
-            when (item.action) {
-                SectionItem.SectionItemAction.CAMERA -> {
-                    findNavController().navigateSafe(HomeFragmentDirections.destinationCameraHistory())
+            if (item.action == SectionItem.SectionItemAction.APPS_USAGE) {
+                permissionProvider.propagateAppsUsageClick {
+                    findNavController().navigateSafe(HomeFragmentDirections.destinationAppsUsage())
                 }
-                SectionItem.SectionItemAction.MIC -> {
-                    findNavController().navigateSafe(HomeFragmentDirections.destinationMicrophoneHistory())
+            } else {
+                val directions = when (item.action) {
+                    SectionItem.SectionItemAction.CAMERA -> HomeFragmentDirections.destinationCameraHistory()
+                    SectionItem.SectionItemAction.MIC -> HomeFragmentDirections.destinationMicrophoneHistory()
+                    SectionItem.SectionItemAction.PERMISSIONS -> null
+                    SectionItem.SectionItemAction.CLIPBOARD -> null
+                    SectionItem.SectionItemAction.HEADSET -> HomeFragmentDirections.destinationHeadset()
+                    SectionItem.SectionItemAction.NOTIFICATIONS -> HomeFragmentDirections.destinationNotifications()
+                    SectionItem.SectionItemAction.LOCK_SCREEN -> HomeFragmentDirections.destinationScreenHistory()
+                    else -> null
                 }
-                SectionItem.SectionItemAction.PERMISSIONS -> {
-
-                }
-                SectionItem.SectionItemAction.CLIPBOARD -> {
-
-                }
-                SectionItem.SectionItemAction.HEADSET -> {
-
-                }
-                SectionItem.SectionItemAction.NOTIFICATIONS -> {
-                    findNavController().navigateSafe(HomeFragmentDirections.destinationNotifications())
-                }
-                SectionItem.SectionItemAction.LOCK_SCREEN -> {
-                    findNavController().navigateSafe(HomeFragmentDirections.destinationScreenHistory())
-                }
-                SectionItem.SectionItemAction.APPS_USAGE -> {
-                    permissionProvider.propagateAppsUsageClick {
-                        findNavController().navigateSafe(HomeFragmentDirections.destinationAppsUsage())
-                    }
-                }
+                directions?.let { findNavController().navigateSafe(it) }
             }
         }
-
-
 
         binding.statusButton.setOnClickListenerCooldown {
             permissionProvider.dispatchServiceLogic()

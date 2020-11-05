@@ -2,9 +2,6 @@ package com.crazylegend.vigilante.microphone.ui
 
 import android.app.Application
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.viewModelScope
-import androidx.paging.Pager
-import androidx.paging.cachedIn
 import com.crazylegend.vigilante.abstracts.AbstractAVM
 import com.crazylegend.vigilante.microphone.db.MicrophoneRepository
 
@@ -15,7 +12,5 @@ class MicrophoneAccessVM @ViewModelInject constructor(
         private val microphoneRepository: MicrophoneRepository,
         application: Application) : AbstractAVM(application) {
 
-    val microphoneAccess = Pager(pagingConfig) {
-        microphoneRepository.getAllMicrophoneRecords()
-    }.flow.cachedIn(viewModelScope)
+    val microphoneAccess = provideDatabaseData { microphoneRepository.getAllMicrophoneRecords() }
 }

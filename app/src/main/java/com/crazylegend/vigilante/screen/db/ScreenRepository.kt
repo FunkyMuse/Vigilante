@@ -5,7 +5,7 @@ import javax.inject.Inject
 /**
  * Created by crazy on 11/4/20 to long live and prosper !
  */
-class ScreenRepository @Inject constructor(private val dao: ScreenDao) {
+class ScreenRepository @Inject constructor(private val dao: ScreenDAO) {
 
     suspend fun insertScreenModel(screenModel: ScreenModel) = dao.insertScreenAction(screenModel)
 

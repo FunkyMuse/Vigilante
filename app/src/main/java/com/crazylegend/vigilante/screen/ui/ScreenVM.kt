@@ -4,9 +4,6 @@ import android.app.Application
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.viewModelScope
-import androidx.paging.Pager
-import androidx.paging.cachedIn
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractAVM
 import com.crazylegend.vigilante.filter.FilterModel
@@ -20,15 +17,23 @@ class ScreenVM @ViewModelInject constructor(
         application: Application,
         @Assisted private val savedStateHandle: SavedStateHandle) : AbstractAVM(application) {
 
+    companion object {
+        private const val FILTER_MODEL_KEY = "filterModel"
+    }
+
+    private val filterPosition get() = savedStateHandle.get<Int>(FILTER_MODEL_KEY) ?: 0
+
     fun updateFilterPosition(position: Int) {
         savedStateHandle[FILTER_MODEL_KEY] = position
     }
 
-    companion object {
-        const val FILTER_MODEL_KEY = "filterModel"
-    }
-
-    val filterPosition get() = savedStateHandle.get<Int>(FILTER_MODEL_KEY) ?: 0
+    val screenAccessData
+        get() = when (filterPosition) {
+            0 -> allScreenAccess
+            1 -> allScreenLocks
+            2 -> allScreenUnLocks
+            else -> allScreenAccess
+        }
 
 
     fun getFilterList(): Array<FilterModel> {
@@ -46,15 +51,10 @@ class ScreenVM @ViewModelInject constructor(
     val totalLocks get() = repo.totalLocks()
     val totalUnlocks get() = repo.totalUnlocks()
 
-    val allScreenAccess = Pager(pagingConfig) {
-        repo.getAllScreenActions()
-    }.flow.cachedIn(viewModelScope)
+    private val allScreenAccess = provideDatabaseData { repo.getAllScreenActions() }
 
-    val allScreenLocks = Pager(pagingConfig) {
-        repo.getAllScreenLocks()
-    }.flow.cachedIn(viewModelScope)
-    val allScreenUnLocks = Pager(pagingConfig) {
-        repo.getAllScreenUnlocks()
-    }.flow.cachedIn(viewModelScope)
+    private val allScreenLocks = provideDatabaseData { repo.getAllScreenLocks() }
+
+    private val allScreenUnLocks = provideDatabaseData { repo.getAllScreenUnlocks() }
 
 }

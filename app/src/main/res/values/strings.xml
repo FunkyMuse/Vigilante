@@ -42,4 +42,13 @@
     <string name="connected_with_mic">Connected with mic</string>
     <string name="not_available">N/A</string>
     <string name="headset_connection_type_title">Headset %1$s</string>
+    <string name="allowed">Allowed</string>
+    <string name="allowed_foreground_only">Allowed foreground only</string>
+    <string name="always_allowed">Allowed always</string>
+    <string name="allowed_one_time">Allowed one time only</string>
+    <string name="denied">Denied</string>
+    <string name="denied_and_do_not_ask_again">"Denied with do not ask again "</string>
+    <string name="ask_every_time">Ask every time</string>
+    <string name="permissions_requests_by_app_count">%1$d permission requests in total.</string>
+    <string name="total_permission_requests">Total permission requests</string>
 </resources>

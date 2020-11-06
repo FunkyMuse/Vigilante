@@ -34,6 +34,6 @@ inline fun <reified T : RoomDatabase> Context.instantiateDatabase(cameraDbName: 
     val passphrase: ByteArray = SQLiteDatabase.getBytes(packageName.toCharArray())
     val factory = SupportFactory(passphrase)
     return Room.databaseBuilder(this, T::class.java, cameraDbName)
-            .openHelperFactory(factory)
+            //.openHelperFactory(factory)
             .build()
 }

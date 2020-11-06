@@ -80,7 +80,7 @@ class ScreenAccessFragment : AbstractFragment<FragmentScreenAccessBinding>(R.lay
         )
 
     private fun provideAdapterDataByFilterOrDefault() {
-        databaseLoadingProvider.provideListState(screenVM.screenAccessData, binding.recycler, binding.noDataView, adapter) {
+        databaseLoadingProvider.provideListState(screenVM.screenAccessData, binding.recycler, binding.noDataViewHolder.noDataView, adapter) {
             if (it) {
                 hideViews(*viewProneToVisibilityChange)
             } else {

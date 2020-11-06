@@ -1,9 +1,10 @@
-package com.crazylegend.vigilante.permissions.requests.db
+package com.crazylegend.vigilante.permissions.db
 
 import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Created by crazy on 11/5/20 to long live and prosper !
@@ -18,4 +19,9 @@ interface PermissionRequestsDAO {
     @Query("select * from permissionRequests")
     fun getAllPermissionRequests(): PagingSource<Int, PermissionRequestModel>
 
+    @Query("select count(*) from permissionRequests")
+    fun permissionCountRequest(): Flow<Int>
+
+    @Query("select count(*) from permissionRequests where packageRequestingThePermission is not null and packageRequestingThePermission =:nameOfThePackage")
+    fun getPermissionRequestsForPackage(nameOfThePackage: String): Flow<Int>
 }

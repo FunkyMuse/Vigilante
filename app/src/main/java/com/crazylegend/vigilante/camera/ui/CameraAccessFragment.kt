@@ -29,7 +29,7 @@ class CameraAccessFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.la
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        databaseLoadingProvider.provideListState(cameraAccessVM.cameraAccess, binding.recycler, binding.noDataView,
+        databaseLoadingProvider.provideListState(cameraAccessVM.cameraAccess, binding.recycler, binding.noDataViewHolder.noDataView,
                 cameraAccessAdapter)
     }
 }

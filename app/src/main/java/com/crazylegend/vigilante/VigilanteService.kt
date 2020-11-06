@@ -116,11 +116,9 @@ class VigilanteService : AccessibilityService() {
             cameraProcessor.eventActionByPackageName(eventPackageName)
             permissionsProcessor.eventActionByPackageName(eventPackageName)
             microphoneProcessor.eventActionByPackageName(eventPackageName)
-            permissionsProcessor.extractPermissionButtons(event.source, 0)
-            logViewHierarchy(event.source)
-            permissionsProcessor.extractPermissionMessage(event.source, 0)
+            //logViewHierarchy(event.source)
+            permissionsProcessor.extractPermissionMessage(event.source)
         }
-        permissionsProcessor.listenForPermissionClicks(event.eventType, event.source)
     }
 
     private fun logViewHierarchy(nodeInfo: AccessibilityNodeInfo?, depth: Int = 0) {

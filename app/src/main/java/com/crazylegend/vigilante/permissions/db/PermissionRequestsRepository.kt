@@ -1,4 +1,4 @@
-package com.crazylegend.vigilante.permissions.requests.db
+package com.crazylegend.vigilante.permissions.db
 
 import javax.inject.Inject
 
@@ -8,6 +8,9 @@ import javax.inject.Inject
 class PermissionRequestsRepository @Inject constructor(private val permissionRequestDAO: PermissionRequestsDAO) {
 
     fun getAllRequests() = permissionRequestDAO.getAllPermissionRequests()
+    fun totalRequests() = permissionRequestDAO.permissionCountRequest()
+
+    fun getPermissionCountForPackage(packageName: String) = permissionRequestDAO.getPermissionRequestsForPackage(packageName)
 
     suspend fun insertPermissionRequest(permissionRequestModel: PermissionRequestModel) = permissionRequestDAO.insertPermissionRequest(permissionRequestModel)
 }

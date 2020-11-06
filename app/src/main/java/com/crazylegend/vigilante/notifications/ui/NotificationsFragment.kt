@@ -31,7 +31,7 @@ class NotificationsFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.l
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        databaseLoadingProvider.provideListState(notificationsVM.notificationsAccess, binding.recycler, binding.noDataView, adapter)
+        databaseLoadingProvider.provideListState(notificationsVM.notificationsAccess, binding.recycler, binding.noDataViewHolder.noDataView, adapter)
     }
 
 }

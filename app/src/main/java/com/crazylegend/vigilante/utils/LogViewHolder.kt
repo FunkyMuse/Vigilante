@@ -15,7 +15,7 @@ import com.crazylegend.vigilante.di.providers.PrefsProvider
 import com.crazylegend.vigilante.headset.database.HeadsetModel
 import com.crazylegend.vigilante.microphone.db.MicrophoneModel
 import com.crazylegend.vigilante.notifications.db.NotificationsModel
-import com.crazylegend.vigilante.permissions.requests.db.PermissionRequestModel
+import com.crazylegend.vigilante.permissions.db.PermissionRequestModel
 import com.crazylegend.vigilante.screen.db.ScreenModel
 import java.util.*
 
@@ -68,4 +68,5 @@ class LogViewHolder(private val binding: ItemviewLogBinding,
         binding.image.setImageDrawable(tryOrNull { context.getAppIcon(item.packageRequestingThePermission.toString()) })
         binding.content.setPrecomputedText(item.date.toString(prefsProvider.getDateFormat))
     }
+
 }

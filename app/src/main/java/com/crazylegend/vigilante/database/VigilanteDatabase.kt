@@ -13,8 +13,8 @@ import com.crazylegend.vigilante.microphone.db.MicrophoneDAO
 import com.crazylegend.vigilante.microphone.db.MicrophoneModel
 import com.crazylegend.vigilante.notifications.db.NotificationsDAO
 import com.crazylegend.vigilante.notifications.db.NotificationsModel
-import com.crazylegend.vigilante.permissions.requests.db.PermissionRequestModel
-import com.crazylegend.vigilante.permissions.requests.db.PermissionRequestsDAO
+import com.crazylegend.vigilante.permissions.db.PermissionRequestModel
+import com.crazylegend.vigilante.permissions.db.PermissionRequestsDAO
 import com.crazylegend.vigilante.screen.db.ScreenDAO
 import com.crazylegend.vigilante.screen.db.ScreenModel
 import com.crazylegend.vigilante.utils.DateTypeConverter
@@ -30,7 +30,7 @@ import com.crazylegend.vigilante.utils.instantiateDatabase
     NotificationsModel::class,
     MicrophoneModel::class,
     ScreenModel::class,
-    PermissionRequestModel::class
+    PermissionRequestModel::class,
 ], version = 1, exportSchema = true)
 @TypeConverters(DateTypeConverter::class)
 abstract class VigilanteDatabase : RoomDatabase() {

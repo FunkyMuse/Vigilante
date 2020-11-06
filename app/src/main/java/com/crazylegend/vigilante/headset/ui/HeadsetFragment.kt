@@ -30,6 +30,6 @@ class HeadsetFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.layout_
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        databaseLoadingProvider.provideListState(headsetVM.headsetData, binding.recycler, binding.noDataView, adapter)
+        databaseLoadingProvider.provideListState(headsetVM.headsetData, binding.recycler, binding.noDataViewHolder.noDataView, adapter)
     }
 }

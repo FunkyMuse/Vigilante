@@ -1,4 +1,4 @@
-package com.crazylegend.vigilante.permissions.requests.db
+package com.crazylegend.vigilante.permissions.db
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

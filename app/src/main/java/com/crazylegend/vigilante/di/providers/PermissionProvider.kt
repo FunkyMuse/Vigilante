@@ -6,7 +6,7 @@ import android.provider.Settings
 import com.crazylegend.kotlinextensions.accessibility.hasAccessibilityPermission
 import com.crazylegend.kotlinextensions.accessibility.isAccessibilityServiceRunning
 import com.crazylegend.kotlinextensions.context.accessibilityManager
-import com.crazylegend.kotlinextensions.context.longToast
+import com.crazylegend.kotlinextensions.context.shortToast
 import com.crazylegend.kotlinextensions.permissions.hasUsageStatsPermission
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.VigilanteService
@@ -42,18 +42,16 @@ class PermissionProvider @Inject constructor(
     }
 
     private fun disableTheService() {
-        if (isVigilanteRunning() && isAccessibilityEnabled) {
+        if (isVigilanteRunning()) {
+            context.shortToast(R.string.disable_the_service)
+            context.stopVigilante()
             askForAccessibilityPermissions()
-            if (isVigilanteRunning()) {
-                context.longToast(R.string.disable_the_service)
-                context.stopVigilante()
-            }
         }
     }
 
     private fun enableTheService() {
         if (!hasAccessibilityPermission()) {
-            context.longToast(R.string.enable_the_service)
+            context.shortToast(R.string.enable_the_service)
             askForAccessibilityPermissions()
         } else {
             context.startVigilante()

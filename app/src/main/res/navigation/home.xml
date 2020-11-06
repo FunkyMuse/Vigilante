@@ -121,6 +121,28 @@
         android:label="" />
     <fragment
         android:id="@+id/permissionRequestFragment"
-        android:name="com.crazylegend.vigilante.permissions.requests.ui.PermissionRequestsFragment"
-        android:label="" />
+        android:name="com.crazylegend.vigilante.permissions.ui.request.PermissionRequestsFragment"
+        android:label="">
+        <action
+            android:id="@+id/destination_permission_details"
+            app:destination="@id/permissionDetailsBottomSheet" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/permissionDetailsBottomSheet"
+        android:name="com.crazylegend.vigilante.permissions.ui.details.PermissionDetailsBottomSheet"
+        android:label="">
+        <argument
+            android:name="packageName"
+            app:argType="string" />
+        <argument
+            android:name="permissionMessage"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="date"
+            app:argType="long"
+            android:defaultValue="-1L" />
+    </dialog>
+
 </navigation>

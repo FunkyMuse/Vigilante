@@ -79,37 +79,16 @@
         app:layout_constraintStart_toEndOf="@+id/totalActions"
         app:layout_constraintTop_toBottomOf="@id/totalActionsTitle" />
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/noDataView"
+    <include
+        android:id="@+id/noDataViewHolder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
+        layout="@layout/layout_no_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="14dp"
-            android:layout_marginEnd="14dp"
-            android:text="@string/no_results_expl"
-            android:textAlignment="center"
-            android:textSize="22sp"
-            app:layout_constraintTop_toBottomOf="@id/img" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/img"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_no_results" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"

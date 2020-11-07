@@ -51,4 +51,17 @@
     <string name="ask_every_time">Ask every time</string>
     <string name="permissions_requests_by_app_count">%1$d permission requests in total.</string>
     <string name="total_permission_requests">Total permission requests</string>
+    <string name="title_placeholder">Title: %1$s</string>
+    <string name="big_text_placeholder">Big text: %1$s</string>
+    <string name="text_placeholder">Text: %1$s</string>
+    <string name="category_placeholder">Category: %1$s</string>
+    <string name="group_placeholder">Group: %1$s</string>
+    <string name="channel_id_placeholder">Channel id: %1$s</string>
+    <string name="notification_visibility_public">Publicly visible notification</string>
+    <string name="notification_visibility_private">Privately visibile notification</string>
+    <string name="notification_visibility_secret">Secretly visible notification</string>
+    <string name="notification_visibility_placeholder">Visibility: %1$s</string>
+    <string name="notification_color_placeholder">Notification color: %1$s</string>
+    <string name="notification_color_copied_to_clipboard">Notification color copied to clipboard!</string>
+    <string name="date_placeholder">Date: %1$s</string>
 </resources>

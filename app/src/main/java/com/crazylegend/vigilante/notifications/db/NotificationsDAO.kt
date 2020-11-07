@@ -16,4 +16,7 @@ interface NotificationsDAO {
 
     @Query("select * from notifications")
     fun getAllNotifications(): PagingSource<Int, NotificationsModel>
+
+    @Query("select * from notifications where id =:notificationID limit 1")
+    suspend fun getNotificationByID(notificationID: Int): NotificationsModel?
 }

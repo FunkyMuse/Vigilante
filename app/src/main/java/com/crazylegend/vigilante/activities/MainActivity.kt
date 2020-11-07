@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.settingsFragment, R.id.crashFragment, R.id.cameraAccessFragment,
                 R.id.microphoneAccessFragment, R.id.appsUsageFragment, R.id.screenAccessFragment,
                 R.id.listFilterBottomSheet, R.id.notificationsFragment, R.id.headsetFragment,
-                R.id.permissionRequestFragment, R.id.permissionDetailsBottomSheet
+                R.id.permissionRequestFragment, R.id.permissionDetailsBottomSheet, R.id.notificationDetailsFragment
         )
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -114,7 +114,11 @@
     <fragment
         android:id="@+id/notificationsFragment"
         android:name="com.crazylegend.vigilante.notifications.ui.NotificationsFragment"
-        android:label="" />
+        android:label="">
+        <action
+            android:id="@+id/destination_notification_details"
+            app:destination="@id/notificationDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/headsetFragment"
         android:name="com.crazylegend.vigilante.headset.ui.HeadsetFragment"
@@ -143,6 +147,16 @@
             android:name="date"
             app:argType="long"
             android:defaultValue="-1L" />
+    </dialog>
+
+    <dialog
+        android:id="@+id/notificationDetailsFragment"
+        android:name="com.crazylegend.vigilante.notifications.details.NotificationDetailsFragment"
+        android:label="">
+        <argument
+            android:name="notificationID"
+            app:argType="integer"
+            android:defaultValue="-1" />
     </dialog>
 
 </navigation>

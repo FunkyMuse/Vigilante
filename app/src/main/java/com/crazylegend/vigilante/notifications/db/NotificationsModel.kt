@@ -3,7 +3,6 @@ package com.crazylegend.vigilante.notifications.db
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.crazylegend.kotlinextensions.randomUUIDstring
 import java.util.*
 
 /**
@@ -47,6 +46,6 @@ data class NotificationsModel(
         val showTime: Date,
 
         @ColumnInfo(name = "id")
-        @PrimaryKey
-        val id: String = randomUUIDstring
+        @PrimaryKey(autoGenerate = true)
+        val id: Int = 0
 )

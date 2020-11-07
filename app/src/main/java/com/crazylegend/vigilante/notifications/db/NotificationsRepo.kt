@@ -7,6 +7,7 @@ import javax.inject.Inject
  */
 class NotificationsRepo @Inject constructor(private val dao: NotificationsDAO) {
 
+    suspend fun getNotificationForID(withID: Int) = dao.getNotificationByID(withID)
     fun getAllNotifications() = dao.getAllNotifications()
     fun insertNotification(notificationsModel: NotificationsModel) = dao.insertNotificationModel(notificationsModel)
 }

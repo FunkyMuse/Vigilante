@@ -43,4 +43,8 @@ object DatabaseModule {
     @Singleton
     fun permissionRequestsDao(database: VigilanteDatabase) = database.permissionRequestsDAO()
 
+    @Provides
+    @Singleton
+    fun powerDAO(database: VigilanteDatabase) = database.powerDAO()
+
 }

@@ -13,7 +13,7 @@ import android.widget.FrameLayout
 import com.crazylegend.kotlinextensions.context.inflater
 import com.crazylegend.kotlinextensions.context.windowManager
 import com.crazylegend.vigilante.camera.CameraProcessor
-import com.crazylegend.vigilante.clipboard.ClipboardProcessor
+
 import com.crazylegend.vigilante.di.providers.BroadcastProvider
 import com.crazylegend.vigilante.microphone.MicrophoneProcessor
 import com.crazylegend.vigilante.notifications.NotificationsProvider
@@ -41,9 +41,6 @@ class VigilanteService : AccessibilityService() {
 
     @Inject
     lateinit var microphoneProcessor: MicrophoneProcessor
-
-    @Inject
-    lateinit var clipboardProcessor: ClipboardProcessor
 
     @Inject
     lateinit var notificationsProvider: NotificationsProvider
@@ -86,7 +83,6 @@ class VigilanteService : AccessibilityService() {
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {
         event ?: return
         rememberEventPackageName(event)
-        clipboardProcessor.processEvent(event)
         notificationsProvider.processEvent(event)
     }
 

@@ -41,7 +41,7 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
                 SectionItem(R.string.camera_history, R.drawable.camera, SectionItem.SectionItemAction.CAMERA),
                 SectionItem(R.string.microphone_history, R.drawable.microphone, SectionItem.SectionItemAction.MIC),
                 SectionItem(R.string.permissions_history, R.drawable.security, SectionItem.SectionItemAction.PERMISSIONS),
-                SectionItem(R.string.clipboard_history, R.drawable.clipboard, SectionItem.SectionItemAction.CLIPBOARD),
+                SectionItem(R.string.power_history, R.drawable.ic_power_on, SectionItem.SectionItemAction.POWER),
                 SectionItem(R.string.headset_history, R.drawable.headphones, SectionItem.SectionItemAction.HEADSET),
                 SectionItem(R.string.notifications_history, R.drawable.notification_new, SectionItem.SectionItemAction.NOTIFICATIONS),
                 SectionItem(R.string.lock_screen_history, R.drawable.lock, SectionItem.SectionItemAction.LOCK_SCREEN),
@@ -72,7 +72,7 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
                     SectionItem.SectionItemAction.CAMERA -> HomeFragmentDirections.destinationCameraHistory()
                     SectionItem.SectionItemAction.MIC -> HomeFragmentDirections.destinationMicrophoneHistory()
                     SectionItem.SectionItemAction.PERMISSIONS -> HomeFragmentDirections.destinationPermissionRequests()
-                    SectionItem.SectionItemAction.CLIPBOARD -> null
+                    SectionItem.SectionItemAction.POWER -> HomeFragmentDirections.destinationPower()
                     SectionItem.SectionItemAction.HEADSET -> HomeFragmentDirections.destinationHeadset()
                     SectionItem.SectionItemAction.NOTIFICATIONS -> HomeFragmentDirections.destinationNotifications()
                     SectionItem.SectionItemAction.LOCK_SCREEN -> HomeFragmentDirections.destinationScreenHistory()

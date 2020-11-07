@@ -15,7 +15,6 @@
     <string name="camera_history">Camera history</string>
     <string name="microphone_history">Microphone history</string>
     <string name="permissions_history">Permissions history</string>
-    <string name="clipboard_history">Clipboard history</string>
     <string name="headset_history">Headset history</string>
     <string name="notifications_history">Notifications history</string>
     <string name="lock_screen_history">Lock screen history</string>
@@ -64,4 +63,10 @@
     <string name="notification_color_placeholder">Notification color: %1$s</string>
     <string name="notification_color_copied_to_clipboard">Notification color copied to clipboard!</string>
     <string name="date_placeholder">Date: %1$s</string>
+    <string name="power_history">Power history</string>
+    <string name="power_disconnected">Power disconnected</string>
+    <string name="power_connected">Power connected</string>
+    <string name="ac_charging">AC charging</string>
+    <string name="usb_charging">USB charging</string>
+    <string name="wireless_charging">Wireless charging</string>
 </resources>

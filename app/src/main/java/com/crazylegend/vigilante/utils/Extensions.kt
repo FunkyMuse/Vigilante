@@ -31,9 +31,9 @@ fun Context.stopVigilante(): Boolean {
 fun Context.isVigilanteRunning() = isServiceRunning<VigilanteService>()
 
 inline fun <reified T : RoomDatabase> Context.instantiateDatabase(cameraDbName: String): T {
-    val passphrase: ByteArray = SQLiteDatabase.getBytes(packageName.toCharArray())
+    val passphrase = SQLiteDatabase.getBytes(packageName.toCharArray())
     val factory = SupportFactory(passphrase)
     return Room.databaseBuilder(this, T::class.java, cameraDbName)
-            //.openHelperFactory(factory)
+            .openHelperFactory(factory)
             .build()
 }

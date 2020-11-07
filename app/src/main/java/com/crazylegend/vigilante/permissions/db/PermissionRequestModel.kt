@@ -26,4 +26,7 @@ data class PermissionRequestModel(
         @ColumnInfo(name = "id")
         val id: Int = 0,
 
-        )
+        @ColumnInfo(name = "settingsAppName")
+        val settingsAppName: String? = null
+
+)

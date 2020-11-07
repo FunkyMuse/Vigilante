@@ -9,7 +9,7 @@ import androidx.annotation.StringRes
 data class SectionItem(@StringRes val title: Int, @DrawableRes val icon: Int, val action: SectionItemAction) {
 
     enum class SectionItemAction {
-        CAMERA, MIC, PERMISSIONS, CLIPBOARD, HEADSET, NOTIFICATIONS,
-        LOCK_SCREEN, APPS_USAGE
+        CAMERA, MIC, PERMISSIONS, HEADSET, NOTIFICATIONS,
+        LOCK_SCREEN, APPS_USAGE, POWER
     }
 }

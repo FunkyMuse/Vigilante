@@ -9,6 +9,7 @@ import com.crazylegend.kotlinextensions.context.getAppIcon
 import com.crazylegend.kotlinextensions.context.getAppName
 import com.crazylegend.kotlinextensions.dateAndTime.toString
 import com.crazylegend.kotlinextensions.tryOrNull
+import com.crazylegend.kotlinextensions.views.setTextAndShowOrGone
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractBottomSheet
@@ -38,19 +39,23 @@ class PermissionDetailsBottomSheet : AbstractBottomSheet<DialogPermissionDetails
     private val packageName get() = args.packageName
     private val date get() = Date(args.date)
     private val permissionMessage get() = args.permissionMessage
+    private val settingsAppName get() = args.settingsAppName
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         viewLifecycleOwner.lifecycle.coroutineScope.launchWhenResumed {
             permissionDetailsVM.permissionRequests.collectLatest {
-                binding.appPermissionRequestCount.text = getString(R.string.permissions_requests_by_app_count, it)
+                binding.appPermissionRequestCount.text.text = getString(R.string.permissions_requests_by_app_count, it)
             }
         }
 
         binding.appIcon.setImageDrawable(tryOrNull { requireContext().getAppIcon(packageName) })
         binding.appName.text = tryOrNull { requireContext().getAppName(packageName) }
-        binding.date.text = date.toString(prefsProvider.getDateFormat)
+        binding.date.text.text = date.toString(prefsProvider.getDateFormat)
+        binding.date.image.setImageResource(R.drawable.ic_calendar)
+        binding.appNameFromSettings.setTextAndShowOrGone(settingsAppName)
+        binding.appPermissionRequestCount.image.setImageResource(R.drawable.security)
         binding.permissionMessage.text = permissionMessage
     }
 }

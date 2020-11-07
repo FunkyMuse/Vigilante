@@ -57,7 +57,8 @@ class PermissionRequestsFragment : AbstractFragment<FragmentPermissionsBinding>(
         }
         adapter.forItemClickListener = forItemClickListener { _, item, _ ->
             item.packageRequestingThePermission?.let {
-                findNavController().navigateSafe(PermissionRequestsFragmentDirections.destinationPermissionDetails(it, item.permissionMessage, item.date.time))
+                findNavController().navigateSafe(PermissionRequestsFragmentDirections.destinationPermissionDetails(it,
+                        item.permissionMessage, item.date.time, item.settingsAppName))
             }
         }
     }

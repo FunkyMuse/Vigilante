@@ -5,12 +5,10 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import androidx.lifecycle.ServiceLifecycleDispatcher
-import com.crazylegend.kotlinextensions.batteryStatusIntent
-import com.crazylegend.kotlinextensions.getBatteryInfo
-import com.crazylegend.kotlinextensions.log.debug
 import com.crazylegend.vigilante.contracts.service.ServiceManagersCoroutines
 import com.crazylegend.vigilante.di.qualifiers.ServiceContext
 import com.crazylegend.vigilante.headset.HeadsetReceiver
+import com.crazylegend.vigilante.power.PowerReceiver
 import com.crazylegend.vigilante.screen.ScreenReceiver
 import dagger.hilt.android.scopes.ServiceScoped
 import javax.inject.Inject
@@ -27,20 +25,23 @@ class BroadcastProvider @Inject constructor(private val service: Service,
 
     private lateinit var screenReceiver: ScreenReceiver
     private lateinit var headsetPlugReceiver: HeadsetReceiver
+    private lateinit var powerReceiver: PowerReceiver
 
     private val receivers
         get() = listOf(
-                screenReceiver, headsetPlugReceiver
+                screenReceiver, headsetPlugReceiver, powerReceiver
         )
 
     override fun initVars() {
         screenReceiver = ScreenReceiver()
         headsetPlugReceiver = HeadsetReceiver()
+        powerReceiver = PowerReceiver()
     }
 
     override fun registerCallbacks() {
         registerHeadsetReceiver()
         registerScreenReceiver()
+        registerPowerReceiver()
         registerPowerReceiver()
     }
 
@@ -51,11 +52,9 @@ class BroadcastProvider @Inject constructor(private val service: Service,
     override fun eventActionByPackageName(eventPackageName: CharSequence) {}
 
     private fun registerPowerReceiver() {
-
-        val batteryIntent = context.batteryStatusIntent ?: return
-        getBatteryInfo(batteryIntent).apply {
-            debug { "IS BATTERY CHARGING $isCharging usbCharge=${isUsbCharging} acCharge=$isACCharging wirelessCharge=$wirelessCharge percentage=$batteryPercentage" }
-        }
+        val filter = IntentFilter(Intent.ACTION_POWER_CONNECTED)
+        filter.addAction(Intent.ACTION_POWER_DISCONNECTED)
+        service.registerReceiver(powerReceiver, filter)
     }
 
     private fun registerHeadsetReceiver() {

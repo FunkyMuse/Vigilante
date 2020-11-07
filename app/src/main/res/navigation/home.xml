@@ -75,6 +75,13 @@
             app:popEnterAnim="@anim/scale"
             app:popExitAnim="@anim/fade_out"
             app:destination="@id/permissionRequestFragment" />
+        <action
+            android:id="@+id/destination_power"
+            app:enterAnim="@anim/scale"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/scale"
+            app:popExitAnim="@anim/fade_out"
+            app:destination="@id/powerFragment" />
 
     </fragment>
     <fragment
@@ -147,6 +154,11 @@
             android:name="date"
             app:argType="long"
             android:defaultValue="-1L" />
+        <argument
+            android:name="settingsAppName"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </dialog>
 
     <dialog
@@ -155,6 +167,23 @@
         android:label="">
         <argument
             android:name="notificationID"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </dialog>
+    <fragment
+        android:id="@+id/powerFragment"
+        android:name="com.crazylegend.vigilante.power.ui.PowerFragment"
+        android:label="">
+        <action
+            android:id="@+id/destination_power_details"
+            app:destination="@id/powerDetailsDialog" />
+    </fragment>
+    <dialog
+        android:id="@+id/powerDetailsDialog"
+        android:name="com.crazylegend.vigilante.power.details.PowerDetailsDialog"
+        android:label="">
+        <argument
+            android:name="powerID"
             app:argType="integer"
             android:defaultValue="-1" />
     </dialog>

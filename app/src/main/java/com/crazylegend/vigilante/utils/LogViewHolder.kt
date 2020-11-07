@@ -8,6 +8,7 @@ import com.crazylegend.kotlinextensions.dateAndTime.toString
 import com.crazylegend.kotlinextensions.tryOrNull
 import com.crazylegend.kotlinextensions.views.setPrecomputedText
 import com.crazylegend.recyclerview.context
+import com.crazylegend.recyclerview.getString
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.camera.db.CameraModel
 import com.crazylegend.vigilante.databinding.ItemviewLogBinding
@@ -16,6 +17,7 @@ import com.crazylegend.vigilante.headset.database.HeadsetModel
 import com.crazylegend.vigilante.microphone.db.MicrophoneModel
 import com.crazylegend.vigilante.notifications.db.NotificationsModel
 import com.crazylegend.vigilante.permissions.db.PermissionRequestModel
+import com.crazylegend.vigilante.power.db.PowerModel
 import com.crazylegend.vigilante.screen.db.ScreenModel
 import java.util.*
 
@@ -66,6 +68,12 @@ class LogViewHolder(private val binding: ItemviewLogBinding,
     fun bind(item: PermissionRequestModel) {
         binding.title.setPrecomputedText(tryOrNull { context.getAppName(item.packageRequestingThePermission.toString()) })
         binding.image.setImageDrawable(tryOrNull { context.getAppIcon(item.packageRequestingThePermission.toString()) })
+        binding.content.setPrecomputedText(item.date.toString(prefsProvider.getDateFormat))
+    }
+
+    fun bind(item: PowerModel) {
+        binding.title.setPrecomputedText(getString(item.chargingTitle))
+        binding.image.setImageResource(item.chargingDrawable)
         binding.content.setPrecomputedText(item.date.toString(prefsProvider.getDateFormat))
     }
 

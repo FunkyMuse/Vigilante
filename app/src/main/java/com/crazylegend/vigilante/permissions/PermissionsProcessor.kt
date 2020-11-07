@@ -12,6 +12,7 @@ import dagger.hilt.android.scopes.ServiceScoped
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import java.util.concurrent.atomic.AtomicReference
 import javax.inject.Inject
 
 /**
@@ -38,7 +39,7 @@ class PermissionsProcessor @Inject constructor(
     private fun sendNotification(newPermissionMessage: String) {
         if (newPermissionMessage.isNotBlank()) {
             val currentPackageRef = packageRequestingPermission
-            val permissionRequestModel = PermissionRequestModel(newPermissionMessage, currentPackageRef)
+            val permissionRequestModel = PermissionRequestModel(newPermissionMessage, currentPackageRef, settingsAppName = settingsPermissionTitle.getAndSet(null))
             scope.makeIOCall {
                 permissionRequestsRepository.insertPermissionRequest(permissionRequestModel)
             }
@@ -61,6 +62,7 @@ class PermissionsProcessor @Inject constructor(
     }
 
     private var permissionMessage: String? = null
+    private var settingsPermissionTitle: AtomicReference<String?> = AtomicReference(null)
     private var packageRequestingPermission: String? = null
     private val permissionFlow = MutableStateFlow("")
 
@@ -70,6 +72,10 @@ class PermissionsProcessor @Inject constructor(
                 "com.android.permissioncontroller:id/permission_message",
                 "com.android.packageinstaller:id/permission_message")
 
+        val settingsText = nodeInfo.getTextForViewId("com.android.permissioncontroller:id/entity_header_title")
+        if (settingsText != null) {
+            settingsPermissionTitle.set(settingsText)
+        }
         if (newPermissionMessage.isNotNullOrEmpty()) {
             permissionMessage = newPermissionMessage
             scope.launch {
@@ -87,6 +93,16 @@ class PermissionsProcessor @Inject constructor(
                 when {
                     viewIdResourceName?.contains(comparator1, true) == true -> text?.toString()
                     viewIdResourceName?.contains(comparator2, true) == true -> text?.toString()
+                    else -> null
+                }
+            } else {
+                null
+            }
+
+    private fun AccessibilityNodeInfo?.getTextForViewId(comparator1: String): String? =
+            if (this != null) {
+                when {
+                    viewIdResourceName?.contains(comparator1, true) == true -> text?.toString()
                     else -> null
                 }
             } else {

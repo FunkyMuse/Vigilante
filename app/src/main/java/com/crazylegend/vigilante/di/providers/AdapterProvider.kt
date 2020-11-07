@@ -17,6 +17,7 @@ import com.crazylegend.vigilante.microphone.db.MicrophoneModel
 import com.crazylegend.vigilante.notifications.db.NotificationsModel
 import com.crazylegend.vigilante.paging.generatePagingRecycler
 import com.crazylegend.vigilante.permissions.db.PermissionRequestModel
+import com.crazylegend.vigilante.power.db.PowerModel
 import com.crazylegend.vigilante.screen.db.ScreenModel
 import com.crazylegend.vigilante.utils.LogViewHolder
 import dagger.hilt.android.scopes.FragmentScoped
@@ -97,6 +98,14 @@ class AdapterProvider @Inject constructor(
 
     val permissionRequestAdapter by lazy {
         generatePagingRecycler<PermissionRequestModel, LogViewHolder, ItemviewLogBinding>({
+            LogViewHolder(it, prefsProvider)
+        }, ItemviewLogBinding::inflate) { item, holder, _, _ ->
+            item?.let { holder.bind(it) }
+        }
+    }
+
+    val powerAdapter by lazy {
+        generatePagingRecycler<PowerModel, LogViewHolder, ItemviewLogBinding>({
             LogViewHolder(it, prefsProvider)
         }, ItemviewLogBinding::inflate) { item, holder, _, _ ->
             item?.let { holder.bind(it) }

@@ -7,7 +7,16 @@
     android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="50dp"
+        android:layout_height="12dp"
+        android:layout_gravity="center_horizontal"
+        android:scaleX="2"
+        android:scaleY="2"
+        app:srcCompat="@drawable/ic_minus" />
+
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/appIcon"
+        android:layout_marginTop="4dp"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_gravity="center_horizontal" />
@@ -18,6 +27,8 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textSize="22sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:textStyle="bold"
         tools:text="TEST" />
 
@@ -34,17 +45,32 @@
         tools:text="Allow permission bla blablabalblablaaba" />
 
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/appNameFromSettings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        android:visibility="gone"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textStyle="bold"
+        tools:text="TEST" />
+
+    <include
+        layout="@layout/layout_title_drawable"
         android:id="@+id/date"
+        android:layout_marginTop="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawablePadding="10dp"
         android:padding="15dp"
         android:textSize="15sp"
-        android:layout_marginEnd="8dp"
-        app:drawableStartCompat="@drawable/ic_calendar" />
+        android:layout_marginEnd="8dp" />
 
-    <com.google.android.material.textview.MaterialTextView
+    <include
+        layout="@layout/layout_title_drawable"
         android:id="@+id/appPermissionRequestCount"
+        android:layout_marginTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawablePadding="10dp"

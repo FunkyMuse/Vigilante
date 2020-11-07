@@ -39,6 +39,7 @@ class NotificationDetailsFragment : AbstractBottomSheet<DialogNotificationDetail
 
     override val viewRes: Int
         get() = R.layout.dialog_notification_details
+
     override val binding by viewBinding(DialogNotificationDetailsBinding::bind)
 
     private val notificationDetailsVM by viewModels<NotificationDetailsVM>()

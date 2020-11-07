@@ -29,37 +29,51 @@
         app:srcCompat="@drawable/ic_minus" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/appIcon"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:id="@+id/powerIcon"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/dragUpIndicator" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/appName"
+        android:id="@+id/powerTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textSize="22sp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        android:textAlignment="center"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appIcon"
+        app:layout_constraintTop_toBottomOf="@id/powerIcon"
         tools:text="Test" />
 
-    <LinearLayout
-        android:id="@+id/textHolder"
+    <include
+        android:id="@+id/date"
+        layout="@layout/layout_title_drawable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appName" />
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:drawablePadding="10dp"
+        android:padding="15dp"
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="@id/powerTitle" />
+
+    <include
+        android:id="@+id/chargingType"
+        layout="@layout/layout_title_drawable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="8dp"
+        android:drawablePadding="10dp"
+        android:padding="15dp"
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="@id/date" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

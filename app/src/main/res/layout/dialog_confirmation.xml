@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/expl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:padding="5dp" />
+
+    <LinearLayout
+        android:layout_below="@id/expl"
+        android:layout_width="match_parent"
+        android:weightSum="1"
+        android:paddingBottom="20dp"
+        android:clipToPadding="false"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_marginStart="12dp"
+            app:cornerRadius="16dp"
+            app:backgroundTint="@color/primaryDark"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/cancel"
+            android:layout_marginEnd="6dp"
+            android:layout_height="wrap_content" />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="0dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginStart="6dp"
+            app:cornerRadius="16dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.5"
+            android:id="@+id/confirm"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</RelativeLayout>

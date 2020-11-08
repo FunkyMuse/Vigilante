@@ -1,11 +1,16 @@
 package com.crazylegend.vigilante.camera
 
 import android.content.Context
+import android.graphics.PixelFormat
 import android.hardware.camera2.CameraManager
+import android.view.Gravity
+import android.view.WindowManager
 import androidx.lifecycle.ServiceLifecycleDispatcher
 import com.crazylegend.database.coroutines.makeDBCall
 import com.crazylegend.kotlinextensions.context.cameraManager
+import com.crazylegend.kotlinextensions.context.layoutInflater
 import com.crazylegend.kotlinextensions.context.notificationManager
+import com.crazylegend.kotlinextensions.context.windowManager
 import com.crazylegend.kotlinextensions.currentTimeMillis
 import com.crazylegend.kotlinextensions.ifTrue
 import com.crazylegend.vigilante.R
@@ -13,6 +18,7 @@ import com.crazylegend.vigilante.VigilanteService.Companion.currentPackageString
 import com.crazylegend.vigilante.camera.db.CameraModel
 import com.crazylegend.vigilante.camera.db.CameraRepository
 import com.crazylegend.vigilante.contracts.service.ServiceManagersCoroutines
+import com.crazylegend.vigilante.databinding.ServiceLayoutDotBinding
 import com.crazylegend.vigilante.di.providers.PrefsProvider
 import com.crazylegend.vigilante.di.providers.UserNotificationsProvider
 import com.crazylegend.vigilante.di.qualifiers.ServiceContext
@@ -60,6 +66,7 @@ class CameraProcessor @Inject constructor(
             object : CameraManager.AvailabilityCallback() {
                 override fun onCameraAvailable(cameraId: String) {
                     super.onCameraAvailable(cameraId)
+                    displayCameraDotIfUserEnabled()
                     setCameraNotUsed(cameraId)
                     stopNotificationIfUserEnabled()
                 }
@@ -69,6 +76,24 @@ class CameraProcessor @Inject constructor(
                     setCameraUsed()
                 }
             }
+
+    private lateinit var outerFrameParams: WindowManager.LayoutParams
+
+    private fun displayCameraDotIfUserEnabled() {
+        if (prefsProvider.isDotEnabled) {
+            outerFrameParams = WindowManager.LayoutParams().apply {
+                type = WindowManager.LayoutParams.TYPE_ACCESSIBILITY_OVERLAY
+                format = PixelFormat.TRANSLUCENT
+                flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                width = WindowManager.LayoutParams.WRAP_CONTENT
+                height = WindowManager.LayoutParams.WRAP_CONTENT
+                gravity = Gravity.TOP or Gravity.START
+            }
+            val inflater = context.layoutInflater ?: return
+            val binding = ServiceLayoutDotBinding.inflate(inflater)
+            binding.dot.context.windowManager?.addView(binding.root, outerFrameParams)
+        }
+    }
 
     private fun stopNotificationIfUserEnabled() {
         context.notificationManager?.cancel(cameraNotificationID)

@@ -2,10 +2,15 @@ package com.crazylegend.vigilante.settings
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.doOnLayout
+import androidx.navigation.fragment.navArgs
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
+import androidx.recyclerview.widget.RecyclerView
+import com.crazylegend.kotlinextensions.animations.attentionFlash
+import com.crazylegend.kotlinextensions.animations.playAnimation
 import com.crazylegend.kotlinextensions.context.packageVersionName
 import com.crazylegend.kotlinextensions.preferences.booleanChangeListener
 import com.crazylegend.kotlinextensions.preferences.stringChangeListener
@@ -20,6 +25,10 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class SettingsFragment : PreferenceFragmentCompat() {
 
+    companion object {
+        const val SAFE_DOT_POSITION = 1
+    }
+
     @Inject
     lateinit var prefsProvider: PrefsProvider
 
@@ -28,6 +37,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
     private var dateFormat: ListPreference? = null
     private var dotSwitch: SwitchPreferenceCompat? = null
     private var excludeVigilanteFromNotificationsSwitch: SwitchPreferenceCompat? = null
+
+    private val args by navArgs<SettingsFragmentArgs>()
+    private val highlightPosition get() = args.highlightPosition
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.settings)
@@ -40,6 +52,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (savedInstanceState == null) {
+            playAnimationHighlight()
+        }
         version?.summary = requireContext().packageVersionName
         notificationsSwitch.booleanChangeListener { _, newValue ->
             prefsProvider.updateNotificationsValue(newValue)
@@ -57,6 +72,14 @@ class SettingsFragment : PreferenceFragmentCompat() {
         dateFormat.stringChangeListener { _, newValue ->
             prefsProvider.updateDateFormat(newValue)
             updateDateSummary()
+        }
+    }
+
+    private fun playAnimationHighlight() {
+        if (highlightPosition != RecyclerView.NO_POSITION) {
+            view?.doOnLayout {
+                listView.findViewHolderForAdapterPosition(highlightPosition)?.itemView?.attentionFlash()?.playAnimation(2500L)
+            }
         }
     }
 

@@ -79,4 +79,27 @@
     <string name="dot_usage_expl">By enabling this option, you\'ll see a dot appear on your screen when usage happens.</string>
     <string name="exclude_from_notifications_title">Exclude Vigilante from notifications</string>
     <string name="exclude_from_notifications_expl">By enabling this option, you\'ll not be seeing this application\'s notifications into the history</string>
+    <string name="enable_dot_customization">Enable show dot usage first!</string>
+    <string name="microphone_title">Microphone</string>
+    <string name="camera_title">Camera</string>
+    <string name="size_title">Size</string>
+    <string name="pick_color">Pick color</string>
+    <string name="select">Select</string>
+    <string name="pick_dot_color">Pick dot color</string>
+    <string name="dot_mic">Dot microphone</string>
+    <string name="dot_camera">Dot camera</string>
+    <string name="dot_indicator">Dot indicator</string>
+    <string name="top_right_corner">Top right corner</string>
+    <string name="top_left_corner">Top left corner</string>
+    <string name="center_right_side">Center right side</string>
+    <string name="center_left_side">Center left side</string>
+    <string name="bottom_right_corner">Bottom right corner</string>
+    <string name="bottom_left_corner">Bottom left corner</string>
+    <string name="dot_position">Dot position on screen</string>
+    <string name="cancel">Cancel</string>
+    <string name="discard_changes">Discard</string>
+    <string name="save">Save</string>
+    <string name="save_progress_expl">Discard or save your current changes?</string>
+    <string name="customize_cam_or_mic">Customize camera or microphone parameters?</string>
+    <string name="saved">Saved!</string>
 </resources>

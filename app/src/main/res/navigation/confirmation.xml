@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialog_confirmation"
+    app:startDestination="@id/dialogConfirmation"
+    tools:ignore="UnusedNavigation">
+
+    <dialog
+        android:id="@+id/dialogConfirmation"
+        android:name="com.crazylegend.vigilante.confirmation.DialogConfirmation"
+        android:label="">
+        <argument
+            android:name="customConfirmationKey"
+            android:defaultValue="1"
+            app:argType="integer" />
+        <argument
+            android:name="customCancellationKey"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <argument
+            android:name="cancelButtonText"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="confirmationButtonText"
+            app:argType="string" />
+        <argument
+            android:name="titleText"
+            app:argType="string" />
+    </dialog>
+
+</navigation>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="layout_positions">
+        <item>@string/top_right_corner</item>
+        <item>@string/top_left_corner</item>
+        <item>@string/center_right_side</item>
+        <item>@string/center_left_side</item>
+        <item>@string/bottom_right_corner</item>
+        <item>@string/bottom_left_corner</item>
+    </string-array>
+
+
+</resources>

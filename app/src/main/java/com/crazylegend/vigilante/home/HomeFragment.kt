@@ -2,10 +2,13 @@ package com.crazylegend.vigilante.home
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.coroutineScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.crazylegend.coroutines.onMain
 import com.crazylegend.crashyreporter.CrashyReporter
 import com.crazylegend.kotlinextensions.dateAndTime.toString
+import com.crazylegend.kotlinextensions.fragments.fragmentBooleanResult
 import com.crazylegend.kotlinextensions.fragments.shortToast
 import com.crazylegend.kotlinextensions.storage.isDiskEncrypted
 import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
@@ -14,9 +17,13 @@ import com.crazylegend.recyclerview.clickListeners.forItemClickListener
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
+import com.crazylegend.vigilante.confirmation.DialogConfirmation
 import com.crazylegend.vigilante.databinding.FragmentHomeBinding
 import com.crazylegend.vigilante.di.providers.PermissionProvider
 import com.crazylegend.vigilante.home.section.SectionItem
+import com.crazylegend.vigilante.settings.CAMERA_CUSTOMIZATION_BASE_PREF
+import com.crazylegend.vigilante.settings.MIC_CUSTOMIZATION_BASE_PREF
+import com.crazylegend.vigilante.settings.SettingsFragment
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import javax.inject.Inject
@@ -96,7 +103,10 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
 
         binding.customizations.setOnClickListenerCooldown {
             if (prefsProvider.isDotEnabled) {
-
+                cameraOrMicCustomizationChoice()
+            } else {
+                shortToast(R.string.enable_dot_customization)
+                findNavController().navigateSafe(HomeFragmentDirections.destinationSettings(SettingsFragment.SAFE_DOT_POSITION))
             }
         }
 
@@ -105,6 +115,30 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
                 shortToast(R.string.no_crashes)
             } else {
                 findNavController().navigateSafe(HomeFragmentDirections.destinationCrashes())
+            }
+        }
+
+        fragmentBooleanResult(DialogConfirmation.RESULT_KEY, DialogConfirmation.DEFAULT_REQ_KEY, onDenied = {
+            //we go to camera
+            openCustomization(CAMERA_CUSTOMIZATION_BASE_PREF)
+        }, onGranted = {
+            //we go to mic
+            openCustomization(MIC_CUSTOMIZATION_BASE_PREF)
+        })
+    }
+
+    private fun cameraOrMicCustomizationChoice() {
+        findNavController().navigate(HomeFragmentDirections.destinationConfirmation(
+                cancelButtonText = getString(R.string.camera_title),
+                confirmationButtonText = getString(R.string.microphone_title),
+                titleText = getString(R.string.customize_cam_or_mic)
+        ))
+    }
+
+    private fun openCustomization(prefBase: String) {
+        viewLifecycleOwner.lifecycle.coroutineScope.launchWhenResumed {
+            onMain {
+                findNavController().navigate(HomeFragmentDirections.destinationCustomization(prefBase))
             }
         }
     }

@@ -6,6 +6,7 @@ import android.view.accessibility.AccessibilityEvent
 import androidx.lifecycle.ServiceLifecycleDispatcher
 import com.crazylegend.coroutines.makeIOCall
 import com.crazylegend.kotlinextensions.currentTimeMillis
+import com.crazylegend.kotlinextensions.log.debug
 import com.crazylegend.vigilante.BuildConfig
 import com.crazylegend.vigilante.contracts.service.ServiceManagersCoroutines
 import com.crazylegend.vigilante.di.providers.PrefsProvider
@@ -44,8 +45,11 @@ class NotificationsProvider @Inject constructor(
             val sentByPackage = event.packageName?.toString()
             val notificationModel = NotificationsModel(title, bigText, text,
                     visibility, category, color, flags, group, channelId, sentByPackage, Date(currentTimeMillis))
-            if (!prefsProvider.isVigilanteExcludedFromNotifications && sentByPackage != BuildConfig.APPLICATION_ID)
+            if (prefsProvider.isVigilanteExcludedFromNotifications && sentByPackage == BuildConfig.APPLICATION_ID) {
+                debug { "DO SOMETHING IN THE FUTURE MAYBE, like separate sections idk?" }
+            } else {
                 saveNotification(notificationModel)
+            }
         }
     }
 

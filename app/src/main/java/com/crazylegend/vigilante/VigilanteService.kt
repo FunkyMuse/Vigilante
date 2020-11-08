@@ -74,7 +74,7 @@ class VigilanteService : AccessibilityService() {
             height = WindowManager.LayoutParams.WRAP_CONTENT
             gravity = Gravity.TOP or Gravity.START
         }
-        inflater.inflate(R.layout.outer_frame, outerFrame)
+        inflater.inflate(R.layout.service_layout_dot, outerFrame)
         windowManager?.addView(outerFrame, outerFrameParams)
     }
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/frame"
+    android:background="@android:color/transparent">
+
+    <ImageView
+        android:id="@+id/dot"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:layout_gravity="center"
+        android:layout_margin="2dp"
+        android:contentDescription="@string/dot_indicator"
+        android:src="@drawable/ic_dot" />
+</FrameLayout>

@@ -63,31 +63,70 @@
             app:popExitAnim="@anim/fade_out" />
         <action
             android:id="@+id/destination_headset"
+            app:destination="@id/headsetFragment"
             app:enterAnim="@anim/scale"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/scale"
-            app:popExitAnim="@anim/fade_out"
-            app:destination="@id/headsetFragment" />
+            app:popExitAnim="@anim/fade_out" />
         <action
             android:id="@+id/destination_permission_requests"
+            app:destination="@id/permissionRequestFragment"
             app:enterAnim="@anim/scale"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/scale"
-            app:popExitAnim="@anim/fade_out"
-            app:destination="@id/permissionRequestFragment" />
+            app:popExitAnim="@anim/fade_out" />
         <action
             android:id="@+id/destination_power"
+            app:destination="@id/powerFragment"
             app:enterAnim="@anim/scale"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/scale"
-            app:popExitAnim="@anim/fade_out"
-            app:destination="@id/powerFragment" />
+            app:popExitAnim="@anim/fade_out" />
+
+        <action
+            android:id="@+id/destination_customization"
+            app:destination="@id/customizationFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_right"
+            app:popEnterAnim="@anim/enter_from_right"
+            app:popExitAnim="@anim/exit_to_right" />
+
+        <action
+            android:id="@+id/destination_confirmation"
+            app:destination="@id/dialog_confirmation">
+
+            <argument
+                android:name="customConfirmationKey"
+                android:defaultValue="1"
+                app:argType="integer" />
+            <argument
+                android:name="customCancellationKey"
+                android:defaultValue="0"
+                app:argType="integer" />
+            <argument
+                android:name="cancelButtonText"
+                android:defaultValue="@null"
+                app:argType="string"
+                app:nullable="true" />
+            <argument
+                android:name="confirmationButtonText"
+                app:argType="string" />
+            <argument
+                android:name="titleText"
+                app:argType="string" />
+
+        </action>
 
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.crazylegend.vigilante.settings.SettingsFragment"
-        android:label="" />
+        android:label="">
+        <argument
+            android:name="highlightPosition"
+            android:defaultValue="-1"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/crashFragment"
         android:name="com.crazylegend.vigilante.crashes.CrashFragment"
@@ -152,13 +191,13 @@
             app:nullable="true" />
         <argument
             android:name="date"
-            app:argType="long"
-            android:defaultValue="-1L" />
+            android:defaultValue="-1L"
+            app:argType="long" />
         <argument
             android:name="settingsAppName"
+            android:defaultValue="@null"
             app:argType="string"
-            app:nullable="true"
-            android:defaultValue="@null" />
+            app:nullable="true" />
     </dialog>
 
     <dialog
@@ -167,9 +206,10 @@
         android:label="">
         <argument
             android:name="notificationID"
-            app:argType="integer"
-            android:defaultValue="-1" />
+            android:defaultValue="-1"
+            app:argType="integer" />
     </dialog>
+
     <fragment
         android:id="@+id/powerFragment"
         android:name="com.crazylegend.vigilante.power.ui.PowerFragment"
@@ -184,8 +224,44 @@
         android:label="">
         <argument
             android:name="powerID"
-            app:argType="integer"
-            android:defaultValue="-1" />
+            android:defaultValue="-1"
+            app:argType="integer" />
     </dialog>
+
+    <fragment
+        android:id="@+id/customizationFragment"
+        android:name="com.crazylegend.vigilante.customization.CustomizationFragment"
+        android:label="">
+        <action
+            android:id="@+id/destination_confirmation"
+            app:destination="@id/dialog_confirmation">
+
+            <argument
+                android:name="customConfirmationKey"
+                android:defaultValue="1"
+                app:argType="integer" />
+            <argument
+                android:name="customCancellationKey"
+                android:defaultValue="0"
+                app:argType="integer" />
+            <argument
+                android:name="cancelButtonText"
+                android:defaultValue="@null"
+                app:argType="string"
+                app:nullable="true" />
+            <argument
+                android:name="confirmationButtonText"
+                app:argType="string" />
+            <argument
+                android:name="titleText"
+                app:argType="string" />
+
+        </action>
+        <argument
+            android:name="prefBaseName"
+            app:argType="string" />
+    </fragment>
+
+    <include app:graph="@navigation/confirmation" />
 
 </navigation>

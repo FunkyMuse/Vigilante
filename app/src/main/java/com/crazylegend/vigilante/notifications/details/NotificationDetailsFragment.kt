@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import androidx.core.view.setPadding
 import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.viewModels
+import com.crazylegend.crashyreporter.CrashyReporter
 import com.crazylegend.database.DBResult
 import com.crazylegend.database.handle
 import com.crazylegend.kotlinextensions.color.toHexString
@@ -50,14 +51,10 @@ class NotificationDetailsFragment : AbstractBottomSheet<DialogNotificationDetail
         notificationDetailsVM.notification.observe(viewLifecycleOwner) {
             binding.loading.visibleIfTrueGoneOtherwise(it is DBResult.Querying)
             it.handle(
-                    queryingDB = {
-
-                    },
-                    emptyDB = {
-
-                    },
-                    dbError = { throwable ->
-
+                    dbError = {
+                        CrashyReporter.logException(it)
+                        dismissAllowingStateLoss()
+                        shortToast(R.string.error_occurred)
                     },
                     success = {
                         this?.apply {

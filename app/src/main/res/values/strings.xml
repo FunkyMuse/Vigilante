@@ -57,7 +57,7 @@
     <string name="group_placeholder">Group: %1$s</string>
     <string name="channel_id_placeholder">Channel id: %1$s</string>
     <string name="notification_visibility_public">Publicly visible notification</string>
-    <string name="notification_visibility_private">Privately visibile notification</string>
+    <string name="notification_visibility_private">Privately visible notification</string>
     <string name="notification_visibility_secret">Secretly visible notification</string>
     <string name="notification_visibility_placeholder">Visibility: %1$s</string>
     <string name="notification_color_placeholder">Notification color: %1$s</string>
@@ -69,4 +69,12 @@
     <string name="ac_charging">AC charging</string>
     <string name="usb_charging">USB charging</string>
     <string name="wireless_charging">Wireless charging</string>
+    <string name="error_occurred">Error occurred, try again later!</string>
+    <string name="channel_name">Vigilante usage notifications</string>
+    <string name="channel_description">Notifications are sent when privacy usage happens</string>
+    <string name="currently_using_type_content">is current using</string>
+    <string name="mic_being_used">Your microphone is being used!</string>
+    <string name="cam_being_used">Your camera is being used!</string>
+    <string name="microphone_title">microphone</string>
+    <string name="camera_title">camera</string>
 </resources>

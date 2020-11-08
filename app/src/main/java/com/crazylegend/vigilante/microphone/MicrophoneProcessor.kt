@@ -6,9 +6,14 @@ import android.media.AudioRecordingConfiguration
 import androidx.lifecycle.ServiceLifecycleDispatcher
 import com.crazylegend.database.coroutines.makeDBCall
 import com.crazylegend.kotlinextensions.context.audioManager
+import com.crazylegend.kotlinextensions.context.notificationManager
 import com.crazylegend.kotlinextensions.currentTimeMillis
+import com.crazylegend.kotlinextensions.ifTrue
+import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.VigilanteService
 import com.crazylegend.vigilante.contracts.service.ServiceManagersCoroutines
+import com.crazylegend.vigilante.di.providers.PrefsProvider
+import com.crazylegend.vigilante.di.providers.UserNotificationsProvider
 import com.crazylegend.vigilante.di.qualifiers.ServiceContext
 import com.crazylegend.vigilante.microphone.db.MicrophoneModel
 import com.crazylegend.vigilante.microphone.db.MicrophoneRepository
@@ -25,10 +30,13 @@ import javax.inject.Inject
 @ServiceScoped
 class MicrophoneProcessor @Inject constructor(
         @ServiceContext private val context: Context,
+        private val userNotificationsProvider: UserNotificationsProvider,
+        private val prefsProvider: PrefsProvider,
         private val microphoneRepository: MicrophoneRepository) : ServiceManagersCoroutines {
 
     private lateinit var microphoneCallback: AudioManager.AudioRecordingCallback
     override val serviceLifecycleDispatcher = ServiceLifecycleDispatcher(this)
+    private val micNotificationID = 68
 
     private val packageUsingMicrophone: AtomicReference<String?> = AtomicReference(VigilanteService.currentPackageString)
     private var wasMicrophoneBeingUsed: AtomicBoolean = AtomicBoolean(false)
@@ -44,12 +52,24 @@ class MicrophoneProcessor @Inject constructor(
                     if (configs.isNullOrEmpty()) {
                         //mic isn't used
                         setMicrophoneIsNotUsed()
+                        stopNotificationIfUserEnabled()
                     } else {
                         //mic is used
                         setMicrophoneIsUsed()
                     }
                 }
             }
+
+    private fun sendNotificationIfUserEnabled(packageUsingMicrophone: String?) {
+        packageUsingMicrophone ?: return
+        prefsProvider.areNotificationsEnabled.ifTrue {
+            userNotificationsProvider.buildUsageNotification(R.string.mic_being_used, packageUsingMicrophone, R.string.microphone_title, micNotificationID)
+        }
+    }
+
+    private fun stopNotificationIfUserEnabled() {
+        context.notificationManager?.cancel(micNotificationID)
+    }
 
     private fun setMicrophoneIsNotUsed() {
         if (wasMicrophoneBeingUsed.get()) {
@@ -66,6 +86,7 @@ class MicrophoneProcessor @Inject constructor(
     private fun setMicrophoneIsUsed() {
         wasMicrophoneBeingUsed.set(true)
         packageUsingMicrophone.set(VigilanteService.currentPackageString)
+        sendNotificationIfUserEnabled(packageUsingMicrophone.get())
     }
 
 

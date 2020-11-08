@@ -1,10 +1,13 @@
 package com.crazylegend.vigilante.activities
 
+import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.crazylegend.kotlinextensions.locale.LocaleHelper
 import com.crazylegend.kotlinextensions.misc.requestBatteryOptimizations
 import com.crazylegend.kotlinextensions.power.isIgnoringBatteryOptimization
 import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
@@ -12,11 +15,22 @@ import com.crazylegend.navigation.navigateUpSafe
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.databinding.ActivityMainBinding
+import com.crazylegend.vigilante.utils.DEFAULT_LANGUAGE
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(newBase)
+        val config = Configuration()
+        applyOverrideConfiguration(config)
+    }
+
+    override fun applyOverrideConfiguration(overrideConfiguration: Configuration?) {
+        super.applyOverrideConfiguration(overrideConfiguration?.let { LocaleHelper.updateConfigurationIfSupported(this, it, DEFAULT_LANGUAGE) })
+    }
 
     private val binding by viewBinding(ActivityMainBinding::inflate)
 

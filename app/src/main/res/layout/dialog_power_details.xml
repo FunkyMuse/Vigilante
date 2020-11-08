@@ -75,5 +75,17 @@
         android:textSize="15sp"
         app:layout_constraintTop_toBottomOf="@id/date" />
 
+    <include
+        android:id="@+id/batteryCapacity"
+        layout="@layout/layout_title_drawable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="8dp"
+        android:drawablePadding="10dp"
+        android:padding="15dp"
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="@id/chargingType" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

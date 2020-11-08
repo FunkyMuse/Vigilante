@@ -3,9 +3,11 @@ package com.crazylegend.vigilante.power.details
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import com.crazylegend.crashyreporter.CrashyReporter
 import com.crazylegend.database.DBResult
 import com.crazylegend.database.handle
 import com.crazylegend.kotlinextensions.dateAndTime.toString
+import com.crazylegend.kotlinextensions.fragments.shortToast
 import com.crazylegend.kotlinextensions.views.visibleIfTrueGoneOtherwise
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
@@ -35,11 +37,10 @@ class PowerDetailsDialog : AbstractBottomSheet<DialogPowerDetailsBinding>() {
         powerDetailsVM.powerModel.observe(viewLifecycleOwner) {
             binding.loading.visibleIfTrueGoneOtherwise(it is DBResult.Querying)
             it.handle(
-                    emptyDB = {
-
-                    },
-                    dbError = { throwable ->
-
+                    dbError = {
+                        CrashyReporter.logException(it)
+                        dismissAllowingStateLoss()
+                        shortToast(R.string.error_occurred)
                     },
                     success = {
                         this?.apply {
@@ -55,7 +56,10 @@ class PowerDetailsDialog : AbstractBottomSheet<DialogPowerDetailsBinding>() {
         binding.powerTitle.text = getString(model.chargingTitle)
         binding.date.image.setImageResource(R.drawable.ic_calendar)
         binding.date.text.text = model.date.toString(prefsProvider.getDateFormat)
+        binding.chargingType.root.visibleIfTrueGoneOtherwise(model.chargingTypeTitle != null)
         model.chargingTypeDrawable?.let { binding.chargingType.image.setImageResource(it) }
         binding.chargingType.text.text = model.chargingTypeTitle?.let { getString(it) }
+        binding.batteryCapacity.text.text = model.batteryPercentage.toString()
+        binding.batteryCapacity.image.setImageResource(R.drawable.ic_percentage)
     }
 }

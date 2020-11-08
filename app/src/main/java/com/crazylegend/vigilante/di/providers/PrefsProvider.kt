@@ -21,7 +21,7 @@ class PrefsProvider @Inject constructor(@EncryptedPrefs
 
     val getDateFormat get() = defaultPrefs.getString(DATE_PREF_KEY, DEFAULT_DATE) ?: DEFAULT_DATE
 
-    val notificationsStatus get() = defaultPrefs.getBoolean(NOTIFICATIONS_PREF_KEY, false)
+    val areNotificationsEnabled get() = defaultPrefs.getBoolean(NOTIFICATIONS_PREF_KEY, false)
     fun updateNotificationsValue(value: Boolean) = defaultPrefs.putBoolean(NOTIFICATIONS_PREF_KEY, value)
 
     val isDarkThemeEnabled get() = defaultPrefs.getBoolean(THEME_PREF_KEY, false)

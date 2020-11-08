@@ -1,8 +1,11 @@
 package com.crazylegend.vigilante.app
 
 import android.app.Application
+import android.content.Context
+import com.crazylegend.kotlinextensions.locale.LocaleHelper
 import com.crazylegend.vigilante.di.providers.CoreProvider
 import com.crazylegend.vigilante.di.providers.PrefsProvider
+import com.crazylegend.vigilante.utils.DEFAULT_LANGUAGE
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 
@@ -24,6 +27,13 @@ class VigilanteApp : Application() {
         coreProvider.apply {
             setVMPolicy()
             setThreadPolicy()
+        }
+    }
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        base?.apply {
+            LocaleHelper.onAttach(this, DEFAULT_LANGUAGE)
         }
     }
 }

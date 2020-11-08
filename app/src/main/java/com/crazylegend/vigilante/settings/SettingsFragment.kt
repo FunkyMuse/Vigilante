@@ -59,6 +59,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
 
     private fun updateNotificationSwitch() {
-        notificationsSwitch?.isChecked = prefsProvider.notificationsStatus
+        notificationsSwitch?.isChecked = prefsProvider.areNotificationsEnabled
     }
 }

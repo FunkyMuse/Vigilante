@@ -36,8 +36,7 @@ class PowerFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.layout_re
         super.onViewCreated(view, savedInstanceState)
         databaseLoadingProvider.provideListState(powerVM.powerHistory, binding.recycler, binding.noDataViewHolder.noDataView, adapter)
         adapter.forItemClickListener = forItemClickListener { _, item, _ ->
-            if (item.isCharging)
-                findNavController().navigateSafe(PowerFragmentDirections.destinationPowerDetails(item.id))
+            findNavController().navigateSafe(PowerFragmentDirections.destinationPowerDetails(item.id))
         }
     }
 }

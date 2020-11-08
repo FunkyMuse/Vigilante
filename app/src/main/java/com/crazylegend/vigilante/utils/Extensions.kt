@@ -16,7 +16,7 @@ import net.sqlcipher.database.SupportFactory
  * Created by crazy on 10/14/20 to long live and prosper !
  */
 
-
+const val DEFAULT_LANGUAGE = "en"
 const val VIGILANTE_DB_NAME = "vigilante-db"
 
 fun Context.startVigilante() {

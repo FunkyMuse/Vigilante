@@ -23,20 +23,15 @@ import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractBottomSheet
 import com.crazylegend.vigilante.databinding.DialogNotificationDetailsBinding
-import com.crazylegend.vigilante.di.providers.PrefsProvider
 import com.crazylegend.vigilante.notifications.db.NotificationsModel
 import com.google.android.material.textview.MaterialTextView
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 /**
  * Created by crazy on 11/7/20 to long live and prosper !
  */
 @AndroidEntryPoint
 class NotificationDetailsFragment : AbstractBottomSheet<DialogNotificationDetailsBinding>() {
-
-    @Inject
-    lateinit var prefsProvider: PrefsProvider
 
     override val viewRes: Int
         get() = R.layout.dialog_notification_details

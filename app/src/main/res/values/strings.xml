@@ -72,9 +72,9 @@
     <string name="error_occurred">Error occurred, try again later!</string>
     <string name="channel_name">Vigilante usage notifications</string>
     <string name="channel_description">Notifications are sent when privacy usage happens</string>
-    <string name="currently_using_type_content">is current using</string>
     <string name="mic_being_used">Your microphone is being used!</string>
     <string name="cam_being_used">Your camera is being used!</string>
-    <string name="microphone_title">microphone</string>
-    <string name="camera_title">camera</string>
+    <string name="usage_title">Usage detected</string>
+    <string name="dot_usage_title">Show dot usage</string>
+    <string name="dot_usage_expl">By enabling this option, you\'ll see a dot appear on your screen when usage happens.</string>
 </resources>

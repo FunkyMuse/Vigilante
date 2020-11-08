@@ -9,10 +9,8 @@ import android.graphics.Color
 import android.os.Build
 import androidx.annotation.StringRes
 import androidx.core.app.NotificationCompat
-import com.crazylegend.kotlinextensions.context.getAppName
 import com.crazylegend.kotlinextensions.context.notificationManager
 import com.crazylegend.kotlinextensions.locale.LocaleHelper
-import com.crazylegend.kotlinextensions.tryOrNull
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.di.qualifiers.ServiceContext
 import dagger.hilt.android.scopes.ServiceScoped
@@ -25,20 +23,12 @@ import javax.inject.Inject
 class UserNotificationsProvider @Inject constructor(@ServiceContext private val context: Context) {
 
     /**
-     * @param usageTypeTitle Int - ex Camera/mic is currently being used
-     * @param appPackage String - app package
-     * @param usingType Int - camera/mic
      * @param notificationID Int - to cancel once done
      * @return Notification?
      */
-    fun buildUsageNotification(@StringRes usageTypeTitle: Int, appPackage: String, @StringRes usingType: Int,
-                               notificationID: Int) {
+    fun buildUsageNotification(notificationID: Int, @StringRes usageTypeString: Int) {
 
-        val usageTypeString = LocaleHelper.getLocalizedString(context, usingType) ?: ""
-        val packageName = tryOrNull { context.getAppName(appPackage) } ?: ""
-        val contentText = LocaleHelper.getLocalizedString(context, R.string.currently_using_type_content)
-                ?: ""
-        val usageContentText = "$packageName $contentText $usageTypeString"
+        val usageContentText = LocaleHelper.getLocalizedString(context, usageTypeString)
 
         val notificationCompatBuilder = NotificationCompat.Builder(
                 context,
@@ -47,7 +37,7 @@ class UserNotificationsProvider @Inject constructor(@ServiceContext private val 
                 .setDefaults(Notification.DEFAULT_LIGHTS)
                 .setSmallIcon(R.drawable.ic_logo)
                 .setLargeIcon(BitmapFactory.decodeResource(context.resources, R.drawable.ic_launcher_foreground))
-                .setContentTitle(LocaleHelper.getLocalizedString(context, usageTypeTitle))
+                .setContentTitle(LocaleHelper.getLocalizedString(context, R.string.usage_title))
                 .setContentText(usageContentText)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setAutoCancel(false)

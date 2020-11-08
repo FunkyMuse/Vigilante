@@ -50,17 +50,8 @@ class PermissionsProcessor @Inject constructor(
 
     override fun disposeResources() {}
 
-    private val dismissPackages = setOf(
-            "com.google.android.permissioncontroller",
-            "com.android.systemui",
-            "com.google.android.packageinstaller",
-            "com.android.packageinstaller",
-    )
-
     override fun eventActionByPackageName(eventPackageName: CharSequence) {
-        if (eventPackageName !in dismissPackages) {
-            packageRequestingPermission = eventPackageName.toString()
-        }
+        packageRequestingPermission = eventPackageName.toString()
     }
 
     private var permissionMessage: String? = null

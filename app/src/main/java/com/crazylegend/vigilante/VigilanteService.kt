@@ -18,6 +18,7 @@ import com.crazylegend.vigilante.di.providers.BroadcastProvider
 import com.crazylegend.vigilante.microphone.MicrophoneProcessor
 import com.crazylegend.vigilante.notifications.NotificationsProvider
 import com.crazylegend.vigilante.permissions.PermissionsProcessor
+import com.crazylegend.vigilante.utils.dismissPackages
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -108,7 +109,7 @@ class VigilanteService : AccessibilityService() {
     private fun rememberEventPackageName(event: AccessibilityEvent) {
         val eventPackageName = event.packageName
         currentPackageString = eventPackageName?.toString() ?: packageName
-        if (event.eventType == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED && eventPackageName != null) {
+        if (event.eventType == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED && eventPackageName != null && eventPackageName !in dismissPackages) {
             cameraProcessor.eventActionByPackageName(eventPackageName)
             permissionsProcessor.eventActionByPackageName(eventPackageName)
             microphoneProcessor.eventActionByPackageName(eventPackageName)

@@ -83,7 +83,7 @@ class CameraProcessor @Inject constructor(
     private fun sendNotificationIfUserEnabled(packageUsingMicrophone: String?) {
         packageUsingMicrophone ?: return
         prefsProvider.areNotificationsEnabled.ifTrue {
-            userNotificationsProvider.buildUsageNotification(R.string.cam_being_used, packageUsingMicrophone, R.string.camera_title, cameraNotificationID)
+            userNotificationsProvider.buildUsageNotification(cameraNotificationID, R.string.cam_being_used)
         }
     }
 

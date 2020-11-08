@@ -13,10 +13,8 @@ import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractBottomSheet
 import com.crazylegend.vigilante.databinding.DialogPowerDetailsBinding
-import com.crazylegend.vigilante.di.providers.PrefsProvider
 import com.crazylegend.vigilante.power.db.PowerModel
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 /**
  * Created by crazy on 11/7/20 to long live and prosper !
@@ -26,9 +24,6 @@ class PowerDetailsDialog : AbstractBottomSheet<DialogPowerDetailsBinding>() {
     override val binding by viewBinding(DialogPowerDetailsBinding::bind)
     override val viewRes: Int
         get() = R.layout.dialog_power_details
-
-    @Inject
-    lateinit var prefsProvider: PrefsProvider
 
     private val powerDetailsVM by viewModels<PowerDetailsVM>()
 

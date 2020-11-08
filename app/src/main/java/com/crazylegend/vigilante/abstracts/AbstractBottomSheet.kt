@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import com.crazylegend.vigilante.di.providers.AdapterProvider
+import com.crazylegend.vigilante.di.providers.PrefsProvider
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import javax.inject.Inject
 
@@ -16,6 +17,9 @@ abstract class AbstractBottomSheet<Binding : ViewBinding> : BottomSheetDialogFra
 
     @Inject
     lateinit var adapterProvider: AdapterProvider
+
+    @Inject
+    lateinit var prefsProvider: PrefsProvider
 
     abstract val binding: Binding
 

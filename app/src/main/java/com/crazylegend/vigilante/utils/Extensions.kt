@@ -19,6 +19,13 @@ import net.sqlcipher.database.SupportFactory
 const val DEFAULT_LANGUAGE = "en"
 const val VIGILANTE_DB_NAME = "vigilante-db"
 
+val dismissPackages = setOf(
+        "com.google.android.permissioncontroller",
+        "com.android.systemui",
+        "com.google.android.packageinstaller",
+        "com.android.packageinstaller",
+)
+
 fun Context.startVigilante() {
     startForegroundService<VigilanteService>()
 }

@@ -63,7 +63,7 @@ class MicrophoneProcessor @Inject constructor(
     private fun sendNotificationIfUserEnabled(packageUsingMicrophone: String?) {
         packageUsingMicrophone ?: return
         prefsProvider.areNotificationsEnabled.ifTrue {
-            userNotificationsProvider.buildUsageNotification(R.string.mic_being_used, packageUsingMicrophone, R.string.microphone_title, micNotificationID)
+            userNotificationsProvider.buildUsageNotification(micNotificationID, R.string.mic_being_used)
         }
     }
 

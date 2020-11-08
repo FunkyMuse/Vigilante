@@ -10,4 +10,6 @@
     <color name="offline">#C1251A</color>
     <color name="online">#2D7C7B</color>
     <color name="backgroundVariant">#DDDDDD</color>
+    <color name="dotActive">#FFA183</color>
+    <color name="dotInactive">#FFF4F2</color>
 </resources>

@@ -28,7 +28,6 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
-
     @Inject
     lateinit var permissionProvider: PermissionProvider
 
@@ -93,6 +92,12 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
         binding.themeSwitcher.setOnClickListenerCooldown {
             prefsProvider.changeTheme()
             updateDarkThemeIcon()
+        }
+
+        binding.customizations.setOnClickListenerCooldown {
+            if (prefsProvider.isDotEnabled) {
+
+            }
         }
 
         binding.crashes.setOnClickListenerCooldown {

@@ -39,7 +39,9 @@ class PermissionsProcessor @Inject constructor(
     private fun sendNotification(newPermissionMessage: String) {
         if (newPermissionMessage.isNotBlank()) {
             val currentPackageRef = packageRequestingPermission
-            val permissionRequestModel = PermissionRequestModel(newPermissionMessage, currentPackageRef, settingsAppName = settingsPermissionTitle.getAndSet(null))
+            val settingsTitle = settingsPermissionTitle.getAndSet(null)
+            val permissionRequestModel = PermissionRequestModel(newPermissionMessage, currentPackageRef, settingsAppName = settingsTitle)
+            settingsPermissionTitle.set(null)
             scope.makeIOCall {
                 permissionRequestsRepository.insertPermissionRequest(permissionRequestModel)
             }

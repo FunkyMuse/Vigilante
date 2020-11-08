@@ -54,7 +54,9 @@ class PermissionDetailsBottomSheet : AbstractBottomSheet<DialogPermissionDetails
         binding.appName.text = tryOrNull { requireContext().getAppName(packageName) }
         binding.date.text.text = date.toString(prefsProvider.getDateFormat)
         binding.date.image.setImageResource(R.drawable.ic_calendar)
-        binding.appNameFromSettings.setTextAndShowOrGone(settingsAppName)
+        if (permissionMessage?.endsWith("?", true) == false) {
+            binding.appNameFromSettings.setTextAndShowOrGone(settingsAppName)
+        }
         binding.appPermissionRequestCount.image.setImageResource(R.drawable.security)
         binding.permissionMessage.text = permissionMessage
     }

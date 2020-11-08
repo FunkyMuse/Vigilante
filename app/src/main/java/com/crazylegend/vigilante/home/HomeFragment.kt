@@ -7,10 +7,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.crazylegend.coroutines.onMain
 import com.crazylegend.crashyreporter.CrashyReporter
-import com.crazylegend.kotlinextensions.dateAndTime.toString
 import com.crazylegend.kotlinextensions.fragments.fragmentBooleanResult
 import com.crazylegend.kotlinextensions.fragments.shortToast
-import com.crazylegend.kotlinextensions.storage.isDiskEncrypted
 import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
 import com.crazylegend.navigation.navigateSafe
 import com.crazylegend.recyclerview.clickListeners.forItemClickListener
@@ -25,7 +23,6 @@ import com.crazylegend.vigilante.settings.CAMERA_CUSTOMIZATION_BASE_PREF
 import com.crazylegend.vigilante.settings.MIC_CUSTOMIZATION_BASE_PREF
 import com.crazylegend.vigilante.settings.SettingsFragment
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.*
 import javax.inject.Inject
 
 
@@ -151,7 +148,6 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
     private val buttonInnerCircle get() = if (permissionProvider.isAccessibilityEnabled) R.drawable.ic_inner_ellipse_disable else R.drawable.ic_inner_ellipse_enable
     private val buttonOuterCircle get() = if (permissionProvider.isAccessibilityEnabled) R.drawable.ic_outer_ellipse_disable else R.drawable.ic_outer_ellipse_enable
     private val buttonText get() = if (permissionProvider.isAccessibilityEnabled) R.string.disable_text else R.string.enable_text
-    private val diskEncryptionText get() = if (isDiskEncrypted) R.string.disk_encrypted else R.string.disk_not_encrypted
 
     override fun onPause() {
         super.onPause()
@@ -165,8 +161,6 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
         binding.innerIndicator.setImageResource(buttonInnerCircle)
         binding.outerIndicator.setImageResource(buttonOuterCircle)
     }
-
-    private fun Long.toDate(): String = Date(this).toString("dd.MM.yyyy HH:mm:ss")
 
 }
 

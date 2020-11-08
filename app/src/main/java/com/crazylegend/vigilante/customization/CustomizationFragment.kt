@@ -23,6 +23,7 @@ import com.crazylegend.vigilante.abstracts.AbstractFragment
 import com.crazylegend.vigilante.confirmation.DialogConfirmation
 import com.crazylegend.vigilante.databinding.FragmentCustomizationBinding
 import com.crazylegend.vigilante.home.HomeFragmentDirections
+import com.crazylegend.vigilante.service.VigilanteService
 import com.crazylegend.vigilante.settings.CAMERA_CUSTOMIZATION_BASE_PREF
 import com.skydoves.colorpickerview.ColorEnvelope
 import com.skydoves.colorpickerview.ColorPickerDialog
@@ -113,6 +114,7 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
             prefsProvider.saveSizePref(prefBaseName + SIZE_PREF_ADDITION, binding.sizeSlider.value)
             pickedColor?.let { prefsProvider.saveColorPref(prefBaseName + COLOR_PREF_ADDITION, it) }
             pickedLayoutPosition?.let { prefsProvider.savePositionPref(prefBaseName + POSITION_PREF_ADDITION, it) }
+            VigilanteService.serviceParamsListener?.updateForBasePref(prefBaseName)
             goBack()
         })
     }
@@ -166,7 +168,7 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
     }
 
     private fun updatePreviewWidthAndHeight(value: Float) {
-        binding.preview.width(value)
-        binding.preview.height(value)
+        binding.preview.width(value / 2)
+        binding.preview.height(value / 2)
     }
 }

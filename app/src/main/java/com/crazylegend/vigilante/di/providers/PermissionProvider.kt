@@ -9,8 +9,8 @@ import com.crazylegend.kotlinextensions.context.accessibilityManager
 import com.crazylegend.kotlinextensions.context.shortToast
 import com.crazylegend.kotlinextensions.permissions.hasUsageStatsPermission
 import com.crazylegend.vigilante.R
-import com.crazylegend.vigilante.VigilanteService
 import com.crazylegend.vigilante.di.qualifiers.FragmentContext
+import com.crazylegend.vigilante.service.VigilanteService
 import com.crazylegend.vigilante.utils.startVigilante
 import com.crazylegend.vigilante.utils.stopVigilante
 import dagger.hilt.android.scopes.FragmentScoped

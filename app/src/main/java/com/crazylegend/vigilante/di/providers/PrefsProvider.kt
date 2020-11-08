@@ -1,6 +1,7 @@
 package com.crazylegend.vigilante.di.providers
 
 import android.content.SharedPreferences
+import android.view.Gravity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.edit
 import com.crazylegend.kotlinextensions.sharedprefs.putBoolean
@@ -60,11 +61,12 @@ class PrefsProvider @Inject constructor(@EncryptedPrefs
     val getCameraColorPref get() = getColorPref(CAMERA_CUSTOMIZATION_BASE_PREF)
     val getCameraSizePref get() = getSizePref(CAMERA_CUSTOMIZATION_BASE_PREF)
     val getCameraPositionPref get() = getPositionPref(CAMERA_CUSTOMIZATION_BASE_PREF)
+    val getLayoutCameraPositionPref get() = getLayoutPosition(getPositionPref(CAMERA_CUSTOMIZATION_BASE_PREF))
 
     val getMicColorPref get() = getColorPref(MIC_CUSTOMIZATION_BASE_PREF)
     val getMicSizePref get() = getSizePref(MIC_CUSTOMIZATION_BASE_PREF)
     val getMicPositionPref get() = getPositionPref(MIC_CUSTOMIZATION_BASE_PREF)
-
+    val getLayoutMicPositionPref get() = getLayoutPosition(getPositionPref(MIC_CUSTOMIZATION_BASE_PREF))
 
     private fun getColorPref(basePref: String) = defaultPrefs.getInt(basePref + COLOR_PREF_ADDITION, DEFAULT_DOT_COLOR)
     private fun getSizePref(basePref: String) = defaultPrefs.getFloat(basePref + SIZE_PREF_ADDITION, DEFAULT_DOT_SIZE)
@@ -82,5 +84,14 @@ class PrefsProvider @Inject constructor(@EncryptedPrefs
      */
     private fun getPositionPref(basePref: String) = defaultPrefs.getInt(basePref + POSITION_PREF_ADDITION, DEFAULT_LAYOUT_POSITION)
 
+    private fun getLayoutPosition(pref: Int) = when (pref) {
+        0 -> Gravity.TOP or Gravity.START
+        1 -> Gravity.TOP or Gravity.END
+        2 -> Gravity.CENTER_VERTICAL or Gravity.START
+        3 -> Gravity.CENTER_VERTICAL or Gravity.END
+        4 -> Gravity.BOTTOM or Gravity.START
+        5 -> Gravity.BOTTOM or Gravity.END
+        else -> Gravity.TOP or Gravity.START
+    }
 
 }

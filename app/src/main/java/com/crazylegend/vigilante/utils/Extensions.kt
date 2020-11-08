@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase
 import com.crazylegend.kotlinextensions.activity.newIntent
 import com.crazylegend.kotlinextensions.services.isServiceRunning
 import com.crazylegend.kotlinextensions.services.startForegroundService
-import com.crazylegend.vigilante.VigilanteService
+import com.crazylegend.vigilante.service.VigilanteService
 import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SupportFactory
 

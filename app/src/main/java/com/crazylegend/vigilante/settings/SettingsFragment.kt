@@ -14,6 +14,7 @@ import com.crazylegend.kotlinextensions.animations.playAnimation
 import com.crazylegend.kotlinextensions.context.packageVersionName
 import com.crazylegend.kotlinextensions.preferences.booleanChangeListener
 import com.crazylegend.kotlinextensions.preferences.stringChangeListener
+import com.crazylegend.kotlinextensions.storage.isDiskEncrypted
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.di.providers.PrefsProvider
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,6 +35,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     private var notificationsSwitch: SwitchPreferenceCompat? = null
     private var version: Preference? = null
+    private var disk: Preference? = null
     private var dateFormat: ListPreference? = null
     private var dotSwitch: SwitchPreferenceCompat? = null
     private var excludeVigilanteFromNotificationsSwitch: SwitchPreferenceCompat? = null
@@ -46,6 +48,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         notificationsSwitch = findPreference(NOTIFICATIONS_PREF_KEY)
         dateFormat = findPreference(DATE_PREF_KEY)
         version = findPreference(VERSION_PREF_KEY)
+        disk = findPreference(DISK_PREF)
         dotSwitch = findPreference(DOT_PREF_KEY)
         excludeVigilanteFromNotificationsSwitch = findPreference(EXCLUDE_VIGILANTE_FROM_NOTIFICATIONS_PREF_KEY)
     }
@@ -87,6 +90,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         super.onResume()
         updateNotificationSwitch()
         updateDateSummary()
+        disk?.summary = if (isDiskEncrypted) getString(R.string.disk_encrypted) else getString(R.string.disk_not_encrypted)
     }
 
     private fun updateDateSummary() {

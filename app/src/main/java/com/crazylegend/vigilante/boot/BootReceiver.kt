@@ -4,7 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import com.crazylegend.kotlinextensions.accessibility.hasAccessibilityPermission
-import com.crazylegend.vigilante.VigilanteService
+import com.crazylegend.vigilante.service.VigilanteService
 import com.crazylegend.vigilante.utils.isVigilanteRunning
 import com.crazylegend.vigilante.utils.startVigilante
 

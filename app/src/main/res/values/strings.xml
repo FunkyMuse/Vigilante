@@ -102,4 +102,5 @@
     <string name="save_progress_expl">Discard or save your current changes?</string>
     <string name="customize_cam_or_mic">Customize camera or microphone parameters?</string>
     <string name="saved">Saved!</string>
+    <string name="disk_status">Disk status</string>
 </resources>

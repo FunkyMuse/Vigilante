@@ -30,6 +30,11 @@
 
     <Preference
         app:iconSpaceReserved="false"
+        app:title="@string/disk_status"
+        app:key="pref_disk" />
+
+    <Preference
+        app:iconSpaceReserved="false"
         app:title="@string/version"
         app:key="pref_version" />
 

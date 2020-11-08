@@ -10,13 +10,13 @@ import com.crazylegend.kotlinextensions.context.notificationManager
 import com.crazylegend.kotlinextensions.currentTimeMillis
 import com.crazylegend.kotlinextensions.ifTrue
 import com.crazylegend.vigilante.R
-import com.crazylegend.vigilante.VigilanteService
 import com.crazylegend.vigilante.contracts.service.ServiceManagersCoroutines
 import com.crazylegend.vigilante.di.providers.PrefsProvider
 import com.crazylegend.vigilante.di.providers.UserNotificationsProvider
 import com.crazylegend.vigilante.di.qualifiers.ServiceContext
 import com.crazylegend.vigilante.microphone.db.MicrophoneModel
 import com.crazylegend.vigilante.microphone.db.MicrophoneRepository
+import com.crazylegend.vigilante.service.VigilanteService
 import dagger.hilt.android.scopes.ServiceScoped
 import java.util.*
 import java.util.concurrent.atomic.AtomicBoolean
@@ -53,15 +53,16 @@ class MicrophoneProcessor @Inject constructor(
                         //mic isn't used
                         setMicrophoneIsNotUsed()
                         stopNotificationIfUserEnabled()
+                        VigilanteService.serviceLayoutListener?.hideMic()
                     } else {
                         //mic is used
                         setMicrophoneIsUsed()
+                        VigilanteService.serviceLayoutListener?.showMic()
                     }
                 }
             }
 
-    private fun sendNotificationIfUserEnabled(packageUsingMicrophone: String?) {
-        packageUsingMicrophone ?: return
+    private fun sendNotificationIfUserEnabled() {
         prefsProvider.areNotificationsEnabled.ifTrue {
             userNotificationsProvider.buildUsageNotification(micNotificationID, R.string.mic_being_used)
         }
@@ -86,7 +87,7 @@ class MicrophoneProcessor @Inject constructor(
     private fun setMicrophoneIsUsed() {
         wasMicrophoneBeingUsed.set(true)
         packageUsingMicrophone.set(VigilanteService.currentPackageString)
-        sendNotificationIfUserEnabled(packageUsingMicrophone.get())
+        sendNotificationIfUserEnabled()
     }
 
 

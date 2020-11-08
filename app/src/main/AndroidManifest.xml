@@ -43,7 +43,7 @@
         </activity>
 
         <service
-            android:name=".VigilanteService"
+            android:name=".service.VigilanteService"
             android:enabled="true"
             android:exported="false"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">

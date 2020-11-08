@@ -73,7 +73,7 @@
             android:layout_marginEnd="16dp"
             android:stepSize="2"
             android:valueFrom="8"
-            android:valueTo="100"
+            android:valueTo="200"
             app:layout_constraintTop_toBottomOf="@id/sizeTitle" />
 
         <com.google.android.material.button.MaterialButton

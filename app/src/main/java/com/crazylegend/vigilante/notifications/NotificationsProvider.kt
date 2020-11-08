@@ -6,7 +6,9 @@ import android.view.accessibility.AccessibilityEvent
 import androidx.lifecycle.ServiceLifecycleDispatcher
 import com.crazylegend.coroutines.makeIOCall
 import com.crazylegend.kotlinextensions.currentTimeMillis
+import com.crazylegend.vigilante.BuildConfig
 import com.crazylegend.vigilante.contracts.service.ServiceManagersCoroutines
+import com.crazylegend.vigilante.di.providers.PrefsProvider
 import com.crazylegend.vigilante.notifications.db.NotificationsModel
 import com.crazylegend.vigilante.notifications.db.NotificationsRepo
 import dagger.hilt.android.scopes.ServiceScoped
@@ -18,6 +20,7 @@ import javax.inject.Inject
  */
 @ServiceScoped
 class NotificationsProvider @Inject constructor(
+        private val prefsProvider: PrefsProvider,
         private val notificationsRepo: NotificationsRepo
 ) : ServiceManagersCoroutines {
 
@@ -41,7 +44,8 @@ class NotificationsProvider @Inject constructor(
             val sentByPackage = event.packageName?.toString()
             val notificationModel = NotificationsModel(title, bigText, text,
                     visibility, category, color, flags, group, channelId, sentByPackage, Date(currentTimeMillis))
-            saveNotification(notificationModel)
+            if (!prefsProvider.isVigilanteExcludedFromNotifications && sentByPackage != BuildConfig.APPLICATION_ID)
+                saveNotification(notificationModel)
         }
     }
 

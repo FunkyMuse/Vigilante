@@ -77,4 +77,6 @@
     <string name="usage_title">Usage detected</string>
     <string name="dot_usage_title">Show dot usage</string>
     <string name="dot_usage_expl">By enabling this option, you\'ll see a dot appear on your screen when usage happens.</string>
+    <string name="exclude_from_notifications_title">Exclude Vigilante from notifications</string>
+    <string name="exclude_from_notifications_expl">By enabling this option, you\'ll not be seeing this application\'s notifications into the history</string>
 </resources>

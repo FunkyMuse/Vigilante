@@ -8,12 +8,17 @@
         app:summary="@string/notifications_usage_expl"
         app:title="@string/notifications_usage_title" />
 
-
     <SwitchPreferenceCompat
         app:iconSpaceReserved="false"
         app:key="pref_dot"
         app:summary="@string/dot_usage_expl"
         app:title="@string/dot_usage_title" />
+
+    <SwitchPreferenceCompat
+        app:iconSpaceReserved="false"
+        app:key="pref_exclude_vigilante_from_notifications"
+        app:summary="@string/exclude_from_notifications_expl"
+        app:title="@string/exclude_from_notifications_title" />
 
     <ListPreference
         app:iconSpaceReserved="false"

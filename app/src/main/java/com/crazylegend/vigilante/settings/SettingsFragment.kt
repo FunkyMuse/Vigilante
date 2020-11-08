@@ -26,12 +26,16 @@ class SettingsFragment : PreferenceFragmentCompat() {
     private var notificationsSwitch: SwitchPreferenceCompat? = null
     private var version: Preference? = null
     private var dateFormat: ListPreference? = null
+    private var dotSwitch: SwitchPreferenceCompat? = null
+    private var excludeVigilanteFromNotificationsSwitch: SwitchPreferenceCompat? = null
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.settings)
         notificationsSwitch = findPreference(NOTIFICATIONS_PREF_KEY)
         dateFormat = findPreference(DATE_PREF_KEY)
         version = findPreference(VERSION_PREF_KEY)
+        dotSwitch = findPreference(DOT_PREF_KEY)
+        excludeVigilanteFromNotificationsSwitch = findPreference(EXCLUDE_VIGILANTE_FROM_NOTIFICATIONS_PREF_KEY)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,6 +44,14 @@ class SettingsFragment : PreferenceFragmentCompat() {
         notificationsSwitch.booleanChangeListener { _, newValue ->
             prefsProvider.updateNotificationsValue(newValue)
             updateNotificationSwitch()
+        }
+
+        excludeVigilanteFromNotificationsSwitch.booleanChangeListener { _, newValue ->
+            prefsProvider.setExcludeVigilanteFromNotificationsStatus(newValue)
+        }
+
+        dotSwitch.booleanChangeListener { _, newValue ->
+            prefsProvider.setDotStatus(newValue)
         }
 
         dateFormat.stringChangeListener { _, newValue ->

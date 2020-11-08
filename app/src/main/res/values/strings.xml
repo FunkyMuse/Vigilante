@@ -103,4 +103,6 @@
     <string name="customize_cam_or_mic">Customize camera or microphone parameters?</string>
     <string name="saved">Saved!</string>
     <string name="disk_status">Disk status</string>
+    <string name="crash_copied_to_clipboard">Crash details copied to clipboard!</string>
+    <string name="web_browser_required">Web browser required for this action!</string>
 </resources>

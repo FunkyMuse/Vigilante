@@ -4,11 +4,9 @@ import android.accessibilityservice.AccessibilityService
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.PixelFormat
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.WindowManager
 import android.view.accessibility.AccessibilityEvent
-import android.view.accessibility.AccessibilityNodeInfo
 import android.widget.FrameLayout
 import androidx.core.view.updateLayoutParams
 import com.crazylegend.kotlinextensions.context.windowManager
@@ -116,7 +114,6 @@ class VigilanteService : AccessibilityService() {
             }
         }
         checkIfTheyAreTheSameLayoutPositions(prefsProvider.getMicPositionPref, prefsProvider.getCameraPositionPref)
-
     }
 
     private fun setupMicLayout() {
@@ -214,24 +211,9 @@ class VigilanteService : AccessibilityService() {
             cameraProcessor.eventActionByPackageName(eventPackageName)
             permissionsProcessor.eventActionByPackageName(eventPackageName)
             microphoneProcessor.eventActionByPackageName(eventPackageName)
-            //logViewHierarchy(event.source)
             permissionsProcessor.extractPermissionMessage(event.source)
         }
     }
-
-    private fun logViewHierarchy(nodeInfo: AccessibilityNodeInfo?, depth: Int = 0) {
-        if (nodeInfo == null) return
-        var spacerString = ""
-        for (i in 0 until depth) {
-            spacerString += '-'
-        }
-        //Log the info you care about here... I choce classname and view resource name, because they are simple, but interesting.
-        Log.d("TAG", spacerString + nodeInfo.className + " " + nodeInfo.viewIdResourceName)
-        for (i in 0 until nodeInfo.childCount) {
-            logViewHierarchy(nodeInfo.getChild(i), depth + 1)
-        }
-    }
-
 
     override fun onInterrupt() {}
 

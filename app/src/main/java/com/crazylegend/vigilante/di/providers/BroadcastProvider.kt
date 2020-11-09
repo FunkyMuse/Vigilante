@@ -1,12 +1,10 @@
 package com.crazylegend.vigilante.di.providers
 
 import android.app.Service
-import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import androidx.lifecycle.ServiceLifecycleDispatcher
 import com.crazylegend.vigilante.contracts.service.ServiceManagersCoroutines
-import com.crazylegend.vigilante.di.qualifiers.ServiceContext
 import com.crazylegend.vigilante.headset.HeadsetReceiver
 import com.crazylegend.vigilante.power.PowerReceiver
 import com.crazylegend.vigilante.screen.ScreenReceiver
@@ -18,8 +16,7 @@ import javax.inject.Inject
  */
 
 @ServiceScoped
-class BroadcastProvider @Inject constructor(private val service: Service,
-                                            @ServiceContext private val context: Context) : ServiceManagersCoroutines {
+class BroadcastProvider @Inject constructor(private val service: Service) : ServiceManagersCoroutines {
 
     override val serviceLifecycleDispatcher = ServiceLifecycleDispatcher(this)
 

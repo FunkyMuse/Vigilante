@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Vigilante</string>
     <string name="vigilante_description">Vigilante service</string>
-    <string name="vigilante_summary">Vigilante service listener for events</string>
+    <string name="vigilante_summary">Vigilante service listener for events that displays dot when camera/mic usage happens.</string>
     <string name="home">Home</string>
     <string name="disable_the_service">Disable the service manually</string>
     <string name="enable_the_service">Please enable the service</string>

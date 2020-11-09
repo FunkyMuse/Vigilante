@@ -21,7 +21,6 @@ import com.crazylegend.vigilante.di.providers.PermissionProvider
 import com.crazylegend.vigilante.home.section.SectionItem
 import com.crazylegend.vigilante.settings.CAMERA_CUSTOMIZATION_BASE_PREF
 import com.crazylegend.vigilante.settings.MIC_CUSTOMIZATION_BASE_PREF
-import com.crazylegend.vigilante.settings.SettingsFragment
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -96,7 +95,7 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
                 cameraOrMicCustomizationChoice()
             } else {
                 shortToast(R.string.enable_dot_customization)
-                findNavController().navigateSafe(HomeFragmentDirections.destinationSettings(SettingsFragment.SAFE_DOT_POSITION))
+                findNavController().navigateSafe(HomeFragmentDirections.destinationSettings())
             }
         }
 

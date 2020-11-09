@@ -2,15 +2,10 @@ package com.crazylegend.vigilante.settings
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.view.doOnLayout
-import androidx.navigation.fragment.navArgs
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
-import androidx.recyclerview.widget.RecyclerView
-import com.crazylegend.kotlinextensions.animations.attentionFlash
-import com.crazylegend.kotlinextensions.animations.playAnimation
 import com.crazylegend.kotlinextensions.context.packageVersionName
 import com.crazylegend.kotlinextensions.fragments.shortToast
 import com.crazylegend.kotlinextensions.intent.openWebPage
@@ -44,9 +39,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
     private var homePage: Preference? = null
     private var excludeVigilanteFromNotificationsSwitch: SwitchPreferenceCompat? = null
 
-    private val args by navArgs<SettingsFragmentArgs>()
-    private val highlightPosition get() = args.highlightPosition
-
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.settings)
         notificationsSwitch = findPreference(NOTIFICATIONS_PREF_KEY)
@@ -59,9 +51,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (savedInstanceState == null) {
-            playAnimationHighlight()
-        }
         version?.summary = requireContext().packageVersionName
         notificationsSwitch.booleanChangeListener { _, newValue ->
             prefsProvider.updateNotificationsValue(newValue)
@@ -89,19 +78,11 @@ class SettingsFragment : PreferenceFragmentCompat() {
         }
     }
 
-    private fun playAnimationHighlight() {
-        if (highlightPosition != RecyclerView.NO_POSITION) {
-            view?.doOnLayout {
-                listView.findViewHolderForAdapterPosition(highlightPosition)?.itemView?.attentionFlash()?.playAnimation(2500L)
-            }
-        }
-    }
 
     override fun onResume() {
         super.onResume()
         updateNotificationSwitch()
         updateDateSummary()
-
     }
 
     private fun updateDateSummary() {

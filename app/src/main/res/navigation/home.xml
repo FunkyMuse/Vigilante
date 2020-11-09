@@ -121,12 +121,7 @@
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.crazylegend.vigilante.settings.SettingsFragment"
-        android:label="">
-        <argument
-            android:name="highlightPosition"
-            android:defaultValue="-1"
-            app:argType="integer" />
-    </fragment>
+        android:label="" />
     <fragment
         android:id="@+id/crashFragment"
         android:name="com.crazylegend.vigilante.crashes.CrashFragment"

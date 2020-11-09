@@ -94,4 +94,9 @@ class PrefsProvider @Inject constructor(@EncryptedPrefs
         else -> Gravity.TOP or Gravity.START
     }
 
+    val isIntroShown get() = defaultPrefs.getBoolean(INTRO_PREF, false)
+    fun setIntroShown() {
+        defaultPrefs.putBoolean(INTRO_PREF, true)
+    }
+
 }

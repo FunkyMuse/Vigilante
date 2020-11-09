@@ -13,7 +13,14 @@
             app:destination="@id/home"
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/destination_intro"
+            app:destination="@id/intro"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <include app:graph="@navigation/home" />
+    <include app:graph="@navigation/intro" />
 </navigation>

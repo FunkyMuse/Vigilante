@@ -6,6 +6,49 @@
 
     <fragment
         android:id="@+id/helloScreen"
-        android:name="com.crazylegend.vigilante.intro.HelloScreen"
-        android:label="" />
+        android:name="com.crazylegend.vigilante.intro.HelloScreenIntro"
+        android:label="">
+        <action
+            android:id="@+id/destination_explanation"
+            app:destination="@id/explanationScreenIntro"
+            app:enterAnim="@anim/from_bottom"
+            app:exitAnim="@anim/fall_down"
+            app:popEnterAnim="@anim/from_bottom"
+            app:popExitAnim="@anim/fall_down"
+            app:popUpTo="@id/helloScreen"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/explanationScreenIntro"
+        android:name="com.crazylegend.vigilante.intro.ExplanationScreenIntro"
+        android:label="">
+        <action
+            android:id="@+id/destination_final_screen"
+            app:destination="@id/finalScreenIntro"
+            app:enterAnim="@anim/from_bottom"
+            app:exitAnim="@anim/fall_down"
+            app:popEnterAnim="@anim/from_bottom"
+            app:popExitAnim="@anim/fall_down"
+            app:popUpTo="@id/explanationScreenIntro"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/finalScreenIntro"
+        android:name="com.crazylegend.vigilante.intro.FinalScreenIntro"
+        android:label="">
+
+        <action
+            android:id="@+id/destination_home"
+            app:destination="@id/home"
+            app:enterAnim="@anim/from_bottom"
+            app:exitAnim="@anim/exit_to_right"
+            app:popEnterAnim="@anim/from_bottom"
+            app:popExitAnim="@anim/exit_to_right"
+            app:popUpTo="@id/finalScreenIntro"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+    <include app:graph="@navigation/home" />
+
 </navigation>

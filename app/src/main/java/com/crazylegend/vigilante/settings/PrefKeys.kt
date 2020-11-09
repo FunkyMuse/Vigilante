@@ -18,5 +18,6 @@ const val MAGISK_STATUS_PREF = "pref_magisk"
 const val EXCLUDE_VIGILANTE_FROM_NOTIFICATIONS_PREF_KEY = "pref_exclude_vigilante_from_notifications"
 const val CAMERA_CUSTOMIZATION_BASE_PREF = "camera_"
 const val MIC_CUSTOMIZATION_BASE_PREF = "mic_"
+const val INTRO_PREF = "intro"
 
 const val DEFAULT_DATE = "dd.MM.yyyy HH:mm:ss"

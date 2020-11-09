@@ -12,7 +12,7 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            app:srcCompat="@drawable/ic_illustration_welcome" />
+            app:srcCompat="@drawable/ic_final_words" />
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
@@ -20,7 +20,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="16dp"
-            android:text="@string/welcome_to_vigilante_you_have_chosen_privacy_thank_you_for_your_decision" />
+            android:text="@string/final_pre_expl" />
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
@@ -28,15 +28,15 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="4dp"
-            android:text="@string/the_app_is_an_open_source_project_and_will_remain_as_such_as_it_focuses_on_privacy_and_it_s_integrity" />
+            android:text="@string/final_expl" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:text="@string/finish"
             android:layout_margin="15dp"
-            android:text="@string/next"
+            android:id="@+id/finish"
             app:cornerRadius="6dp" />
 
     </LinearLayout>

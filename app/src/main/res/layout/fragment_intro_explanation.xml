@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            app:srcCompat="@drawable/ic_customization_illustration" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:text="@string/you_can_choose_the_size_color_and_the_position_of_the_dots_appearing_on_the_screen" />
+
+        <FrameLayout
+            android:id="@+id/customizations"
+            android:layout_width="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="50dp"
+            android:backgroundTint="@color/helperColor"
+            android:background="@drawable/rounded_bg_theme_compatible"
+            android:rotation="90">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:rotation="-90"
+                app:srcCompat="@drawable/settings_adjsut" />
+
+        </FrameLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:text="@string/and_many_other_customizations_and_options_available_within_the_simple_ui_in_the_application" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/next"
+            android:layout_margin="15dp"
+            android:id="@+id/next"
+            app:cornerRadius="6dp" />
+
+    </LinearLayout>
+
+</ScrollView>

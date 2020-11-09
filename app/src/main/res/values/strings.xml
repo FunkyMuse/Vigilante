@@ -117,4 +117,12 @@
     <string name="magisk_status">Magisk status</string>
     <string name="magisk_not_detected">Magisk not present</string>
     <string name="magisk_detected">Magisk detected</string>
+    <string name="next">Next</string>
+    <string name="welcome_to_vigilante_you_have_chosen_privacy_thank_you_for_your_decision">Welcome to Vigilante, you have chosen privacy, thank you for your decision!</string>
+    <string name="you_can_choose_the_size_color_and_the_position_of_the_dots_appearing_on_the_screen">You can choose the size, color and the position of the dots appearing on the screen</string>
+    <string name="and_many_other_customizations_and_options_available_within_the_simple_ui_in_the_application">and many other customizations and options available within the simple UI in the application.</string>
+    <string name="finish">Finish</string>
+    <string name="final_expl">Don\'t forget to report the crashes, suggest new features and keep in mind that if something\'s free, then you (as a user) are the product!</string>
+    <string name="final_pre_expl">This app uses encrypted preference choices, database and focuses on privacy and productivity</string>
+    <string name="the_app_is_an_open_source_project_and_will_remain_as_such_as_it_focuses_on_privacy_and_it_s_integrity">The app is an open source project and will remain as such as it focuses on privacy and it\'s integrity.</string>
 </resources>

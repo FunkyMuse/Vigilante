@@ -10,6 +10,6 @@ data class SectionItem(@StringRes val title: Int, @DrawableRes val icon: Int, va
 
     enum class SectionItemAction {
         CAMERA, MIC, PERMISSIONS, HEADSET, NOTIFICATIONS,
-        LOCK_SCREEN, APPS_USAGE, POWER
+        LOCK_SCREEN, DEVICE_INFO, POWER
     }
 }

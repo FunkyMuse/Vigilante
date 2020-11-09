@@ -1,13 +1,11 @@
 package com.crazylegend.vigilante.di.providers
 
-import android.app.usage.UsageStats
 import com.crazylegend.recyclerview.generateRecycler
 import com.crazylegend.vigilante.camera.db.CameraModel
 import com.crazylegend.vigilante.crashes.CrashViewHolder
-import com.crazylegend.vigilante.databinding.ItemviewCrashBinding
-import com.crazylegend.vigilante.databinding.ItemviewFilterBinding
-import com.crazylegend.vigilante.databinding.ItemviewLogBinding
-import com.crazylegend.vigilante.databinding.ItemviewSectionBinding
+import com.crazylegend.vigilante.databinding.*
+import com.crazylegend.vigilante.deviceinfo.DeviceInfoModel
+import com.crazylegend.vigilante.deviceinfo.DeviceInfoViewHolder
 import com.crazylegend.vigilante.filter.FilterModel
 import com.crazylegend.vigilante.filter.ListFilterViewHolder
 import com.crazylegend.vigilante.headset.database.HeadsetModel
@@ -66,8 +64,8 @@ class AdapterProvider @Inject constructor(
         }
     }
 
-    val appsUsageAdapter by lazy(LazyThreadSafetyMode.NONE) {
-        generateRecycler<UsageStats, LogViewHolder, ItemviewLogBinding>({ LogViewHolder(it, prefsProvider) }, ItemviewLogBinding::inflate) { item, holder, _, _ ->
+    val deviceInfoAdapter by lazy(LazyThreadSafetyMode.NONE) {
+        generateRecycler<DeviceInfoModel, DeviceInfoViewHolder, ItemviewDeviceInfoBinding>(::DeviceInfoViewHolder, ItemviewDeviceInfoBinding::inflate) { item, holder, _, _ ->
             holder.bind(item)
         }
     }

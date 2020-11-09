@@ -35,24 +35,6 @@
 
     <PreferenceCategory
         app:iconSpaceReserved="false"
-        app:title="@string/device">
-        <Preference
-            app:iconSpaceReserved="false"
-            app:key="pref_disk"
-            app:title="@string/disk_status" />
-        <Preference
-            app:iconSpaceReserved="false"
-            app:key="pref_rooted"
-            app:title="@string/root_status" />
-
-        <Preference
-            app:iconSpaceReserved="false"
-            app:key="pref_magisk"
-            app:title="@string/magisk_status" />
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        app:iconSpaceReserved="false"
         app:title="@string/informational">
 
         <Preference

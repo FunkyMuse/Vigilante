@@ -48,11 +48,10 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
                 SectionItem(R.string.headset_history, R.drawable.headphones, SectionItem.SectionItemAction.HEADSET),
                 SectionItem(R.string.notifications_history, R.drawable.notification_new, SectionItem.SectionItemAction.NOTIFICATIONS),
                 SectionItem(R.string.lock_screen_history, R.drawable.lock, SectionItem.SectionItemAction.LOCK_SCREEN),
-                SectionItem(R.string.apps_usage_history, R.drawable.data, SectionItem.SectionItemAction.APPS_USAGE),
+                SectionItem(R.string.device_info, R.drawable.ic_info, SectionItem.SectionItemAction.DEVICE_INFO),
         )
 
     override val binding by viewBinding(FragmentHomeBinding::bind)
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -66,23 +65,17 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
         sectionAdapter.submitList(sectionList)
 
         sectionAdapter.forItemClickListener = forItemClickListener { _, item, _ ->
-            if (item.action == SectionItem.SectionItemAction.APPS_USAGE) {
-                permissionProvider.propagateAppsUsageClick {
-                    findNavController().navigateSafe(HomeFragmentDirections.destinationAppsUsage())
-                }
-            } else {
-                val directions = when (item.action) {
-                    SectionItem.SectionItemAction.CAMERA -> HomeFragmentDirections.destinationCameraHistory()
-                    SectionItem.SectionItemAction.MIC -> HomeFragmentDirections.destinationMicrophoneHistory()
-                    SectionItem.SectionItemAction.PERMISSIONS -> HomeFragmentDirections.destinationPermissionRequests()
-                    SectionItem.SectionItemAction.POWER -> HomeFragmentDirections.destinationPower()
-                    SectionItem.SectionItemAction.HEADSET -> HomeFragmentDirections.destinationHeadset()
-                    SectionItem.SectionItemAction.NOTIFICATIONS -> HomeFragmentDirections.destinationNotifications()
-                    SectionItem.SectionItemAction.LOCK_SCREEN -> HomeFragmentDirections.destinationScreenHistory()
-                    else -> null
-                }
-                directions?.let { findNavController().navigateSafe(it) }
+            val directions = when (item.action) {
+                SectionItem.SectionItemAction.CAMERA -> HomeFragmentDirections.destinationCameraHistory()
+                SectionItem.SectionItemAction.DEVICE_INFO -> HomeFragmentDirections.destinationDeviceInfo()
+                SectionItem.SectionItemAction.MIC -> HomeFragmentDirections.destinationMicrophoneHistory()
+                SectionItem.SectionItemAction.PERMISSIONS -> HomeFragmentDirections.destinationPermissionRequests()
+                SectionItem.SectionItemAction.POWER -> HomeFragmentDirections.destinationPower()
+                SectionItem.SectionItemAction.HEADSET -> HomeFragmentDirections.destinationHeadset()
+                SectionItem.SectionItemAction.NOTIFICATIONS -> HomeFragmentDirections.destinationNotifications()
+                SectionItem.SectionItemAction.LOCK_SCREEN -> HomeFragmentDirections.destinationScreenHistory()
             }
+            findNavController().navigateSafe(directions)
         }
 
         binding.statusButton.setOnClickListenerCooldown {

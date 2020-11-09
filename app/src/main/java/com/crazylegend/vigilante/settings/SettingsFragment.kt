@@ -17,9 +17,6 @@ import com.crazylegend.kotlinextensions.intent.openWebPage
 import com.crazylegend.kotlinextensions.preferences.booleanChangeListener
 import com.crazylegend.kotlinextensions.preferences.onClick
 import com.crazylegend.kotlinextensions.preferences.stringChangeListener
-import com.crazylegend.kotlinextensions.root.RootUtils
-import com.crazylegend.kotlinextensions.storage.isDiskEncrypted
-import com.crazylegend.security.MagiskDetector
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.di.providers.PrefsProvider
 import com.crazylegend.vigilante.utils.HOME_PAGE
@@ -39,14 +36,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
     @Inject
     lateinit var prefsProvider: PrefsProvider
 
-    @Inject
-    lateinit var magiskDetector: MagiskDetector
 
     private var notificationsSwitch: SwitchPreferenceCompat? = null
     private var version: Preference? = null
-    private var disk: Preference? = null
-    private var rootStatus: Preference? = null
-    private var magiskStatus: Preference? = null
     private var dateFormat: ListPreference? = null
     private var dotSwitch: SwitchPreferenceCompat? = null
     private var homePage: Preference? = null
@@ -61,9 +53,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
         dateFormat = findPreference(DATE_PREF_KEY)
         homePage = findPreference(HOME_PAGE_PREF)
         version = findPreference(VERSION_PREF_KEY)
-        disk = findPreference(DISK_PREF)
-        rootStatus = findPreference(ROOT_STATUS_PREF)
-        magiskStatus = findPreference(MAGISK_STATUS_PREF)
         dotSwitch = findPreference(DOT_PREF_KEY)
         excludeVigilanteFromNotificationsSwitch = findPreference(EXCLUDE_VIGILANTE_FROM_NOTIFICATIONS_PREF_KEY)
     }
@@ -79,14 +68,12 @@ class SettingsFragment : PreferenceFragmentCompat() {
             updateNotificationSwitch()
         }
 
-        magiskStatus?.summary = if (magiskDetector.checkForMagisk()) getString(R.string.magisk_detected) else getString(R.string.magisk_not_detected)
+
         homePage.onClick {
             requireContext().openWebPage(HOME_PAGE) {
                 shortToast(R.string.web_browser_required)
             }
         }
-
-        rootStatus?.summary = if (RootUtils.isDeviceRooted) getString(R.string.device_rooted) else getString(R.string.device_not_rooted)
 
         excludeVigilanteFromNotificationsSwitch.booleanChangeListener { _, newValue ->
             prefsProvider.setExcludeVigilanteFromNotificationsStatus(newValue)
@@ -114,7 +101,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         super.onResume()
         updateNotificationSwitch()
         updateDateSummary()
-        disk?.summary = if (isDiskEncrypted) getString(R.string.disk_encrypted) else getString(R.string.disk_not_encrypted)
+
     }
 
     private fun updateDateSummary() {

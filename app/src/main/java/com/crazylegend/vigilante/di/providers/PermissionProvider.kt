@@ -7,7 +7,6 @@ import com.crazylegend.kotlinextensions.accessibility.hasAccessibilityPermission
 import com.crazylegend.kotlinextensions.accessibility.isAccessibilityServiceRunning
 import com.crazylegend.kotlinextensions.context.accessibilityManager
 import com.crazylegend.kotlinextensions.context.shortToast
-import com.crazylegend.kotlinextensions.permissions.hasUsageStatsPermission
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.di.qualifiers.FragmentContext
 import com.crazylegend.vigilante.service.VigilanteService
@@ -33,10 +32,6 @@ class PermissionProvider @Inject constructor(
 
     private fun hasAccessibilityPermission() = context.hasAccessibilityPermission<VigilanteService>()
 
-    fun askForUsageStatsPermission() = context.startActivity(Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS))
-
-    fun hasUsageStatsPermission(): Boolean = context.hasUsageStatsPermission()
-
     fun dispatchServiceLogic() {
         if (isAccessibilityEnabled) disableTheService() else enableTheService()
     }
@@ -55,14 +50,6 @@ class PermissionProvider @Inject constructor(
             askForAccessibilityPermissions()
         } else {
             context.startVigilante()
-        }
-    }
-
-    inline fun propagateAppsUsageClick(permissionAvailable: () -> Unit) {
-        if (hasUsageStatsPermission()) {
-            permissionAvailable()
-        } else {
-            askForUsageStatsPermission()
         }
     }
 }

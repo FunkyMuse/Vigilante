@@ -18,7 +18,6 @@
     <string name="headset_history">Headset history</string>
     <string name="notifications_history">Notifications history</string>
     <string name="lock_screen_history">Lock screen history</string>
-    <string name="apps_usage_history">Apps usage history</string>
     <string name="notifications_usage_expl">By enabling this option, you\'ll be receiving notifications when camera/microphone/etc.. is used, if/when possible.</string>
     <string name="notifications_usage_title">Enable usage notifications</string>
     <string name="crash_report">Crash report #%1$d</string>
@@ -108,7 +107,6 @@
     <string name="informational">Informational</string>
     <string name="customizations">Customizations</string>
     <string name="home_page">Home page</string>
-    <string name="device">Device</string>
     <string name="license">GPL 3.0</string>
     <string name="license_title">License</string>
     <string name="root_status">Root status</string>
@@ -125,4 +123,5 @@
     <string name="final_expl">Don\'t forget to report the crashes, suggest new features and keep in mind that if something\'s free, then you (as a user) are the product!</string>
     <string name="final_pre_expl">This app uses encrypted preference choices, database and focuses on privacy and productivity</string>
     <string name="the_app_is_an_open_source_project_and_will_remain_as_such_as_it_focuses_on_privacy_and_it_s_integrity">The app is an open source project and will remain as such as it focuses on privacy and it\'s integrity.</string>
+    <string name="device_info">Device info</string>
 </resources>

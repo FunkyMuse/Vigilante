@@ -25,7 +25,7 @@
             app:popEnterAnim="@anim/enter_from_left"
             app:popExitAnim="@anim/fade_out" />
         <action
-            android:id="@+id/destination_apps_usage"
+            android:id="@+id/destination_device_info"
             app:destination="@id/appsUsageFragment"
             app:enterAnim="@anim/scale"
             app:exitAnim="@anim/fade_out"
@@ -133,7 +133,7 @@
         android:label="" />
     <fragment
         android:id="@+id/appsUsageFragment"
-        android:name="com.crazylegend.vigilante.appsUsage.AppsUsageFragment"
+        android:name="com.crazylegend.vigilante.deviceinfo.DeviceInfoFragment"
         android:label="" />
     <fragment
         android:id="@+id/cameraAccessFragment"

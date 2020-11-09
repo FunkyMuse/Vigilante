@@ -34,4 +34,12 @@ abstract class AbstractFragment<BINDING : ViewBinding>(contentLayoutId: Int) : F
             }
         }
     }
+
+    inline fun onResumedUIFunction(crossinline action: () -> Unit) {
+        viewLifecycleOwner.lifecycle.coroutineScope.launchWhenResumed {
+            withMainContext {
+                action()
+            }
+        }
+    }
 }

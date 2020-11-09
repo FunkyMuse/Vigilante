@@ -4,16 +4,15 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.animation.doOnEnd
 import androidx.core.view.doOnLayout
-import androidx.lifecycle.coroutineScope
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
-import com.crazylegend.coroutines.withMainContext
 import com.crazylegend.kotlinextensions.animations.playAnimation
 import com.crazylegend.kotlinextensions.animations.zoomInUp
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
 import com.crazylegend.vigilante.databinding.FragmentSplashBinding
+import com.crazylegend.vigilante.utils.DEFAULT_ANIM_TIME
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -32,11 +31,9 @@ class SplashFragment : AbstractFragment<FragmentSplashBinding>(R.layout.fragment
     }
 
     private fun goToDestination(fragmentDirections: NavDirections) {
-        viewLifecycleOwner.lifecycle.coroutineScope.launchWhenResumed {
-            withMainContext {
-                binding.logo.zoomInUp().playAnimation(1500).doOnEnd {
-                    findNavController().navigate(fragmentDirections)
-                }
+        onResumedUIFunction {
+            binding.logo.zoomInUp().playAnimation(DEFAULT_ANIM_TIME).doOnEnd {
+                findNavController().navigate(fragmentDirections)
             }
         }
     }

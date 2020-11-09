@@ -29,6 +29,11 @@ class AdapterProvider @Inject constructor(
         private val prefsProvider: PrefsProvider
 ) {
 
+    /**
+     * just move them into a class where the prefs provider would be a constructor injected into the adapter no the view holder
+     * why are you so lazy? :/
+     */
+
 
     val listFilterAdapter by lazy(LazyThreadSafetyMode.NONE) {
         generateRecycler<FilterModel, ListFilterViewHolder, ItemviewFilterBinding>(::ListFilterViewHolder, ItemviewFilterBinding::inflate) { item, holder, position, itemCount ->

@@ -63,9 +63,9 @@ class MainActivity : AppCompatActivity() {
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            binding.backButton.isVisible = destination.id in showBackButtonList
+            binding.backButton.root.isVisible = destination.id in showBackButtonList
         }
-        binding.backButton.setOnClickListenerCooldown {
+        binding.backButton.root.setOnClickListenerCooldown {
             navController.navigateUpSafe()
         }
     }

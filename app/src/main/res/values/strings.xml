@@ -105,4 +105,16 @@
     <string name="disk_status">Disk status</string>
     <string name="crash_copied_to_clipboard">Crash details copied to clipboard!</string>
     <string name="web_browser_required">Web browser required for this action!</string>
+    <string name="informational">Informational</string>
+    <string name="customizations">Customizations</string>
+    <string name="home_page">Home page</string>
+    <string name="device">Device</string>
+    <string name="license">GPL 3.0</string>
+    <string name="license_title">License</string>
+    <string name="root_status">Root status</string>
+    <string name="device_not_rooted">Device not rooted</string>
+    <string name="device_rooted">Device rooted</string>
+    <string name="magisk_status">Magisk status</string>
+    <string name="magisk_not_detected">Magisk not present</string>
+    <string name="magisk_detected">Magisk detected</string>
 </resources>

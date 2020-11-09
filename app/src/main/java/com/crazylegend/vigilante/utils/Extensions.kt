@@ -19,6 +19,7 @@ import net.sqlcipher.database.SupportFactory
 const val DEFAULT_LANGUAGE = "en"
 const val VIGILANTE_DB_NAME = "vigilante-db"
 const val NEW_ISSUE_URL = "https://github.com/CraZyLegenD/Vigilante/issues/new"
+const val HOME_PAGE = "https://github.com/CraZyLegenD/Vigilante"
 val dismissPackages = setOf(
         "com.google.android.permissioncontroller",
         "com.android.systemui",

@@ -98,7 +98,7 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
         }
 
 
-        binding.backButton.setOnClickListenerCooldown {
+        binding.backButton.root.setOnClickListenerCooldown {
             findNavController().navigateSafe(
                     HomeFragmentDirections.destinationConfirmation(
                             cancelButtonText = getString(R.string.discard_changes),

@@ -2,11 +2,12 @@ package com.crazylegend.vigilante.notifications
 
 import android.app.Notification
 import android.os.Build
+import android.text.SpannableString
 import android.view.accessibility.AccessibilityEvent
 import androidx.lifecycle.ServiceLifecycleDispatcher
 import com.crazylegend.coroutines.makeIOCall
 import com.crazylegend.kotlinextensions.currentTimeMillis
-import com.crazylegend.kotlinextensions.log.debug
+import com.crazylegend.kotlinextensions.tryOrElse
 import com.crazylegend.vigilante.BuildConfig
 import com.crazylegend.vigilante.contracts.service.ServiceManagersCoroutines
 import com.crazylegend.vigilante.di.providers.PrefsProvider
@@ -30,8 +31,13 @@ class NotificationsProvider @Inject constructor(
             val notification = event.parcelableData as? Notification
             val extras = notification?.extras
             val title = extras?.getString("android.title", null)
-            val bigText = extras?.getString("android.bigText", null)
-            val text = extras?.getString("android.text", null)
+
+            val bigText = tryOrElse(extras?.get("android.bigText") as? SpannableString) {
+                extras?.getString("android.bigText", null)
+            }
+            val text = tryOrElse(extras?.get("android.text") as? SpannableString) {
+                extras?.getString("android.text", null)
+            }
             val visibility = notification?.visibility
             val category = notification?.category
             val color = notification?.color
@@ -43,10 +49,10 @@ class NotificationsProvider @Inject constructor(
                 null
             }
             val sentByPackage = event.packageName?.toString()
-            val notificationModel = NotificationsModel(title, bigText, text,
+            val notificationModel = NotificationsModel(title, bigText?.toString(), text?.toString(),
                     visibility, category, color, flags, group, channelId, sentByPackage, Date(currentTimeMillis))
             if (prefsProvider.isVigilanteExcludedFromNotifications && sentByPackage == BuildConfig.APPLICATION_ID) {
-                debug { "DO SOMETHING IN THE FUTURE MAYBE, like separate sections idk?" }
+                //DO SOMETHING IN THE FUTURE MAYBE, like separate sections idk
             } else {
                 saveNotification(notificationModel)
             }

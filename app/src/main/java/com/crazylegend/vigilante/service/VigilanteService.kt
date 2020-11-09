@@ -8,6 +8,9 @@ import android.view.LayoutInflater
 import android.view.WindowManager
 import android.view.accessibility.AccessibilityEvent
 import android.widget.FrameLayout
+import androidx.core.view.doOnLayout
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
 import com.crazylegend.kotlinextensions.context.windowManager
 import com.crazylegend.kotlinextensions.views.gone
@@ -78,42 +81,54 @@ class VigilanteService : AccessibilityService() {
 
         serviceLayoutListener = object : ServiceLayoutListener {
             override fun showCamera() {
-                if (::cameraBinding.isInitialized)
+                if (::cameraBinding.isInitialized) {
                     cameraBinding.dot.visible()
-
-                checkIfTheyAreTheSameLayoutPositions(prefsProvider.getMicPositionPref, prefsProvider.getCameraPositionPref)
+                    checkIfTheyAreTheSameLayoutPositions(prefsProvider.getMicPositionPref, prefsProvider.getCameraPositionPref)
+                }
             }
 
             override fun hideCamera() {
-                if (::cameraBinding.isInitialized)
+                if (::cameraBinding.isInitialized) {
                     cameraBinding.dot.gone()
+                    resetMargins()
+                }
             }
 
             override fun showMic() {
-                if (::micBinding.isInitialized)
+                if (::micBinding.isInitialized) {
                     micBinding.dot.visible()
-
-                checkIfTheyAreTheSameLayoutPositions(prefsProvider.getMicPositionPref, prefsProvider.getCameraPositionPref)
+                    checkIfTheyAreTheSameLayoutPositions(prefsProvider.getMicPositionPref, prefsProvider.getCameraPositionPref)
+                }
             }
 
             override fun hideMic() {
-                if (::micBinding.isInitialized)
+                if (::micBinding.isInitialized) {
                     micBinding.dot.gone()
+                    resetMargins()
+                }
             }
         }
 
         serviceParamsListener = ServiceParamsListener {
             if (it == CAMERA_CUSTOMIZATION_BASE_PREF) {
-                checkIfTheyAreTheSameLayoutPositions(prefsProvider.getMicPositionPref, prefsProvider.getCameraPositionPref)
                 updateCameraPrefs()
+                checkIfTheyAreTheSameLayoutPositions(prefsProvider.getMicPositionPref, prefsProvider.getCameraPositionPref)
                 windowManager?.updateViewLayout(cameraBinding.root, cameraParams)
             } else {
-                checkIfTheyAreTheSameLayoutPositions(prefsProvider.getMicPositionPref, prefsProvider.getCameraPositionPref)
                 updateMicPrefs()
+                checkIfTheyAreTheSameLayoutPositions(prefsProvider.getMicPositionPref, prefsProvider.getCameraPositionPref)
                 windowManager?.updateViewLayout(micBinding.root, micParams)
             }
         }
-        checkIfTheyAreTheSameLayoutPositions(prefsProvider.getMicPositionPref, prefsProvider.getCameraPositionPref)
+    }
+
+    private fun resetMargins() {
+        if (micBinding.dot.isVisible && cameraBinding.dot.isGone) {
+            resetMicBindingMargins()
+        }
+        if (cameraBinding.dot.isVisible && micBinding.dot.isGone) {
+            resetCameraBindingMargins()
+        }
     }
 
     private fun setupMicLayout() {
@@ -140,17 +155,82 @@ class VigilanteService : AccessibilityService() {
     private fun checkIfTheyAreTheSameLayoutPositions(layoutMicPositionPref: Int, layoutCameraPositionPref: Int) {
         if (layoutCameraPositionPref == layoutMicPositionPref) {
             val customMargin = 100
-            when (layoutCameraPositionPref) {
-                0 -> micBinding.dot.updateLayoutParams<FrameLayout.LayoutParams> { marginStart = customMargin }
-                1 -> micBinding.dot.updateLayoutParams<FrameLayout.LayoutParams> { marginEnd = customMargin }
-                2 -> micBinding.dot.updateLayoutParams<FrameLayout.LayoutParams> { topMargin = customMargin }
-                3 -> micBinding.dot.updateLayoutParams<FrameLayout.LayoutParams> { topMargin = customMargin }
-                4 -> micBinding.dot.updateLayoutParams<FrameLayout.LayoutParams> { marginStart = customMargin }
-                5 -> micBinding.dot.updateLayoutParams<FrameLayout.LayoutParams> { marginEnd = customMargin }
+            val micVisibility = micBinding.dot.isVisible
+            val camVisibility = cameraBinding.dot.isVisible
+            if (micVisibility && camVisibility) {
+                when (layoutCameraPositionPref) {
+                    0 -> {
+                        micBinding.dot.updateLayoutParams<FrameLayout.LayoutParams> {
+                            marginStart = customMargin
+                            marginEnd = 0
+                            bottomMargin = 0
+                        }
+                        resetCameraBindingMargins()
+                    }
+                    1 -> {
+                        cameraBinding.dot.updateLayoutParams<FrameLayout.LayoutParams> {
+                            marginEnd = customMargin
+                            marginStart = 0
+                            bottomMargin = 0
+                        }
+                        resetMicBindingMargins()
+                    }
+                    2 -> {
+                        micBinding.dot.updateLayoutParams<FrameLayout.LayoutParams> {
+                            marginStart = 0
+                            marginEnd = 0
+                            bottomMargin = customMargin
+                        }
+                        resetCameraBindingMargins()
+                    }
+                    3 -> {
+                        micBinding.dot.updateLayoutParams<FrameLayout.LayoutParams> {
+                            marginStart = 0
+                            marginEnd = 0
+                            bottomMargin = customMargin
+                        }
+                        resetCameraBindingMargins()
+                    }
+                    4 -> {
+                        micBinding.dot.updateLayoutParams<FrameLayout.LayoutParams> {
+                            marginStart = customMargin
+                            marginEnd = 0
+                            bottomMargin = 0
+                        }
+                        resetCameraBindingMargins()
+                    }
+                    5 -> {
+                        cameraBinding.dot.updateLayoutParams<FrameLayout.LayoutParams> {
+                            marginEnd = customMargin
+                            marginStart = 0
+                            bottomMargin = 0
+                        }
+                        resetMicBindingMargins()
+                    }
+                }
             }
         }
     }
 
+    private fun resetCameraBindingMargins() {
+        cameraBinding.dot.doOnLayout {
+            it.updateLayoutParams<FrameLayout.LayoutParams> {
+                marginStart = 0
+                bottomMargin = 0
+                marginEnd = 0
+            }
+        }
+    }
+
+    private fun resetMicBindingMargins() {
+        micBinding.dot.doOnLayout {
+            it.updateLayoutParams<FrameLayout.LayoutParams> {
+                marginStart = 0
+                bottomMargin = 0
+                marginEnd = 0
+            }
+        }
+    }
 
     private fun updateMicPrefs() {
         updatePrefs(micBinding, prefsProvider.getMicSizePref, prefsProvider.getMicColorPref, prefsProvider.getLayoutMicPositionPref, micParams)

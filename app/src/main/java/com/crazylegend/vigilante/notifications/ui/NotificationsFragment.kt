@@ -26,9 +26,8 @@ class NotificationsFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.l
 
     override val binding by viewBinding(LayoutRecyclerBinding::bind)
 
-    private val adapter by lazy {
-        adapterProvider.notificationsAdapter
-    }
+    @Inject
+    lateinit var adapter: NotificationsAdapter
 
     private val notificationsVM by viewModels<NotificationsVM>()
 

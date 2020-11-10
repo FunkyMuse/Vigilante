@@ -23,9 +23,9 @@ class CameraAccessFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.la
 
     private val cameraAccessVM by viewModels<CameraAccessVM>()
     override val binding: LayoutRecyclerBinding by viewBinding(LayoutRecyclerBinding::bind)
-    private val cameraAccessAdapter by lazy {
-        adapterProvider.cameraAccessAdapter
-    }
+
+    @Inject
+    lateinit var cameraAccessAdapter: CameraAccessAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

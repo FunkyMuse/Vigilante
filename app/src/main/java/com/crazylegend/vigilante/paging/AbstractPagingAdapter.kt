@@ -50,16 +50,3 @@ abstract class AbstractPagingAdapter<T : Any, VH : RecyclerView.ViewHolder, VB :
 
 }
 
-inline fun <reified T : Any, VH : RecyclerView.ViewHolder, VB : ViewBinding> generatePagingRecycler(
-        noinline viewHolder: (binding: VB) -> VH,
-        noinline bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> VB,
-        noinline areItemsTheSameCallback: (old: T, new: T) -> Boolean? = { _, _ -> null },
-        noinline areContentsTheSameCallback: (old: T, new: T) -> Boolean? = { _, _ -> null },
-        crossinline binder: (item: T?, holder: VH, position: Int, itemCount: Int) -> Unit): AbstractPagingAdapter<T, VH, VB> {
-
-    return object : AbstractPagingAdapter<T, VH, VB>(viewHolder, bindingInflater, areItemsTheSameCallback, areContentsTheSameCallback) {
-        override fun bindItems(item: T?, holder: VH, position: Int, itemCount: Int) {
-            binder(item, holder, position, itemCount)
-        }
-    }
-}

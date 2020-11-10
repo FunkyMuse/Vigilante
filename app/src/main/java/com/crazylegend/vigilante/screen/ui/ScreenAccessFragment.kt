@@ -33,9 +33,8 @@ class ScreenAccessFragment : AbstractFragment<FragmentScreenAccessBinding>(R.lay
     @Inject
     override lateinit var databaseLoadingProvider: DatabaseLoadingProvider
 
-    private val adapter by lazy {
-        adapterProvider.screenAdapter
-    }
+    @Inject
+    lateinit var adapter: ScreenAccessAdapter
 
     private val screenVM by viewModels<ScreenVM>()
 

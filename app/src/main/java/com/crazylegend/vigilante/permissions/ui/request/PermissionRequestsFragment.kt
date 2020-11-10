@@ -31,9 +31,8 @@ class PermissionRequestsFragment : AbstractFragment<FragmentPermissionsBinding>(
     override val binding by viewBinding(FragmentPermissionsBinding::bind)
     private val permissionRequestVM by viewModels<PermissionRequestsVM>()
 
-    private val adapter by lazy {
-        adapterProvider.permissionRequestAdapter
-    }
+    @Inject
+    lateinit var adapter: PermissionRequestsAdapter
 
     private val viewProneToVisibilityChange: Array<View>
         get() = arrayOf(

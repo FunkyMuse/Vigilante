@@ -12,6 +12,7 @@ import com.crazylegend.vigilante.abstracts.AbstractFragment
 import com.crazylegend.vigilante.contracts.LoadingDBsInFragments
 import com.crazylegend.vigilante.databinding.LayoutRecyclerBinding
 import com.crazylegend.vigilante.di.providers.DatabaseLoadingProvider
+import com.crazylegend.vigilante.power.adapter.PowerAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -26,9 +27,8 @@ class PowerFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.layout_re
     @Inject
     override lateinit var databaseLoadingProvider: DatabaseLoadingProvider
 
-    private val adapter by lazy {
-        adapterProvider.powerAdapter
-    }
+    @Inject
+    lateinit var adapter: PowerAdapter
 
     private val powerVM by viewModels<PowerVM>()
 

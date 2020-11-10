@@ -233,11 +233,13 @@ class VigilanteService : AccessibilityService() {
     }
 
     private fun updateMicPrefs() {
-        updatePrefs(micBinding, prefsProvider.getMicSizePref, prefsProvider.getMicColorPref, prefsProvider.getLayoutMicPositionPref, micParams)
+        if (::micBinding.isInitialized)
+            updatePrefs(micBinding, prefsProvider.getMicSizePref, prefsProvider.getMicColorPref, prefsProvider.getLayoutMicPositionPref, micParams)
     }
 
     private fun updateCameraPrefs() {
-        updatePrefs(cameraBinding, prefsProvider.getCameraSizePref, prefsProvider.getCameraColorPref, prefsProvider.getLayoutCameraPositionPref, cameraParams)
+        if (::cameraBinding.isInitialized)
+            updatePrefs(cameraBinding, prefsProvider.getCameraSizePref, prefsProvider.getCameraColorPref, prefsProvider.getLayoutCameraPositionPref, cameraParams)
     }
 
     private fun updatePrefs(binding: ServiceLayoutDotBinding, sizePref: Float, colorPref: Int, positionPref: Int, params: WindowManager.LayoutParams) {

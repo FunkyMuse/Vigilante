@@ -22,9 +22,8 @@ class HeadsetFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.layout_
     override lateinit var databaseLoadingProvider: DatabaseLoadingProvider
     override val binding by viewBinding(LayoutRecyclerBinding::bind)
 
-    private val adapter by lazy {
-        adapterProvider.headsetAdapter
-    }
+    @Inject
+    lateinit var adapter: HeadsetAdapter
 
     private val headsetVM by viewModels<HeadsetVM>()
 

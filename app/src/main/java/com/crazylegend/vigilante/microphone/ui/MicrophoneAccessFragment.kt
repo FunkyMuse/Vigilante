@@ -23,9 +23,8 @@ class MicrophoneAccessFragment : AbstractFragment<LayoutRecyclerBinding>(R.layou
     private val microphoneAccessVM by viewModels<MicrophoneAccessVM>()
     override val binding: LayoutRecyclerBinding by viewBinding(LayoutRecyclerBinding::bind)
 
-    private val micAccessAdapter by lazy {
-        adapterProvider.micAccessAdapter
-    }
+    @Inject
+    lateinit var micAccessAdapter: MicrophoneAccessAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

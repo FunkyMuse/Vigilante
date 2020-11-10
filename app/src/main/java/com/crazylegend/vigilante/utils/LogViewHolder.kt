@@ -25,53 +25,52 @@ import java.util.*
 /**
  * Created by crazy on 11/3/20 to long live and prosper !
  */
-class LogViewHolder(private val binding: ItemviewLogBinding,
-                    private val prefsProvider: PrefsProvider) : RecyclerView.ViewHolder(binding.root) {
+class LogViewHolder(private val binding: ItemviewLogBinding) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: CameraModel) {
+    fun bind(item: CameraModel, prefsProvider: PrefsProvider) {
         binding.title.setPrecomputedText(tryOrNull { context.getAppName(item.packageUsingCamera.toString()) })
         binding.image.setImageDrawable(tryOrNull { context.getAppIcon(item.packageUsingCamera.toString()) })
         binding.content.setPrecomputedText(item.cameraStartedUsageTime?.toString(prefsProvider.getDateFormat))
     }
 
-    fun bind(item: MicrophoneModel) {
+    fun bind(item: MicrophoneModel, prefsProvider: PrefsProvider) {
         binding.title.setPrecomputedText(tryOrNull { context.getAppName(item.packageUsingCamera.toString()) })
         binding.image.setImageDrawable(tryOrNull { context.getAppIcon(item.packageUsingCamera.toString()) })
         binding.content.setPrecomputedText(item.microphoneStartedUsageTime?.toString(prefsProvider.getDateFormat))
     }
 
 
-    fun bind(item: UsageStats) {
+    fun bind(item: UsageStats, prefsProvider: PrefsProvider) {
         binding.title.setPrecomputedText(tryOrNull { context.getAppName(item.packageName.toString()) })
         binding.image.setImageDrawable(tryOrNull { context.getAppIcon(item.packageName.toString()) })
         binding.content.setPrecomputedText(Date(item.lastTimeUsed).toString(prefsProvider.getDateFormat))
     }
 
-    fun bind(screenModel: ScreenModel) {
+    fun bind(screenModel: ScreenModel, prefsProvider: PrefsProvider) {
         binding.title.setPrecomputedText(screenModel.screenTitle(context))
         binding.content.setPrecomputedText(screenModel.screenActionTime.toString(prefsProvider.getDateFormat))
         binding.image.setImageResource(screenModel.screenRes)
     }
 
-    fun bind(item: NotificationsModel) {
+    fun bind(item: NotificationsModel, prefsProvider: PrefsProvider) {
         binding.title.setPrecomputedText(tryOrNull { context.getAppName(item.sentByPackage.toString()) })
         binding.image.setImageDrawable(tryOrNull { context.getAppIcon(item.sentByPackage.toString()) })
         binding.content.setPrecomputedText(item.showTime.toString(prefsProvider.getDateFormat))
     }
 
-    fun bind(item: HeadsetModel) {
+    fun bind(item: HeadsetModel, prefsProvider: PrefsProvider) {
         binding.title.setPrecomputedText(item.connectionTypeTitle(context))
         binding.image.setImageResource(R.drawable.headphones)
         binding.content.setPrecomputedText(item.headsetActionTime?.toString(prefsProvider.getDateFormat))
     }
 
-    fun bind(item: PermissionRequestModel) {
+    fun bind(item: PermissionRequestModel, prefsProvider: PrefsProvider) {
         binding.title.setPrecomputedText(tryOrNull { context.getAppName(item.packageRequestingThePermission.toString()) })
         binding.image.setImageDrawable(tryOrNull { context.getAppIcon(item.packageRequestingThePermission.toString()) })
         binding.content.setPrecomputedText(item.date.toString(prefsProvider.getDateFormat))
     }
 
-    fun bind(item: PowerModel) {
+    fun bind(item: PowerModel, prefsProvider: PrefsProvider) {
         binding.title.setPrecomputedText(getString(item.chargingTitle))
         binding.image.setImageResource(item.chargingDrawable)
         binding.content.setPrecomputedText(item.date.toString(prefsProvider.getDateFormat))

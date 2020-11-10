@@ -3,6 +3,7 @@ package com.crazylegend.vigilante.activities
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
+import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
@@ -16,6 +17,7 @@ import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.databinding.ActivityMainBinding
 import com.crazylegend.vigilante.utils.DEFAULT_LANGUAGE
+import com.crazylegend.vigilante.utils.EdgeToEdge
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -51,9 +53,14 @@ class MainActivity : AppCompatActivity() {
                 R.id.powerFragment, R.id.powerDetailsDialog
         )
 
+    override fun onPostCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+        super.onPostCreate(savedInstanceState, persistentState)
+        EdgeToEdge.setUpRoot(binding.root)
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         if (isIgnoringBatteryOptimization != true) {
             //show a dialog maybe?
             requestBatteryOptimizations()

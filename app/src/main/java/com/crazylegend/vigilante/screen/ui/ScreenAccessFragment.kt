@@ -14,10 +14,12 @@ import com.crazylegend.navigation.navigateSafe
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
+import com.crazylegend.vigilante.contracts.EdgeToEdgeScrolling
 import com.crazylegend.vigilante.contracts.LoadingDBsInFragments
 import com.crazylegend.vigilante.databinding.FragmentScreenAccessBinding
 import com.crazylegend.vigilante.di.providers.DatabaseLoadingProvider
 import com.crazylegend.vigilante.filter.ListFilterBottomSheet
+import com.crazylegend.vigilante.utils.EdgeToEdge
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
@@ -26,7 +28,11 @@ import javax.inject.Inject
  * Created by crazy on 11/4/20 to long live and prosper !
  */
 @AndroidEntryPoint
-class ScreenAccessFragment : AbstractFragment<FragmentScreenAccessBinding>(R.layout.fragment_screen_access), LoadingDBsInFragments {
+class ScreenAccessFragment : AbstractFragment<FragmentScreenAccessBinding>(R.layout.fragment_screen_access), LoadingDBsInFragments, EdgeToEdgeScrolling {
+
+    override fun edgeToEdgeScrollingContent() {
+        EdgeToEdge.setUpScrollingContent(binding.recycler)
+    }
 
     override val binding: FragmentScreenAccessBinding by viewBinding(FragmentScreenAccessBinding::bind)
 

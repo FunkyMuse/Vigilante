@@ -12,4 +12,8 @@
     <color name="backgroundVariant">#DDDDDD</color>
     <color name="dotActive">#FFA183</color>
     <color name="dotInactive">#FFF4F2</color>
+    <color name="dark_scrim">#66333333</color>
+    <color name="light_scrim">#DCDCDC</color>
+    <color name="navigationBarColor">@color/dark_scrim</color>
+    <color name="statusBarColor">@color/light_scrim</color>
 </resources>

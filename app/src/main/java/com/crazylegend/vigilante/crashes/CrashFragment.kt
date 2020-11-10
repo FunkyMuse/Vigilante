@@ -10,7 +10,9 @@ import com.crazylegend.recyclerview.clickListeners.forItemClickListener
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
+import com.crazylegend.vigilante.contracts.EdgeToEdgeScrolling
 import com.crazylegend.vigilante.databinding.LayoutRecyclerBinding
+import com.crazylegend.vigilante.utils.EdgeToEdge
 import com.crazylegend.vigilante.utils.NEW_ISSUE_URL
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,12 +20,16 @@ import dagger.hilt.android.AndroidEntryPoint
  * Created by crazy on 11/2/20 to long live and prosper !
  */
 @AndroidEntryPoint
-class CrashFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.layout_recycler) {
+class CrashFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.layout_recycler), EdgeToEdgeScrolling {
 
     override val binding by viewBinding(LayoutRecyclerBinding::bind)
 
     private val crashesAdapter by lazy {
         adapterProvider.crashesAdapter
+    }
+
+    override fun edgeToEdgeScrollingContent() {
+        EdgeToEdge.setUpScrollingContent(binding.recycler)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

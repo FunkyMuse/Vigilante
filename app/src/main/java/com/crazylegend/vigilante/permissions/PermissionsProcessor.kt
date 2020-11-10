@@ -31,12 +31,12 @@ class PermissionsProcessor @Inject constructor(
     override fun registerCallbacks() {
         scope.launch {
             permissionFlow.collectLatest {
-                sendNotification(it)
+                savePermissionMessage(it)
             }
         }
     }
 
-    private fun sendNotification(newPermissionMessage: String) {
+    private fun savePermissionMessage(newPermissionMessage: String) {
         if (newPermissionMessage.isNotBlank()) {
             val currentPackageRef = packageRequestingPermission
             val settingsTitle = settingsPermissionTitle.getAndSet(null)
@@ -49,6 +49,7 @@ class PermissionsProcessor @Inject constructor(
     }
 
     override fun disposeResources() {}
+
 
     override fun eventActionByPackageName(eventPackageName: CharSequence) {
         packageRequestingPermission = eventPackageName.toString()

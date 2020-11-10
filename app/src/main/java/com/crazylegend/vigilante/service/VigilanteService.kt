@@ -289,10 +289,12 @@ class VigilanteService : AccessibilityService() {
     private fun rememberEventPackageName(event: AccessibilityEvent) {
         val eventPackageName = event.packageName
         currentPackageString = eventPackageName?.toString() ?: packageName
-        if (event.eventType == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED && eventPackageName != null && eventPackageName !in dismissPackages) {
-            cameraProcessor.eventActionByPackageName(eventPackageName)
-            permissionsProcessor.eventActionByPackageName(eventPackageName)
-            microphoneProcessor.eventActionByPackageName(eventPackageName)
+        if (event.eventType == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED && eventPackageName != null) {
+            if (eventPackageName !in dismissPackages) {
+                cameraProcessor.eventActionByPackageName(eventPackageName)
+                permissionsProcessor.eventActionByPackageName(eventPackageName)
+                microphoneProcessor.eventActionByPackageName(eventPackageName)
+            }
             permissionsProcessor.extractPermissionMessage(event.source)
         }
     }

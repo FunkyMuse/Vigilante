@@ -9,10 +9,12 @@ import com.crazylegend.recyclerview.clickListeners.forItemClickListener
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
+import com.crazylegend.vigilante.contracts.EdgeToEdgeScrolling
 import com.crazylegend.vigilante.contracts.LoadingDBsInFragments
 import com.crazylegend.vigilante.databinding.LayoutRecyclerBinding
 import com.crazylegend.vigilante.di.providers.DatabaseLoadingProvider
 import com.crazylegend.vigilante.power.adapter.PowerAdapter
+import com.crazylegend.vigilante.utils.EdgeToEdge
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -20,7 +22,11 @@ import javax.inject.Inject
  * Created by crazy on 11/7/20 to long live and prosper !
  */
 @AndroidEntryPoint
-class PowerFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.layout_recycler), LoadingDBsInFragments {
+class PowerFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.layout_recycler), LoadingDBsInFragments, EdgeToEdgeScrolling {
+
+    override fun edgeToEdgeScrollingContent() {
+        EdgeToEdge.setUpScrollingContent(binding.recycler)
+    }
 
     override val binding by viewBinding(LayoutRecyclerBinding::bind)
 

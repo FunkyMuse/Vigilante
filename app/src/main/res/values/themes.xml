@@ -3,7 +3,6 @@
     <style name="Theme.Vigilante" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="fontFamily">@font/poppins_regular</item>
-        <item name="colorPrimaryDark">@color/primary</item>
         <item name="colorPrimaryVariant">@color/primary</item>
         <item name="colorOnPrimary">@android:color/white</item>
         <item name="colorSecondary">@color/secondary</item>
@@ -11,7 +10,9 @@
         <item name="colorAccent">@color/iconsColor</item>
         <item name="bottomSheetDialogTheme">@style/CustomBottomSheetDialog</item>
         <item name="colorOnSecondary">@android:color/black</item>
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/navigationBarColor
+        </item>
+        <item name="android:statusBarColor" tools:ignore="NewApi">@color/statusBarColor</item>
     </style>
 
     <style name="LightText" parent="Widget.MaterialComponents.TextView">

@@ -2,10 +2,12 @@ package com.crazylegend.vigilante.settings
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.coroutineScope
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
+import com.crazylegend.coroutines.withMainContext
 import com.crazylegend.kotlinextensions.context.packageVersionName
 import com.crazylegend.kotlinextensions.fragments.shortToast
 import com.crazylegend.kotlinextensions.intent.openWebPage
@@ -13,9 +15,11 @@ import com.crazylegend.kotlinextensions.preferences.booleanChangeListener
 import com.crazylegend.kotlinextensions.preferences.onClick
 import com.crazylegend.kotlinextensions.preferences.stringChangeListener
 import com.crazylegend.vigilante.R
+import com.crazylegend.vigilante.di.providers.AuthProvider
 import com.crazylegend.vigilante.di.providers.PrefsProvider
 import com.crazylegend.vigilante.utils.HOME_PAGE
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -24,13 +28,11 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class SettingsFragment : PreferenceFragmentCompat() {
 
-    companion object {
-        const val SAFE_DOT_POSITION = 1
-    }
-
     @Inject
     lateinit var prefsProvider: PrefsProvider
 
+    @Inject
+    lateinit var authProvider: AuthProvider
 
     private var notificationsSwitch: SwitchPreferenceCompat? = null
     private var version: Preference? = null
@@ -38,6 +40,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     private var dotSwitch: SwitchPreferenceCompat? = null
     private var homePage: Preference? = null
     private var excludeVigilanteFromNotificationsSwitch: SwitchPreferenceCompat? = null
+    private var biometricAuth: SwitchPreferenceCompat? = null
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.settings)
@@ -46,6 +49,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         homePage = findPreference(HOME_PAGE_PREF)
         version = findPreference(VERSION_PREF_KEY)
         dotSwitch = findPreference(DOT_PREF_KEY)
+        biometricAuth = findPreference(BIOMETRIC_AUTH_PREF_KEY)
         excludeVigilanteFromNotificationsSwitch = findPreference(EXCLUDE_VIGILANTE_FROM_NOTIFICATIONS_PREF_KEY)
     }
 
@@ -83,6 +87,47 @@ class SettingsFragment : PreferenceFragmentCompat() {
         super.onResume()
         updateNotificationSwitch()
         updateDateSummary()
+        updateBiometricAuthAvailability()
+    }
+
+    private fun updateBiometricAuthAvailability() {
+        val summary = if (authProvider.canAuthenticate) getString(R.string.biometric_auth_expl) else getString(R.string.unsupported_device)
+        biometricAuth?.summary = summary
+        biometricAuth?.isEnabled = authProvider.canAuthenticate
+        if (authProvider.canAuthenticate) {
+            biometricAuth?.isChecked = prefsProvider.isBiometricAuthEnabled
+            biometricAuth.booleanChangeListener { _, newValue ->
+                if (newValue) {
+                    confirmBiometricAuth()
+                } else {
+                    prefsProvider.updateBiometricStatus(newValue)
+                }
+            }
+        }
+    }
+
+    private fun confirmBiometricAuth() {
+        authProvider.confirmBiometricAuth(R.string.verification_required, R.string.prompt_info_expl, onAuthFailed = {
+            //auth failed action
+            prefsProvider.updateBiometricStatus(false)
+            updateCheckBiometricAuth()
+        }, onAuthError = { _, _ ->
+            //handle auth error message and codes
+            prefsProvider.updateBiometricStatus(false)
+            updateCheckBiometricAuth()
+        }) {
+            //handle successful authentication
+            prefsProvider.updateBiometricStatus(true)
+            updateCheckBiometricAuth(true)
+        }
+    }
+
+    private fun updateCheckBiometricAuth(status: Boolean = false) {
+        viewLifecycleOwner.lifecycle.coroutineScope.launch {
+            withMainContext {
+                biometricAuth?.isChecked = status
+            }
+        }
     }
 
     private fun updateDateSummary() {

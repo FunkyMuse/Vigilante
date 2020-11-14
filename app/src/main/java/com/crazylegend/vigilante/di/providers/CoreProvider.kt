@@ -6,6 +6,7 @@ import com.crazylegend.vigilante.BuildConfig
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlin.system.exitProcess
 
 /**
  * Created by crazy on 10/14/20 to long live and prosper !
@@ -27,6 +28,12 @@ class CoreProvider @Inject constructor(@ApplicationContext context: Context) {
             StrictMode.ThreadPolicy.Builder()
                     .detectAll()
                     .build()
+        }
+    }
+
+    fun checkAppId() {
+        if (BuildConfig.APPLICATION_ID != "com.crazylegend.vigilante") {
+            exitProcess(-1)
         }
     }
 

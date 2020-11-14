@@ -35,6 +35,18 @@
 
     <PreferenceCategory
         app:iconSpaceReserved="false"
+        app:title="@string/security">
+
+        <SwitchPreferenceCompat
+            app:key="pref_biometric_auth"
+            app:title="@string/biometric_auth_title"
+            app:summary="@string/biometric_auth_expl"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
         app:title="@string/informational">
 
         <Preference

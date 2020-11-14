@@ -13,6 +13,19 @@
         <item>dd-MM-yyyy HH:mm:ss</item>
         <item>MM-dd-yyyy HH:mm:ss</item>
         <item>yyyy-dd-MM HH:mm:ss</item>
+
+
+        <item>dd.MM.yyyy hh:mm:ss a</item>
+        <item>MM.dd.yyyy hh:mm:ss a</item>
+        <item>yyyy.dd.MM hh:mm:ss a</item>
+
+        <item>dd/MM/yyyy hh:mm:ss a</item>
+        <item>MM/dd/yyyy hh:mm:ss a</item>
+        <item>yyyy/dd/MM hh:mm:ss a</item>
+
+        <item>dd-MM-yyyy hh:mm:ss a</item>
+        <item>MM-dd-yyyy hh:mm:ss a</item>
+        <item>yyyy-dd-MM hh:mm:ss a</item>
     </string-array>
 
 </resources>

@@ -27,6 +27,7 @@ class VigilanteApp : Application() {
         coreProvider.apply {
             setVMPolicy()
             setThreadPolicy()
+            checkAppId()
         }
     }
 

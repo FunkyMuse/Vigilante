@@ -14,11 +14,12 @@ import com.crazylegend.vigilante.customization.CustomizationFragment.Companion.S
 import com.crazylegend.vigilante.di.qualifiers.EncryptedPrefs
 import com.crazylegend.vigilante.settings.*
 import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * Created by crazy on 11/2/20 to long live and prosper !
  */
-
+@Singleton
 class PrefsProvider @Inject constructor(@EncryptedPrefs
                                         private val defaultPrefs: SharedPreferences) {
 
@@ -99,4 +100,6 @@ class PrefsProvider @Inject constructor(@EncryptedPrefs
         defaultPrefs.putBoolean(INTRO_PREF, true)
     }
 
+    val isBiometricAuthEnabled get() = defaultPrefs.getBoolean(BIOMETRIC_AUTH_PREF_KEY, false)
+    fun updateBiometricStatus(status: Boolean) = defaultPrefs.putBoolean(BIOMETRIC_AUTH_PREF_KEY, status)
 }

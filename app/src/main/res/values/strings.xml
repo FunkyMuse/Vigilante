@@ -124,4 +124,12 @@
     <string name="final_pre_expl">This app uses encrypted preference choices, database and focuses on privacy and productivity</string>
     <string name="the_app_is_an_open_source_project_and_will_remain_as_such_as_it_focuses_on_privacy_and_it_s_integrity">The app is an open source project and will remain as such as it focuses on privacy and it\'s integrity.</string>
     <string name="device_info">Device info</string>
+    <string name="security">Security</string>
+    <string name="biometric_auth_expl">Require biometric authentication every time you open the app</string>
+    <string name="biometric_auth_title">Biometric auth on start</string>
+    <string name="unsupported_device">Your device doesn\'t support biometric auth.</string>
+    <string name="verification_required">Verification required</string>
+    <string name="prompt_info_expl">Please verify your identity to enable authentication on start</string>
+    <string name="auth_failed">Authentication failed, try again!</string>
+    <string name="verify_to_proceed">Verify your identity to open the application.</string>
 </resources>

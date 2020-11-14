@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface PowerDAO {
 
-    @Query("select * from powerActions")
+    @Query("select * from powerActions order by dateOfEvent desc")
     fun getAllPowerActions(): PagingSource<Int, PowerModel>
 
     @Query("select count(*) from powerActions where isCharging = 0")

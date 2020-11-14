@@ -3,6 +3,7 @@ package com.crazylegend.vigilante.power.details
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.coroutineScope
 import com.crazylegend.crashyreporter.CrashyReporter
 import com.crazylegend.database.DBResult
 import com.crazylegend.database.handle
@@ -15,6 +16,7 @@ import com.crazylegend.vigilante.abstracts.AbstractBottomSheet
 import com.crazylegend.vigilante.databinding.DialogPowerDetailsBinding
 import com.crazylegend.vigilante.power.db.PowerModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 
 /**
  * Created by crazy on 11/7/20 to long live and prosper !
@@ -29,21 +31,25 @@ class PowerDetailsDialog : AbstractBottomSheet<DialogPowerDetailsBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        powerDetailsVM.powerModel.observe(viewLifecycleOwner) {
-            binding.loading.visibleIfTrueGoneOtherwise(it is DBResult.Querying)
-            it.handle(
-                    dbError = {
-                        CrashyReporter.logException(it)
-                        dismissAllowingStateLoss()
-                        shortToast(R.string.error_occurred)
-                    },
-                    success = {
-                        this?.apply {
+        viewLifecycleOwner.lifecycle.coroutineScope.launchWhenResumed {
+            powerDetailsVM.powerModel.collectLatest {
+                binding.loading.visibleIfTrueGoneOtherwise(it is DBResult.Querying)
+                it.handle(
+                        dbError = { throwable ->
+                            handleDBError(throwable)
+                        },
+                        success = {
                             updateUI(this)
                         }
-                    }
-            )
+                )
+            }
         }
+    }
+
+    private fun handleDBError(throwable: Throwable) {
+        CrashyReporter.logException(throwable)
+        dismissAllowingStateLoss()
+        shortToast(R.string.error_occurred)
     }
 
     private fun updateUI(model: PowerModel) {

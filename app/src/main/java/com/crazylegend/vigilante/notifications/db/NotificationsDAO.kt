@@ -14,7 +14,7 @@ interface NotificationsDAO {
     @Insert
     fun insertNotificationModel(notificationsModel: NotificationsModel)
 
-    @Query("select * from notifications")
+    @Query("select * from notifications order by showTime desc")
     fun getAllNotifications(): PagingSource<Int, NotificationsModel>
 
     @Query("select * from notifications where id =:notificationID limit 1")

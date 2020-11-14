@@ -1,5 +1,5 @@
 ext {
-    utilsVersion = "2.1.11"
+    utilsVersion = "2.1.13"
     lifecycle = '2.3.0-beta01'
     retrofit = "2.9.0"
     rxBindings = "3.1.0"
@@ -10,7 +10,7 @@ ext {
     hiltJetpackVersion = '1.0.0-alpha02'
     crashyVersion = '1.0.9'
     room_version = "2.3.0-alpha03"
-    paging_version = "3.0.0-alpha08"
+    paging_version = "3.0.0-alpha09"
 
 }
 
@@ -23,7 +23,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:4.1.0"
+        classpath 'com.android.tools.build:gradle:4.1.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"

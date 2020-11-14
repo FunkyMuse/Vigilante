@@ -16,7 +16,7 @@ interface PermissionRequestsDAO {
     @Insert
     suspend fun insertPermissionRequest(permissionRequestModel: PermissionRequestModel)
 
-    @Query("select * from permissionRequests")
+    @Query("select * from permissionRequests order by dateOfRequest desc")
     fun getAllPermissionRequests(): PagingSource<Int, PermissionRequestModel>
 
     @Query("select count(*) from permissionRequests")

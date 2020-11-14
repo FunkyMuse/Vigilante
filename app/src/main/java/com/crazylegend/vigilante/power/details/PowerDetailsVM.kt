@@ -4,7 +4,8 @@ import android.app.Application
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
-import com.crazylegend.database.coroutines.makeDBCallLiveData
+import androidx.lifecycle.viewModelScope
+import com.crazylegend.database.coroutines.dbCallStateFlow
 import com.crazylegend.vigilante.abstracts.AbstractAVM
 import com.crazylegend.vigilante.power.db.PowerRepository
 
@@ -18,5 +19,5 @@ class PowerDetailsVM @ViewModelInject constructor(
 
     private val powerID get() = savedStateHandle.get<Int>("powerID") ?: -1
 
-    val powerModel = makeDBCallLiveData { powerRepository.getPowerModelById(powerID) }
+    val powerModel = viewModelScope.dbCallStateFlow { powerRepository.getPowerModelById(powerID) }
 }

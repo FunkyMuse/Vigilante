@@ -25,9 +25,23 @@ data class HeadsetModel(
         @ColumnInfo(name = "headsetUsageType")
         val headsetUsageType: Int,
 
+        /**
+         * AC Charge = 1
+         * USB Charge = 2
+         * Wireless charge = 3
+         * Invalid type  = -1
+         */
+        @ColumnInfo(name = "chargingType")
+        val chargingType: Int,
+
+        @ColumnInfo(name = "batteryPercentage")
+        val batteryPercentage: Int,
+
         @ColumnInfo(name = "id")
         @PrimaryKey(autoGenerate = true)
-        val id: Int = 0) {
+        val id: Int = 0,
+
+        ) {
 
     fun connectionTypeTitle(context: Context): String {
         val stringRes = when (headsetUsageType) {

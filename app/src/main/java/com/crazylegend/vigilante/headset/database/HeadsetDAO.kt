@@ -13,7 +13,7 @@ import androidx.room.Query
 @Dao
 interface HeadsetDAO {
 
-    @Query("select * from headsetAccesses")
+    @Query("select * from headsetAccesses order by headsetActionTime desc")
     fun getAllHeadsetRecords(): PagingSource<Int, HeadsetModel>
 
     @Insert

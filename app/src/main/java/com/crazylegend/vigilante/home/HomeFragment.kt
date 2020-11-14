@@ -2,6 +2,7 @@ package com.crazylegend.vigilante.home
 
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.lifecycle.coroutineScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -21,6 +22,7 @@ import com.crazylegend.vigilante.di.providers.PermissionProvider
 import com.crazylegend.vigilante.home.section.SectionItem
 import com.crazylegend.vigilante.settings.CAMERA_CUSTOMIZATION_BASE_PREF
 import com.crazylegend.vigilante.settings.MIC_CUSTOMIZATION_BASE_PREF
+import com.crazylegend.vigilante.utils.DEFAULT_ANIM_TIME
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -86,8 +88,9 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
         }
 
         binding.themeSwitcher.setOnClickListenerCooldown {
-            prefsProvider.changeTheme()
-            updateDarkThemeIcon()
+            binding.themeIcon.rotateDarkIcon {
+                prefsProvider.changeTheme()
+            }
         }
 
         binding.customizations.setOnClickListenerCooldown {
@@ -144,6 +147,17 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
     override fun onPause() {
         super.onPause()
         binding.outerIndicator.animation?.cancel()
+    }
+
+    private inline fun View.rotateDarkIcon(crossinline endAction: () -> Unit) {
+        animate().rotationBy(360f)
+                .setStartDelay(0)
+                .setInterpolator(AccelerateDecelerateInterpolator())
+                .withEndAction {
+                    endAction()
+                }
+                .setDuration(DEFAULT_ANIM_TIME)
+                .start()
     }
 
     override fun onResume() {

@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import androidx.core.view.setPadding
 import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.coroutineScope
 import com.crazylegend.crashyreporter.CrashyReporter
 import com.crazylegend.database.DBResult
 import com.crazylegend.database.handle
@@ -26,6 +27,7 @@ import com.crazylegend.vigilante.databinding.DialogNotificationDetailsBinding
 import com.crazylegend.vigilante.notifications.db.NotificationsModel
 import com.google.android.material.textview.MaterialTextView
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 
 /**
  * Created by crazy on 11/7/20 to long live and prosper !
@@ -43,20 +45,20 @@ class NotificationDetailsFragment : AbstractBottomSheet<DialogNotificationDetail
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        notificationDetailsVM.notification.observe(viewLifecycleOwner) {
-            binding.loading.visibleIfTrueGoneOtherwise(it is DBResult.Querying)
-            it.handle(
-                    dbError = {
-                        CrashyReporter.logException(it)
-                        dismissAllowingStateLoss()
-                        shortToast(R.string.error_occurred)
-                    },
-                    success = {
-                        this?.apply {
+        viewLifecycleOwner.lifecycle.coroutineScope.launchWhenResumed {
+            notificationDetailsVM.notification.collectLatest {
+                binding.loading.visibleIfTrueGoneOtherwise(it is DBResult.Querying)
+                it.handle(
+                        dbError = {
+                            CrashyReporter.logException(it)
+                            dismissAllowingStateLoss()
+                            shortToast(R.string.error_occurred)
+                        },
+                        success = {
                             updateUI(this)
                         }
-                    }
-            )
+                )
+            }
         }
     }
 

@@ -13,13 +13,13 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ScreenDAO {
 
-    @Query("select * from screenActions")
+    @Query("select * from screenActions order by screenActionTime desc")
     fun getAllScreenActions(): PagingSource<Int, ScreenModel>
 
-    @Query("select * from screenActions where wasScreenLocked = 0")
+    @Query("select * from screenActions where wasScreenLocked = 0 order by screenActionTime desc")
     fun getAllScreenUnlocks(): PagingSource<Int, ScreenModel>
 
-    @Query("select * from screenActions where wasScreenLocked = 1")
+    @Query("select * from screenActions where wasScreenLocked = 1 order by screenActionTime desc")
     fun getAllScreenLocks(): PagingSource<Int, ScreenModel>
 
     @Query("select count(*) from screenActions")

@@ -13,7 +13,7 @@ import androidx.room.Query
 @Dao
 interface CameraDao {
 
-    @Query("select * from cameraAccesses")
+    @Query("select * from cameraAccesses order by cameraStartedUsageTime desc")
     fun getAllCameraRecords(): PagingSource<Int, CameraModel>
 
     @Insert

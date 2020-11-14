@@ -12,7 +12,7 @@ import androidx.room.Query
 @Dao
 interface MicrophoneDAO {
 
-    @Query("select * from microphoneAccesses")
+    @Query("select * from microphoneAccesses order by microphoneStoppedBeingUsedAt desc")
     fun getAllMicrophoneRecords(): PagingSource<Int, MicrophoneModel>
 
     @Insert

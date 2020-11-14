@@ -4,7 +4,8 @@ import android.app.Application
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
-import com.crazylegend.database.coroutines.makeDBCallLiveData
+import androidx.lifecycle.viewModelScope
+import com.crazylegend.database.coroutines.dbCallStateFlow
 import com.crazylegend.vigilante.abstracts.AbstractAVM
 import com.crazylegend.vigilante.notifications.db.NotificationsRepo
 
@@ -18,7 +19,7 @@ class NotificationDetailsVM @ViewModelInject constructor(
 
     private val notificationID get() = savedStateHandle.get<Int>("notificationID") ?: -1
 
-    val notification = makeDBCallLiveData {
+    val notification = viewModelScope.dbCallStateFlow {
         notificationsRepo.getNotificationForID(notificationID)
     }
 }

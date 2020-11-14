@@ -44,11 +44,6 @@ class HeadsetReceiver : BroadcastReceiver() {
                         saveToDatabase(connectionType, context)
                     }
                 }
-                2 -> {
-                    if (lastState.getAndIncrement() == 2) {
-                        saveToDatabase(connectionType, context)
-                    }
-                }
             }
         }
     }

@@ -52,7 +52,10 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
                 SectionItem(R.string.device_info, R.drawable.ic_info, SectionItem.SectionItemAction.DEVICE_INFO),
         )
 
-    override val binding by viewBinding(FragmentHomeBinding::bind)
+    override val binding by viewBinding(FragmentHomeBinding::bind) {
+        //dispose any unneeded resources
+        themeIcon.animation?.cancel()
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -143,11 +146,6 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
     private val buttonInnerCircle get() = if (permissionProvider.isAccessibilityEnabled) R.drawable.ic_inner_ellipse_disable else R.drawable.ic_inner_ellipse_enable
     private val buttonOuterCircle get() = if (permissionProvider.isAccessibilityEnabled) R.drawable.ic_outer_ellipse_disable else R.drawable.ic_outer_ellipse_enable
     private val buttonText get() = if (permissionProvider.isAccessibilityEnabled) R.string.disable_text else R.string.enable_text
-
-    override fun onPause() {
-        super.onPause()
-        binding.outerIndicator.animation?.cancel()
-    }
 
     private inline fun View.rotateDarkIcon(crossinline endAction: () -> Unit) {
         animate().rotationBy(360f)

@@ -28,6 +28,7 @@ class VigilanteApp : Application() {
             setVMPolicy()
             setThreadPolicy()
             checkAppId()
+            checkIfIsDebuggable()
         }
     }
 

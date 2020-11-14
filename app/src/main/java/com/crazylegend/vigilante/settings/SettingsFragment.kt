@@ -11,6 +11,7 @@ import com.crazylegend.coroutines.withMainContext
 import com.crazylegend.kotlinextensions.context.packageVersionName
 import com.crazylegend.kotlinextensions.fragments.shortToast
 import com.crazylegend.kotlinextensions.intent.openWebPage
+import com.crazylegend.kotlinextensions.locale.LocaleHelper
 import com.crazylegend.kotlinextensions.preferences.booleanChangeListener
 import com.crazylegend.kotlinextensions.preferences.onClick
 import com.crazylegend.kotlinextensions.preferences.stringChangeListener
@@ -41,6 +42,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     private var homePage: Preference? = null
     private var excludeVigilanteFromNotificationsSwitch: SwitchPreferenceCompat? = null
     private var biometricAuth: SwitchPreferenceCompat? = null
+    private var language: ListPreference? = null
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.settings)
@@ -61,6 +63,10 @@ class SettingsFragment : PreferenceFragmentCompat() {
             updateNotificationSwitch()
         }
 
+        language.stringChangeListener { _, newValue ->
+            LocaleHelper.setLocale(requireContext(), newValue)
+            requireActivity().recreate()
+        }
 
         homePage.onClick {
             requireContext().openWebPage(HOME_PAGE) {

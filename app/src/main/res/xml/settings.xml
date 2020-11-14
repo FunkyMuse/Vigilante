@@ -5,6 +5,14 @@
         app:iconSpaceReserved="false"
         app:title="@string/customizations">
 
+        <ListPreference
+            app:iconSpaceReserved="false"
+            app:key="pref_language"
+            app:defaultValue="en"
+            app:entries="@array/language_entries"
+            app:entryValues="@array/language_values"
+            app:title="@string/language_title" />
+
         <SwitchPreferenceCompat
             app:iconSpaceReserved="false"
             app:key="pref_notifications"

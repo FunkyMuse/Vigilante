@@ -2,8 +2,9 @@ package com.crazylegend.vigilante.di.providers
 
 import android.content.SharedPreferences
 import android.view.Gravity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.edit
+import com.crazylegend.kotlinextensions.misc.disableNightMode
+import com.crazylegend.kotlinextensions.misc.enableNightMode
 import com.crazylegend.kotlinextensions.sharedprefs.putBoolean
 import com.crazylegend.kotlinextensions.sharedprefs.putFloat
 import com.crazylegend.kotlinextensions.sharedprefs.putInt
@@ -42,8 +43,7 @@ class PrefsProvider @Inject constructor(@EncryptedPrefs
     }
 
     fun applyThemeLogic() {
-        val themeMode = if (isDarkThemeEnabled) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO
-        AppCompatDelegate.setDefaultNightMode(themeMode)
+        if (isDarkThemeEnabled) enableNightMode() else disableNightMode()
     }
     //endregion
 

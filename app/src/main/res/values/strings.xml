@@ -132,4 +132,7 @@
     <string name="prompt_info_expl">Please verify your identity to enable authentication on start</string>
     <string name="auth_failed">Authentication failed, try again!</string>
     <string name="verify_to_proceed">Verify your identity to open the application.</string>
+    <string name="language_title">Language</string>
+    <string name="english">English</string>
+
 </resources>

@@ -161,16 +161,16 @@ class VigilanteService : AccessibilityService() {
                 when (layoutCameraPositionPref) {
                     0 -> {
                         micBinding.dot.updateLayoutParams<FrameLayout.LayoutParams> {
-                            marginStart = customMargin
-                            marginEnd = 0
+                            marginEnd = customMargin
+                            marginStart = 0
                             bottomMargin = 0
                         }
                         resetCameraBindingMargins()
                     }
                     1 -> {
                         cameraBinding.dot.updateLayoutParams<FrameLayout.LayoutParams> {
-                            marginEnd = customMargin
-                            marginStart = 0
+                            marginStart = customMargin
+                            marginEnd = 0
                             bottomMargin = 0
                         }
                         resetMicBindingMargins()
@@ -193,16 +193,16 @@ class VigilanteService : AccessibilityService() {
                     }
                     4 -> {
                         micBinding.dot.updateLayoutParams<FrameLayout.LayoutParams> {
-                            marginStart = customMargin
-                            marginEnd = 0
+                            marginEnd = customMargin
+                            marginStart = 0
                             bottomMargin = 0
                         }
                         resetCameraBindingMargins()
                     }
                     5 -> {
                         cameraBinding.dot.updateLayoutParams<FrameLayout.LayoutParams> {
-                            marginEnd = customMargin
-                            marginStart = 0
+                            marginStart = customMargin
+                            marginEnd = 0
                             bottomMargin = 0
                         }
                         resetMicBindingMargins()

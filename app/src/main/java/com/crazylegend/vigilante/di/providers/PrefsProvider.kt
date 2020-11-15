@@ -86,13 +86,13 @@ class PrefsProvider @Inject constructor(@EncryptedPrefs
     private fun getPositionPref(basePref: String) = defaultPrefs.getInt(basePref + POSITION_PREF_ADDITION, DEFAULT_LAYOUT_POSITION)
 
     private fun getLayoutPosition(pref: Int) = when (pref) {
-        0 -> Gravity.TOP or Gravity.START
-        1 -> Gravity.TOP or Gravity.END
-        2 -> Gravity.CENTER_VERTICAL or Gravity.START
-        3 -> Gravity.CENTER_VERTICAL or Gravity.END
-        4 -> Gravity.BOTTOM or Gravity.START
-        5 -> Gravity.BOTTOM or Gravity.END
-        else -> Gravity.TOP or Gravity.START
+        0 -> Gravity.TOP or Gravity.END
+        1 -> Gravity.TOP or Gravity.START
+        2 -> Gravity.CENTER_VERTICAL or Gravity.END
+        3 -> Gravity.CENTER_VERTICAL or Gravity.START
+        4 -> Gravity.BOTTOM or Gravity.END
+        5 -> Gravity.BOTTOM or Gravity.START
+        else -> Gravity.TOP or Gravity.END
     }
 
     val isIntroShown get() = defaultPrefs.getBoolean(INTRO_PREF, false)

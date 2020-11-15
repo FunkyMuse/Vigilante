@@ -34,15 +34,10 @@ Go to the [Releases](https://github.com/CraZyLegenD/Vigilante/releases/latest) t
 
 #### Light
 
-<img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_1.png" height="500dp" />
-<img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_2.png" height="500dp" />
-<img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_3.png" height="500dp" /><img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_4.png" height="500dp" />
-
+<img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_1.png" width="33%"></img><img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_2.png" width="33%"></img><img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_3.png" width="33%"></img><img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_4.png" width="33%"></img><img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_5.png" width="33%"></img><img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_6.png" width="33%"></img>
 #### Dark
 
-<img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_5.png" height="500dp" />
-<img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_6.png" height="500dp" />
-<img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_7.png" height="500dp" /><img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_8.png" height="500dp" />
+<img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_7.png" width="33%"></img><img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_8.png" width="33%"></img><img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_9.png" width="33%"></img><img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_10.png" width="33%"></img><img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_11.png" width="33%"></img><img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_12.png" width="33%"></img>
 
 
 

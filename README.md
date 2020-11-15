@@ -34,10 +34,10 @@ Go to the [Releases](https://github.com/CraZyLegenD/Vigilante/releases/latest) t
 
 #### Light
 
-<img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_1.png" width="33%"></img><img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_2.png" width="33%"></img><img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_3.png" width="33%"></img><img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_4.png" width="33%"></img><img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_5.png" width="33%"></img><img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_6.png" width="33%"></img>
+<img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_1.png" width="33%"> </img><img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_2.png" width="33%"> </img><img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_3.png" width="33%"></img> <img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_4.png" width="33%"></img> <img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_5.png" width="33%"></img> <img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_6.png" width="33%"></img>
 #### Dark
 
-<img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_7.png" width="33%"></img><img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_8.png" width="33%"></img><img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_9.png" width="33%"></img><img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_10.png" width="33%"></img><img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_11.png" width="33%"></img><img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_12.png" width="33%"></img>
+<img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_7.png" width="33%"></img> <img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_8.png" width="33%"></img> <img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_9.png" width="33%"></img> <img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_10.png" width="33%"></img> <img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_11.png" width="33%"></img> <img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/screenshots/screen_12.png" width="33%"></img>
 
 
 
@@ -76,7 +76,7 @@ Some of the popular libraries and MVVM clean architecture used wit Room database
 
 Support it by joining [stargazers](https://github.com/CraZyLegenD/Vigilante/stargazers) for this repository. 🌠
 
-And [follow me](https://github.com/CraZyLegenD) or check my [blog](crazylegend.dev/) for my next creations! ⭐
+And [follow me](https://github.com/CraZyLegenD) or check my [blog](https://www.crazylegend.dev/) for my next creations! ⭐
 
 ## Contributions
 

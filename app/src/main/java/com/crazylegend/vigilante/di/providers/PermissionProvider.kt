@@ -3,6 +3,7 @@ package com.crazylegend.vigilante.di.providers
 import android.content.Context
 import android.content.Intent
 import android.provider.Settings
+import androidx.core.os.bundleOf
 import com.crazylegend.kotlinextensions.accessibility.hasAccessibilityPermission
 import com.crazylegend.kotlinextensions.accessibility.isAccessibilityServiceRunning
 import com.crazylegend.kotlinextensions.context.accessibilityManager
@@ -28,7 +29,13 @@ class PermissionProvider @Inject constructor(
 
     private fun isVigilanteRunning() = context.isAccessibilityServiceRunning<VigilanteService>()
 
-    private fun askForAccessibilityPermissions() = context.startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
+    private fun askForAccessibilityPermissions() = context.startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS).apply {
+        val argKey = ":settings:fragment_args_key"
+        val showFragsKey = ":settings:show_fragment_args"
+        val showArgs = context.packageName + "/" + VigilanteService::class.java.name
+        putExtra(argKey, showArgs)
+        putExtra(showFragsKey, bundleOf(argKey to showArgs))
+    })
 
     private fun hasAccessibilityPermission() = context.hasAccessibilityPermission<VigilanteService>()
 

@@ -63,7 +63,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:stepSize="2"
-            android:valueFrom="8"
+            android:valueFrom="20"
             android:valueTo="200"
             app:layout_constraintTop_toBottomOf="@id/sizeTitle" />
 

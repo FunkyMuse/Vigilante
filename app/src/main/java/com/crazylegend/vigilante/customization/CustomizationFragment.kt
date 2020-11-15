@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
+import androidx.activity.addCallback
 import androidx.lifecycle.coroutineScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -99,13 +100,7 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
 
 
         binding.backButton.root.setOnClickListenerCooldown {
-            findNavController().navigateSafe(
-                    HomeFragmentDirections.destinationConfirmation(
-                            cancelButtonText = getString(R.string.discard_changes),
-                            confirmationButtonText = getString(R.string.save),
-                            titleText = getString(R.string.save_progress_expl)
-                    )
-            )
+            backButtonClick()
         }
 
         fragmentBooleanResult(DialogConfirmation.RESULT_KEY, DialogConfirmation.DEFAULT_REQ_KEY, onDenied = {
@@ -117,6 +112,20 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
             VigilanteService.serviceParamsListener?.updateForBasePref(prefBaseName)
             goBack()
         })
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, true) {
+            backButtonClick()
+        }
+    }
+
+    private fun backButtonClick() {
+        findNavController().navigateSafe(
+                HomeFragmentDirections.destinationConfirmation(
+                        cancelButtonText = getString(R.string.discard_changes),
+                        confirmationButtonText = getString(R.string.save),
+                        titleText = getString(R.string.save_progress_expl)
+                )
+        )
     }
 
     private fun goBack() {

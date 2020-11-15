@@ -27,7 +27,7 @@ class PrefsProvider @Inject constructor(@EncryptedPrefs
     companion object {
         const val DEFAULT_LAYOUT_POSITION = 0
         const val DEFAULT_DOT_COLOR = 31727
-        const val DEFAULT_DOT_SIZE = 8f
+        const val DEFAULT_DOT_SIZE = 20f
     }
 
     val getDateFormat get() = defaultPrefs.getString(DATE_PREF_KEY, DEFAULT_DATE) ?: DEFAULT_DATE
@@ -49,7 +49,7 @@ class PrefsProvider @Inject constructor(@EncryptedPrefs
 
     fun updateDateFormat(value: String) = defaultPrefs.putString(DATE_PREF_KEY, value)
 
-    val isDotEnabled get() = defaultPrefs.getBoolean(DOT_PREF_KEY, false)
+    val isDotEnabled get() = defaultPrefs.getBoolean(DOT_PREF_KEY, true)
     fun setDotStatus(status: Boolean) = defaultPrefs.putBoolean(DOT_PREF_KEY, status)
 
     val isVigilanteExcludedFromNotifications get() = defaultPrefs.getBoolean(EXCLUDE_VIGILANTE_FROM_NOTIFICATIONS_PREF_KEY, false)

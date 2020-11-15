@@ -22,6 +22,7 @@
         <SwitchPreferenceCompat
             app:iconSpaceReserved="false"
             app:key="pref_dot"
+            app:defaultValue="true"
             app:summary="@string/dot_usage_expl"
             app:title="@string/dot_usage_title" />
 

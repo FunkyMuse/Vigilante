@@ -1,0 +1,22 @@
+An app that focuses on your privacy and alerts you when a third-party application uses your device camera or microphone and additionally you have:
+-History when your camera and microphone was requested and get notifications and/or screen dots
+-Notifications when microphone/camera is used
+-Screen dots when microphone/camera is used
+-Screen dots customizations when microphone/camera is useed (size, color, screen position)
+-History when apps requested permissions
+-History when you disconnected/connected your charger
+-History when you connected/disconnected your headphones
+-History of your notifications
+-Lock screen history
+-Security sensible device informations
+-No useless permissions
+-Does not connect to the Internet
+-All of your data is encrypted (database and preferences)
+-Dark mode/light mode
+
+<b>Check out the all of my apps:</b>
+https://www.crazylegend.dev
+
+<b>GitHub:</b>
+https://github.com/CraZyLegenD
+

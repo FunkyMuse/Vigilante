@@ -1,1 +1,1 @@
-Vigilante - An app that focuses on your privacy and alerts you when a third-party application uses your device camera or microphone, plus few other goodies.
+Vigilante - know when a third-party app uses your device camera/microphone

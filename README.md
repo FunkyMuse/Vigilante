@@ -43,7 +43,7 @@ Go to the [Releases](https://github.com/CraZyLegenD/Vigilante/releases/latest) t
 
 ## Built With 🛠
 
-Some of the popular libraries and MVVM clean architecture used wit Room database as a source
+Some of the popular libraries and MVVM clean architecture used with Room database as a source
 
 * [Kotlin](https://kotlinlang.org/) - First class and official programming language for Android development.
 

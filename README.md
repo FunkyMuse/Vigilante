@@ -39,7 +39,8 @@ Go to the [Releases](https://github.com/CraZyLegenD/Vigilante/releases/latest) t
 
 <img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/fastlane/metadata/en-US/images/phoneScreenshots/screen_7.png" width="33%"></img> <img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/fastlane/metadata/en-US/images/phoneScreenshots/screen_8.png" width="33%"></img> <img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/fastlane/metadata/en-US/images/phoneScreenshots/screen_9.png" width="33%"></img> <img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/fastlane/metadata/en-US/images/phoneScreenshots/screen_10.png" width="33%"></img> <img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/fastlane/metadata/en-US/images/phoneScreenshots/screen_11.png" width="33%"></img> <img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/fastlane/metadata/en-US/images/phoneScreenshots/screen_12.png" width="33%"></img>
 
-
+## Translations
+🇪🇸 [@miguelcanosantana](https://github.com/miguelcanosantana)
 
 ## Built With 🛠
 

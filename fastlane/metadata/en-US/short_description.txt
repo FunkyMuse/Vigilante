@@ -1,1 +1,1 @@
-Vigilante - know when a third-party app uses your device camera/microphone
+Know when a third-party app uses your device camera/microphone

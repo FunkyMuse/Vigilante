@@ -134,5 +134,6 @@
     <string name="verify_to_proceed">Verify your identity to open the application.</string>
     <string name="language_title">Language</string>
     <string name="english">English</string>
+    <string name="spanish">Spanish</string>
 
 </resources>

@@ -2,9 +2,11 @@
 <resources>
     <string-array name="language_entries">
         <item>@string/english</item>
+        <item>@string/spanish</item>
     </string-array>
 
     <string-array name="language_values">
         <item>en</item>
+        <item>es</item>
     </string-array>
 </resources>

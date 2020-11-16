@@ -6,9 +6,6 @@
     <string name="home">Inicio</string>
     <string name="disable_the_service">Desactivar el servicio manualmente</string>
     <string name="enable_the_service">Por favor activa el servicio</string>
-    <string name="copy">copiar</string>
-    <string name="paste">pegar</string>
-    <string name="cut">cortar</string>
     <string name="disable_text">Desactivar</string>
     <string name="enable_text">Activar</string>
     <string name="disk_not_encrypted">Disco no encriptado</string>
@@ -19,7 +16,7 @@
     <string name="headset_history">Historial de cascos</string>
     <string name="notifications_history">Historial de notificaciones</string>
     <string name="lock_screen_history">Historial de pantalla de bloqueo</string>
-    <string name="notifications_usage_expl">Al activar esta opción, serás notificado cuando la cámara, el micrófono, etc... y cuando lo sean.</string>
+    <string name="notifications_usage_expl">Al activar esta opción, serás notificado cuando la cámara, el micrófono, etc… y cuando lo sean.</string>
     <string name="notifications_usage_title">Activar notificaciones de uso</string>
     <string name="crash_report">Informe de fallos #%1$d</string>
     <string name="no_crashes">¡No hay fallos grabados!</string>
@@ -135,4 +132,5 @@
     <string name="verify_to_proceed">Verifica tu identidad para abrir la aplicación</string>
     <string name="language_title">Idioma</string>
     <string name="english">Inglés</string>
+    <string name="spanish">Español</string>
 </resources>

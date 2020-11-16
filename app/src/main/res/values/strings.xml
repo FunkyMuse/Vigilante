@@ -5,9 +5,6 @@
     <string name="home">Home</string>
     <string name="disable_the_service">Disable the service manually</string>
     <string name="enable_the_service">Please enable the service</string>
-    <string name="copy">copy</string>
-    <string name="paste">paste</string>
-    <string name="cut">cut</string>
     <string name="disable_text">Disable</string>
     <string name="enable_text">Enable</string>
     <string name="disk_not_encrypted">Disk not encrypted</string>

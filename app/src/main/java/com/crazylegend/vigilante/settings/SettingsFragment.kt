@@ -51,6 +51,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         homePage = findPreference(HOME_PAGE_PREF)
         version = findPreference(VERSION_PREF_KEY)
         dotSwitch = findPreference(DOT_PREF_KEY)
+        language = findPreference(LANG_PREF_KEY)
         biometricAuth = findPreference(BIOMETRIC_AUTH_PREF_KEY)
         excludeVigilanteFromNotificationsSwitch = findPreference(EXCLUDE_VIGILANTE_FROM_NOTIFICATIONS_PREF_KEY)
     }

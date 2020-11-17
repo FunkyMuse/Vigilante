@@ -67,6 +67,8 @@ class VigilanteService : AccessibilityService() {
     private lateinit var micParams: WindowManager.LayoutParams
     private lateinit var micBinding: ServiceLayoutDotBinding
 
+    private val layoutCameraPositionPref get() = prefsProvider.getCameraPositionPref
+    private val layoutMicPositionPref get() = prefsProvider.getMicPositionPref
 
     @SuppressLint("MissingPermission")
     override fun onServiceConnected() {
@@ -83,7 +85,7 @@ class VigilanteService : AccessibilityService() {
             override fun showCamera() {
                 if (::cameraBinding.isInitialized) {
                     cameraBinding.dot.visible()
-                    checkIfTheyAreTheSameLayoutPositions(prefsProvider.getMicPositionPref, prefsProvider.getCameraPositionPref)
+                    checkIfTheyAreTheSameLayoutPositions()
                 }
             }
 
@@ -97,7 +99,7 @@ class VigilanteService : AccessibilityService() {
             override fun showMic() {
                 if (::micBinding.isInitialized) {
                     micBinding.dot.visible()
-                    checkIfTheyAreTheSameLayoutPositions(prefsProvider.getMicPositionPref, prefsProvider.getCameraPositionPref)
+                    checkIfTheyAreTheSameLayoutPositions()
                 }
             }
 
@@ -112,11 +114,11 @@ class VigilanteService : AccessibilityService() {
         serviceParamsListener = ServiceParamsListener {
             if (it == CAMERA_CUSTOMIZATION_BASE_PREF) {
                 updateCameraPrefs()
-                checkIfTheyAreTheSameLayoutPositions(prefsProvider.getMicPositionPref, prefsProvider.getCameraPositionPref)
+                checkIfTheyAreTheSameLayoutPositions()
                 windowManager?.updateViewLayout(cameraBinding.root, cameraParams)
             } else {
                 updateMicPrefs()
-                checkIfTheyAreTheSameLayoutPositions(prefsProvider.getMicPositionPref, prefsProvider.getCameraPositionPref)
+                checkIfTheyAreTheSameLayoutPositions()
                 windowManager?.updateViewLayout(micBinding.root, micParams)
             }
         }
@@ -152,7 +154,7 @@ class VigilanteService : AccessibilityService() {
         }
     }
 
-    private fun checkIfTheyAreTheSameLayoutPositions(layoutMicPositionPref: Int, layoutCameraPositionPref: Int) {
+    private fun checkIfTheyAreTheSameLayoutPositions() {
         if (layoutCameraPositionPref == layoutMicPositionPref) {
             val customMargin = 100
             val micVisibility = micBinding.dot.isVisible

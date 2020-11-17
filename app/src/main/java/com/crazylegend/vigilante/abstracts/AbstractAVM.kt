@@ -11,7 +11,8 @@ import kotlinx.coroutines.flow.Flow
  */
 abstract class AbstractAVM(application: Application) : AndroidViewModel(application) {
 
-    val pagingConfig = PagingConfig(pageSize = 20, enablePlaceholders = false)
+    @PublishedApi
+    internal val pagingConfig = PagingConfig(pageSize = 20, enablePlaceholders = false)
 
     inline fun <T : Any> provideDatabaseData(crossinline function: () -> PagingSource<Int, T>): Flow<PagingData<T>> {
         return Pager(pagingConfig) {

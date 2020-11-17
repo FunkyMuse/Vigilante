@@ -81,9 +81,4 @@ class CameraProcessor @Inject constructor(
     //endregion
 
 
-    //region public
-
-    //endregion
-
-
 }

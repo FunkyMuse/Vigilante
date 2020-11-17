@@ -291,9 +291,7 @@ class VigilanteService : AccessibilityService() {
         currentPackageString = eventPackageName?.toString() ?: packageName
         if (event.eventType == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED && eventPackageName != null) {
             if (eventPackageName !in dismissPackages) {
-                cameraProcessor.eventActionByPackageName(eventPackageName)
                 permissionsProcessor.eventActionByPackageName(eventPackageName)
-                microphoneProcessor.eventActionByPackageName(eventPackageName)
             }
             permissionsProcessor.extractPermissionMessage(event.source)
         }

@@ -23,6 +23,7 @@ import com.crazylegend.vigilante.home.section.SectionItem
 import com.crazylegend.vigilante.settings.CAMERA_CUSTOMIZATION_BASE_PREF
 import com.crazylegend.vigilante.settings.MIC_CUSTOMIZATION_BASE_PREF
 import com.crazylegend.vigilante.utils.DEFAULT_ANIM_TIME
+import com.crazylegend.vigilante.utils.EdgeToEdge
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -42,8 +43,6 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
 
     private val sectionList
         get() = listOf(
-                SectionItem(R.string.camera_history, R.drawable.camera, SectionItem.SectionItemAction.CAMERA),
-                SectionItem(R.string.microphone_history, R.drawable.microphone, SectionItem.SectionItemAction.MIC),
                 SectionItem(R.string.permissions_history, R.drawable.security, SectionItem.SectionItemAction.PERMISSIONS),
                 SectionItem(R.string.power_history, R.drawable.ic_power_on, SectionItem.SectionItemAction.POWER),
                 SectionItem(R.string.headset_history, R.drawable.headphones, SectionItem.SectionItemAction.HEADSET),
@@ -59,6 +58,7 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        EdgeToEdge.setUpScrollingContent(binding.scrollView)
 
         binding.sections.apply {
             layoutManager = GridLayoutManager(requireContext(), 2)
@@ -70,9 +70,7 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
 
         sectionAdapter.forItemClickListener = forItemClickListener { _, item, _ ->
             val directions = when (item.action) {
-                SectionItem.SectionItemAction.CAMERA -> HomeFragmentDirections.destinationCameraHistory()
                 SectionItem.SectionItemAction.DEVICE_INFO -> HomeFragmentDirections.destinationDeviceInfo()
-                SectionItem.SectionItemAction.MIC -> HomeFragmentDirections.destinationMicrophoneHistory()
                 SectionItem.SectionItemAction.PERMISSIONS -> HomeFragmentDirections.destinationPermissionRequests()
                 SectionItem.SectionItemAction.POWER -> HomeFragmentDirections.destinationPower()
                 SectionItem.SectionItemAction.HEADSET -> HomeFragmentDirections.destinationHeadset()
@@ -143,9 +141,9 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
         binding.themeIcon.setImageResource(darkThemeIcon)
     }
 
-    private val buttonInnerCircle get() = if (permissionProvider.isAccessibilityEnabled) R.drawable.ic_inner_ellipse_disable else R.drawable.ic_inner_ellipse_enable
-    private val buttonOuterCircle get() = if (permissionProvider.isAccessibilityEnabled) R.drawable.ic_outer_ellipse_disable else R.drawable.ic_outer_ellipse_enable
-    private val buttonText get() = if (permissionProvider.isAccessibilityEnabled) R.string.disable_text else R.string.enable_text
+    private val buttonInnerCircle get() = if (permissionProvider.isVigilanteRunning()) R.drawable.ic_inner_ellipse_disable else R.drawable.ic_inner_ellipse_enable
+    private val buttonOuterCircle get() = if (permissionProvider.isVigilanteRunning()) R.drawable.ic_outer_ellipse_disable else R.drawable.ic_outer_ellipse_enable
+    private val buttonText get() = if (permissionProvider.isVigilanteRunning()) R.string.disable_text else R.string.enable_text
 
     private inline fun View.rotateDarkIcon(crossinline endAction: () -> Unit) {
         animate().rotationBy(360f)

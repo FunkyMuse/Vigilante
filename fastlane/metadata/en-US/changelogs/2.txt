@@ -1,0 +1,11 @@
+### Features
+- Edge to edge
+
+### Removed
+- Camera and microphone history due to the fact that Android as a system doesn't provide an option to detect the current app using the package
+
+### Improvements
+- Notifications about microphone and camera usage is turned ON by default
+
+### Fixed
+- Button not detecting correct info about accessibility #25

@@ -9,8 +9,6 @@
     <string name="enable_text">Enable</string>
     <string name="disk_not_encrypted">Disk not encrypted</string>
     <string name="disk_encrypted">Disk encrypted</string>
-    <string name="camera_history">Camera history</string>
-    <string name="microphone_history">Microphone history</string>
     <string name="permissions_history">Permissions history</string>
     <string name="headset_history">Headset history</string>
     <string name="notifications_history">Notifications history</string>

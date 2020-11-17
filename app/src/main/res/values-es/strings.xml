@@ -10,8 +10,6 @@
     <string name="enable_text">Activar</string>
     <string name="disk_not_encrypted">Disco no encriptado</string>
     <string name="disk_encrypted">Disco encriptado</string>
-    <string name="camera_history">Historial de cámara</string>
-    <string name="microphone_history">Historial de micrófono</string>
     <string name="permissions_history">Historial de permisos</string>
     <string name="headset_history">Historial de cascos</string>
     <string name="notifications_history">Historial de notificaciones</string>

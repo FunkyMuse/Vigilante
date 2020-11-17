@@ -3,7 +3,6 @@ package com.crazylegend.vigilante.activities
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
@@ -46,18 +45,12 @@ class MainActivity : AppCompatActivity() {
 
     private val showBackButtonList
         get() = listOf(
-                R.id.settingsFragment, R.id.crashFragment, R.id.cameraAccessFragment,
-                R.id.microphoneAccessFragment, R.id.appsUsageFragment, R.id.screenAccessFragment,
+                R.id.settingsFragment, R.id.crashFragment,
+                R.id.appsUsageFragment, R.id.screenAccessFragment,
                 R.id.listFilterBottomSheet, R.id.notificationsFragment, R.id.headsetFragment,
                 R.id.permissionRequestFragment, R.id.permissionDetailsBottomSheet, R.id.notificationDetailsFragment,
                 R.id.powerFragment, R.id.powerDetailsDialog
         )
-
-    override fun onPostCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onPostCreate(savedInstanceState, persistentState)
-        EdgeToEdge.setUpRoot(binding.root)
-
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,6 +62,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
+        EdgeToEdge.setUpRoot(binding.root)
+
         navController.addOnDestinationChangedListener { _, destination, _ ->
             binding.backButton.root.isVisible = destination.id in showBackButtonList
         }

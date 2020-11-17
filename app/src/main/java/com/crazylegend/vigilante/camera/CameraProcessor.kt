@@ -3,25 +3,16 @@ package com.crazylegend.vigilante.camera
 import android.content.Context
 import android.hardware.camera2.CameraManager
 import androidx.lifecycle.ServiceLifecycleDispatcher
-import com.crazylegend.database.coroutines.makeDBCall
 import com.crazylegend.kotlinextensions.context.cameraManager
 import com.crazylegend.kotlinextensions.context.notificationManager
-import com.crazylegend.kotlinextensions.currentTimeMillis
 import com.crazylegend.kotlinextensions.ifTrue
 import com.crazylegend.vigilante.R
-import com.crazylegend.vigilante.camera.db.CameraModel
-import com.crazylegend.vigilante.camera.db.CameraRepository
 import com.crazylegend.vigilante.contracts.service.ServiceManagersCoroutines
 import com.crazylegend.vigilante.di.providers.PrefsProvider
 import com.crazylegend.vigilante.di.providers.UserNotificationsProvider
 import com.crazylegend.vigilante.di.qualifiers.ServiceContext
 import com.crazylegend.vigilante.service.VigilanteService
-import com.crazylegend.vigilante.service.VigilanteService.Companion.currentPackageString
 import dagger.hilt.android.scopes.ServiceScoped
-import java.util.*
-import java.util.concurrent.atomic.AtomicBoolean
-import java.util.concurrent.atomic.AtomicLong
-import java.util.concurrent.atomic.AtomicReference
 import javax.inject.Inject
 
 /**
@@ -31,17 +22,13 @@ import javax.inject.Inject
 class CameraProcessor @Inject constructor(
         @ServiceContext private val context: Context,
         private val userNotificationsProvider: UserNotificationsProvider,
-        private val prefsProvider: PrefsProvider,
-        private val cameraRepository: CameraRepository) : ServiceManagersCoroutines {
+        private val prefsProvider: PrefsProvider) : ServiceManagersCoroutines {
 
     //lifecycle
     override val serviceLifecycleDispatcher = ServiceLifecycleDispatcher(this)
 
     //camera
     private lateinit var cameraCallback: CameraManager.AvailabilityCallback
-    private val packageUsingCamera: AtomicReference<String?> = AtomicReference(currentPackageString)
-    private var wasCameraBeingUsed: AtomicBoolean = AtomicBoolean(false)
-    private val cameraStartedUsageTime: AtomicLong = AtomicLong(-1)
     private val cameraNotificationID = 69
 
     override fun initVars() {
@@ -61,7 +48,7 @@ class CameraProcessor @Inject constructor(
             object : CameraManager.AvailabilityCallback() {
                 override fun onCameraAvailable(cameraId: String) {
                     super.onCameraAvailable(cameraId)
-                    setCameraNotUsed(cameraId)
+                    setCameraNotUsed()
                     stopNotificationIfUserEnabled()
                 }
 
@@ -77,8 +64,6 @@ class CameraProcessor @Inject constructor(
     }
 
     private fun setCameraUsed() {
-        wasCameraBeingUsed.set(true)
-        packageUsingCamera.set(currentPackageString)
         sendNotificationIfUserEnabled()
         VigilanteService.serviceLayoutListener?.showCamera()
     }
@@ -90,30 +75,14 @@ class CameraProcessor @Inject constructor(
     }
 
 
-    private fun setCameraNotUsed(cameraId: String) {
-        if (wasCameraBeingUsed.get()) {
-            val cameraStoppedBeingUsedAt = currentTimeMillis
-            val cameraModel = CameraModel(Date(cameraStartedUsageTime.getAndSet(-1)),
-                    packageUsingCamera.getAndSet(null), cameraId, Date(cameraStoppedBeingUsedAt))
-            scope.makeDBCall {
-                cameraRepository.insertCameraRecord(cameraModel)
-            }
-            wasCameraBeingUsed.set(false)
-            VigilanteService.serviceLayoutListener?.hideCamera()
-        }
+    private fun setCameraNotUsed() {
+        VigilanteService.serviceLayoutListener?.hideCamera()
     }
     //endregion
 
 
     //region public
-    override fun eventActionByPackageName(eventPackageName: CharSequence) {
-        if (!wasCameraBeingUsed.get()) {
-            packageUsingCamera.set(eventPackageName.toString())
-        } else {
-            if (cameraStartedUsageTime.get() == -1L)
-                cameraStartedUsageTime.set(currentTimeMillis)
-        }
-    }
+
     //endregion
 
 

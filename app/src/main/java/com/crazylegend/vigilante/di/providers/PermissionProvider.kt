@@ -6,7 +6,6 @@ import android.provider.Settings
 import androidx.core.os.bundleOf
 import com.crazylegend.kotlinextensions.accessibility.hasAccessibilityPermission
 import com.crazylegend.kotlinextensions.accessibility.isAccessibilityServiceRunning
-import com.crazylegend.kotlinextensions.context.accessibilityManager
 import com.crazylegend.kotlinextensions.context.shortToast
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.di.qualifiers.FragmentContext
@@ -25,9 +24,8 @@ import javax.inject.Inject
 class PermissionProvider @Inject constructor(
         @FragmentContext private val context: Context) {
 
-    val isAccessibilityEnabled get() = context.accessibilityManager?.isEnabled ?: false
 
-    private fun isVigilanteRunning() = context.isAccessibilityServiceRunning<VigilanteService>()
+    fun isVigilanteRunning() = context.isAccessibilityServiceRunning<VigilanteService>()
 
     private fun askForAccessibilityPermissions() = context.startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS).apply {
         val argKey = ":settings:fragment_args_key"
@@ -40,7 +38,7 @@ class PermissionProvider @Inject constructor(
     private fun hasAccessibilityPermission() = context.hasAccessibilityPermission<VigilanteService>()
 
     fun dispatchServiceLogic() {
-        if (isAccessibilityEnabled) disableTheService() else enableTheService()
+        if (isVigilanteRunning()) disableTheService() else enableTheService()
     }
 
     private fun disableTheService() {

@@ -33,21 +33,6 @@
             app:popExitAnim="@anim/fade_out" />
 
         <action
-            android:id="@+id/destination_camera_history"
-            app:destination="@id/cameraAccessFragment"
-            app:enterAnim="@anim/scale"
-            app:exitAnim="@anim/fade_out"
-            app:popEnterAnim="@anim/scale"
-            app:popExitAnim="@anim/fade_out" />
-
-        <action
-            android:id="@+id/destination_microphone_history"
-            app:destination="@id/microphoneAccessFragment"
-            app:enterAnim="@anim/scale"
-            app:exitAnim="@anim/fade_out"
-            app:popEnterAnim="@anim/scale"
-            app:popExitAnim="@anim/fade_out" />
-        <action
             android:id="@+id/destination_screen_history"
             app:destination="@id/screenAccessFragment"
             app:enterAnim="@anim/scale"
@@ -130,14 +115,7 @@
         android:id="@+id/appsUsageFragment"
         android:name="com.crazylegend.vigilante.deviceinfo.DeviceInfoFragment"
         android:label="" />
-    <fragment
-        android:id="@+id/cameraAccessFragment"
-        android:name="com.crazylegend.vigilante.camera.ui.CameraAccessFragment"
-        android:label="" />
-    <fragment
-        android:id="@+id/microphoneAccessFragment"
-        android:name="com.crazylegend.vigilante.microphone.ui.MicrophoneAccessFragment"
-        android:label="" />
+
     <fragment
         android:id="@+id/screenAccessFragment"
         android:name="com.crazylegend.vigilante.screen.ui.ScreenAccessFragment"

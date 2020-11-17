@@ -25,15 +25,7 @@ object DatabaseModule {
 
     @Provides
     @Singleton
-    fun cameraDao(database: VigilanteDatabase) = database.cameraDao()
-
-    @Provides
-    @Singleton
     fun notificationsDao(database: VigilanteDatabase) = database.notificationsDAO()
-
-    @Provides
-    @Singleton
-    fun microphoneDao(database: VigilanteDatabase) = database.microphoneDAO()
 
     @Provides
     @Singleton

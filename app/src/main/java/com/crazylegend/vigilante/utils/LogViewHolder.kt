@@ -10,11 +10,9 @@ import com.crazylegend.kotlinextensions.views.setPrecomputedText
 import com.crazylegend.recyclerview.context
 import com.crazylegend.recyclerview.getString
 import com.crazylegend.vigilante.R
-import com.crazylegend.vigilante.camera.db.CameraModel
 import com.crazylegend.vigilante.databinding.ItemviewLogBinding
 import com.crazylegend.vigilante.di.providers.PrefsProvider
 import com.crazylegend.vigilante.headset.database.HeadsetModel
-import com.crazylegend.vigilante.microphone.db.MicrophoneModel
 import com.crazylegend.vigilante.notifications.db.NotificationsModel
 import com.crazylegend.vigilante.permissions.db.PermissionRequestModel
 import com.crazylegend.vigilante.power.db.PowerModel
@@ -27,17 +25,6 @@ import java.util.*
  */
 class LogViewHolder(private val binding: ItemviewLogBinding) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: CameraModel, prefsProvider: PrefsProvider) {
-        binding.title.setPrecomputedText(tryOrNull { context.getAppName(item.packageUsingCamera.toString()) })
-        binding.image.setImageDrawable(tryOrNull { context.getAppIcon(item.packageUsingCamera.toString()) })
-        binding.content.setPrecomputedText(item.cameraStartedUsageTime?.toString(prefsProvider.getDateFormat))
-    }
-
-    fun bind(item: MicrophoneModel, prefsProvider: PrefsProvider) {
-        binding.title.setPrecomputedText(tryOrNull { context.getAppName(item.packageUsingCamera.toString()) })
-        binding.image.setImageDrawable(tryOrNull { context.getAppIcon(item.packageUsingCamera.toString()) })
-        binding.content.setPrecomputedText(item.microphoneStartedUsageTime?.toString(prefsProvider.getDateFormat))
-    }
 
 
     fun bind(item: UsageStats, prefsProvider: PrefsProvider) {

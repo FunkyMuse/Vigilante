@@ -15,6 +15,7 @@
 
         <SwitchPreferenceCompat
             app:iconSpaceReserved="false"
+            app:defaultValue="true"
             app:key="pref_notifications"
             app:summary="@string/notifications_usage_expl"
             app:title="@string/notifications_usage_title" />

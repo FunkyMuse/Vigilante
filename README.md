@@ -9,7 +9,6 @@
 An app that focuses on your privacy and alerts you when a third-party application uses your device camera or microphone, plus few other goodies.
 
 ## Features
-- History when your camera and microphone was requested and get notifications and/or screen dots
 - Notifications when microphone/camera is used
 - Screen dots when microphone/camera is used
 - Screen dots customizations when microphone/camera is useed (size, color, screen position)

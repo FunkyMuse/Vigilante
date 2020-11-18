@@ -97,7 +97,7 @@
         android:clipToPadding="false"
         android:fadeScrollbars="true"
         android:paddingTop="16dp"
-        android:paddingBottom="60dp"
+        android:paddingBottom="@dimen/padding_bottom_scroll"
         android:scrollbars="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"

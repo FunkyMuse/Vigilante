@@ -19,7 +19,7 @@
         android:id="@+id/recycler"
         android:clipToPadding="false"
         android:paddingTop="16dp"
-        android:paddingBottom="16dp"
+        android:paddingBottom="@dimen/padding_bottom_scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fadeScrollbars="true"

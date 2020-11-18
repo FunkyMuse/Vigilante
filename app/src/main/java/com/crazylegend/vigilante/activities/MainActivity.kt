@@ -4,13 +4,12 @@ import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.crazylegend.kotlinextensions.activity.hideBottomBar
 import com.crazylegend.kotlinextensions.locale.LocaleHelper
 import com.crazylegend.kotlinextensions.misc.requestBatteryOptimizations
 import com.crazylegend.kotlinextensions.power.isIgnoringBatteryOptimization
-import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
 import com.crazylegend.navigation.navigateUpSafe
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
@@ -63,6 +62,7 @@ class MainActivity : AppCompatActivity() {
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         EdgeToEdge.setUpRoot(binding.root)
+        hideBottomBar()
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             binding.backButton.root.isVisible = destination.id in showBackButtonList

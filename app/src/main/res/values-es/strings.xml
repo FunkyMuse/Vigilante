@@ -14,7 +14,7 @@
     <string name="headset_history">Historial de cascos</string>
     <string name="notifications_history">Historial de notificaciones</string>
     <string name="lock_screen_history">Historial de pantalla de bloqueo</string>
-    <string name="notifications_usage_expl">Al activar esta opción, serás notificado cuando la cámara, el micrófono, etc… y cuando lo sean.</string>
+    <string name="notifications_usage_expl">Al activar esta opción, serás notificado cuando la cámara, el micrófono, etc… se activen.</string>
     <string name="notifications_usage_title">Activar notificaciones de uso</string>
     <string name="crash_report">Informe de fallos #%1$d</string>
     <string name="no_crashes">¡No hay fallos grabados!</string>
@@ -76,7 +76,7 @@
     <string name="exclude_from_notifications_expl">Al activar esta opción, no verás las notificaciones de esta aplicación en el historial</string>
     <string name="enable_dot_customization">¡Activa el punto de uso primero!</string>
     <string name="microphone_title">Micrófono</string>
-    <string name="camera_title">Micrófono</string>
+    <string name="camera_title">Cámara</string>
     <string name="size_title">Tamaño</string>
     <string name="pick_color">Seleccionar color</string>
     <string name="select">Seleccionar</string>
@@ -95,14 +95,14 @@
     <string name="discard_changes">Descartar</string>
     <string name="save">Guardar</string>
     <string name="save_progress_expl">¿Descartar o guardar cambios?</string>
-    <string name="customize_cam_or_mic">¿Personalizar configuración de la cámara o el micrófono?</string>
+    <string name="customize_cam_or_mic">¿Personalizar configuración de la cámara o del micrófono?</string>
     <string name="saved">¡Guardado!</string>
     <string name="disk_status">Estado del disco</string>
     <string name="crash_copied_to_clipboard">¡Detalles del error copiados en el portapapeles!</string>
     <string name="web_browser_required">¡Se requiere un navegador web para esta acción!</string>
     <string name="informational">Informativo</string>
     <string name="customizations">Personalizaciones</string>
-    <string name="home_page">Página de inicio</string>
+    <string name="home_page">Página web</string>
     <string name="license">GPL 3.0</string>
     <string name="license_title">Licencia</string>
     <string name="root_status">Estado de root</string>

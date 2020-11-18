@@ -2,6 +2,7 @@ package com.crazylegend.vigilante.di.modules
 
 import android.content.Context
 import com.crazylegend.kotlinextensions.internetdetector.InternetDetector
+import com.crazylegend.security.MagiskDetector
 import com.crazylegend.security.encryptedSharedPreferences
 import com.crazylegend.vigilante.di.qualifiers.EncryptedPrefs
 import dagger.Module
@@ -26,4 +27,8 @@ object AppModule {
     @EncryptedPrefs
     @Singleton
     fun encryptedDefaultSharedPreferences(@ApplicationContext context: Context) = context.encryptedSharedPreferences()
+
+    @Provides
+    @Singleton
+    fun magiskDetector(@ApplicationContext context: Context) = MagiskDetector(context)
 }

@@ -9,7 +9,6 @@
 An app that focuses on your privacy and alerts you when a third-party application uses your device camera or microphone, plus few other goodies.
 
 ## Features
-- History when your camera and microphone was requested and get notifications and/or screen dots
 - Notifications when microphone/camera is used
 - Screen dots when microphone/camera is used
 - Screen dots customizations when microphone/camera is useed (size, color, screen position)
@@ -39,7 +38,8 @@ Go to the [Releases](https://github.com/CraZyLegenD/Vigilante/releases/latest) t
 
 <img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/fastlane/metadata/en-US/images/phoneScreenshots/screen_7.png" width="33%"></img> <img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/fastlane/metadata/en-US/images/phoneScreenshots/screen_8.png" width="33%"></img> <img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/fastlane/metadata/en-US/images/phoneScreenshots/screen_9.png" width="33%"></img> <img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/fastlane/metadata/en-US/images/phoneScreenshots/screen_10.png" width="33%"></img> <img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/fastlane/metadata/en-US/images/phoneScreenshots/screen_11.png" width="33%"></img> <img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/fastlane/metadata/en-US/images/phoneScreenshots/screen_12.png" width="33%"></img>
 
-
+## Translations
+🇪🇸 [@miguelcanosantana](https://github.com/miguelcanosantana)
 
 ## Built With 🛠
 

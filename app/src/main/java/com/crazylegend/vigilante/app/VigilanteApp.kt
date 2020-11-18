@@ -34,8 +34,6 @@ class VigilanteApp : Application() {
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
-        base?.apply {
-            LocaleHelper.onAttach(this, DEFAULT_LANGUAGE)
-        }
+        base?.apply { LocaleHelper.onAttach(this, DEFAULT_LANGUAGE) }
     }
 }

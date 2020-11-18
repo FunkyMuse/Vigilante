@@ -51,7 +51,7 @@ class PermissionsProcessor @Inject constructor(
     override fun disposeResources() {}
 
 
-    override fun eventActionByPackageName(eventPackageName: CharSequence) {
+    fun eventActionByPackageName(eventPackageName: CharSequence) {
         packageRequestingPermission = eventPackageName.toString()
     }
 

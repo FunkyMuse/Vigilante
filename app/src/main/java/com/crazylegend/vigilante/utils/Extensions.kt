@@ -8,6 +8,7 @@ import androidx.room.RoomDatabase
 import com.crazylegend.kotlinextensions.activity.newIntent
 import com.crazylegend.kotlinextensions.services.isServiceRunning
 import com.crazylegend.kotlinextensions.services.startForegroundService
+import com.crazylegend.vigilante.database.migrations.CameraAndMicRemovalMigration
 import com.crazylegend.vigilante.service.VigilanteService
 import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SupportFactory
@@ -43,6 +44,7 @@ inline fun <reified T : RoomDatabase> Context.instantiateDatabase(cameraDbName: 
     val passphrase = SQLiteDatabase.getBytes(packageName.toCharArray())
     val factory = SupportFactory(passphrase)
     return Room.databaseBuilder(this, T::class.java, cameraDbName)
+            .addMigrations(CameraAndMicRemovalMigration())
             .openHelperFactory(factory)
             .build()
 }

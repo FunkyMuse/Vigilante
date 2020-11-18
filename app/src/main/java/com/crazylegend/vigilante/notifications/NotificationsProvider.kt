@@ -73,6 +73,5 @@ class NotificationsProvider @Inject constructor(
 
     override fun disposeResources() {}
 
-    override fun eventActionByPackageName(eventPackageName: CharSequence) {}
 
 }

@@ -46,8 +46,6 @@ class BroadcastProvider @Inject constructor(private val service: Service) : Serv
         receivers.asSequence().forEach { service.unregisterReceiver(it) }
     }
 
-    override fun eventActionByPackageName(eventPackageName: CharSequence) {}
-
     private fun registerPowerReceiver() {
         val filter = IntentFilter(Intent.ACTION_POWER_CONNECTED)
         filter.addAction(Intent.ACTION_POWER_DISCONNECTED)

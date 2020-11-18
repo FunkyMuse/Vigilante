@@ -1,9 +1,7 @@
 package com.crazylegend.vigilante.di.modules
 
-import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
-import com.crazylegend.security.MagiskDetector
 import com.crazylegend.vigilante.di.qualifiers.FragmentContext
 import dagger.Module
 import dagger.Provides
@@ -24,8 +22,5 @@ object FragmentModule {
 
     @Provides
     fun viewLifecycleOwner(fragment: Fragment): LifecycleOwner = fragment.viewLifecycleOwner
-
-    @Provides
-    fun magiskDetector(@FragmentContext context: Context) = MagiskDetector(context)
 
 }

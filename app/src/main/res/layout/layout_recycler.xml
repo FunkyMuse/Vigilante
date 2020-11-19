@@ -18,6 +18,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
         android:clipToPadding="false"
+        android:splitMotionEvents="false"
         android:paddingTop="16dp"
         android:paddingBottom="@dimen/padding_bottom_scroll"
         android:layout_width="match_parent"

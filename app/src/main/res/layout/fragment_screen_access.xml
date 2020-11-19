@@ -96,6 +96,7 @@
         android:layout_height="0dp"
         android:clipToPadding="false"
         android:fadeScrollbars="true"
+        android:splitMotionEvents="false"
         android:paddingTop="16dp"
         android:paddingBottom="84dp"
         android:scrollbars="vertical"

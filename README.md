@@ -22,7 +22,7 @@ An app that focuses on your privacy and alerts you when a third-party applicatio
 - Does not connect to the Internet
 - All of your data is encrypted (database and preferences)
 - Dark mode/light mode
-- Built with many amazing open source libraries such as ([Kotlin extensions and helpers](https://github.com/CraZyLegenD/Set-Of-Useful-Kotlin-Extensions-and-Helpers), [Crashy](https://github.com/CraZyLegenD/Crashy), [SQL Cipher](https://github.com/sqlcipher/android-database-sqlcipher), [Color picker](https://github.com/skydoves/ColorPickerView))
+- Built with many amazing open source libraries such as ([Kotlin extensions and helpers](https://github.com/FunkyMuse/KAHelpers), [Crashy](https://github.com/FunkyMuse/Crashy), [SQL Cipher](https://github.com/sqlcipher/android-database-sqlcipher), [Color picker](https://github.com/skydoves/ColorPickerView))
 - and many more...
 
 ## Download
@@ -60,7 +60,7 @@ Some of the popular libraries and MVVM clean architecture used with Room databas
   * [Room](https://developer.android.google.cn/jetpack/androidx/releases/room) - Persistence library provides an abstraction layer over SQLite to allow for more robust database access while harnessing the full power of SQLite.
   * [Biometrics](https://developer.android.com/jetpack/androidx/releases/biometric) - Authenticate with biometrics or device credentials, and perform cryptographic operations. 
   * [Security](https://developer.android.com/jetpack/androidx/releases/security) - Safely manage keys and encrypt files and sharedpreferences. 
-  * [Start-up](https://developer.android.com/jetpack/androidx/releases/startup) - Implement a straightforward, performant way to initialize components at app startup such as our crash reporting library [Crashy](https://github.com/CraZyLegenD/Crashy).
+  * [Start-up](https://developer.android.com/jetpack/androidx/releases/startup) - Implement a straightforward, performant way to initialize components at app startup such as our crash reporting library [Crashy](https://github.com/FunkyMuse/Crashy).
 * [Material Components for Android](https://github.com/material-components/material-components-android) - Modular and customizable Material Design UI components for Android.
 * [Dependency Injection](https://developer.android.com/training/dependency-injection) -
   * [Hilt-Dagger](https://dagger.dev/hilt/) - Standard library to incorporate Dagger dependency injection into an Android application.
@@ -74,15 +74,15 @@ Some of the popular libraries and MVVM clean architecture used with Room databas
 
 ## Find this repository useful? ❤️
 
-Support it by joining [stargazers](https://github.com/CraZyLegenD/Vigilante/stargazers) for this repository. 🌠
+Support it by joining [stargazers](https://github.com/FunkyMuse/Vigilante/stargazers) for this repository. 🌠
 
-And [follow me](https://github.com/CraZyLegenD) or check my [blog](https://www.crazylegend.dev/) for my next creations! ⭐
+And [follow me](https://github.com/FunkyMuse) or check my [blog](https://www.crazylegend.dev/) for my next creations! ⭐
 
 ## Contributions
 
 Feature requests and translations are welcome
 
 ## License
-[GNU General Public License v3.0](https://github.com/CraZyLegenD/Vigilante/blob/master/LICENSE)
+[GNU General Public License v3.0](https://github.com/FunkyMuse/Vigilante/blob/master/LICENSE)
 
 

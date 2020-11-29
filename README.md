@@ -76,7 +76,7 @@ Some of the popular libraries and MVVM clean architecture used with Room databas
 
 Support it by joining [stargazers](https://github.com/FunkyMuse/Vigilante/stargazers) for this repository. 🌠
 
-And [follow me](https://github.com/FunkyMuse) or check my [blog](https://www.crazylegend.dev/) for my next creations! ⭐
+And [follow me](https://github.com/FunkyMuse) or check my [blog](https://www.funkymuse.dev/) for my next creations! ⭐
 
 ## Contributions
 

@@ -8,7 +8,6 @@ import android.widget.LinearLayout
 import androidx.core.view.setPadding
 import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.coroutineScope
 import com.crazylegend.crashyreporter.CrashyReporter
 import com.crazylegend.database.DBResult
 import com.crazylegend.database.handle
@@ -18,6 +17,7 @@ import com.crazylegend.kotlinextensions.context.getAppIcon
 import com.crazylegend.kotlinextensions.context.getAppName
 import com.crazylegend.kotlinextensions.dateAndTime.toString
 import com.crazylegend.kotlinextensions.fragments.shortToast
+import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
 import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
 import com.crazylegend.kotlinextensions.views.visibleIfTrueGoneOtherwise
 import com.crazylegend.viewbinding.viewBinding
@@ -45,7 +45,7 @@ class NotificationDetailsFragment : AbstractBottomSheet<DialogNotificationDetail
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewLifecycleOwner.lifecycle.coroutineScope.launchWhenResumed {
+        viewCoroutineScope.launchWhenResumed {
             notificationDetailsVM.notification.collectLatest {
                 binding.loading.visibleIfTrueGoneOtherwise(it is DBResult.Querying)
                 it.handle(

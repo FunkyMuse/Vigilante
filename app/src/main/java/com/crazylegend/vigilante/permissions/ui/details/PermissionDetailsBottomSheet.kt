@@ -3,11 +3,11 @@ package com.crazylegend.vigilante.permissions.ui.details
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.coroutineScope
 import androidx.navigation.fragment.navArgs
 import com.crazylegend.kotlinextensions.context.getAppIcon
 import com.crazylegend.kotlinextensions.context.getAppName
 import com.crazylegend.kotlinextensions.dateAndTime.toString
+import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
 import com.crazylegend.kotlinextensions.tryOrNull
 import com.crazylegend.kotlinextensions.views.setTextAndShowOrGone
 import com.crazylegend.viewbinding.viewBinding
@@ -39,7 +39,7 @@ class PermissionDetailsBottomSheet : AbstractBottomSheet<DialogPermissionDetails
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewLifecycleOwner.lifecycle.coroutineScope.launchWhenResumed {
+        viewCoroutineScope.launchWhenResumed {
             permissionDetailsVM.permissionRequests.collectLatest {
                 binding.appPermissionRequestCount.text.text = getString(R.string.permissions_requests_by_app_count, it)
             }

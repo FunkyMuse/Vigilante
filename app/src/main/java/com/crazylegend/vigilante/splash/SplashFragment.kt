@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.animation.doOnEnd
 import androidx.core.view.doOnLayout
-import androidx.lifecycle.coroutineScope
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.crazylegend.coroutines.withMainContext
@@ -12,6 +11,7 @@ import com.crazylegend.kotlinextensions.animations.playAnimation
 import com.crazylegend.kotlinextensions.animations.zoomInUp
 import com.crazylegend.kotlinextensions.fragments.finish
 import com.crazylegend.kotlinextensions.fragments.shortToast
+import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
@@ -70,7 +70,7 @@ class SplashFragment : AbstractFragment<FragmentSplashBinding>(R.layout.fragment
     }
 
     private fun proceedFurther(fragmentDirections: NavDirections) {
-        viewLifecycleOwner.lifecycle.coroutineScope.launch {
+        viewCoroutineScope.launch {
             withMainContext {
                 findNavController().navigate(fragmentDirections)
             }
@@ -78,7 +78,7 @@ class SplashFragment : AbstractFragment<FragmentSplashBinding>(R.layout.fragment
     }
 
     private fun authFailed() {
-        viewLifecycleOwner.lifecycle.coroutineScope.launch {
+        viewCoroutineScope.launch {
             withMainContext {
                 shortToast(R.string.auth_failed)
                 finish()

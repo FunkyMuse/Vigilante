@@ -3,13 +3,13 @@ package com.crazylegend.vigilante.home
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
-import androidx.lifecycle.coroutineScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.crazylegend.coroutines.onMain
 import com.crazylegend.crashyreporter.CrashyReporter
 import com.crazylegend.kotlinextensions.fragments.fragmentBooleanResult
 import com.crazylegend.kotlinextensions.fragments.shortToast
+import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
 import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
 import com.crazylegend.navigation.navigateSafe
 import com.crazylegend.recyclerview.clickListeners.forItemClickListener
@@ -129,7 +129,7 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
     }
 
     private fun openCustomization(prefBase: String) {
-        viewLifecycleOwner.lifecycle.coroutineScope.launchWhenResumed {
+        viewCoroutineScope.launchWhenResumed {
             onMain {
                 findNavController().navigate(HomeFragmentDirections.destinationCustomization(prefBase))
             }

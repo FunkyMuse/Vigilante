@@ -5,13 +5,13 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import androidx.activity.addCallback
-import androidx.lifecycle.coroutineScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.crazylegend.coroutines.onMain
 import com.crazylegend.crashyreporter.CrashyReporter
 import com.crazylegend.kotlinextensions.fragments.fragmentBooleanResult
 import com.crazylegend.kotlinextensions.fragments.shortToast
+import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
 import com.crazylegend.kotlinextensions.views.height
 import com.crazylegend.kotlinextensions.views.onItemSelected
 import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
@@ -129,7 +129,7 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
     }
 
     private fun goBack() {
-        viewLifecycleOwner.lifecycle.coroutineScope.launchWhenResumed {
+        viewCoroutineScope.launchWhenResumed {
             onMain {
                 findNavController().navigateUpSafe()
                 shortToast(R.string.saved)

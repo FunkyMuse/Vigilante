@@ -4,7 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id 'androidx.navigation.safeargs.kotlin'
-    id 'kotlin-android-extensions'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -101,15 +101,15 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-service:$lifecycle"
 
     //my libs
-    implementation "com.github.CraZyLegenD.Set-Of-Useful-Kotlin-Extensions-and-Helpers:viewbinding:$utilsVersion"
-    implementation "com.github.CraZyLegenD.Set-Of-Useful-Kotlin-Extensions-and-Helpers:kotlinextensions:$utilsVersion"
-    implementation "com.github.CraZyLegenD.Set-Of-Useful-Kotlin-Extensions-and-Helpers:navigation:$utilsVersion"
-    implementation "com.github.CraZyLegenD.Set-Of-Useful-Kotlin-Extensions-and-Helpers:coroutines:$utilsVersion"
-    implementation "com.github.CraZyLegenD.Set-Of-Useful-Kotlin-Extensions-and-Helpers:customviews:$utilsVersion"
-    implementation "com.github.CraZyLegenD.Set-Of-Useful-Kotlin-Extensions-and-Helpers:recyclerview:$utilsVersion"
-    implementation "com.github.CraZyLegenD.Set-Of-Useful-Kotlin-Extensions-and-Helpers:security:$utilsVersion"
-    implementation "com.github.CraZyLegenD.Set-Of-Useful-Kotlin-Extensions-and-Helpers:database:$utilsVersion"
-    implementation "com.github.CraZyLegenD.Set-Of-Useful-Kotlin-Extensions-and-Helpers:biometrics:$utilsVersion"
+    implementation "com.github.FunkyMuse.KAHelpers:viewbinding:$utilsVersion"
+    implementation "com.github.FunkyMuse.KAHelpers:kotlinextensions:$utilsVersion"
+    implementation "com.github.FunkyMuse.KAHelpers:navigation:$utilsVersion"
+    implementation "com.github.FunkyMuse.KAHelpers:coroutines:$utilsVersion"
+    implementation "com.github.FunkyMuse.KAHelpers:customviews:$utilsVersion"
+    implementation "com.github.FunkyMuse.KAHelpers:recyclerview:$utilsVersion"
+    implementation "com.github.FunkyMuse.KAHelpers:security:$utilsVersion"
+    implementation "com.github.FunkyMuse.KAHelpers:database:$utilsVersion"
+    implementation "com.github.FunkyMuse.KAHelpers:biometrics:$utilsVersion"
     implementation "com.github.CraZyLegenD:Crashy:$crashyVersion"
 
     //sql cipher

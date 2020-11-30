@@ -3,12 +3,12 @@ package com.crazylegend.vigilante.power.details
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.coroutineScope
 import com.crazylegend.crashyreporter.CrashyReporter
 import com.crazylegend.database.DBResult
 import com.crazylegend.database.handle
 import com.crazylegend.kotlinextensions.dateAndTime.toString
 import com.crazylegend.kotlinextensions.fragments.shortToast
+import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
 import com.crazylegend.kotlinextensions.views.visibleIfTrueGoneOtherwise
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
@@ -31,7 +31,7 @@ class PowerDetailsDialog : AbstractBottomSheet<DialogPowerDetailsBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewLifecycleOwner.lifecycle.coroutineScope.launchWhenResumed {
+        viewCoroutineScope.launchWhenResumed {
             powerDetailsVM.powerModel.collectLatest {
                 binding.loading.visibleIfTrueGoneOtherwise(it is DBResult.Querying)
                 it.handle(

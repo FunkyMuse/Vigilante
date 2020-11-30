@@ -3,8 +3,8 @@ package com.crazylegend.vigilante.permissions.ui.request
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.coroutineScope
 import androidx.navigation.fragment.findNavController
+import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
 import com.crazylegend.kotlinextensions.views.hideViews
 import com.crazylegend.kotlinextensions.views.showViews
 import com.crazylegend.navigation.navigateSafe
@@ -55,7 +55,7 @@ class PermissionRequestsFragment : AbstractFragment<FragmentPermissionsBinding>(
                 showViews(*viewProneToVisibilityChange)
             }
         }
-        viewLifecycleOwner.lifecycle.coroutineScope.launchWhenCreated {
+        viewCoroutineScope.launchWhenResumed {
             permissionRequestVM.totalPermissionRequests.collectLatest {
                 binding.totalPermissionRequests.text = it.toString()
             }

@@ -2,7 +2,6 @@ package com.crazylegend.vigilante.settings
 
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.coroutineScope
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
@@ -10,6 +9,7 @@ import androidx.preference.SwitchPreferenceCompat
 import com.crazylegend.coroutines.withMainContext
 import com.crazylegend.kotlinextensions.context.packageVersionName
 import com.crazylegend.kotlinextensions.fragments.shortToast
+import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
 import com.crazylegend.kotlinextensions.intent.openWebPage
 import com.crazylegend.kotlinextensions.locale.LocaleHelper
 import com.crazylegend.kotlinextensions.preferences.booleanChangeListener
@@ -130,7 +130,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
 
     private fun updateCheckBiometricAuth(status: Boolean = false) {
-        viewLifecycleOwner.lifecycle.coroutineScope.launch {
+        viewCoroutineScope.launch {
             withMainContext {
                 biometricAuth?.isChecked = status
             }

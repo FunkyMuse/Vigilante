@@ -14,7 +14,7 @@ ext {
 }
 
 buildscript {
-    ext.kotlin_version = "1.4.20"
+    ext.kotlin_version = "1.4.21"
     ext.nav_version = '2.3.2'
     ext.hilt_version = '2.30.1-alpha'
     repositories {

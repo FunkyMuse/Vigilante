@@ -22,7 +22,7 @@
     <uses-permission
         android:name="android.permission.USE_FINGERPRINT"
         tools:node="remove" />
-    
+
     <queries>
         <intent>
             <action android:name="android.intent.action.MAIN" />

@@ -2,8 +2,8 @@
 
 [![Kotlin Version](https://img.shields.io/badge/kotlin-1.4.20-blue.svg)](https://kotlinlang.org)
 [![API](https://img.shields.io/badge/API-24%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
-[![GitHub release (including pre-releases)](https://img.shields.io/github/v/release/CraZyLegenD/Vigilante?include_prereleases)](https://github.com/CraZyLegenD/Vigilante/releases/latest)
-![GitHub Repo Size](https://img.shields.io/github/repo-size/CraZyLegenD/Vigilante)
+[![GitHub release (including pre-releases)](https://img.shields.io/github/v/release/FunkyMuse/Vigilante?include_prereleases)](https://github.com/FunkyMuse/Vigilante/releases/latest)
+![GitHub Repo Size](https://img.shields.io/github/repo-size/FunkyMuse/Vigilante)
 
 
 An app that focuses on your privacy and alerts you when a third-party application uses your device camera or microphone, plus few other goodies.
@@ -27,16 +27,16 @@ An app that focuses on your privacy and alerts you when a third-party applicatio
 
 ## Download
 
-Go to the [Releases](https://github.com/CraZyLegenD/Vigilante/releases/latest) to download the latest APK.
+Go to the [Releases](https://github.com/FunkyMuse/Vigilante/releases/latest) to download the latest APK.
 
 ## Screenshots
 
 #### Light
 
-<img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/fastlane/metadata/android/en-US/images/phoneScreenshots/screen_1.png" width="33%"> </img><img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/fastlane/metadata/android/en-US/images/phoneScreenshots/screen_2.png" width="33%"> </img><img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/fastlane/metadata/android/en-US/images/phoneScreenshots/screen_3.png" width="33%"></img> <img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/fastlane/metadata/android/en-US/images/phoneScreenshots/screen_4.png" width="33%"></img> <img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/fastlane/metadata/android/en-US/images/phoneScreenshots/screen_5.png" width="33%"></img> <img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/fastlane/metadata/android/en-US/images/phoneScreenshots/screen_6.png" width="33%"></img>
+<img src="https://raw.githubusercontent.com/FunkyMuse/Vigilante/master/fastlane/metadata/android/en-US/images/phoneScreenshots/screen_1.png" width="33%"> </img><img src="https://raw.githubusercontent.com/FunkyMuse/Vigilante/master/fastlane/metadata/android/en-US/images/phoneScreenshots/screen_2.png" width="33%"> </img><img src="https://raw.githubusercontent.com/FunkyMuse/Vigilante/master/fastlane/metadata/android/en-US/images/phoneScreenshots/screen_3.png" width="33%"></img> <img src="https://raw.githubusercontent.com/FunkyMuse/Vigilante/master/fastlane/metadata/android/en-US/images/phoneScreenshots/screen_4.png" width="33%"></img> <img src="https://raw.githubusercontent.com/FunkyMuse/Vigilante/master/fastlane/metadata/android/en-US/images/phoneScreenshots/screen_5.png" width="33%"></img> <img src="https://raw.githubusercontent.com/FunkyMuse/Vigilante/master/fastlane/metadata/android/en-US/images/phoneScreenshots/screen_6.png" width="33%"></img>
 #### Dark
 
-<img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/fastlane/metadata/android/en-US/images/phoneScreenshots/screen_7.png" width="33%"></img> <img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/fastlane/metadata/android/en-US/images/phoneScreenshots/screen_8.png" width="33%"></img> <img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/fastlane/metadata/android/en-US/images/phoneScreenshots/screen_9.png" width="33%"></img> <img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/fastlane/metadata/android/en-US/images/phoneScreenshots/screen_10.png" width="33%"></img> <img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/fastlane/metadata/android/en-US/images/phoneScreenshots/screen_11.png" width="33%"></img> <img src="https://raw.githubusercontent.com/CraZyLegenD/Vigilante/master/fastlane/metadata/android/en-US/images/phoneScreenshots/screen_12.png" width="33%"></img>
+<img src="https://raw.githubusercontent.com/FunkyMuse/Vigilante/master/fastlane/metadata/android/en-US/images/phoneScreenshots/screen_7.png" width="33%"></img> <img src="https://raw.githubusercontent.com/FunkyMuse/Vigilante/master/fastlane/metadata/android/en-US/images/phoneScreenshots/screen_8.png" width="33%"></img> <img src="https://raw.githubusercontent.com/FunkyMuse/Vigilante/master/fastlane/metadata/android/en-US/images/phoneScreenshots/screen_9.png" width="33%"></img> <img src="https://raw.githubusercontent.com/FunkyMuse/Vigilante/master/fastlane/metadata/android/en-US/images/phoneScreenshots/screen_10.png" width="33%"></img> <img src="https://raw.githubusercontent.com/FunkyMuse/Vigilante/master/fastlane/metadata/android/en-US/images/phoneScreenshots/screen_11.png" width="33%"></img> <img src="https://raw.githubusercontent.com/FunkyMuse/Vigilante/master/fastlane/metadata/android/en-US/images/phoneScreenshots/screen_12.png" width="33%"></img>
 
 ## Translations
 🇪🇸 [@miguelcanosantana](https://github.com/miguelcanosantana)

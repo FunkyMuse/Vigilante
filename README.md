@@ -27,7 +27,7 @@ An app that focuses on your privacy and alerts you when a third-party applicatio
 
 ## Download
 
-Go to the [Releases](https://github.com/FunkyMuse/Vigilante/releases/latest) to download the latest APK.
+[![Get it on github](https://raw.githubusercontent.com/FunkyMuse/Vigilante/master/imgs/get_it_on_gh.png)](https://github.com/FunkyMuse/Vigilante/releases/latest)
 
 ## Screenshots
 

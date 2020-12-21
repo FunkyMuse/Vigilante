@@ -2,20 +2,24 @@ package com.crazylegend.vigilante.settings
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.updatePadding
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
-import com.crazylegend.coroutines.withMainContext
+import com.crazylegend.coroutines.mainDispatcher
 import com.crazylegend.kotlinextensions.context.packageVersionName
 import com.crazylegend.kotlinextensions.fragments.shortToast
 import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
+import com.crazylegend.kotlinextensions.gestureNavigation.EdgeToEdge
 import com.crazylegend.kotlinextensions.intent.openWebPage
 import com.crazylegend.kotlinextensions.locale.LocaleHelper
 import com.crazylegend.kotlinextensions.preferences.booleanChangeListener
 import com.crazylegend.kotlinextensions.preferences.onClick
 import com.crazylegend.kotlinextensions.preferences.stringChangeListener
+import com.crazylegend.kotlinextensions.views.dimen
 import com.crazylegend.vigilante.R
+import com.crazylegend.vigilante.contracts.EdgeToEdgeScrolling
 import com.crazylegend.vigilante.di.providers.AuthProvider
 import com.crazylegend.vigilante.di.providers.PrefsProvider
 import com.crazylegend.vigilante.utils.HOME_PAGE
@@ -27,7 +31,7 @@ import javax.inject.Inject
  * Created by crazy on 11/2/20 to long live and prosper !
  */
 @AndroidEntryPoint
-class SettingsFragment : PreferenceFragmentCompat() {
+class SettingsFragment : PreferenceFragmentCompat(), EdgeToEdgeScrolling {
 
     @Inject
     lateinit var prefsProvider: PrefsProvider
@@ -58,6 +62,10 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        listView.apply {
+            clipToPadding = false
+            updatePadding(bottom = dimen(R.dimen.padding_bottom_scroll).toInt())
+        }
         version?.summary = requireContext().packageVersionName
         notificationsSwitch.booleanChangeListener { _, newValue ->
             prefsProvider.updateNotificationsValue(newValue)
@@ -130,10 +138,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
 
     private fun updateCheckBiometricAuth(status: Boolean = false) {
-        viewCoroutineScope.launch {
-            withMainContext {
-                biometricAuth?.isChecked = status
-            }
+        viewCoroutineScope.launch(mainDispatcher) {
+            biometricAuth?.isChecked = status
         }
     }
 
@@ -143,5 +149,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     private fun updateNotificationSwitch() {
         notificationsSwitch?.isChecked = prefsProvider.areNotificationsEnabled
+    }
+
+    override fun edgeToEdgeScrollingContent() {
+        EdgeToEdge.setUpScrollingContent(listView)
     }
 }

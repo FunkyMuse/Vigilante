@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Vigilante</string>
     <string name="vigilante_description">Servicio de Vigilante</string>
     <string name="vigilante_summary">Detector del servicio de Vigilante que muestra un punto cuando la cámara o el micrófono son usados.</string>
     <string name="home">Inicio</string>

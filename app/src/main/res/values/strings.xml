@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Vigilante</string>
+    <string name="app_name" translatable="false">Vigilante</string>
     <string name="vigilante_description">Vigilante service</string>
     <string name="vigilante_summary">Vigilante service listener for events that displays dot when camera/mic usage happens.</string>
     <string name="home">Home</string>

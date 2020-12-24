@@ -39,7 +39,8 @@ An app that focuses on your privacy and alerts you when a third-party applicatio
 <img src="https://raw.githubusercontent.com/FunkyMuse/Vigilante/master/fastlane/metadata/android/en-US/images/phoneScreenshots/screen_7.png" width="33%"></img> <img src="https://raw.githubusercontent.com/FunkyMuse/Vigilante/master/fastlane/metadata/android/en-US/images/phoneScreenshots/screen_8.png" width="33%"></img> <img src="https://raw.githubusercontent.com/FunkyMuse/Vigilante/master/fastlane/metadata/android/en-US/images/phoneScreenshots/screen_9.png" width="33%"></img> <img src="https://raw.githubusercontent.com/FunkyMuse/Vigilante/master/fastlane/metadata/android/en-US/images/phoneScreenshots/screen_10.png" width="33%"></img> <img src="https://raw.githubusercontent.com/FunkyMuse/Vigilante/master/fastlane/metadata/android/en-US/images/phoneScreenshots/screen_11.png" width="33%"></img> <img src="https://raw.githubusercontent.com/FunkyMuse/Vigilante/master/fastlane/metadata/android/en-US/images/phoneScreenshots/screen_12.png" width="33%"></img>
 
 ## Translations
-🇪🇸 [@miguelcanosantana](https://github.com/miguelcanosantana)
+* 🇪🇸 [@miguelcanosantana](https://github.com/miguelcanosantana)
+* 🇵🇹 [@mezysinc](https://github.com/mezysinc)
 
 ## Built With 🛠
 

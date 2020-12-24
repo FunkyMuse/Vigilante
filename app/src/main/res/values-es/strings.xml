@@ -130,4 +130,6 @@
     <string name="language_title">Idioma</string>
     <string name="english">Inglés</string>
     <string name="spanish">Español</string>
+    <string name="portuguese">Portugués</string>
+
 </resources>

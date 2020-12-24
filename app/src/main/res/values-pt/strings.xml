@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Vigilante</string>
     <string name="vigilante_description">Serviço do Vigilante</string>
     <string name="vigilante_summary">Serviço do Vigilante observa os eventos e exibe os Pontos quando a câmera/mic está sendo usado.</string>
     <string name="home">Início</string>
@@ -13,7 +12,7 @@
     <string name="headset_history">Histórico de fones de ouvido</string>
     <string name="notifications_history">Histórico de notificações</string>
     <string name="lock_screen_history">Histórico de bloqueio da tela</string>
-    <string name="notifications_usage_expl">Ao ativar esta opção, você estará recebendo notificações quando a câmera/microfone/etc... for usada, se/quando possível.</string>
+    <string name="notifications_usage_expl">Ao ativar esta opção, você estará recebendo notificações quando a câmera/microfone/etc… for usada, se/quando possível.</string>
     <string name="notifications_usage_title">Habilitar notificações de uso</string>
     <string name="crash_report">Relatório de falhas #%1$d</string>
     <string name="no_crashes">Não há registros de falhas!</string>

@@ -3,10 +3,12 @@
     <string-array name="language_entries">
         <item>@string/english</item>
         <item>@string/spanish</item>
+        <item>@string/portuguese</item>
     </string-array>
 
     <string-array name="language_values">
         <item>en</item>
         <item>es</item>
+        <item>pt</item>
     </string-array>
 </resources>

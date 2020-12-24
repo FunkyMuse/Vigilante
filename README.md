@@ -26,8 +26,8 @@ An app that focuses on your privacy and alerts you when a third-party applicatio
 - and many more...
 
 ## Download
-
-[![Get it on github](https://raw.githubusercontent.com/FunkyMuse/Vigilante/master/imgs/get_it_on_gh.png)](https://github.com/FunkyMuse/Vigilante/releases/latest)
+[![Get it on GitHub releases](https://i.ibb.co/q0mdc4Z/get-it-on-github.png)](https://github.com/FunkyMuse/Vigilante/releases/latest)
+[![Get it on F-Droid](https://fdroid.gitlab.io/artwork/badge/get-it-on.png)](https://f-droid.org/en/packages/com.crazylegend.vigilante/)
 
 ## Screenshots
 

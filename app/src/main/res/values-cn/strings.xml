@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Vigilante</string>
+    
     <string name="vigilante_description">Vigilante 服务</string>
     <string name="vigilante_summary">Vigilante 的事件服务监听器，用于在相机/麦克风使用发生时显示点。</string>
     <string name="home">首页</string>

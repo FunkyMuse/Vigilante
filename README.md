@@ -41,6 +41,7 @@ An app that focuses on your privacy and alerts you when a third-party applicatio
 ## Translations
 * 🇪🇸 [@miguelcanosantana](https://github.com/miguelcanosantana)
 * 🇵🇹 [@mezysinc](https://github.com/mezysinc)
+* 🇨🇳 [@sr093906](https://github.com/sr093906)
 
 ## Built With 🛠
 

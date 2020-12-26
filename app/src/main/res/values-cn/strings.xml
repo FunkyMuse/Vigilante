@@ -114,7 +114,7 @@
     <string name="welcome_to_vigilante_you_have_chosen_privacy_thank_you_for_your_decision">欢迎来到 Vigilante，你已经选择了隐私，谢谢你的决定！</string>
     <string name="you_can_choose_the_size_color_and_the_position_of_the_dots_appearing_on_the_screen">你可以选择出现在屏幕上的点的大小、颜色和位置</string>
     <string name="and_many_other_customizations_and_options_available_within_the_simple_ui_in_the_application">以及许多其他在本应用的简单用户界面中可用的自定义和选项。</string>
-	<string name="finish">Finish</string>
+    <string name="finish">完成</string>
     <string name="final_expl">别忘了报告崩溃，建议新功能并记住， 如果某些服务在展示广告或不声明联网目的的情况下免费提供给你，那么你(作为用户)就是产品</string>
     <string name="final_pre_expl">这个应用程序使用加密的偏好选择、数据库，并关注隐私和生产力。</string>
     <string name="the_app_is_an_open_source_project_and_will_remain_as_such_as_it_focuses_on_privacy_and_it_s_integrity">本应用程序是一个开源项目，并将一直如此，因为它注重隐私和诚信。</string>

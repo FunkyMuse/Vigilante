@@ -131,5 +131,8 @@
     <string name="english">English</string>
     <string name="spanish">Spanish</string>
     <string name="portuguese">Portuguese</string>
+    <string name="notification_led_color">Notification led color</string>
+    <string name="pick_notification_LED_color">Pick notification LED color</string>
+    <string name="led_notification_expl">Only available for phones that have hardware capabilities for a LED identifier.</string>
 
 </resources>

@@ -9,7 +9,8 @@ import com.crazylegend.kotlinextensions.sharedprefs.putBoolean
 import com.crazylegend.kotlinextensions.sharedprefs.putFloat
 import com.crazylegend.kotlinextensions.sharedprefs.putInt
 import com.crazylegend.kotlinextensions.sharedprefs.putString
-import com.crazylegend.vigilante.customization.CustomizationFragment.Companion.COLOR_PREF_ADDITION
+import com.crazylegend.vigilante.customization.CustomizationFragment.Companion.COLOR_DOT_PREF_ADDITION
+import com.crazylegend.vigilante.customization.CustomizationFragment.Companion.COLOR_NOTIFICATION_PREF_ADDITION
 import com.crazylegend.vigilante.customization.CustomizationFragment.Companion.POSITION_PREF_ADDITION
 import com.crazylegend.vigilante.customization.CustomizationFragment.Companion.SIZE_PREF_ADDITION
 import com.crazylegend.vigilante.di.qualifiers.EncryptedPrefs
@@ -27,6 +28,7 @@ class PrefsProvider @Inject constructor(@EncryptedPrefs
     companion object {
         const val DEFAULT_LAYOUT_POSITION = 0
         const val DEFAULT_DOT_COLOR = 31727
+        const val DEFAULT_NOTIFICATION_COLOR = 31727
         const val DEFAULT_DOT_SIZE = 20f
     }
 
@@ -59,18 +61,22 @@ class PrefsProvider @Inject constructor(@EncryptedPrefs
     fun saveColorPref(prefBaseName: String, pickedColor: Int) = defaultPrefs.putInt(prefBaseName, pickedColor)
     fun saveSizePref(prefBaseName: String, sizeSlider: Float) = defaultPrefs.putFloat(prefBaseName, sizeSlider)
     fun savePositionPref(prefBaseName: String, position: Int) = defaultPrefs.putInt(prefBaseName, position)
+    fun saveNotificationColorPref(prefBaseName: String, pickedColor: Int) = defaultPrefs.putInt(prefBaseName, pickedColor)
 
     val getCameraColorPref get() = getColorPref(CAMERA_CUSTOMIZATION_BASE_PREF)
     val getCameraSizePref get() = getSizePref(CAMERA_CUSTOMIZATION_BASE_PREF)
     val getCameraPositionPref get() = getPositionPref(CAMERA_CUSTOMIZATION_BASE_PREF)
     val getLayoutCameraPositionPref get() = getLayoutPosition(getPositionPref(CAMERA_CUSTOMIZATION_BASE_PREF))
+    val getCameraNotificationLEDColorPref get() = getNotificationColorPref(CAMERA_CUSTOMIZATION_BASE_PREF)
 
     val getMicColorPref get() = getColorPref(MIC_CUSTOMIZATION_BASE_PREF)
     val getMicSizePref get() = getSizePref(MIC_CUSTOMIZATION_BASE_PREF)
     val getMicPositionPref get() = getPositionPref(MIC_CUSTOMIZATION_BASE_PREF)
     val getLayoutMicPositionPref get() = getLayoutPosition(getPositionPref(MIC_CUSTOMIZATION_BASE_PREF))
+    val getMicNotificationLEDColorPref get() = getNotificationColorPref(MIC_CUSTOMIZATION_BASE_PREF)
 
-    private fun getColorPref(basePref: String) = defaultPrefs.getInt(basePref + COLOR_PREF_ADDITION, DEFAULT_DOT_COLOR)
+    private fun getColorPref(basePref: String) = defaultPrefs.getInt(basePref + COLOR_DOT_PREF_ADDITION, DEFAULT_DOT_COLOR)
+    private fun getNotificationColorPref(basePref: String) = defaultPrefs.getInt(basePref + COLOR_NOTIFICATION_PREF_ADDITION, DEFAULT_NOTIFICATION_COLOR)
     private fun getSizePref(basePref: String) = defaultPrefs.getFloat(basePref + SIZE_PREF_ADDITION, DEFAULT_DOT_SIZE)
 
     /**
@@ -103,4 +109,5 @@ class PrefsProvider @Inject constructor(@EncryptedPrefs
 
     val isBiometricAuthEnabled get() = defaultPrefs.getBoolean(BIOMETRIC_AUTH_PREF_KEY, false)
     fun updateBiometricStatus(status: Boolean) = defaultPrefs.putBoolean(BIOMETRIC_AUTH_PREF_KEY, status)
+
 }

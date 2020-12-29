@@ -26,13 +26,13 @@ class UserNotificationsProvider @Inject constructor(@ServiceContext private val 
      * @param notificationID Int - to cancel once done
      * @return Notification?
      */
-    fun buildUsageNotification(notificationID: Int, @StringRes usageTypeString: Int) {
+    fun buildUsageNotification(notificationID: Int, @StringRes usageTypeString: Int, notificationLEDColorPref: Int) {
 
         val usageContentText = LocaleHelper.getLocalizedString(context, usageTypeString)
 
         val notificationCompatBuilder = NotificationCompat.Builder(
                 context,
-                context.createNotificationChannel()
+                context.createNotificationChannel(notificationLEDColorPref)
         )
                 .setDefaults(Notification.DEFAULT_LIGHTS)
                 .setSmallIcon(R.drawable.ic_logo)
@@ -53,13 +53,13 @@ class UserNotificationsProvider @Inject constructor(@ServiceContext private val 
     }
 
     private val NOTIFICATION_CHANNEL = "11"
-    private fun Context.createNotificationChannel(): String {
+    private fun Context.createNotificationChannel(notificationLEDColorPref: Int): String {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val notificationChannel = NotificationChannel(NOTIFICATION_CHANNEL, getString(R.string.channel_name),
                     NotificationManager.IMPORTANCE_HIGH)
             notificationChannel.description = getString(R.string.channel_description)
             notificationChannel.enableLights(true)
-            notificationChannel.lightColor = Color.MAGENTA
+            notificationChannel.lightColor = notificationLEDColorPref
             val notificationManager = getSystemService(NotificationManager::class.java)
             notificationManager.createNotificationChannel(notificationChannel)
         }

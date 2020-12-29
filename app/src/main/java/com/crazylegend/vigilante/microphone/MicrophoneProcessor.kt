@@ -50,7 +50,7 @@ class MicrophoneProcessor @Inject constructor(
 
     private fun sendNotificationIfUserEnabled() {
         prefsProvider.areNotificationsEnabled.ifTrue {
-            userNotificationsProvider.buildUsageNotification(micNotificationID, R.string.mic_being_used)
+            userNotificationsProvider.buildUsageNotification(micNotificationID, R.string.mic_being_used, prefsProvider.getMicNotificationLEDColorPref)
         }
     }
 

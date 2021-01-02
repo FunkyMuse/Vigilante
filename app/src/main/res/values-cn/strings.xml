@@ -132,5 +132,8 @@
     <string name="spanish">西班牙语</string>
     <string name="portuguese">葡萄牙语</string>
     <string name="chinese">中文</string>
+    <string name="notification_led_color">通知LED指示灯颜色</string>
+    <string name="pick_notification_LED_color">挑选通知LED指示灯颜色</string>
+    <string name="led_notification_expl">仅适用于具有LED标识符硬件功能的手机。</string>
 
 </resources>

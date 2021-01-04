@@ -13,6 +13,7 @@ import com.crazylegend.vigilante.customization.CustomizationFragment.Companion.C
 import com.crazylegend.vigilante.customization.CustomizationFragment.Companion.COLOR_NOTIFICATION_PREF_ADDITION
 import com.crazylegend.vigilante.customization.CustomizationFragment.Companion.POSITION_PREF_ADDITION
 import com.crazylegend.vigilante.customization.CustomizationFragment.Companion.SIZE_PREF_ADDITION
+import com.crazylegend.vigilante.customization.CustomizationFragment.Companion.VIBRATION_PREF_ADDITION
 import com.crazylegend.vigilante.di.qualifiers.EncryptedPrefs
 import com.crazylegend.vigilante.settings.*
 import javax.inject.Inject
@@ -27,6 +28,7 @@ class PrefsProvider @Inject constructor(@EncryptedPrefs
 
     companion object {
         const val DEFAULT_LAYOUT_POSITION = 0
+        const val DEFAULT_VIBRATION_POSITION = 0
         const val DEFAULT_DOT_COLOR = 31727
         const val DEFAULT_NOTIFICATION_COLOR = 31727
         const val DEFAULT_DOT_SIZE = 20f
@@ -65,20 +67,26 @@ class PrefsProvider @Inject constructor(@EncryptedPrefs
     fun setExcludeVigilanteFromNotificationsStatus(newValue: Boolean) = defaultPrefs.putBoolean(EXCLUDE_VIGILANTE_FROM_NOTIFICATIONS_PREF_KEY, newValue)
     //endregion
 
-    //region camera color prefs
+    //region camera prefs
     val getCameraColorPref get() = getColorPref(CAMERA_CUSTOMIZATION_BASE_PREF)
     val getCameraSizePref get() = getSizePref(CAMERA_CUSTOMIZATION_BASE_PREF)
     val getCameraPositionPref get() = getPositionPref(CAMERA_CUSTOMIZATION_BASE_PREF)
-    val getLayoutCameraPositionPref get() = getLayoutPosition(getPositionPref(CAMERA_CUSTOMIZATION_BASE_PREF))
+    val getLayoutCameraPositionPref get() = getLayoutPosition(getCameraPositionPref)
     val getCameraNotificationLEDColorPref get() = getNotificationColorPref(CAMERA_CUSTOMIZATION_BASE_PREF)
+
+    val getCameraVibrationPositionPref get() = getVibrationPref(CAMERA_CUSTOMIZATION_BASE_PREF)
+    val getCameraVibrationEffectPref get() = getVibrationEffect(getCameraVibrationPositionPref)
     //endregion
 
-    //region mic color prefs
+    //region mic prefs
     val getMicColorPref get() = getColorPref(MIC_CUSTOMIZATION_BASE_PREF)
     val getMicSizePref get() = getSizePref(MIC_CUSTOMIZATION_BASE_PREF)
     val getMicPositionPref get() = getPositionPref(MIC_CUSTOMIZATION_BASE_PREF)
-    val getLayoutMicPositionPref get() = getLayoutPosition(getPositionPref(MIC_CUSTOMIZATION_BASE_PREF))
+    val getLayoutMicPositionPref get() = getLayoutPosition(getMicPositionPref)
     val getMicNotificationLEDColorPref get() = getNotificationColorPref(MIC_CUSTOMIZATION_BASE_PREF)
+
+    val getMicVibrationPositionPref get() = getVibrationPref(MIC_CUSTOMIZATION_BASE_PREF)
+    val getMicVibrationEffectPref get() = getVibrationEffect(getMicVibrationPositionPref)
     //endregion
 
     fun saveColorPref(prefBaseName: String, pickedColor: Int) = defaultPrefs.putInt(prefBaseName, pickedColor)
@@ -123,5 +131,23 @@ class PrefsProvider @Inject constructor(@EncryptedPrefs
     //region biometric auth
     val isBiometricAuthEnabled get() = defaultPrefs.getBoolean(BIOMETRIC_AUTH_PREF_KEY, false)
     fun updateBiometricStatus(status: Boolean) = defaultPrefs.putBoolean(BIOMETRIC_AUTH_PREF_KEY, status)
+    //endregion
+
+    //region bypass dnd
+    val isBypassDNDEnabled
+        get() = defaultPrefs.getBoolean(BYPASS_DND_PREF_KEY, false)
+    //endregion
+
+
+    //region vibration
+    private fun getVibrationPref(basePref: String) = defaultPrefs.getInt(basePref + VIBRATION_PREF_ADDITION, DEFAULT_VIBRATION_POSITION)
+
+    fun getVibrationEffect(pref: Int) = when (pref) {
+        0 -> null
+        1 -> longArrayOf(60, 80, 100)
+        2 -> longArrayOf(150, 180, 200)
+        3 -> longArrayOf(250, 300, 350)
+        else -> null
+    }
     //endregion
 }

@@ -70,7 +70,8 @@ class CameraProcessor @Inject constructor(
 
     private fun sendNotificationIfUserEnabled() {
         prefsProvider.areNotificationsEnabled.ifTrue {
-            userNotificationsProvider.buildUsageNotification(cameraNotificationID, R.string.cam_being_used, prefsProvider.getCameraNotificationLEDColorPref)
+            userNotificationsProvider.buildUsageNotification(cameraNotificationID, R.string.cam_being_used, prefsProvider.getCameraNotificationLEDColorPref,
+                    prefsProvider.getCameraVibrationEffectPref)
         }
     }
 

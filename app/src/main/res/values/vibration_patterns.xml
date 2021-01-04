@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="vibration_entries">
+        <item>@string/none</item>
+        <item>@string/light</item>
+        <item>@string/medium</item>
+        <item>@string/heavy</item>
+    </string-array>
+
+
+</resources>

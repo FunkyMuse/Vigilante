@@ -32,11 +32,16 @@ class PrefsProvider @Inject constructor(@EncryptedPrefs
         const val DEFAULT_DOT_SIZE = 20f
     }
 
+    //region date format
+    fun updateDateFormat(value: String) = defaultPrefs.putString(DATE_PREF_KEY, value)
     val getDateFormat
         get() = defaultPrefs.getString(DATE_PREF_KEY, DEFAULT_DATE_FORMAT) ?: DEFAULT_DATE_FORMAT
+    //endregion
 
+    //region notifications status
     val areNotificationsEnabled get() = defaultPrefs.getBoolean(NOTIFICATIONS_PREF_KEY, true)
     fun updateNotificationsValue(value: Boolean) = defaultPrefs.putBoolean(NOTIFICATIONS_PREF_KEY, value)
+    //endregion
 
     //region theme
     val isDarkThemeEnabled get() = defaultPrefs.getBoolean(THEME_PREF_KEY, false)
@@ -50,30 +55,36 @@ class PrefsProvider @Inject constructor(@EncryptedPrefs
     }
     //endregion
 
-    fun updateDateFormat(value: String) = defaultPrefs.putString(DATE_PREF_KEY, value)
-
+    //region dot status
     val isDotEnabled get() = defaultPrefs.getBoolean(DOT_PREF_KEY, true)
     fun setDotStatus(status: Boolean) = defaultPrefs.putBoolean(DOT_PREF_KEY, status)
+    //endregion
 
+    //region notification exclusion
     val isVigilanteExcludedFromNotifications get() = defaultPrefs.getBoolean(EXCLUDE_VIGILANTE_FROM_NOTIFICATIONS_PREF_KEY, false)
     fun setExcludeVigilanteFromNotificationsStatus(newValue: Boolean) = defaultPrefs.putBoolean(EXCLUDE_VIGILANTE_FROM_NOTIFICATIONS_PREF_KEY, newValue)
+    //endregion
 
-    fun saveColorPref(prefBaseName: String, pickedColor: Int) = defaultPrefs.putInt(prefBaseName, pickedColor)
-    fun saveSizePref(prefBaseName: String, sizeSlider: Float) = defaultPrefs.putFloat(prefBaseName, sizeSlider)
-    fun savePositionPref(prefBaseName: String, position: Int) = defaultPrefs.putInt(prefBaseName, position)
-    fun saveNotificationColorPref(prefBaseName: String, pickedColor: Int) = defaultPrefs.putInt(prefBaseName, pickedColor)
-
+    //region camera color prefs
     val getCameraColorPref get() = getColorPref(CAMERA_CUSTOMIZATION_BASE_PREF)
     val getCameraSizePref get() = getSizePref(CAMERA_CUSTOMIZATION_BASE_PREF)
     val getCameraPositionPref get() = getPositionPref(CAMERA_CUSTOMIZATION_BASE_PREF)
     val getLayoutCameraPositionPref get() = getLayoutPosition(getPositionPref(CAMERA_CUSTOMIZATION_BASE_PREF))
     val getCameraNotificationLEDColorPref get() = getNotificationColorPref(CAMERA_CUSTOMIZATION_BASE_PREF)
+    //endregion
 
+    //region mic color prefs
     val getMicColorPref get() = getColorPref(MIC_CUSTOMIZATION_BASE_PREF)
     val getMicSizePref get() = getSizePref(MIC_CUSTOMIZATION_BASE_PREF)
     val getMicPositionPref get() = getPositionPref(MIC_CUSTOMIZATION_BASE_PREF)
     val getLayoutMicPositionPref get() = getLayoutPosition(getPositionPref(MIC_CUSTOMIZATION_BASE_PREF))
     val getMicNotificationLEDColorPref get() = getNotificationColorPref(MIC_CUSTOMIZATION_BASE_PREF)
+    //endregion
+
+    fun saveColorPref(prefBaseName: String, pickedColor: Int) = defaultPrefs.putInt(prefBaseName, pickedColor)
+    fun saveSizePref(prefBaseName: String, sizeSlider: Float) = defaultPrefs.putFloat(prefBaseName, sizeSlider)
+    fun savePositionPref(prefBaseName: String, position: Int) = defaultPrefs.putInt(prefBaseName, position)
+    fun saveNotificationColorPref(prefBaseName: String, pickedColor: Int) = defaultPrefs.putInt(prefBaseName, pickedColor)
 
     private fun getColorPref(basePref: String) = defaultPrefs.getInt(basePref + COLOR_DOT_PREF_ADDITION, DEFAULT_DOT_COLOR)
     private fun getNotificationColorPref(basePref: String) = defaultPrefs.getInt(basePref + COLOR_NOTIFICATION_PREF_ADDITION, DEFAULT_NOTIFICATION_COLOR)
@@ -102,12 +113,15 @@ class PrefsProvider @Inject constructor(@EncryptedPrefs
         else -> Gravity.TOP or Gravity.END
     }
 
+    //region intro
     val isIntroShown get() = defaultPrefs.getBoolean(INTRO_PREF, false)
     fun setIntroShown() {
         defaultPrefs.putBoolean(INTRO_PREF, true)
     }
+    //endregion
 
+    //region biometric auth
     val isBiometricAuthEnabled get() = defaultPrefs.getBoolean(BIOMETRIC_AUTH_PREF_KEY, false)
     fun updateBiometricStatus(status: Boolean) = defaultPrefs.putBoolean(BIOMETRIC_AUTH_PREF_KEY, status)
-
+    //endregion
 }

@@ -26,7 +26,6 @@ import java.util.*
 class LogViewHolder(private val binding: ItemviewLogBinding) : RecyclerView.ViewHolder(binding.root) {
 
 
-
     fun bind(item: UsageStats, prefsProvider: PrefsProvider) {
         binding.title.setPrecomputedText(tryOrNull { context.getAppName(item.packageName.toString()) })
         binding.image.setImageDrawable(tryOrNull { context.getAppIcon(item.packageName.toString()) })

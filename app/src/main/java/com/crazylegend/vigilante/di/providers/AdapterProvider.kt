@@ -1,17 +1,17 @@
 package com.crazylegend.vigilante.di.providers
 
-import com.crazylegend.recyclerview.generateRecycler
-import com.crazylegend.vigilante.crashes.CrashViewHolder
+import androidx.core.view.isVisible
+import com.crazylegend.kotlinextensions.views.setPrecomputedText
+import com.crazylegend.kotlinextensions.views.visibleIfTrueGoneOtherwise
+import com.crazylegend.recyclerview.generateRecyclerWithHolder
+import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.databinding.ItemviewCrashBinding
 import com.crazylegend.vigilante.databinding.ItemviewDeviceInfoBinding
 import com.crazylegend.vigilante.databinding.ItemviewFilterBinding
 import com.crazylegend.vigilante.databinding.ItemviewSectionBinding
 import com.crazylegend.vigilante.deviceinfo.DeviceInfoModel
-import com.crazylegend.vigilante.deviceinfo.DeviceInfoViewHolder
 import com.crazylegend.vigilante.filter.FilterModel
-import com.crazylegend.vigilante.filter.ListFilterViewHolder
 import com.crazylegend.vigilante.home.section.SectionItem
-import com.crazylegend.vigilante.home.section.SectionViewHolder
 import dagger.hilt.android.scopes.FragmentScoped
 import javax.inject.Inject
 
@@ -22,26 +22,32 @@ import javax.inject.Inject
 class AdapterProvider @Inject constructor() {
 
     val listFilterAdapter by lazy(LazyThreadSafetyMode.NONE) {
-        generateRecycler<FilterModel, ListFilterViewHolder, ItemviewFilterBinding>(::ListFilterViewHolder, ItemviewFilterBinding::inflate) { item, holder, position, itemCount ->
-            holder.bind(item, position, itemCount)
+        generateRecyclerWithHolder<FilterModel, ItemviewFilterBinding>(ItemviewFilterBinding::inflate) { item, position, itemCount, binding ->
+            binding.checked.visibleIfTrueGoneOtherwise(item.isChecked)
+            binding.title.setPrecomputedText(binding.root.context.getString(item.title))
+            binding.divider.visibleIfTrueGoneOtherwise(position != itemCount - 1)
         }
     }
 
     val sectionAdapter by lazy(LazyThreadSafetyMode.NONE) {
-        generateRecycler<SectionItem, SectionViewHolder, ItemviewSectionBinding>(::SectionViewHolder, ItemviewSectionBinding::inflate) { item, holder, position, itemCount ->
-            holder.bind(item, position, itemCount)
+        generateRecyclerWithHolder<SectionItem, ItemviewSectionBinding>(ItemviewSectionBinding::inflate) { item, position, itemCount, binding ->
+            binding.title.text = binding.root.context.getString(item.title)
+            binding.icon.setImageResource(item.icon)
+            binding.rightDivider.isVisible = position % 2 == 0
+            binding.bottomDivider.isVisible = (itemCount - 1 != position) && (itemCount - 2 != position)
         }
     }
 
     val crashesAdapter by lazy(LazyThreadSafetyMode.NONE) {
-        generateRecycler<String, CrashViewHolder, ItemviewCrashBinding>(::CrashViewHolder, ItemviewCrashBinding::inflate) { _, holder, position, _ ->
-            holder.bind(position)
+        generateRecyclerWithHolder<String, ItemviewCrashBinding>(ItemviewCrashBinding::inflate) { _, position, _, binding ->
+            binding.text.text = binding.root.context.getString(R.string.crash_report, position + 1)
         }
     }
 
     val deviceInfoAdapter by lazy(LazyThreadSafetyMode.NONE) {
-        generateRecycler<DeviceInfoModel, DeviceInfoViewHolder, ItemviewDeviceInfoBinding>(::DeviceInfoViewHolder, ItemviewDeviceInfoBinding::inflate) { item, holder, _, _ ->
-            holder.bind(item)
+        generateRecyclerWithHolder<DeviceInfoModel, ItemviewDeviceInfoBinding>(ItemviewDeviceInfoBinding::inflate) { item, position, itemCount, binding ->
+            binding.title.setPrecomputedText(binding.root.context.getString(item.title))
+            binding.content.setPrecomputedText(binding.root.context.getString(item.content))
         }
     }
 

@@ -128,9 +128,6 @@
     <string name="auth_failed">Authentication failed, try again!</string>
     <string name="verify_to_proceed">Verify your identity to open the application.</string>
     <string name="language_title">Language</string>
-    <string name="english">English</string>
-    <string name="spanish">Spanish</string>
-    <string name="portuguese">Portuguese</string>
     <string name="notification_led_color">Notification led color</string>
     <string name="pick_notification_LED_color">Pick notification LED color</string>
     <string name="led_notification_expl">Only available for phones that have hardware capabilities for a LED identifier.</string>
@@ -144,4 +141,11 @@
     <string name="vibration_on_notification">Vibrate on notification</string>
     <string name="incompatible_os_version">Your Android OS is incompatible with this feature.</string>
     <string name="vibrations_not_happening_expl">** If your vibrations do not work, go to App info > Notifications > Usage notifications and enable Sound with vibration.\nTap here to test the picked vibration.**</string>
+
+    <!--Languages-->
+    <string name="english">English</string>
+    <string name="spanish">Spanish</string>
+    <string name="portuguese">Portuguese</string>
+    <string name="chinese">Chinese</string>
+    <string name="russian">Russian</string>
 </resources>

@@ -70,9 +70,15 @@ class SettingsFragment : PreferenceFragmentCompat(), EdgeToEdgeScrolling {
             updatePadding(bottom = dimen(R.dimen.padding_bottom_scroll).toInt())
         }
         version?.summary = requireContext().packageVersionName
+
         notificationsSwitch.booleanChangeListener { _, newValue ->
             prefsProvider.updateNotificationsValue(newValue)
             updateNotificationSwitch()
+        }
+
+        bypassDND.booleanChangeListener { _, newValue ->
+            prefsProvider.updateDNDValue(newValue)
+
         }
 
         language.stringChangeListener { _, newValue ->
@@ -111,9 +117,9 @@ class SettingsFragment : PreferenceFragmentCompat(), EdgeToEdgeScrolling {
 
     private fun updateDNDSummary() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            bypassDND?.summary = getString(R.string.incompatible_os_version)
-            bypassDND?.isEnabled = true
+            bypassDND?.isEnabled = prefsProvider.areNotificationsEnabled
         } else {
+            bypassDND?.summary = getString(R.string.incompatible_os_version)
             bypassDND?.isEnabled = false
         }
     }
@@ -162,6 +168,7 @@ class SettingsFragment : PreferenceFragmentCompat(), EdgeToEdgeScrolling {
 
     private fun updateNotificationSwitch() {
         notificationsSwitch?.isChecked = prefsProvider.areNotificationsEnabled
+        updateDNDSummary()
     }
 
     override fun edgeToEdgeScrollingContent() {

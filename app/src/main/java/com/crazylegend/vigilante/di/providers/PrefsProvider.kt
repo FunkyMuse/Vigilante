@@ -134,8 +134,8 @@ class PrefsProvider @Inject constructor(@EncryptedPrefs
     //endregion
 
     //region bypass dnd
-    val isBypassDNDEnabled
-        get() = defaultPrefs.getBoolean(BYPASS_DND_PREF_KEY, false)
+    val isBypassDNDEnabled get() = defaultPrefs.getBoolean(BYPASS_DND_PREF_KEY, false)
+    fun updateDNDValue(value: Boolean) = defaultPrefs.putBoolean(BYPASS_DND_PREF_KEY, value)
     //endregion
 
 

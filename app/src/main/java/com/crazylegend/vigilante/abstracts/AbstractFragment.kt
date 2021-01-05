@@ -1,11 +1,11 @@
 package com.crazylegend.vigilante.abstracts
 
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.coroutineScope
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.crazylegend.coroutines.withMainContext
+import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
 import com.crazylegend.vigilante.di.providers.AdapterProvider
 import com.crazylegend.vigilante.di.providers.CoreProvider
 import com.crazylegend.vigilante.di.providers.PrefsProvider
@@ -28,7 +28,7 @@ abstract class AbstractFragment<BINDING : ViewBinding>(contentLayoutId: Int) : F
     lateinit var prefsProvider: PrefsProvider
 
     fun goToScreen(directions: NavDirections) {
-        viewLifecycleOwner.lifecycle.coroutineScope.launchWhenResumed {
+        viewCoroutineScope.launchWhenResumed {
             withMainContext {
                 findNavController().navigate(directions)
             }
@@ -36,7 +36,7 @@ abstract class AbstractFragment<BINDING : ViewBinding>(contentLayoutId: Int) : F
     }
 
     inline fun onResumedUIFunction(crossinline action: () -> Unit) {
-        viewLifecycleOwner.lifecycle.coroutineScope.launchWhenResumed {
+        viewCoroutineScope.launchWhenResumed {
             withMainContext {
                 action()
             }

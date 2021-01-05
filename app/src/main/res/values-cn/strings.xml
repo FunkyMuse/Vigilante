@@ -128,12 +128,24 @@
     <string name="auth_failed">认证失败，请重试！</string>
     <string name="verify_to_proceed">验证你的身份来打开本应用程序</string>
     <string name="language_title">语言</string>
+    <string name="notification_led_color">通知LED指示灯颜色</string>
+    <string name="pick_notification_LED_color">挑选通知LED指示灯颜色</string>
+    <string name="led_notification_expl">仅适用于具有LED标识符硬件功能的手机。</string>
+    <string name="bypass_dnd_title">绕过“勿扰模式”</string>
+    <string name="bypass_dnd_expl">启用该选项，你将绕过“勿扰模式”并接收关于使用情况的通知。小心使用！</string>
+    <string name="notifications">通知</string>
+    <string name="light">轻</string>
+    <string name="medium">中等</string>
+    <string name="heavy">重</string>
+    <string name="none">无</string>
+    <string name="vibration_on_notification">收到通知时振动手机</string>
+    <string name="incompatible_os_version">你的安卓操作系统与这个功能不兼容</string>
+    <string name="vibrations_not_happening_expl">** 如果振动不起作用，转到应用程序信息 > 通知 > 使用情况通知并启用响铃振动。\n点击这里测试选择的振动。**</string>
+	
+    <!--Languages-->
     <string name="english">英语</string>
     <string name="spanish">西班牙语</string>
     <string name="portuguese">葡萄牙语</string>
     <string name="chinese">中文</string>
-    <string name="notification_led_color">通知LED指示灯颜色</string>
-    <string name="pick_notification_LED_color">挑选通知LED指示灯颜色</string>
-    <string name="led_notification_expl">仅适用于具有LED标识符硬件功能的手机。</string>
-
+    <string name="russian">俄语</string>
 </resources>

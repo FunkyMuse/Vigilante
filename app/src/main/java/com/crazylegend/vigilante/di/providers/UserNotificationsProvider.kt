@@ -5,7 +5,6 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.graphics.BitmapFactory
-import android.graphics.Color
 import android.os.Build
 import androidx.annotation.StringRes
 import androidx.core.app.NotificationCompat
@@ -20,20 +19,20 @@ import javax.inject.Inject
  * Created by crazy on 11/8/20 to long live and prosper !
  */
 @ServiceScoped
-class UserNotificationsProvider @Inject constructor(@ServiceContext private val context: Context) {
+class UserNotificationsProvider @Inject constructor(@ServiceContext private val context: Context,
+                                                    private val prefsProvider: PrefsProvider) {
+
+    private val bypassDND get() = prefsProvider.isBypassDNDEnabled
 
     /**
      * @param notificationID Int - to cancel once done
      * @return Notification?
      */
-    fun buildUsageNotification(notificationID: Int, @StringRes usageTypeString: Int, notificationLEDColorPref: Int) {
+    fun buildUsageNotification(notificationID: Int, @StringRes usageTypeString: Int, notificationLEDColorPref: Int, effect: LongArray?) {
 
         val usageContentText = LocaleHelper.getLocalizedString(context, usageTypeString)
 
-        val notificationCompatBuilder = NotificationCompat.Builder(
-                context,
-                context.createNotificationChannel(notificationLEDColorPref)
-        )
+        val notificationCompatBuilder = NotificationCompat.Builder(context, context.createNotificationChannel(notificationLEDColorPref))
                 .setDefaults(Notification.DEFAULT_LIGHTS)
                 .setSmallIcon(R.drawable.ic_logo)
                 .setLargeIcon(BitmapFactory.decodeResource(context.resources, R.drawable.ic_launcher_foreground))
@@ -44,6 +43,7 @@ class UserNotificationsProvider @Inject constructor(@ServiceContext private val 
                 .setOngoing(true)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setColorized(true)
+                .setVibrate(effect)
                 .setStyle(NotificationCompat.BigTextStyle().bigText(usageContentText))
                 .setShowWhen(true)
                 .setOnlyAlertOnce(true)
@@ -52,18 +52,24 @@ class UserNotificationsProvider @Inject constructor(@ServiceContext private val 
         context.notificationManager?.notify(notificationID, notificationCompatBuilder.build())
     }
 
-    private val NOTIFICATION_CHANNEL = "11"
     private fun Context.createNotificationChannel(notificationLEDColorPref: Int): String {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val notificationChannel = NotificationChannel(NOTIFICATION_CHANNEL, getString(R.string.channel_name),
-                    NotificationManager.IMPORTANCE_HIGH)
-            notificationChannel.description = getString(R.string.channel_description)
-            notificationChannel.enableLights(true)
-            notificationChannel.lightColor = notificationLEDColorPref
-            val notificationManager = getSystemService(NotificationManager::class.java)
-            notificationManager.createNotificationChannel(notificationChannel)
+            val notificationChannel = with(NotificationChannel(NOTIFICATION_CHANNEL, getString(R.string.channel_name), NotificationManager.IMPORTANCE_HIGH)) {
+                description = getString(R.string.channel_description)
+                description = getString(R.string.channel_description)
+                enableLights(true)
+                setBypassDnd(bypassDND)
+                lightColor = notificationLEDColorPref
+                //return the same created instance
+                this
+            }
+            notificationManager?.createNotificationChannel(notificationChannel)
         }
         return NOTIFICATION_CHANNEL
+    }
+
+    companion object {
+        private const val NOTIFICATION_CHANNEL = "11"
     }
 
 }

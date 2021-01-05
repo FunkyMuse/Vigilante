@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -10,8 +10,8 @@
         android:layout_height="wrap_content">
 
         <include
-            layout="@layout/layout_back_button"
             android:id="@+id/backButton"
+            layout="@layout/layout_back_button"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_marginStart="8dp"
@@ -23,25 +23,25 @@
             android:id="@+id/title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            tools:text="Camera"
-            android:layout_marginTop="40dp"
-            android:textSize="23sp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="69dp"
             android:textAlignment="center"
+            android:textSize="23sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/backButton"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@id/backButton"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Camera" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/preview"
-            android:layout_marginTop="12dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title"
             app:srcCompat="@drawable/ic_dot" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -103,48 +103,85 @@
             app:layout_constraintTop_toBottomOf="@id/dotPositionText" />
 
         <com.crazylegend.customviews.DividerView
+            android:id="@+id/dividerTopNotificationLed"
             android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
             app:color="@color/dotInactive"
             app:dashGap="0dp"
             app:dashThickness="1dp"
-            android:id="@+id/dividerTopNotificationLed"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@id/layoutPosition"
-            android:layout_height="1dp"/>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:id="@+id/ledExplanation"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:textSize="12sp"
-            android:layout_marginBottom="32dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:text="@string/led_notification_expl"
-            android:layout_height="wrap_content"/>
+            app:layout_constraintTop_toBottomOf="@id/layoutPosition" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/colorPickNotificationLed"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@id/layoutPosition"
-            app:layout_constraintBottom_toTopOf="@id/ledExplanation"
             android:text="@string/notification_led_color"
             app:cornerRadius="8dp"
+            app:layout_constraintBottom_toTopOf="@id/ledExplanation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutPosition"
             app:layout_constraintWidth_percent="0.8" />
 
-        <com.crazylegend.customviews.DividerView
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/ledExplanation"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="32dp"
+            android:text="@string/led_notification_expl"
+            android:textSize="12sp"
+            app:layout_constraintTop_toBottomOf="@+id/colorPickNotificationLed" />
+
+        <com.crazylegend.customviews.DividerView
+            android:id="@+id/dividerBottomNotificationLed"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
             app:color="@color/dotInactive"
             app:dashGap="0dp"
             app:dashThickness="1dp"
-            android:id="@+id/dividerBottomNotificationLed"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@id/ledExplanation"
-            android:layout_height="1dp"/>
+            app:layout_constraintTop_toBottomOf="@id/ledExplanation" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/vibrationText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="18sp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/vibration_on_notification"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dividerBottomNotificationLed" />
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/vibration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/vibration_entries"
+            android:padding="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vibrationText" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/vibrationExplanation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="40dp"
+            android:text="@string/vibrations_not_happening_expl"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vibration" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

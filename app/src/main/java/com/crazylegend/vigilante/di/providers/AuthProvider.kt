@@ -18,7 +18,7 @@ import javax.inject.Inject
 class AuthProvider @Inject constructor(private val fragment: Fragment,
                                        @FragmentContext private val context: Context) {
 
-    val canAuthenticate = BiometricManager.from(context).canAuthenticate(authType) == BiometricManager.BIOMETRIC_SUCCESS
+    val canAuthenticate get() = BiometricManager.from(context).canAuthenticate(authType) == BiometricManager.BIOMETRIC_SUCCESS
 
     private val authType
         get() = when (Build.VERSION.SDK_INT) {

@@ -1,5 +1,6 @@
 package com.crazylegend.vigilante.settings
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.updatePadding
@@ -43,6 +44,7 @@ class SettingsFragment : PreferenceFragmentCompat(), EdgeToEdgeScrolling {
     private var version: Preference? = null
     private var dateFormat: ListPreference? = null
     private var dotSwitch: SwitchPreferenceCompat? = null
+    private var bypassDND: SwitchPreferenceCompat? = null
     private var homePage: Preference? = null
     private var excludeVigilanteFromNotificationsSwitch: SwitchPreferenceCompat? = null
     private var biometricAuth: SwitchPreferenceCompat? = null
@@ -56,6 +58,7 @@ class SettingsFragment : PreferenceFragmentCompat(), EdgeToEdgeScrolling {
         version = findPreference(VERSION_PREF_KEY)
         dotSwitch = findPreference(DOT_PREF_KEY)
         language = findPreference(LANG_PREF_KEY)
+        bypassDND = findPreference(BYPASS_DND_PREF_KEY)
         biometricAuth = findPreference(BIOMETRIC_AUTH_PREF_KEY)
         excludeVigilanteFromNotificationsSwitch = findPreference(EXCLUDE_VIGILANTE_FROM_NOTIFICATIONS_PREF_KEY)
     }
@@ -67,9 +70,15 @@ class SettingsFragment : PreferenceFragmentCompat(), EdgeToEdgeScrolling {
             updatePadding(bottom = dimen(R.dimen.padding_bottom_scroll).toInt())
         }
         version?.summary = requireContext().packageVersionName
+
         notificationsSwitch.booleanChangeListener { _, newValue ->
             prefsProvider.updateNotificationsValue(newValue)
             updateNotificationSwitch()
+        }
+
+        bypassDND.booleanChangeListener { _, newValue ->
+            prefsProvider.updateDNDValue(newValue)
+
         }
 
         language.stringChangeListener { _, newValue ->
@@ -103,6 +112,16 @@ class SettingsFragment : PreferenceFragmentCompat(), EdgeToEdgeScrolling {
         updateNotificationSwitch()
         updateDateSummary()
         updateBiometricAuthAvailability()
+        updateDNDSummary()
+    }
+
+    private fun updateDNDSummary() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            bypassDND?.isEnabled = prefsProvider.areNotificationsEnabled
+        } else {
+            bypassDND?.summary = getString(R.string.incompatible_os_version)
+            bypassDND?.isEnabled = false
+        }
     }
 
     private fun updateBiometricAuthAvailability() {
@@ -149,6 +168,7 @@ class SettingsFragment : PreferenceFragmentCompat(), EdgeToEdgeScrolling {
 
     private fun updateNotificationSwitch() {
         notificationsSwitch?.isChecked = prefsProvider.areNotificationsEnabled
+        updateDNDSummary()
     }
 
     override fun edgeToEdgeScrollingContent() {

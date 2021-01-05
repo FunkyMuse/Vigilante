@@ -15,23 +15,11 @@
 
         <SwitchPreferenceCompat
             app:iconSpaceReserved="false"
-            app:defaultValue="true"
-            app:key="pref_notifications"
-            app:summary="@string/notifications_usage_expl"
-            app:title="@string/notifications_usage_title" />
-
-        <SwitchPreferenceCompat
-            app:iconSpaceReserved="false"
             app:key="pref_dot"
             app:defaultValue="true"
             app:summary="@string/dot_usage_expl"
             app:title="@string/dot_usage_title" />
 
-        <SwitchPreferenceCompat
-            app:iconSpaceReserved="false"
-            app:key="pref_exclude_vigilante_from_notifications"
-            app:summary="@string/exclude_from_notifications_expl"
-            app:title="@string/exclude_from_notifications_title" />
 
         <ListPreference
             app:defaultValue="dd.MM.yyyy HH:mm:ss"
@@ -40,6 +28,32 @@
             app:iconSpaceReserved="false"
             app:key="pref_date"
             app:title="@string/date_format" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/notifications">
+
+        <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
+            app:defaultValue="true"
+            app:key="pref_notifications"
+            app:summary="@string/notifications_usage_expl"
+            app:title="@string/notifications_usage_title" />
+
+        <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
+            app:defaultValue="false"
+            app:key="pref_bypass_dnd"
+            app:summary="@string/bypass_dnd_expl"
+            app:title="@string/bypass_dnd_title" />
+
+        <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
+            app:key="pref_exclude_vigilante_from_notifications"
+            app:summary="@string/exclude_from_notifications_expl"
+            app:title="@string/exclude_from_notifications_title" />
 
     </PreferenceCategory>
 

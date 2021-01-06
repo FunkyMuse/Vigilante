@@ -13,10 +13,7 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
 import com.crazylegend.kotlinextensions.context.windowManager
-import com.crazylegend.kotlinextensions.views.gone
-import com.crazylegend.kotlinextensions.views.setHeight
-import com.crazylegend.kotlinextensions.views.setWidth
-import com.crazylegend.kotlinextensions.views.visible
+import com.crazylegend.kotlinextensions.views.*
 import com.crazylegend.vigilante.camera.CameraProcessor
 import com.crazylegend.vigilante.databinding.ServiceLayoutDotBinding
 import com.crazylegend.vigilante.di.providers.BroadcastProvider
@@ -25,6 +22,7 @@ import com.crazylegend.vigilante.microphone.MicrophoneProcessor
 import com.crazylegend.vigilante.notifications.NotificationsProvider
 import com.crazylegend.vigilante.permissions.PermissionsProcessor
 import com.crazylegend.vigilante.settings.CAMERA_CUSTOMIZATION_BASE_PREF
+import com.crazylegend.vigilante.utils.DotPosition
 import com.crazylegend.vigilante.utils.dismissPackages
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -154,58 +152,60 @@ class VigilanteService : AccessibilityService() {
         }
     }
 
+    private val defaultMargins get() = 5.dp
+
     private fun checkIfTheyAreTheSameLayoutPositions() {
         if (layoutCameraPositionPref == layoutMicPositionPref) {
-            val customMargin = 100
+            val customMargin = 20.dp
             val micVisibility = micBinding.dot.isVisible
             val camVisibility = cameraBinding.dot.isVisible
             if (micVisibility && camVisibility) {
                 when (layoutCameraPositionPref) {
-                    0 -> {
+                    DotPosition.TOP_RIGHT.position -> {
                         micBinding.dot.updateLayoutParams<FrameLayout.LayoutParams> {
                             marginEnd = customMargin
-                            marginStart = 0
-                            bottomMargin = 0
+                            marginStart = defaultMargins
+                            bottomMargin = defaultMargins
                         }
                         resetCameraBindingMargins()
                     }
-                    1 -> {
+                    DotPosition.TOP_LEFT.position -> {
                         cameraBinding.dot.updateLayoutParams<FrameLayout.LayoutParams> {
                             marginStart = customMargin
-                            marginEnd = 0
-                            bottomMargin = 0
+                            marginEnd = defaultMargins
+                            bottomMargin = defaultMargins
                         }
                         resetMicBindingMargins()
                     }
-                    2 -> {
+                    DotPosition.CENTER_RIGHT.position -> {
                         micBinding.dot.updateLayoutParams<FrameLayout.LayoutParams> {
-                            marginStart = 0
-                            marginEnd = 0
+                            marginStart = defaultMargins
+                            marginEnd = defaultMargins
                             bottomMargin = customMargin
                         }
                         resetCameraBindingMargins()
                     }
-                    3 -> {
+                    DotPosition.CENTER_LEFT.position -> {
                         micBinding.dot.updateLayoutParams<FrameLayout.LayoutParams> {
-                            marginStart = 0
-                            marginEnd = 0
+                            marginStart = defaultMargins
+                            marginEnd = defaultMargins
                             bottomMargin = customMargin
                         }
                         resetCameraBindingMargins()
                     }
-                    4 -> {
+                    DotPosition.BOTTOM_RIGHT.position -> {
                         micBinding.dot.updateLayoutParams<FrameLayout.LayoutParams> {
                             marginEnd = customMargin
-                            marginStart = 0
-                            bottomMargin = 0
+                            marginStart = defaultMargins
+                            bottomMargin = defaultMargins
                         }
                         resetCameraBindingMargins()
                     }
-                    5 -> {
+                    DotPosition.BOTTOM_LEFT.position -> {
                         cameraBinding.dot.updateLayoutParams<FrameLayout.LayoutParams> {
                             marginStart = customMargin
-                            marginEnd = 0
-                            bottomMargin = 0
+                            marginEnd = defaultMargins
+                            bottomMargin = defaultMargins
                         }
                         resetMicBindingMargins()
                     }
@@ -217,9 +217,9 @@ class VigilanteService : AccessibilityService() {
     private fun resetCameraBindingMargins() {
         cameraBinding.dot.doOnLayout {
             it.updateLayoutParams<FrameLayout.LayoutParams> {
-                marginStart = 0
-                bottomMargin = 0
-                marginEnd = 0
+                marginStart = defaultMargins
+                bottomMargin = defaultMargins
+                marginEnd = defaultMargins
             }
         }
     }
@@ -227,9 +227,9 @@ class VigilanteService : AccessibilityService() {
     private fun resetMicBindingMargins() {
         micBinding.dot.doOnLayout {
             it.updateLayoutParams<FrameLayout.LayoutParams> {
-                marginStart = 0
-                bottomMargin = 0
-                marginEnd = 0
+                marginStart = defaultMargins
+                bottomMargin = defaultMargins
+                marginEnd = defaultMargins
             }
         }
     }

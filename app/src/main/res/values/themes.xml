@@ -19,4 +19,8 @@
         <item name="fontFamily">@font/poppins_light</item>
     </style>
 
+    <style name="TextInputStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">@color/secondary</item>
+    </style>
+
 </resources>

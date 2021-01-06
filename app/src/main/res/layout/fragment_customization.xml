@@ -97,10 +97,39 @@
             android:layout_height="wrap_content"
             android:entries="@array/layout_positions"
             android:padding="15dp"
-            app:layout_constraintBottom_toTopOf="@id/colorPickNotificationLed"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/dotPositionText" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputSpacingLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            android:hint="@string/spacing"
+            app:helperText="@string/spacing_expl"
+            app:helperTextEnabled="true"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:counterMaxLength="2"
+            app:counterEnabled="true"
+            app:counterTextColor="@color/primaryDark"
+            app:layout_constraintTop_toBottomOf="@id/layoutPosition">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputSpacing"
+                android:layout_width="match_parent"
+                android:maxLines="1"
+                android:layout_height="wrap_content"
+                android:inputType="numberSigned" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.crazylegend.customviews.DividerView
             android:id="@+id/dividerTopNotificationLed"
@@ -110,7 +139,7 @@
             app:color="@color/dotInactive"
             app:dashGap="0dp"
             app:dashThickness="1dp"
-            app:layout_constraintTop_toBottomOf="@id/layoutPosition" />
+            app:layout_constraintTop_toBottomOf="@id/inputSpacingLayout" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/colorPickNotificationLed"
@@ -122,7 +151,7 @@
             app:layout_constraintBottom_toTopOf="@id/ledExplanation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layoutPosition"
+            app:layout_constraintTop_toBottomOf="@id/dividerTopNotificationLed"
             app:layout_constraintWidth_percent="0.8" />
 
         <com.google.android.material.textview.MaterialTextView

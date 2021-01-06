@@ -5,7 +5,9 @@ import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.crazylegend.coroutines.withMainContext
+import com.crazylegend.crashyreporter.CrashyReporter
 import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
+import com.crazylegend.navigation.navigateUpSafe
 import com.crazylegend.vigilante.di.providers.AdapterProvider
 import com.crazylegend.vigilante.di.providers.CoreProvider
 import com.crazylegend.vigilante.di.providers.PrefsProvider
@@ -41,5 +43,10 @@ abstract class AbstractFragment<BINDING : ViewBinding>(contentLayoutId: Int) : F
                 action()
             }
         }
+    }
+
+    fun throwMissingArgException() {
+        CrashyReporter.logException(IllegalStateException("Argument is missing in customization"))
+        findNavController().navigateUpSafe()
     }
 }

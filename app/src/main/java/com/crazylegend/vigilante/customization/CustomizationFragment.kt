@@ -1,22 +1,20 @@
 package com.crazylegend.vigilante.customization
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.View
 import androidx.activity.addCallback
 import androidx.annotation.StringRes
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.crazylegend.coroutines.onMain
-import com.crazylegend.crashyreporter.CrashyReporter
 import com.crazylegend.kotlinextensions.effects.vibrate
 import com.crazylegend.kotlinextensions.fragments.fragmentBooleanResult
 import com.crazylegend.kotlinextensions.fragments.shortToast
 import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
-import com.crazylegend.kotlinextensions.views.height
-import com.crazylegend.kotlinextensions.views.onItemSelected
-import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
-import com.crazylegend.kotlinextensions.views.width
+import com.crazylegend.kotlinextensions.views.*
 import com.crazylegend.navigation.navigateSafe
 import com.crazylegend.navigation.navigateUpSafe
 import com.crazylegend.viewbinding.viewBinding
@@ -78,11 +76,11 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
         binding.preview.setColorFilter(newValue)
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (prefBaseName.isEmpty()) {
-            CrashyReporter.logException(IllegalStateException("Argument is missing in customization"))
-            findNavController().navigateUpSafe()
+            throwMissingArgException()
         }
 
         binding.title.text = title
@@ -131,6 +129,30 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
             backButtonClick()
         }
 
+        binding.root.setOnTouchListener { _, event ->
+            if (event.action == MotionEvent.ACTION_DOWN) {
+                removeEditTextFocus()
+            }
+            return@setOnTouchListener false
+        }
+
+    }
+
+    private fun removeEditTextFocus() {
+        if (binding.inputSpacing.isFocused) {
+            binding.inputSpacing.clearFocusAndKeyboard()
+        }
+
+        if (binding.inputSpacingLayout.isFocused) {
+            binding.inputSpacingLayout.clearFocusAndKeyboard()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, true) {
+            backButtonClick()
+        }
 
         fragmentBooleanResult(DialogConfirmation.RESULT_KEY, DialogConfirmation.DEFAULT_REQ_KEY, onDenied = {
             findNavController().navigateUpSafe()
@@ -143,13 +165,6 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
             VigilanteService.serviceParamsListener?.updateForBasePref(prefBaseName)
             goBack()
         })
-    }
-
-    override fun onResume() {
-        super.onResume()
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, true) {
-            backButtonClick()
-        }
     }
 
     private fun backButtonClick() {

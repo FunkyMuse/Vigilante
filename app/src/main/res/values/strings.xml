@@ -148,4 +148,6 @@
     <string name="portuguese">Portuguese</string>
     <string name="chinese">Chinese</string>
     <string name="russian">Russian</string>
+    <string name="spacing">Spacing</string>
+    <string name="spacing_expl">In case of rounded corners or notch blocking the dot visibility use spacing</string>
 </resources>

@@ -23,6 +23,7 @@ import com.crazylegend.vigilante.abstracts.AbstractFragment
 import com.crazylegend.vigilante.confirmation.DialogConfirmation
 import com.crazylegend.vigilante.contracts.EdgeToEdgeScrolling
 import com.crazylegend.vigilante.databinding.FragmentCustomizationBinding
+import com.crazylegend.vigilante.di.providers.PrefsProvider.Companion.DEFAULT_SPACING
 import com.crazylegend.vigilante.home.HomeFragmentDirections
 import com.crazylegend.vigilante.service.VigilanteService
 import com.crazylegend.vigilante.settings.CAMERA_CUSTOMIZATION_BASE_PREF
@@ -46,11 +47,13 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
         private const val SIZE_STATE = "sizeState"
         private const val COLOR_NOTIFICATION_STATE = "colorNotificationState"
         private const val VIBRATION_STATE = "vibrationState"
+        private const val SPACING_STATE = "customSpacingState"
 
         const val COLOR_DOT_PREF_ADDITION = "colorChoice"
         const val COLOR_NOTIFICATION_PREF_ADDITION = "colorChoiceNotification"
         const val SIZE_PREF_ADDITION = "sizeChoice"
         const val POSITION_PREF_ADDITION = "positionChoice"
+        const val POSITION_SPACING_ADDITION = "spacingChoice"
         const val VIBRATION_PREF_ADDITION = "vibrationChoice"
     }
 
@@ -61,16 +64,19 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
     private val defaultSize get() = if (prefBaseName == CAMERA_CUSTOMIZATION_BASE_PREF) prefsProvider.getCameraSizePref else prefsProvider.getMicSizePref
     private val defaultLayoutPosition get() = if (prefBaseName == CAMERA_CUSTOMIZATION_BASE_PREF) prefsProvider.getCameraPositionPref else prefsProvider.getMicPositionPref
     private val defaultVibrationPosition get() = if (prefBaseName == CAMERA_CUSTOMIZATION_BASE_PREF) prefsProvider.getCameraVibrationPositionPref else prefsProvider.getMicVibrationPositionPref
+    private val spacing get() = if (prefBaseName == CAMERA_CUSTOMIZATION_BASE_PREF) prefsProvider.getCameraSpacing else prefsProvider.getMicSpacing
     private val title get() = if (prefBaseName == CAMERA_CUSTOMIZATION_BASE_PREF) getString(R.string.camera_title) else getString(R.string.microphone_title)
 
     private var pickedDotColor: Int? = null
     private var pickedNotificationLEDColor: Int? = null
     private var pickedSize: Float? = null
     private var pickedLayoutPosition: Int? = null
+    private var pickedSpacing: Int? = null
     private var pickedVibrationPosition: Int? = null
 
     private val navArgs by navArgs<CustomizationFragmentArgs>()
     private val prefBaseName get() = navArgs.prefBaseName
+
 
     private fun updatePreviewColor(newValue: Int) {
         binding.preview.setColorFilter(newValue)
@@ -83,6 +89,8 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
             throwMissingArgException()
         }
 
+        pickedSpacing = spacing
+        binding.inputSpacing.setTheText(pickedSpacing.toString())
         binding.title.text = title
 
         pickedDotColor = defaultDotColor
@@ -129,7 +137,7 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
             backButtonClick()
         }
 
-        binding.root.setOnTouchListener { _, event ->
+        binding.scroller.setOnTouchListener { _, event ->
             if (event.action == MotionEvent.ACTION_DOWN) {
                 removeEditTextFocus()
             }
@@ -139,13 +147,11 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
     }
 
     private fun removeEditTextFocus() {
-        if (binding.inputSpacing.isFocused) {
+        if (binding.inputSpacing.isFocused)
             binding.inputSpacing.clearFocusAndKeyboard()
-        }
 
-        if (binding.inputSpacingLayout.isFocused) {
-            binding.inputSpacingLayout.clearFocusAndKeyboard()
-        }
+        if (binding.inputSpacingLayout.isFocused)
+            binding.inputSpacingLayout.clearFocus()
     }
 
     override fun onResume() {
@@ -162,6 +168,7 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
             pickedNotificationLEDColor?.let { prefsProvider.saveNotificationColorPref(prefBaseName + COLOR_NOTIFICATION_PREF_ADDITION, it) }
             pickedLayoutPosition?.let { prefsProvider.savePositionPref(prefBaseName + POSITION_PREF_ADDITION, it) }
             pickedVibrationPosition?.let { prefsProvider.savePositionPref(prefBaseName + VIBRATION_PREF_ADDITION, it) }
+            binding.inputSpacing.textString.toIntOrNull()?.let { prefsProvider.saveSpacing(prefBaseName, it) }
             VigilanteService.serviceParamsListener?.updateForBasePref(prefBaseName)
             goBack()
         })
@@ -193,6 +200,7 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
         pickedVibrationPosition?.let { outState.putInt(VIBRATION_STATE, it) }
         pickedSize?.let { outState.putFloat(SIZE_STATE, it) }
         pickedNotificationLEDColor?.let { outState.putInt(COLOR_NOTIFICATION_STATE, it) }
+        pickedSpacing?.let { outState.putInt(SPACING_STATE, it) }
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
@@ -205,7 +213,8 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
         pickedNotificationLEDColor = savedInstanceState?.getInt(COLOR_NOTIFICATION_STATE, defaultNotificationLEDColor)
         pickedVibrationPosition = savedInstanceState?.getInt(VIBRATION_STATE, defaultVibrationPosition)
                 ?: defaultVibrationPosition
-
+        pickedSpacing = savedInstanceState?.getInt(SPACING_STATE, DEFAULT_SPACING) ?: spacing
+        binding.inputSpacing.setTheText(pickedSpacing.toString())
         updatePreviewColor(pickedDotColor!!)
         updatePreviewWidthAndHeight(pickedSize!!)
         binding.sizeSlider.value = pickedSize!!

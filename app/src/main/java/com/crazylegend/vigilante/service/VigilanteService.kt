@@ -236,19 +236,46 @@ class VigilanteService : AccessibilityService() {
 
     private fun updateMicPrefs() {
         if (::micBinding.isInitialized)
-            updatePrefs(micBinding, prefsProvider.getMicSizePref, prefsProvider.getMicColorPref, prefsProvider.getLayoutMicPositionPref, micParams)
+            updatePrefs(micBinding, prefsProvider.getMicSizePref, prefsProvider.getMicColorPref,
+                    prefsProvider.getLayoutMicPositionPref, micParams, prefsProvider.getMicSpacing.dp, prefsProvider.getMicPositionPref)
     }
 
     private fun updateCameraPrefs() {
         if (::cameraBinding.isInitialized)
-            updatePrefs(cameraBinding, prefsProvider.getCameraSizePref, prefsProvider.getCameraColorPref, prefsProvider.getLayoutCameraPositionPref, cameraParams)
+            updatePrefs(cameraBinding, prefsProvider.getCameraSizePref, prefsProvider.getCameraColorPref,
+                    prefsProvider.getLayoutCameraPositionPref, cameraParams, prefsProvider.getCameraSpacing.dp, prefsProvider.getCameraPositionPref)
     }
 
-    private fun updatePrefs(binding: ServiceLayoutDotBinding, sizePref: Float, colorPref: Int, positionPref: Int, params: WindowManager.LayoutParams) {
+    private fun updatePrefs(binding: ServiceLayoutDotBinding,
+                            sizePref: Float,
+                            colorPref: Int,
+                            positionPref: Int,
+                            params: WindowManager.LayoutParams,
+                            spacing: Int,
+                            gravityPosition: Int) {
         binding.dot.setWidth(sizePref.toInt())
         binding.dot.setHeight(sizePref.toInt())
         binding.dot.setColorFilter(colorPref)
         params.gravity = positionPref
+
+        when (gravityPosition) {
+            DotPosition.TOP_RIGHT.position -> updateBindingParams(start = defaultMargins, end = spacing, top = spacing, bottom = defaultMargins, binding = binding)
+            DotPosition.TOP_LEFT.position -> updateBindingParams(start = spacing, end = defaultMargins, top = spacing, bottom = defaultMargins, binding = binding)
+            DotPosition.BOTTOM_RIGHT.position -> updateBindingParams(start = defaultMargins, end = spacing, top = defaultMargins, bottom = spacing, binding = binding)
+            DotPosition.BOTTOM_LEFT.position -> updateBindingParams(start = spacing, end = defaultMargins, top = defaultMargins, bottom = spacing, binding = binding)
+            else -> updateBindingParams(start = defaultMargins, end = defaultMargins, top = defaultMargins, bottom = defaultMargins, binding = binding)
+        }
+    }
+
+    private fun updateBindingParams(start: Int, end: Int, top: Int, bottom: Int, binding: ServiceLayoutDotBinding) {
+        binding.dot.doOnLayout {
+            it.updateLayoutParams<FrameLayout.LayoutParams> {
+                marginStart = start
+                bottomMargin = bottom
+                marginEnd = end
+                topMargin = top
+            }
+        }
     }
 
     private fun setupCameraLayout() {

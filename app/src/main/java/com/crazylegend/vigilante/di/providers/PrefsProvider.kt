@@ -12,6 +12,7 @@ import com.crazylegend.kotlinextensions.sharedprefs.putString
 import com.crazylegend.vigilante.customization.CustomizationFragment.Companion.COLOR_DOT_PREF_ADDITION
 import com.crazylegend.vigilante.customization.CustomizationFragment.Companion.COLOR_NOTIFICATION_PREF_ADDITION
 import com.crazylegend.vigilante.customization.CustomizationFragment.Companion.POSITION_PREF_ADDITION
+import com.crazylegend.vigilante.customization.CustomizationFragment.Companion.POSITION_SPACING_ADDITION
 import com.crazylegend.vigilante.customization.CustomizationFragment.Companion.SIZE_PREF_ADDITION
 import com.crazylegend.vigilante.customization.CustomizationFragment.Companion.VIBRATION_PREF_ADDITION
 import com.crazylegend.vigilante.di.qualifiers.EncryptedPrefs
@@ -32,6 +33,7 @@ class PrefsProvider @Inject constructor(@EncryptedPrefs
         const val DEFAULT_DOT_COLOR = 31727
         const val DEFAULT_NOTIFICATION_COLOR = 31727
         const val DEFAULT_DOT_SIZE = 20f
+        const val DEFAULT_SPACING = 5
     }
 
     //region date format
@@ -73,7 +75,7 @@ class PrefsProvider @Inject constructor(@EncryptedPrefs
     val getCameraPositionPref get() = getPositionPref(CAMERA_CUSTOMIZATION_BASE_PREF)
     val getLayoutCameraPositionPref get() = getLayoutPosition(getCameraPositionPref)
     val getCameraNotificationLEDColorPref get() = getNotificationColorPref(CAMERA_CUSTOMIZATION_BASE_PREF)
-
+    val getCameraSpacing get() = getPositionSpacing(CAMERA_CUSTOMIZATION_BASE_PREF)
     val getCameraVibrationPositionPref get() = getVibrationPref(CAMERA_CUSTOMIZATION_BASE_PREF)
     val getCameraVibrationEffectPref get() = getVibrationEffect(getCameraVibrationPositionPref)
     //endregion
@@ -84,7 +86,7 @@ class PrefsProvider @Inject constructor(@EncryptedPrefs
     val getMicPositionPref get() = getPositionPref(MIC_CUSTOMIZATION_BASE_PREF)
     val getLayoutMicPositionPref get() = getLayoutPosition(getMicPositionPref)
     val getMicNotificationLEDColorPref get() = getNotificationColorPref(MIC_CUSTOMIZATION_BASE_PREF)
-
+    val getMicSpacing get() = getPositionSpacing(MIC_CUSTOMIZATION_BASE_PREF)
     val getMicVibrationPositionPref get() = getVibrationPref(MIC_CUSTOMIZATION_BASE_PREF)
     val getMicVibrationEffectPref get() = getVibrationEffect(getMicVibrationPositionPref)
     //endregion
@@ -110,6 +112,8 @@ class PrefsProvider @Inject constructor(@EncryptedPrefs
      * @return Int
      */
     private fun getPositionPref(basePref: String) = defaultPrefs.getInt(basePref + POSITION_PREF_ADDITION, DEFAULT_LAYOUT_POSITION)
+    private fun getPositionSpacing(basePref: String) = defaultPrefs.getInt(basePref + POSITION_SPACING_ADDITION, DEFAULT_SPACING)
+    fun saveSpacing(basePref: String, spacing: Int) = defaultPrefs.putInt(basePref + POSITION_SPACING_ADDITION, spacing)
 
     private fun getLayoutPosition(pref: Int) = when (pref) {
         0 -> Gravity.TOP or Gravity.END

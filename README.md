@@ -4,6 +4,8 @@
 [![API](https://img.shields.io/badge/API-24%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
 [![GitHub release (including pre-releases)](https://img.shields.io/github/v/release/FunkyMuse/Vigilante?include_prereleases)](https://github.com/FunkyMuse/Vigilante/releases/latest)
 ![GitHub Repo Size](https://img.shields.io/github/repo-size/FunkyMuse/Vigilante)
+[![Crowdin](https://badges.crowdin.net/vigilante/localized.svg)](https://crowdin.com/project/vigilante)
+
 
 
 An app that focuses on your privacy and alerts you when a third-party application uses your device camera or microphone, plus few other goodies.

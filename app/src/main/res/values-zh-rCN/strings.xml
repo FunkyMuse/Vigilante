@@ -1,5 +1,5 @@
 <resources>
-    
+
     <string name="vigilante_description">Vigilante 服务</string>
     <string name="vigilante_summary">Vigilante 的事件服务监听器，用于在相机/麦克风使用发生时显示点。</string>
     <string name="home">首页</string>
@@ -141,7 +141,7 @@
     <string name="vibration_on_notification">收到通知时振动手机</string>
     <string name="incompatible_os_version">你的安卓操作系统与这个功能不兼容</string>
     <string name="vibrations_not_happening_expl">** 如果振动不起作用，转到应用程序信息 > 通知 > 使用情况通知并启用响铃振动。\n点击这里测试选择的振动。**</string>
-	
+
     <!--Languages-->
     <string name="english">英语</string>
     <string name="spanish">西班牙语</string>

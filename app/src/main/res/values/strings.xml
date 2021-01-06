@@ -102,7 +102,7 @@
     <string name="informational">Informational</string>
     <string name="customizations">Customizations</string>
     <string name="home_page">Home page</string>
-    <string name="license">GPL 3.0</string>
+    <string name="license" translatable="false">GPL 3.0</string>
     <string name="license_title">License</string>
     <string name="root_status">Root status</string>
     <string name="device_not_rooted">Device not rooted</string>

@@ -40,7 +40,7 @@
     <string name="always_allowed">Permitido siempre</string>
     <string name="allowed_one_time">Permitido solo una vez</string>
     <string name="denied">Denegado</string>
-    <string name="denied_and_do_not_ask_again">"Denegado y no preguntar de nuevo"</string>
+    <string name="denied_and_do_not_ask_again">Denegado y no preguntar de nuevo</string>
     <string name="ask_every_time">Preguntar siempre</string>
     <string name="permissions_requests_by_app_count">%1$d solicitudes de permisos en total.</string>
     <string name="total_permission_requests">Total de solicitudes de permisos</string>
@@ -102,6 +102,7 @@
     <string name="informational">Informativo</string>
     <string name="customizations">Personalizaciones</string>
     <string name="home_page">Página web</string>
+    <string name="license">GPL 3.0</string>
     <string name="license_title">Licencia</string>
     <string name="root_status">Estado de root</string>
     <string name="device_not_rooted">Dispositivo sin root</string>
@@ -127,26 +128,8 @@
     <string name="auth_failed">¡Identificación fallida, inténtalo de nuevo!</string>
     <string name="verify_to_proceed">Verifica tu identidad para abrir la aplicación</string>
     <string name="language_title">Idioma</string>
-    <string name="notification_led_color">Notification led color</string>
-    <string name="pick_notification_LED_color">Pick notification LED color</string>
-    <string name="led_notification_expl">Only available for phones that have hardware capabilities for a LED identifier.</string>
-    <string name="bypass_dnd_title">Bypass Do not disturb</string>
-    <string name="bypass_dnd_expl">By enabling this option, you\'ll bypass Do not disturb mode and receive notifications about usage, use with caution!</string>
-    <string name="notifications">Notifications</string>
-    <string name="light">Light</string>
-    <string name="medium">Medium</string>
-    <string name="heavy">Heavy</string>
-    <string name="none">None</string>
-    <string name="vibration_on_notification">Vibrate on notification</string>
-    <string name="incompatible_os_version">Your Android OS is incompatible with this feature.</string>
-    <string name="vibrations_not_happening_expl">** If your vibrations do not work, go to App info &gt; Notifications &gt; Usage notifications and enable Sound with vibration.\nTap here to test the picked vibration.**</string>
-    <string name="spacing">Spacing</string>
-    <string name="spacing_expl">In case of rounded corners or notch blocking the dot visibility use spacing</string>
-    <!--Languages-->
     <string name="english">Inglés</string>
     <string name="spanish">Español</string>
     <string name="portuguese">Portugués</string>
-    <string name="chinese">Chinese</string>
-    <string name="russian">Russian</string>
-    <string name="macedonian">Macedonian</string>
+
 </resources>

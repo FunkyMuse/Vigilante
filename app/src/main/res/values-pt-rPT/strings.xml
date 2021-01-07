@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="vigilante_description">Serviço do Vigilante</string>
     <string name="vigilante_summary">Serviço do Vigilante observa os eventos e exibe os Pontos quando a câmera/mic está sendo usado.</string>
@@ -101,7 +102,6 @@
     <string name="informational">Informativo</string>
     <string name="customizations">Personalizações</string>
     <string name="home_page">Página inicial</string>
-    <string name="license">GPL 3.0</string>
     <string name="license_title">Licença</string>
     <string name="root_status">Root status</string>
     <string name="device_not_rooted">Dispositivo sem acesso Root</string>
@@ -127,8 +127,26 @@
     <string name="auth_failed">A autenticação falhou, tente novamente!</string>
     <string name="verify_to_proceed">Verificar sua identidade para abrir o App.</string>
     <string name="language_title">Idiomas</string>
+    <string name="notification_led_color">Notification led color</string>
+    <string name="pick_notification_LED_color">Pick notification LED color</string>
+    <string name="led_notification_expl">Only available for phones that have hardware capabilities for a LED identifier.</string>
+    <string name="bypass_dnd_title">Bypass Do not disturb</string>
+    <string name="bypass_dnd_expl">By enabling this option, you\'ll bypass Do not disturb mode and receive notifications about usage, use with caution!</string>
+    <string name="notifications">Notifications</string>
+    <string name="light">Light</string>
+    <string name="medium">Medium</string>
+    <string name="heavy">Heavy</string>
+    <string name="none">None</string>
+    <string name="vibration_on_notification">Vibrate on notification</string>
+    <string name="incompatible_os_version">Your Android OS is incompatible with this feature.</string>
+    <string name="vibrations_not_happening_expl">** If your vibrations do not work, go to App info &gt; Notifications &gt; Usage notifications and enable Sound with vibration.\nTap here to test the picked vibration.**</string>
+    <string name="spacing">Spacing</string>
+    <string name="spacing_expl">In case of rounded corners or notch blocking the dot visibility use spacing</string>
+    <!--Languages-->
     <string name="english">English</string>
     <string name="spanish">Español</string>
     <string name="portuguese">Português</string>
-
+    <string name="chinese">Chinese</string>
+    <string name="russian">Russian</string>
+    <string name="macedonian">Macedonian</string>
 </resources>

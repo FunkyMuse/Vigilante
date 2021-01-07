@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="vigilante_description">Vigilante сервис</string>
     <string name="vigilante_summary">Сервис прослушивания Vigilante для событий, которые отображают точку при использовании камеры/микрофона.</string>
@@ -5,7 +6,7 @@
     <string name="disable_the_service">Отключите службу вручную</string>
     <string name="enable_the_service">Пожалуйста, включите этот сервис</string>
     <string name="disable_text">Выключить</string>
-    <string name="enable_text">Вклюить</string>
+    <string name="enable_text">Включить</string>
     <string name="disk_not_encrypted">Диск не зашифрован</string>
     <string name="disk_encrypted">Диск зашифрован</string>
     <string name="permissions_history">История разрешений</string>
@@ -101,7 +102,6 @@
     <string name="informational">Информативно</string>
     <string name="customizations">Кастомизация</string>
     <string name="home_page">Домашняя страница</string>
-    <string name="license">GPL 3.0</string>
     <string name="license_title">Лицензия</string>
     <string name="root_status">Статус рут</string>
     <string name="device_not_rooted">Устройство не рутировано</string>
@@ -127,11 +127,26 @@
     <string name="auth_failed">Аутентификация не удалась, попробуйте еще раз!</string>
     <string name="verify_to_proceed">Подтвердите свою личность, чтобы открыть приложение.</string>
     <string name="language_title">Языки</string>
-    <string name="english">Английский</string>
-    <string name="spanish">Испанский</string>
-    <string name="portuguese">Португальский</string>
     <string name="notification_led_color">Цвет светодиода уведомления</string>
     <string name="pick_notification_LED_color">Выберите цвет светодиода уведомления</string>
     <string name="led_notification_expl">Доступно только для телефонов, имеющих аппаратные возможности для светодиодного идентификатора.</string>
-
+    <string name="bypass_dnd_title">Bypass Do not disturb</string>
+    <string name="bypass_dnd_expl">By enabling this option, you\'ll bypass Do not disturb mode and receive notifications about usage, use with caution!</string>
+    <string name="notifications">Notifications</string>
+    <string name="light">Light</string>
+    <string name="medium">Medium</string>
+    <string name="heavy">Heavy</string>
+    <string name="none">None</string>
+    <string name="vibration_on_notification">Vibrate on notification</string>
+    <string name="incompatible_os_version">Your Android OS is incompatible with this feature.</string>
+    <string name="vibrations_not_happening_expl">** If your vibrations do not work, go to App info &gt; Notifications &gt; Usage notifications and enable Sound with vibration.\nTap here to test the picked vibration.**</string>
+    <string name="spacing">Spacing</string>
+    <string name="spacing_expl">In case of rounded corners or notch blocking the dot visibility use spacing</string>
+    <!--Languages-->
+    <string name="english">Английский</string>
+    <string name="spanish">Испанский</string>
+    <string name="portuguese">Португальский</string>
+    <string name="chinese">Chinese</string>
+    <string name="russian">Russian</string>
+    <string name="macedonian">Macedonian</string>
 </resources>

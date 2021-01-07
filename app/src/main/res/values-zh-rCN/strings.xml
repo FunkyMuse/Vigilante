@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="vigilante_description">Vigilante 服务</string>
     <string name="vigilante_summary">Vigilante 的事件服务监听器，用于在相机/麦克风使用发生时显示点。</string>
     <string name="home">首页</string>
@@ -102,7 +102,6 @@
     <string name="informational">信息</string>
     <string name="customizations">自定义</string>
     <string name="home_page">主页</string>
-    <string name="license">GPL 3.0</string>
     <string name="license_title">许可证</string>
     <string name="root_status">Root 状态</string>
     <string name="device_not_rooted">设备未获取根权限</string>
@@ -140,12 +139,14 @@
     <string name="none">无</string>
     <string name="vibration_on_notification">收到通知时振动手机</string>
     <string name="incompatible_os_version">你的安卓操作系统与这个功能不兼容</string>
-    <string name="vibrations_not_happening_expl">** 如果振动不起作用，转到应用程序信息 > 通知 > 使用情况通知并启用响铃振动。\n点击这里测试选择的振动。**</string>
-
+    <string name="vibrations_not_happening_expl">** 如果振动不起作用，转到应用程序信息 &gt; 通知 &gt; 使用情况通知并启用响铃振动。\n点击这里测试选择的振动。**</string>
+    <string name="spacing">间距</string>
+    <string name="spacing_expl">如遇圆角或凹槽堵塞点的可见性，使用间距</string>
     <!--Languages-->
     <string name="english">英语</string>
     <string name="spanish">西班牙语</string>
     <string name="portuguese">葡萄牙语</string>
     <string name="chinese">中文</string>
     <string name="russian">俄语</string>
+    <string name="macedonian">马其顿语</string>
 </resources>

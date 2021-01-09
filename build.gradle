@@ -11,6 +11,7 @@ ext {
     crashyVersion = '1.0.9'
     room_version = "2.3.0-alpha04"
     paging_version = "3.0.0-alpha11"
+    camerax_version = '1.0.0-rc01'
 }
 
 buildscript {

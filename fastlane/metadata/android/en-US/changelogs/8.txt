@@ -1,4 +1,4 @@
-### Feature
+### Features
 Russian, Macedonian, Chinese, Spanish, Portuguese translations
 Options to bypass dnd and vibration options 
 Options to add spacing to circumvent the edged screen blocking the dot

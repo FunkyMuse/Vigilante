@@ -1,0 +1,11 @@
+### Feature
+Russian, Macedonian, Chinese, Spanish, Portugese translations
+Options to bypass dnd and vibration options 
+Options to add spacing to circumvent the edged screen blocking the dot
+LED color picker for those phones that have the option
+
+
+### Improvements
+UI improvements
+Added crowdin support for easier translation of the app
+Code improvements

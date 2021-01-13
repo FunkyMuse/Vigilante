@@ -22,16 +22,16 @@ import javax.inject.Inject
 class AdapterProvider @Inject constructor() {
 
     val listFilterAdapter by lazy(LazyThreadSafetyMode.NONE) {
-        generateRecyclerWithHolder<FilterModel, ItemviewFilterBinding>(ItemviewFilterBinding::inflate) { item, position, itemCount, binding ->
+        generateRecyclerWithHolder<FilterModel, ItemviewFilterBinding>(ItemviewFilterBinding::inflate) { item, position, itemCount, binding, context ->
             binding.checked.visibleIfTrueGoneOtherwise(item.isChecked)
-            binding.title.setPrecomputedText(binding.root.context.getString(item.title))
+            binding.title.setPrecomputedText(context.getString(item.title))
             binding.divider.visibleIfTrueGoneOtherwise(position != itemCount - 1)
         }
     }
 
     val sectionAdapter by lazy(LazyThreadSafetyMode.NONE) {
-        generateRecyclerWithHolder<SectionItem, ItemviewSectionBinding>(ItemviewSectionBinding::inflate) { item, position, itemCount, binding ->
-            binding.title.text = binding.root.context.getString(item.title)
+        generateRecyclerWithHolder<SectionItem, ItemviewSectionBinding>(ItemviewSectionBinding::inflate) { item, position, itemCount, binding, context ->
+            binding.title.text = context.getString(item.title)
             binding.icon.setImageResource(item.icon)
             binding.rightDivider.isVisible = position % 2 == 0
             binding.bottomDivider.isVisible = (itemCount - 1 != position) && (itemCount - 2 != position)
@@ -39,15 +39,15 @@ class AdapterProvider @Inject constructor() {
     }
 
     val crashesAdapter by lazy(LazyThreadSafetyMode.NONE) {
-        generateRecyclerWithHolder<String, ItemviewCrashBinding>(ItemviewCrashBinding::inflate) { _, position, _, binding ->
+        generateRecyclerWithHolder<String, ItemviewCrashBinding>(ItemviewCrashBinding::inflate) { _, position, _, binding, _ ->
             binding.text.text = binding.root.context.getString(R.string.crash_report, position + 1)
         }
     }
 
     val deviceInfoAdapter by lazy(LazyThreadSafetyMode.NONE) {
-        generateRecyclerWithHolder<DeviceInfoModel, ItemviewDeviceInfoBinding>(ItemviewDeviceInfoBinding::inflate) { item, position, itemCount, binding ->
-            binding.title.setPrecomputedText(binding.root.context.getString(item.title))
-            binding.content.setPrecomputedText(binding.root.context.getString(item.content))
+        generateRecyclerWithHolder<DeviceInfoModel, ItemviewDeviceInfoBinding>(ItemviewDeviceInfoBinding::inflate) { item, _, _, binding, context ->
+            binding.title.setPrecomputedText(context.getString(item.title))
+            binding.content.setPrecomputedText(context.getString(item.content))
         }
     }
 

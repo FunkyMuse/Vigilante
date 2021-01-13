@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="vigilante_description">Serviço do Vigilante</string>
     <string name="vigilante_summary">Serviço do Vigilante observa os eventos e exibe os Pontos quando a câmera/mic está sendo usado.</string>
@@ -126,8 +127,11 @@
     <string name="auth_failed">A autenticação falhou, tente novamente!</string>
     <string name="verify_to_proceed">Verificar sua identidade para abrir o App.</string>
     <string name="language_title">Idiomas</string>
+    <!--Languages-->
     <string name="english">English</string>
     <string name="spanish">Español</string>
     <string name="portuguese">Português</string>
-
+    <string name="chinese">Chinese</string>
+    <string name="russian">Russian</string>
+    <string name="macedonian">Macedonian</string>
 </resources>

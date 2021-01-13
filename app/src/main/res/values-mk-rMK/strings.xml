@@ -112,7 +112,7 @@
     <string name="next">Наредно</string>
     <string name="welcome_to_vigilante_you_have_chosen_privacy_thank_you_for_your_decision">Добредојдовте на Vigilante апликацијата, ја одбравте приватноста пред се, ви благодарам за одлуката!</string>
     <string name="you_can_choose_the_size_color_and_the_position_of_the_dots_appearing_on_the_screen">Можете да ја изберете големината, бојата и позицијата на точките што се појавуваат на екранот</string>
-    <string name="and_many_other_customizations_and_options_available_within_the_simple_ui_in_the_application">и многу други прилагодувања и опции што се достапни во рамките на едноставните апликации во апликацијата "> и многу други прилагодувања и опции достапни во рамките на едноставниот кориснички интерфејс во апликацијата.</string>
+    <string name="and_many_other_customizations_and_options_available_within_the_simple_ui_in_the_application">и многу други прилагодувања и опции што се достапни во рамките на едноставните апликации во апликацијата \"&gt; и многу други прилагодувања и опции достапни во рамките на едноставниот кориснички интерфејс во апликацијата.</string>
     <string name="finish">Заврши</string>
     <string name="final_expl">Не заборавајте да ги пријавите грешките, да предложите нови одлики и имајте на ум дека ако некоја услуга ви се понуди бесплатно каде што прикажуваат реклами или едноставно е поврзана на Интернет без да е наведена нивната цел, тогаш вие (како корисник) се продуктот!</string>
     <string name="final_pre_expl">Оваа апликација користи шифрирани избори, база на податоци и се фокусира на приватноста и продуктивноста</string>
@@ -139,10 +139,9 @@
     <string name="none">Никоја опција</string>
     <string name="vibration_on_notification">Вибрирај при известување</string>
     <string name="incompatible_os_version">Вашиот Андроид оперативен систем е некомпатибилен со оваа одлика.</string>
-    <string name="vibrations_not_happening_expl">** Ако вибрациите не работат, одете во Информации за апликација> Известувања> Известувања за употреба и овозможете Звук со вибрации. \nДопрете тука за да ги тестирате избраните вибрации. **</string>
+    <string name="vibrations_not_happening_expl">** Ако вибрациите не работат, одете во Информации за апликација&gt; Известувања&gt; Известувања за употреба и овозможете Звук со вибрации. \nДопрете тука за да ги тестирате избраните вибрации. **</string>
     <string name="spacing">Растојание</string>
     <string name="spacing_expl">Во случај на заоблени агли или засек на екранот што ја блокира видливоста на точката, користете растојание</string>
-
     <!--Languages-->
     <string name="english">Англиски</string>
     <string name="spanish">Шпански</string>
@@ -150,5 +149,5 @@
     <string name="chinese">Кинески</string>
     <string name="russian">Руски</string>
     <string name="macedonian">Македонски</string>
-
+    <string name="german">Германски</string>
 </resources>

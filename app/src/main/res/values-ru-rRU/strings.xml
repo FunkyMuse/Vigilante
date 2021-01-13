@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="vigilante_description">Vigilante сервис</string>
     <string name="vigilante_summary">Сервис прослушивания Vigilante для событий, которые отображают точку при использовании камеры/микрофона.</string>
@@ -5,7 +6,7 @@
     <string name="disable_the_service">Отключите службу вручную</string>
     <string name="enable_the_service">Пожалуйста, включите этот сервис</string>
     <string name="disable_text">Выключить</string>
-    <string name="enable_text">Вклюить</string>
+    <string name="enable_text">Включить</string>
     <string name="disk_not_encrypted">Диск не зашифрован</string>
     <string name="disk_encrypted">Диск зашифрован</string>
     <string name="permissions_history">История разрешений</string>
@@ -126,11 +127,15 @@
     <string name="auth_failed">Аутентификация не удалась, попробуйте еще раз!</string>
     <string name="verify_to_proceed">Подтвердите свою личность, чтобы открыть приложение.</string>
     <string name="language_title">Языки</string>
-    <string name="english">Английский</string>
-    <string name="spanish">Испанский</string>
-    <string name="portuguese">Португальский</string>
     <string name="notification_led_color">Цвет светодиода уведомления</string>
     <string name="pick_notification_LED_color">Выберите цвет светодиода уведомления</string>
     <string name="led_notification_expl">Доступно только для телефонов, имеющих аппаратные возможности для светодиодного идентификатора.</string>
 
+    <!--Languages-->
+    <string name="english">Английский</string>
+    <string name="spanish">Испанский</string>
+    <string name="portuguese">Португальский</string>
+    <string name="chinese">Chinese</string>
+    <string name="russian">Russian</string>
+    <string name="macedonian">Macedonian</string>
 </resources>

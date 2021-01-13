@@ -40,7 +40,7 @@
     <string name="always_allowed">Permitido siempre</string>
     <string name="allowed_one_time">Permitido solo una vez</string>
     <string name="denied">Denegado</string>
-    <string name="denied_and_do_not_ask_again">Denegado y no preguntar de nuevo</string>
+    <string name="denied_and_do_not_ask_again">"Denegado y no preguntar de nuevo"</string>
     <string name="ask_every_time">Preguntar siempre</string>
     <string name="permissions_requests_by_app_count">%1$d solicitudes de permisos en total.</string>
     <string name="total_permission_requests">Total de solicitudes de permisos</string>
@@ -102,7 +102,6 @@
     <string name="informational">Informativo</string>
     <string name="customizations">Personalizaciones</string>
     <string name="home_page">Página web</string>
-    <string name="license">GPL 3.0</string>
     <string name="license_title">Licencia</string>
     <string name="root_status">Estado de root</string>
     <string name="device_not_rooted">Dispositivo sin root</string>
@@ -128,8 +127,11 @@
     <string name="auth_failed">¡Identificación fallida, inténtalo de nuevo!</string>
     <string name="verify_to_proceed">Verifica tu identidad para abrir la aplicación</string>
     <string name="language_title">Idioma</string>
+    <!--Languages-->
     <string name="english">Inglés</string>
     <string name="spanish">Español</string>
     <string name="portuguese">Portugués</string>
-
+    <string name="chinese">Chinese</string>
+    <string name="russian">Russian</string>
+    <string name="macedonian">Macedonian</string>
 </resources>

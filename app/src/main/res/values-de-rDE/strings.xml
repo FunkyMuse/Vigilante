@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="vigilante_description">Vigilante-Dienst</string>
-    <string name="vigilante_summary">Vigilante Listener-Dienst der einen Punkt anzeigt, wenn die Kamera oder das Mikrofon verwendet wird.</string>
+    <string name="vigilante_summary">Vigilante Dienst Detektor der einen Punkt anzeigt, wenn die Kamera oder das Mikrofon verwendet wird.</string>
     <string name="home">Start</string>
     <string name="disable_the_service">Dienst manuell deaktivieren</string>
     <string name="enable_the_service">Bitte den Dienst aktivieren</string>
@@ -114,14 +114,14 @@
     <string name="you_can_choose_the_size_color_and_the_position_of_the_dots_appearing_on_the_screen">Sie können die Größe, Farbe und die Position der Punkte auf dem Bildschirm auswählen</string>
     <string name="and_many_other_customizations_and_options_available_within_the_simple_ui_in_the_application">und viele weitere Anpassungen und Optionen innerhalb der einfachen Benutzeroberfläche in der Anwendung.</string>
     <string name="finish">Fertig</string>
-    <string name="final_expl">Vergiss nicht, die Abstürze zu melden, schlage neue Funktionen vor und denke daran, dass, wenn ein Dienst kostenlos angeboten wird, und Werbung zeigt oder einfach mit dem Internet verbunden ist, ohne das Ziel anzugeben, dann bist du (als Nutzer) das Produkt!</string>
+    <string name="final_expl">Nicht vergessen, die Abstürze zu melden, neue Funktionen vorzuschlagen und daran zu denken, dass, wenn ein Dienst kostenlos angeboten wird, und Werbung zeigt oder einfach mit dem Internet verbunden ist, ohne das Ziel anzugeben, dann sind Sie (als Nutzer) das Produkt!</string>
     <string name="final_pre_expl">Diese App benutzt zum Speichern der Einstellungen eine verschlüsselte Datenbank und fokussiert sich auf den Schutz der Privatsphäre bei maximaler Produktivität</string>
-    <string name="the_app_is_an_open_source_project_and_will_remain_as_such_as_it_focuses_on_privacy_and_it_s_integrity">Die App ist und bleibt ein Open-Source-Projekt, zentrales Ziel ist der Schutz der Privatsphäre und die langfristige Integrität des Projekts.</string>
+    <string name="the_app_is_an_open_source_project_and_will_remain_as_such_as_it_focuses_on_privacy_and_it_s_integrity">Die App ist und bleibt ein Open-Source Projekt, zentrales Ziel ist der Schutz der Privatsphäre und die langfristige Integrität des Projekts.</string>
     <string name="device_info">Geräteinformationen</string>
     <string name="security">Sicherheit</string>
     <string name="biometric_auth_expl">Biometrische Authentifizierung bei jedem Öffnen der App</string>
     <string name="biometric_auth_title">Mit Biometrie Authentifizieren</string>
-    <string name="unsupported_device">Dein Gerät unterstützt diese Funktion nicht.</string>
+    <string name="unsupported_device">Ihr Gerät unterstützt diese Funktion nicht.</string>
     <string name="verification_required">Verifizierung erforderlich</string>
     <string name="prompt_info_expl">Bitte bestätigen Sie Ihre Identität, um die Authentifizierung beim Start zu aktivieren</string>
     <string name="auth_failed">Authentifizierung fehlgeschlagen. Versuche es erneut!</string>
@@ -129,19 +129,19 @@
     <string name="language_title">Sprache</string>
     <string name="notification_led_color">Benachrichtigungsfarbe</string>
     <string name="pick_notification_LED_color">LED-Farbe für Benachrichtigungen auswählen</string>
-    <string name="led_notification_expl">Nur für Telefone mit LED-Benachrichtigungs-Indikator.</string>
+    <string name="led_notification_expl">Nur für Telefone mit Benachrichtigungs-LED.</string>
     <string name="bypass_dnd_title">Bitte nicht stören umgehen</string>
     <string name="bypass_dnd_expl">Indem Sie diese Option aktivieren, werden Sie den \"Nicht stören\" Modus umgehen und erhalten Benachrichtigungen über die Verwendung. Bitte mit Vorsicht verwenden!</string>
     <string name="notifications">Benachrichtigungen</string>
     <string name="light" comment="Light as soft, firm">Hell</string>
     <string name="medium">Mittel</string>
-    <string name="heavy">Heavy</string>
-    <string name="none">None</string>
+    <string name="heavy">Stark</string>
+    <string name="none">Keine</string>
     <string name="vibration_on_notification">Vibration bei Benachrichtigung</string>
-    <string name="incompatible_os_version">Ihr Android-Gerät ist inkompatibel mit dieser Funktion.</string>
+    <string name="incompatible_os_version">Ihr Android Gerät ist inkompatibel mit dieser Funktion.</string>
     <string name="vibrations_not_happening_expl">** Wenn die Vibrationen nicht funktionieren, öffnen Sie App-Info &gt; Benachrichtigungen &gt; Nutzungsbenachrichtigungen und aktivieren Sie Sound mit Vibration.\nHier tippen, um die Vibration zu testen.**</string>
     <string name="spacing">Abstand</string>
-    <string name="spacing_expl">Bei abgerundeten Ecken oder notch bitte den Abstand angeben um den Punkt (besser) sichtbar zu machen</string>
+    <string name="spacing_expl">Bei abgerundeten Ecken bitte den Abstand angeben um den Punk sichtbarer zu machen</string>
     <!--Languages-->
     <string name="english">Englisch</string>
     <string name="spanish">Spanisch</string>

@@ -46,7 +46,7 @@ An app that focuses on your privacy and alerts you when a third-party applicatio
 * 🇨🇳 [@sr093906](https://github.com/sr093906)
 * 🇷🇺 [@ferhadnecef](https://github.com/ferhadnecef)
 * 🇲🇰 [@FunkyMuse](https://github.com/FunkyMuse)
-* fr [@Trukmuch](https://github.com/Trukmuch)
+* 🇫🇷 [@Trukmuch](https://github.com/Trukmuch)
 
 ## Built With 🛠
 

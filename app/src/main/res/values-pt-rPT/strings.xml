@@ -24,8 +24,8 @@
     <string name="screen_unlocked">Tela desbloqueada</string>
     <string name="screen_locked">Tela bloqueada</string>
     <string name="total">Total</string>
-    <string name="locks" comment="Screen lock event">Bloqueios</string>
-    <string name="unlocks" comment="Screen unlock event">Desbloqueios</string>
+    <string name="locks">Bloqueios</string>
+    <string name="unlocks">Desbloqueios</string>
     <string name="content_description_lock_screen_filter">Filtro de bloqueio da tela</string>
     <string name="locks_and_unlocks">Bloqueios e desbloqueios</string>
     <string name="locks_only">Apenas bloqueios</string>
@@ -33,7 +33,7 @@
     <string name="disconnected">Desconectado</string>
     <string name="connected">Conectado</string>
     <string name="connected_with_mic">Conectado ao microfone</string>
-    <string name="not_available" comment="As not present">N/A</string>
+    <string name="not_available">N/A</string>
     <string name="headset_connection_type_title">Fone de ouvido %1$s</string>
     <string name="allowed">Permitido</string>
     <string name="allowed_foreground_only">Permitido apenas em primeiro plano</string>
@@ -65,7 +65,7 @@
     <string name="wireless_charging">Carregando Wireless</string>
     <string name="error_occurred">Ocorreu um erro, tente novamente mais tarde!</string>
     <string name="channel_name">Notificações de uso do Vigilante</string>
-    <string name="channel_description" comment="Whenever an app uses privacy sensitive features like cam/mic">Notificações são enviadas quando as regras de privacidade se aplicam</string>
+    <string name="channel_description">Notificações são enviadas quando as regras de privacidade se aplicam</string>
     <string name="mic_being_used">Seu microfone está sendo utilizado!</string>
     <string name="cam_being_used">Sua câmara está sendo utilizada!</string>
     <string name="usage_title">Uso detectado</string>
@@ -115,7 +115,7 @@
     <string name="and_many_other_customizations_and_options_available_within_the_simple_ui_in_the_application">e muitas outras personalizações e opções disponíveis dentro de IU do App.</string>
     <string name="finish">Finish</string>
     <string name="final_expl">Também não se esqueça de informar sobre as falhas, sugerir novas funcionalidades e lembra-se sempre que se algum serviço é oferecido gratuitamente é ele mostra anúncios ou simplesmente está conectado á internet sem explicar seu objetivo, então você (como um usuário) virou o produto!</string>
-    <string name="final_pre_expl" comment="encrypted Shared Preferences yes">Este App usa de preferências escolhas criptografadas, banco de dados e se concentra na privacidade e produtividade</string>
+    <string name="final_pre_expl">Este App usa de preferências escolhas criptografadas, banco de dados e se concentra na privacidade e produtividade</string>
     <string name="the_app_is_an_open_source_project_and_will_remain_as_such_as_it_focuses_on_privacy_and_it_s_integrity">O App é um projeto de código livre e permanecerá como tal, pois se concentra na privacidade e na sua integridade.</string>
     <string name="device_info">Sobre dispositivo</string>
     <string name="security">Segurança</string>
@@ -131,4 +131,5 @@
     <string name="english">English</string>
     <string name="spanish">Español</string>
     <string name="portuguese">Português</string>
+
 </resources>

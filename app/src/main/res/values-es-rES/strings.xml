@@ -127,21 +127,6 @@
     <string name="auth_failed">¡Identificación fallida, inténtalo de nuevo!</string>
     <string name="verify_to_proceed">Verifica tu identidad para abrir la aplicación</string>
     <string name="language_title">Idioma</string>
-    <string name="notification_led_color">Notification led color</string>
-    <string name="pick_notification_LED_color">Pick notification LED color</string>
-    <string name="led_notification_expl">Only available for phones that have hardware capabilities for a LED identifier.</string>
-    <string name="bypass_dnd_title">Bypass Do not disturb</string>
-    <string name="bypass_dnd_expl" comment="You'll receive notifications when usage happens means that someone's using cam/mic in the background">By enabling this option, you\'ll bypass Do not disturb mode and receive notifications about usage, use with caution!</string>
-    <string name="notifications">Notifications</string>
-    <string name="light">Light</string>
-    <string name="medium">Medium</string>
-    <string name="heavy">Heavy</string>
-    <string name="none">None</string>
-    <string name="vibration_on_notification">Vibrate on notification</string>
-    <string name="incompatible_os_version">Your Android OS is incompatible with this feature.</string>
-    <string name="vibrations_not_happening_expl">** If your vibrations do not work, go to App info &gt; Notifications &gt; Usage notifications and enable Sound with vibration.\nTap here to test the picked vibration.**</string>
-    <string name="spacing">Spacing</string>
-    <string name="spacing_expl">In case of rounded corners or notch blocking the dot visibility use spacing</string>
     <!--Languages-->
     <string name="english">Inglés</string>
     <string name="spanish">Español</string>

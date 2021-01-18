@@ -24,8 +24,8 @@
     <string name="screen_unlocked">屏幕解除锁定</string>
     <string name="screen_locked">屏幕锁定</string>
     <string name="total">总数</string>
-    <string name="locks">锁定</string>
-    <string name="unlocks">解锁</string>
+    <string name="locks" comment="Screen lock event">锁定</string>
+    <string name="unlocks" comment="Screen unlock event">解锁</string>
     <string name="content_description_lock_screen_filter">锁屏过滤器</string>
     <string name="locks_and_unlocks">锁定和解锁</string>
     <string name="locks_only">仅锁定</string>
@@ -33,7 +33,7 @@
     <string name="disconnected">断开连接</string>
     <string name="connected">已连接</string>
     <string name="connected_with_mic">与麦克风相连</string>
-    <string name="not_available">无</string>
+    <string name="not_available" comment="As not present">无</string>
     <string name="headset_connection_type_title">耳机 %1$s</string>
     <string name="allowed">已允许</string>
     <string name="allowed_foreground_only">只允许前台</string>
@@ -65,7 +65,7 @@
     <string name="wireless_charging">无线充电</string>
     <string name="error_occurred">出错，请稍候再试！</string>
     <string name="channel_name">Vigilante 使用通知</string>
-    <string name="channel_description">当隐私使用发生时，会发送通知</string>
+    <string name="channel_description" comment="Whenever an app uses privacy sensitive features like cam/mic">当隐私使用发生时，会发送通知</string>
     <string name="mic_being_used">你的麦克风正被使用！</string>
     <string name="cam_being_used">你的相机正被使用！</string>
     <string name="usage_title">检测到使用</string>
@@ -115,7 +115,7 @@
     <string name="and_many_other_customizations_and_options_available_within_the_simple_ui_in_the_application">以及许多其他在本应用的简单用户界面中可用的自定义和选项。</string>
     <string name="finish">完成</string>
     <string name="final_expl">别忘了报告崩溃，建议新功能并记住， 如果某些服务在展示广告或不声明联网目的的情况下免费提供给你，那么你(作为用户)就是产品</string>
-    <string name="final_pre_expl">这个应用程序使用加密的偏好选择、数据库，并关注隐私和生产力。</string>
+    <string name="final_pre_expl" comment="encrypted Shared Preferences yes">这个应用程序使用加密的偏好选择、数据库，并关注隐私和生产力。</string>
     <string name="the_app_is_an_open_source_project_and_will_remain_as_such_as_it_focuses_on_privacy_and_it_s_integrity">本应用程序是一个开源项目，并将一直如此，因为它注重隐私和诚信。</string>
     <string name="device_info">设备信息</string>
     <string name="security">安全</string>
@@ -131,7 +131,7 @@
     <string name="pick_notification_LED_color">挑选通知LED指示灯颜色</string>
     <string name="led_notification_expl">仅适用于具有LED标识符硬件功能的手机。</string>
     <string name="bypass_dnd_title">绕过“勿扰模式”</string>
-    <string name="bypass_dnd_expl">启用该选项，你将绕过“勿扰模式”并接收关于使用情况的通知。小心使用！</string>
+    <string name="bypass_dnd_expl" comment="You'll receive notifications when usage happens means that someone's using cam/mic in the background">启用该选项，你将绕过“勿扰模式”并接收关于使用情况的通知。小心使用！</string>
     <string name="notifications">通知</string>
     <string name="light">轻</string>
     <string name="medium">中等</string>
@@ -149,4 +149,5 @@
     <string name="chinese">中文</string>
     <string name="russian">俄语</string>
     <string name="macedonian">马其顿语</string>
+    <string name="german">德语</string>
 </resources>

@@ -24,8 +24,8 @@
     <string name="screen_unlocked">Екранот отклучен</string>
     <string name="screen_locked">Екранот вклучен</string>
     <string name="total">Вкупно</string>
-    <string name="locks">Заклучувања</string>
-    <string name="unlocks">Отклучувања</string>
+    <string name="locks" comment="Screen lock event">Заклучувања</string>
+    <string name="unlocks" comment="Screen unlock event">Отклучувања</string>
     <string name="content_description_lock_screen_filter">Филтер за укл/искл.</string>
     <string name="locks_and_unlocks">Заклучувања и отклучувања</string>
     <string name="locks_only">Само заклучувања</string>
@@ -33,7 +33,7 @@
     <string name="disconnected">Исклучен</string>
     <string name="connected">Поврзан</string>
     <string name="connected_with_mic">Поврзан со микрофон</string>
-    <string name="not_available">Не е достапно</string>
+    <string name="not_available" comment="As not present">Не е достапно</string>
     <string name="headset_connection_type_title">Тип на слушалки %1$s</string>
     <string name="allowed">Дозволено</string>
     <string name="allowed_foreground_only">Дозволено додека се користи апликацијата</string>
@@ -65,7 +65,7 @@
     <string name="wireless_charging">Безжично полнење</string>
     <string name="error_occurred">Настана грешка, обидете се повторно подоцна!</string>
     <string name="channel_name">Vigilante известувања за користење</string>
-    <string name="channel_description">Известувањата се испраќаат кога ќе се случи злоупотреба на приватност</string>
+    <string name="channel_description" comment="Whenever an app uses privacy sensitive features like cam/mic">Известувањата се испраќаат кога ќе се случи злоупотреба на приватност</string>
     <string name="mic_being_used">Вашиот микрофон се користи!</string>
     <string name="cam_being_used">Вашата камера се користи!</string>
     <string name="usage_title">Откриена е употреба</string>
@@ -115,7 +115,7 @@
     <string name="and_many_other_customizations_and_options_available_within_the_simple_ui_in_the_application">и многу други прилагодувања и опции што се достапни во рамките на едноставните апликации во апликацијата \"&gt; и многу други прилагодувања и опции достапни во рамките на едноставниот кориснички интерфејс во апликацијата.</string>
     <string name="finish">Заврши</string>
     <string name="final_expl">Не заборавајте да ги пријавите грешките, да предложите нови одлики и имајте на ум дека ако некоја услуга ви се понуди бесплатно каде што прикажуваат реклами или едноставно е поврзана на Интернет без да е наведена нивната цел, тогаш вие (како корисник) се продуктот!</string>
-    <string name="final_pre_expl">Оваа апликација користи шифрирани избори, база на податоци и се фокусира на приватноста и продуктивноста</string>
+    <string name="final_pre_expl" comment="encrypted Shared Preferences yes">Оваа апликација користи шифрирани избори, база на податоци и се фокусира на приватноста и продуктивноста</string>
     <string name="the_app_is_an_open_source_project_and_will_remain_as_such_as_it_focuses_on_privacy_and_it_s_integrity">Апликацијата е проект со отворен извор на код и ќе остане како таква, бидејќи се фокусира на приватноста и нејзиниот интегритет.</string>
     <string name="device_info">Информации за уредот</string>
     <string name="security">Безбедност</string>
@@ -131,7 +131,7 @@
     <string name="pick_notification_LED_color">Избери боја на ЛЕД сијаличка</string>
     <string name="led_notification_expl">Достапно само за телефони што имаат хардверски можности за LED идентификатор.</string>
     <string name="bypass_dnd_title">Бајпас Не вознемирувај</string>
-    <string name="bypass_dnd_expl">Со овозможување на оваа опција, ќе го заобиколите режимот „Не вознемирувај“ и ќе добивате известувања за употреба, користете ја оваа функционалност претпазливо!</string>
+    <string name="bypass_dnd_expl" comment="You'll receive notifications when usage happens means that someone's using cam/mic in the background">Со овозможување на оваа опција, ќе го заобиколите режимот „Не вознемирувај“ и ќе добивате известувања за употреба, користете ја оваа функционалност претпазливо!</string>
     <string name="notifications">Известувања</string>
     <string name="light">Лесно</string>
     <string name="medium">Средно</string>
@@ -150,4 +150,5 @@
     <string name="russian">Руски</string>
     <string name="macedonian">Македонски</string>
     <string name="german">Германски</string>
+    <string name="french">Француски</string>
 </resources>

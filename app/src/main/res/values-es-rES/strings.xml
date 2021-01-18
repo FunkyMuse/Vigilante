@@ -24,8 +24,8 @@
     <string name="screen_unlocked">Pantalla desbloqueada</string>
     <string name="screen_locked">Pantalla bloqueada</string>
     <string name="total">Total</string>
-    <string name="locks">Bloqueos</string>
-    <string name="unlocks">Desbloqueos</string>
+    <string name="locks" comment="Screen lock event">Bloqueos</string>
+    <string name="unlocks" comment="Screen unlock event">Desbloqueos</string>
     <string name="content_description_lock_screen_filter">Filtro de bloqueo de pantalla</string>
     <string name="locks_and_unlocks">Bloqueos y desbloqueos</string>
     <string name="locks_only">Solo bloquear</string>
@@ -33,7 +33,7 @@
     <string name="disconnected">Desconectado</string>
     <string name="connected">Conectado</string>
     <string name="connected_with_mic">Conectado con micro</string>
-    <string name="not_available">No disponible</string>
+    <string name="not_available" comment="As not present">No disponible</string>
     <string name="headset_connection_type_title">Cascos %1$s</string>
     <string name="allowed">Permitido</string>
     <string name="allowed_foreground_only">Solo permitido en primer plano</string>
@@ -65,7 +65,7 @@
     <string name="wireless_charging">Carga inalámbrica</string>
     <string name="error_occurred">¡Ha ocurrido un error, inténtalo más tarde!</string>
     <string name="channel_name">Notificaciones de uso de Vigilante</string>
-    <string name="channel_description">Las notificaciones se envían cuando se hace uso de la privacidad</string>
+    <string name="channel_description" comment="Whenever an app uses privacy sensitive features like cam/mic">Las notificaciones se envían cuando se hace uso de la privacidad</string>
     <string name="mic_being_used">¡Tu micrófono está siendo usado!</string>
     <string name="cam_being_used">¡Tu cámara está siendo usada!</string>
     <string name="usage_title">Uso detectado</string>
@@ -115,7 +115,7 @@
     <string name="and_many_other_customizations_and_options_available_within_the_simple_ui_in_the_application">y muchas otras opciones de personalización y configuración están disponibles con la sencilla interfaz de la aplicación.</string>
     <string name="finish">Terminar</string>
     <string name="final_expl">¡No te olvides de reportar errores, sugerir nuevas características y recuerda que si un servicio muestra publicidad o simplemente está conectado a internet sin especificar el por qué, tú eres el producto!</string>
-    <string name="final_pre_expl">Esta app usa cifrado para las opciones de configuración, base de datos y se centra en la privacidad y la productividad.</string>
+    <string name="final_pre_expl" comment="encrypted Shared Preferences yes">Esta app usa cifrado para las opciones de configuración, base de datos y se centra en la privacidad y la productividad.</string>
     <string name="the_app_is_an_open_source_project_and_will_remain_as_such_as_it_focuses_on_privacy_and_it_s_integrity">Esta aplicación es un proyecto de código abierto y permanecerá como tal ya que se centra en la privacidad e integridad.</string>
     <string name="device_info">Información del dispositivo</string>
     <string name="security">Seguridad</string>
@@ -127,8 +127,27 @@
     <string name="auth_failed">¡Identificación fallida, inténtalo de nuevo!</string>
     <string name="verify_to_proceed">Verifica tu identidad para abrir la aplicación</string>
     <string name="language_title">Idioma</string>
+    <string name="notification_led_color">Notification led color</string>
+    <string name="pick_notification_LED_color">Pick notification LED color</string>
+    <string name="led_notification_expl">Only available for phones that have hardware capabilities for a LED identifier.</string>
+    <string name="bypass_dnd_title">Bypass Do not disturb</string>
+    <string name="bypass_dnd_expl" comment="You'll receive notifications when usage happens means that someone's using cam/mic in the background">By enabling this option, you\'ll bypass Do not disturb mode and receive notifications about usage, use with caution!</string>
+    <string name="notifications">Notifications</string>
+    <string name="light">Light</string>
+    <string name="medium">Medium</string>
+    <string name="heavy">Heavy</string>
+    <string name="none">None</string>
+    <string name="vibration_on_notification">Vibrate on notification</string>
+    <string name="incompatible_os_version">Your Android OS is incompatible with this feature.</string>
+    <string name="vibrations_not_happening_expl">** If your vibrations do not work, go to App info &gt; Notifications &gt; Usage notifications and enable Sound with vibration.\nTap here to test the picked vibration.**</string>
+    <string name="spacing">Spacing</string>
+    <string name="spacing_expl">In case of rounded corners or notch blocking the dot visibility use spacing</string>
     <!--Languages-->
     <string name="english">Inglés</string>
     <string name="spanish">Español</string>
     <string name="portuguese">Portugués</string>
+    <string name="chinese">Chinese</string>
+    <string name="russian">Russian</string>
+    <string name="macedonian">Macedonian</string>
+    <string name="german">German</string>
 </resources>

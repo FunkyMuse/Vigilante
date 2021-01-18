@@ -24,8 +24,8 @@
     <string name="screen_unlocked">Экран разблокирован</string>
     <string name="screen_locked">Экран заблокирован</string>
     <string name="total">Полный</string>
-    <string name="locks">Заблокированные</string>
-    <string name="unlocks">Разблокированные</string>
+    <string name="locks" comment="Screen lock event">Заблокированные</string>
+    <string name="unlocks" comment="Screen unlock event">Разблокированные</string>
     <string name="content_description_lock_screen_filter">Фильтр экрана блокировки</string>
     <string name="locks_and_unlocks">Заблокированные и разблокированные</string>
     <string name="locks_only">Только заблокированные</string>
@@ -33,7 +33,7 @@
     <string name="disconnected">Отключено</string>
     <string name="connected">Подключено</string>
     <string name="connected_with_mic">Соединен с микрофоном</string>
-    <string name="not_available">Нет данных</string>
+    <string name="not_available" comment="As not present">Нет данных</string>
     <string name="headset_connection_type_title">Наушники %1$s</string>
     <string name="allowed">Разрешено</string>
     <string name="allowed_foreground_only">Разрешен только передний план</string>
@@ -65,7 +65,7 @@
     <string name="wireless_charging">Беспроводная зарядка</string>
     <string name="error_occurred">Произошла ошибка, повторите попытку позже!</string>
     <string name="channel_name">Уведомления об использовании Vigilante</string>
-    <string name="channel_description">Уведомления отправляются при использовании конфиденциальности</string>
+    <string name="channel_description" comment="Whenever an app uses privacy sensitive features like cam/mic">Уведомления отправляются при использовании конфиденциальности</string>
     <string name="mic_being_used">Ваш микрофон используется!</string>
     <string name="cam_being_used">Ваша камера используется!</string>
     <string name="usage_title">Обнаружено использование</string>
@@ -115,7 +115,7 @@
     <string name="and_many_other_customizations_and_options_available_within_the_simple_ui_in_the_application">и многие другие настройки и опции, доступные в простом пользовательском интерфейсе приложения.</string>
     <string name="finish">Финиш</string>
     <string name="final_expl">Не забывайте сообщать о сбоях, предлагать новые функции и имейте в виду, что если вам бесплатно предлагают какую-то услугу, где они показывают рекламу, или она просто подключена к интернету без указания своей цели, то вы (как пользователь) являетесь продуктом!</string>
-    <string name="final_pre_expl">Это приложение использует зашифрованные предпочтения, базу данных и фокусируется на конфиденциальности и производительности</string>
+    <string name="final_pre_expl" comment="encrypted Shared Preferences yes">Это приложение использует зашифрованные предпочтения, базу данных и фокусируется на конфиденциальности и производительности</string>
     <string name="the_app_is_an_open_source_project_and_will_remain_as_such_as_it_focuses_on_privacy_and_it_s_integrity">Приложение является проектом с открытым исходным кодом и останется таковым, поскольку оно фокусируется на конфиденциальности и ее целостности.</string>
     <string name="device_info">Информация о устройстве</string>
     <string name="security">Безопасность</string>
@@ -130,9 +130,24 @@
     <string name="notification_led_color">Цвет светодиода уведомления</string>
     <string name="pick_notification_LED_color">Выберите цвет светодиода уведомления</string>
     <string name="led_notification_expl">Доступно только для телефонов, имеющих аппаратные возможности для светодиодного идентификатора.</string>
-
+    <string name="bypass_dnd_title">Игнорировать режим Не беспокоить</string>
+    <string name="bypass_dnd_expl" comment="You'll receive notifications when usage happens means that someone's using cam/mic in the background">Включив эту опцию, вы пропустите режим \"Не беспокоить\" и получите уведомления об использовании, используйте с осторожностью!</string>
+    <string name="notifications">Уведомления</string>
+    <string name="light">Светлая</string>
+    <string name="medium">Средний</string>
+    <string name="heavy">Тяжелый</string>
+    <string name="none">Нет</string>
+    <string name="vibration_on_notification">Вибрация при уведомление</string>
+    <string name="incompatible_os_version">Ваше Android-устройство не совместимо с этой функцией.</string>
+    <string name="vibrations_not_happening_expl">** Если вибрации не работают, перейдите в Информация &gt; Уведомления &gt;. Уведомления об использовании и включение звука с вибрацией. \nНажмите здесь для проверки выбранной вибрации.**</string>
+    <string name="spacing">Пробелы</string>
+    <string name="spacing_expl">В случае закругленных углов или блокирования точечной видимости используйте интервал</string>
     <!--Languages-->
     <string name="english">Английский</string>
     <string name="spanish">Испанский</string>
     <string name="portuguese">Португальский</string>
+    <string name="chinese">Китайский</string>
+    <string name="russian">Русский</string>
+    <string name="macedonian">Македонский</string>
+    <string name="german">Немецкий</string>
 </resources>

@@ -21,25 +21,24 @@ android {
 
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments += ["room.incremental":"true"]
+                arguments += ["room.incremental": "true"]
             }
         }
     }
 
     buildTypes {
-        buildTypes {
-            debug {
-                minifyEnabled false
-                crunchPngs false
-                shrinkResources false
-                proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro' //testing purposes before release
-            }
+        debug {
+            minifyEnabled false
+            crunchPngs false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            //testing purposes before release
+        }
 
-            release {
-                minifyEnabled true
-                shrinkResources true
-                proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {

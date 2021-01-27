@@ -9,6 +9,7 @@
         <item>@string/macedonian</item>
         <item>@string/german</item>
         <item>@string/french</item>
+        <item>@string/bulgarian</item>
     </string-array>
 
     <string-array name="language_values">
@@ -20,5 +21,6 @@
         <item>mk</item>
         <item>de</item>
         <item>fr</item>
+        <item>bg</item>
     </string-array>
 </resources>

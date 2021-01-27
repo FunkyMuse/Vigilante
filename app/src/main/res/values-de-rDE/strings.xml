@@ -60,7 +60,7 @@
     <string name="power_history">Ladeverlauf</string>
     <string name="power_disconnected">Strom getrennt</string>
     <string name="power_connected">Stromversorgung angeschlossen</string>
-    <string name="ac_charging">Schnell laden</string>
+    <string name="ac_charging">Schnellladen</string>
     <string name="usb_charging">Laden per USB</string>
     <string name="wireless_charging">Kabelloses Laden</string>
     <string name="error_occurred">Fehler aufgetreten, versuchen Sie es später nocheinmal!</string>
@@ -138,7 +138,7 @@
     <string name="heavy">Stark</string>
     <string name="none">Keine</string>
     <string name="vibration_on_notification">Vibration bei Benachrichtigung</string>
-    <string name="incompatible_os_version">Ihr Android Gerät ist inkompatibel mit dieser Funktion.</string>
+    <string name="incompatible_os_version">Ihre Androidversion ist inkompatibel mit dieser Funktion.</string>
     <string name="vibrations_not_happening_expl">** Wenn die Vibrationen nicht funktionieren, öffnen Sie App-Info &gt; Benachrichtigungen &gt; Nutzungsbenachrichtigungen und aktivieren Sie Sound mit Vibration.\nHier tippen, um die Vibration zu testen.**</string>
     <string name="spacing">Abstand</string>
     <string name="spacing_expl">Bei abgerundeten Ecken bitte den Abstand angeben um den Punk sichtbarer zu machen</string>

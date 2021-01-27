@@ -24,8 +24,8 @@
     <string name="screen_unlocked">Écran déverrouillé</string>
     <string name="screen_locked">Écran verrouillé</string>
     <string name="total">Total</string>
-    <string name="locks" comment="Screen lock event">Verrouillages</string>
-    <string name="unlocks" comment="Screen unlock event">Déverrouillages</string>
+    <string name="locks">Verrouillages</string>
+    <string name="unlocks">Déverrouillages</string>
     <string name="content_description_lock_screen_filter">Filtre de l\'écran de verrouillage</string>
     <string name="locks_and_unlocks">Verrouillages et déverrouillages</string>
     <string name="locks_only">Verrouillages uniquement</string>
@@ -33,7 +33,7 @@
     <string name="disconnected">Déconnecté</string>
     <string name="connected">Connecté</string>
     <string name="connected_with_mic">Connecté avec un micro</string>
-    <string name="not_available" comment="As not present">Non disponible</string>
+    <string name="not_available">Non disponible</string>
     <string name="headset_connection_type_title">Casque %1$s</string>
     <string name="allowed">Autorisé</string>
     <string name="allowed_foreground_only">Autorisé au premier plan uniquement</string>
@@ -65,7 +65,7 @@
     <string name="wireless_charging">En charge (sans fil)</string>
     <string name="error_occurred">Une erreur s\'est produite. Veuillez réessayer plus tard !</string>
     <string name="channel_name">Notification d\'utilisation de Vigilante</string>
-    <string name="channel_description" comment="Whenever an app uses privacy sensitive features like cam/mic">Des notifications sont envoyées lorsque votre vie privée peut être exposée</string>
+    <string name="channel_description">Des notifications sont envoyées lorsque votre vie privée peut être exposée</string>
     <string name="mic_being_used">Votre microphone est en cours d\'utilisation !</string>
     <string name="cam_being_used">Votre caméra est en cours d\'utilisation !</string>
     <string name="usage_title">Utilisation détectée</string>
@@ -115,7 +115,7 @@
     <string name="and_many_other_customizations_and_options_available_within_the_simple_ui_in_the_application">et de nombreuses autres personnalisations et options disponibles au sein de simple UI dans l\'application.</string>
     <string name="finish">Terminer</string>
     <string name="final_expl">N\'oubliez pas de signaler les plantages, de suggérer de nouvelles fonctionnalités et gardez à l\'esprit que si des services vous sont offerts gratuitement ou qu\'ils se connectent à Internet sans raison apparente, alors vous (en tant qu\'utilisateur) êtes le produit !</string>
-    <string name="final_pre_expl" comment="encrypted Shared Preferences yes">Cette application utilise une base de données et des Shared Preferences chiffrées, et met l\'accent sur la vie privée et la productivité.</string>
+    <string name="final_pre_expl">Cette application utilise une base de données et des Shared Preferences chiffrées, et met l\'accent sur la vie privée et la productivité.</string>
     <string name="the_app_is_an_open_source_project_and_will_remain_as_such_as_it_focuses_on_privacy_and_it_s_integrity">Cette application est un projet open source et le restera, car il se concentre sur la vie privée et son intégrité.</string>
     <string name="device_info">Informations sur l\'appareil</string>
     <string name="security">Sécurité</string>
@@ -131,7 +131,7 @@
     <string name="pick_notification_LED_color">Choisir la couleur de la LED de notification</string>
     <string name="led_notification_expl">Uniquement disponible pour les téléphones qui ont des capacités matérielles pour un identificateur LED.</string>
     <string name="bypass_dnd_title">Contournez le mode \"ne pas déranger\"</string>
-    <string name="bypass_dnd_expl" comment="You'll receive notifications when usage happens means that someone's using cam/mic in the background">En activant cette option, vous contournez le mode \"ne pas déranger\" et recevrez des notifications lorsqu\'un périphérique est activé. À utiliser avec prudence !</string>
+    <string name="bypass_dnd_expl">En activant cette option, vous contournez le mode \"ne pas déranger\" et recevrez des notifications lorsqu\'un périphérique est activé. À utiliser avec prudence !</string>
     <string name="notifications">Notifications</string>
     <string name="light">Légere</string>
     <string name="medium">Moyen</string>

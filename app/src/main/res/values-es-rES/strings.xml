@@ -23,7 +23,7 @@
     <string name="no_results_expl">¡No hay resultados jefe, intenta volver más tarde, seguiremos buscando!</string>
     <string name="screen_unlocked">Pantalla desbloqueada</string>
     <string name="screen_locked">Pantalla bloqueada</string>
-    <string name="total">Total</string>
+    <string name="total">Absoluto</string>
     <string name="locks">Bloqueos</string>
     <string name="unlocks">Desbloqueos</string>
     <string name="content_description_lock_screen_filter">Filtro de bloqueo de pantalla</string>
@@ -127,8 +127,28 @@
     <string name="auth_failed">¡Identificación fallida, inténtalo de nuevo!</string>
     <string name="verify_to_proceed">Verifica tu identidad para abrir la aplicación</string>
     <string name="language_title">Idioma</string>
+    <string name="notification_led_color">Notificación de color led</string>
+    <string name="pick_notification_LED_color">Elegir el color LED de la notificación</string>
+    <string name="led_notification_expl">Sólo disponible para teléfonos que tienen capacidades de hardware para un identificador LED.</string>
+    <string name="bypass_dnd_title">Bypass no molestan</string>
+    <string name="bypass_dnd_expl">Al activar esta opción, usted pasará por alto el modo no molestar y recibir notificaciones sobre el uso, utilizar con precaución!</string>
+    <string name="notifications">Notificaciones</string>
+    <string name="light">Ligero</string>
+    <string name="medium">Mediano</string>
+    <string name="heavy">Pesado</string>
+    <string name="none">None</string>
+    <string name="vibration_on_notification">Vibrate on notification</string>
+    <string name="incompatible_os_version">Your Android OS is incompatible with this feature.</string>
+    <string name="vibrations_not_happening_expl">** If your vibrations do not work, go to App info &gt; Notifications &gt; Usage notifications and enable Sound with vibration.\nTap here to test the picked vibration.**</string>
+    <string name="spacing">Spacing</string>
+    <string name="spacing_expl">In case of rounded corners or notch blocking the dot visibility use spacing</string>
     <!--Languages-->
     <string name="english">Inglés</string>
     <string name="spanish">Español</string>
     <string name="portuguese">Portugués</string>
+    <string name="chinese">Chinese</string>
+    <string name="russian">Russian</string>
+    <string name="macedonian">Macedonian</string>
+    <string name="german">German</string>
+    <string name="french">French</string>
 </resources>

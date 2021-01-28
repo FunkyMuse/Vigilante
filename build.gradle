@@ -9,7 +9,7 @@ ext {
     daggerVersion = '2.31.2'
     hiltJetpackVersion = '1.0.0-alpha03'
     crashyVersion = '1.0.9'
-    room_version = "2.3.0-alpha04"
+    room_version = "2.3.0-beta01"
     paging_version = "3.0.0-alpha13"
     camerax_version = '1.1.0-alpha01'
 }

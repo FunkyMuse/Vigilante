@@ -110,7 +110,11 @@
     <fragment
         android:id="@+id/crashFragment"
         android:name="com.crazylegend.vigilante.crashes.CrashFragment"
-        android:label="" />
+        android:label="">
+        <action
+            android:id="@+id/action_detailedCrash"
+            app:destination="@id/detailedCrashFragment" />
+    </fragment>
     <fragment
         android:id="@+id/appsUsageFragment"
         android:name="com.crazylegend.vigilante.deviceinfo.DeviceInfoFragment"
@@ -236,5 +240,13 @@
     </fragment>
 
     <include app:graph="@navigation/confirmation" />
+    <fragment
+        android:id="@+id/detailedCrashFragment"
+        android:name="com.crazylegend.vigilante.crashes.DetailedCrashFragment"
+        android:label="DetailedCrashFragment">
+        <argument
+            android:name="position"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>

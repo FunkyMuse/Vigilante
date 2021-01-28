@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <include
+        android:id="@+id/backButton"
+        layout="@layout/layout_back_button"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="36dp" />
+
+    <ScrollView
+        android:id="@+id/scroller"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/detailedCrash"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="40dp" />
+
+    </ScrollView>
+
+</LinearLayout>

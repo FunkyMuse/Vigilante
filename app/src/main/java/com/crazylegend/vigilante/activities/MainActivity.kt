@@ -66,6 +66,7 @@ class MainActivity : AppCompatActivity() {
         EdgeToEdge.setUpRoot(binding.root)
         hideBottomBar()
 
+
         navController.addOnDestinationChangedListener { _, destination, _ ->
             binding.backButton.root.isVisible = destination.id in showBackButtonList
         }

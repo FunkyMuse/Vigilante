@@ -2,10 +2,13 @@ package com.crazylegend.vigilante.crashes
 
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import com.crazylegend.crashyreporter.CrashyReporter
 import com.crazylegend.kotlinextensions.context.copyToClipboard
 import com.crazylegend.kotlinextensions.fragments.shortToast
 import com.crazylegend.kotlinextensions.intent.openWebPage
+import com.crazylegend.kotlinextensions.tryOrElse
+import com.crazylegend.navigation.navigateSafe
 import com.crazylegend.recyclerview.clickListeners.forItemClickListener
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
@@ -36,12 +39,25 @@ class CrashFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.layout_re
         super.onViewCreated(view, savedInstanceState)
         binding.recycler.adapter = crashesAdapter
         crashesAdapter.submitList(CrashyReporter.getLogsAsStrings())
-        crashesAdapter.forItemClickListener = forItemClickListener { _, item, _ ->
-            requireContext().copyToClipboard(item)
-            shortToast(R.string.crash_copied_to_clipboard)
-            requireContext().openWebPage(NEW_ISSUE_URL) {
-                shortToast(R.string.web_browser_required)
+        crashesAdapter.forItemClickListener = forItemClickListener { position, item, _ ->
+            tryOrElse(defaultBlock = {
+                onUnableToCopyCrash(position)
+            }) {
+                onResumedUIFunction { shareCrash(item) }
             }
+
+        }
+    }
+
+    private fun onUnableToCopyCrash(position: Int) {
+        findNavController().navigateSafe(CrashFragmentDirections.actionDetailedCrash(position))
+    }
+
+    private fun shareCrash(item: String) {
+        requireContext().copyToClipboard(item)
+        shortToast(R.string.crash_copied_to_clipboard)
+        requireContext().openWebPage(NEW_ISSUE_URL) {
+            shortToast(R.string.web_browser_required)
         }
     }
 }

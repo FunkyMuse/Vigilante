@@ -21,7 +21,6 @@ import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
 import com.crazylegend.vigilante.confirmation.DialogConfirmation
-import com.crazylegend.vigilante.contracts.EdgeToEdgeScrolling
 import com.crazylegend.vigilante.databinding.FragmentCustomizationBinding
 import com.crazylegend.vigilante.di.providers.PrefsProvider.Companion.DEFAULT_SPACING
 import com.crazylegend.vigilante.home.HomeFragmentDirections
@@ -37,9 +36,7 @@ import dagger.hilt.android.AndroidEntryPoint
  * Created by crazy on 11/8/20 to long live and prosper !
  */
 @AndroidEntryPoint
-class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.layout.fragment_customization), EdgeToEdgeScrolling {
-
-    override fun edgeToEdgeScrollingContent() {}
+class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.layout.fragment_customization) {
 
     companion object {
         private const val COLOR_DOT_STATE = "colorState"

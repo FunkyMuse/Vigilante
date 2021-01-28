@@ -20,6 +20,7 @@ abstract class AbstractFragment<BINDING : ViewBinding>(contentLayoutId: Int) : F
 
     abstract val binding: BINDING
 
+    //region to refactor
     @Inject
     lateinit var adapterProvider: AdapterProvider
 
@@ -28,6 +29,7 @@ abstract class AbstractFragment<BINDING : ViewBinding>(contentLayoutId: Int) : F
 
     @Inject
     lateinit var prefsProvider: PrefsProvider
+    //endregion
 
     fun goToScreen(directions: NavDirections) {
         viewCoroutineScope.launchWhenResumed {

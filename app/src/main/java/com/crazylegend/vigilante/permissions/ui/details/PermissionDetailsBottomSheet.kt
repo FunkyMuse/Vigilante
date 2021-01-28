@@ -2,7 +2,6 @@ package com.crazylegend.vigilante.permissions.ui.details
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.crazylegend.kotlinextensions.context.getAppIcon
 import com.crazylegend.kotlinextensions.context.getAppName
@@ -14,9 +13,11 @@ import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractBottomSheet
 import com.crazylegend.vigilante.databinding.DialogPermissionDetailsBinding
+import com.crazylegend.vigilante.utils.assistedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import java.util.*
+import javax.inject.Inject
 
 /**
  * Created by crazy on 11/6/20 to long live and prosper !
@@ -29,12 +30,18 @@ class PermissionDetailsBottomSheet : AbstractBottomSheet<DialogPermissionDetails
     override val viewRes: Int
         get() = R.layout.dialog_permission_details
 
-    private val permissionDetailsVM by viewModels<PermissionDetailsVM>()
     private val args by navArgs<PermissionDetailsBottomSheetArgs>()
     private val packageName get() = args.packageName
     private val date get() = Date(args.date)
     private val permissionMessage get() = args.permissionMessage
     private val settingsAppName get() = args.settingsAppName
+
+    @Inject
+    lateinit var permissionDetailsVMFactory: PermissionDetailsVM.PermissionDetailsVMFactory
+    private val permissionDetailsVM by assistedViewModel {
+        permissionDetailsVMFactory.create(packageName)
+    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

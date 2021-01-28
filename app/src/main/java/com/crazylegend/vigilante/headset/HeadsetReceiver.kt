@@ -3,7 +3,6 @@ package com.crazylegend.vigilante.headset
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import com.crazylegend.coroutines.ioDispatcher
 import com.crazylegend.kotlinextensions.batteryStatusIntent
 import com.crazylegend.kotlinextensions.currentTimeMillis
 import com.crazylegend.kotlinextensions.getBatteryInfo
@@ -13,7 +12,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.util.*
 import java.util.concurrent.atomic.AtomicInteger
 import javax.inject.Inject
@@ -53,10 +51,8 @@ class HeadsetReceiver : BroadcastReceiver() {
         val batteryStatusModel = getBatteryInfo(batteryIntent)
         val headsetModel = HeadsetModel(Date(currentTimeMillis), connectionType,
                 batteryStatusModel.batteryPercentage, batteryStatusModel.chargingType)
-        GlobalScope.launch(ioDispatcher) {
-            withContext(NonCancellable) {
-                headsetRepository.insertHeadsetRecord(headsetModel)
-            }
+        GlobalScope.launch(NonCancellable) {
+            headsetRepository.addHeadsetRecord(headsetModel)
         }
     }
 }

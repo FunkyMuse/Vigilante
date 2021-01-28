@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.core.view.setPadding
 import androidx.core.view.updateLayoutParams
-import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.crazylegend.crashyreporter.CrashyReporter
 import com.crazylegend.database.DBResult
 import com.crazylegend.database.handle
@@ -25,9 +25,11 @@ import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractBottomSheet
 import com.crazylegend.vigilante.databinding.DialogNotificationDetailsBinding
 import com.crazylegend.vigilante.notifications.db.NotificationsModel
+import com.crazylegend.vigilante.utils.assistedViewModel
 import com.google.android.material.textview.MaterialTextView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import javax.inject.Inject
 
 /**
  * Created by crazy on 11/7/20 to long live and prosper !
@@ -40,7 +42,14 @@ class NotificationDetailsFragment : AbstractBottomSheet<DialogNotificationDetail
 
     override val binding by viewBinding(DialogNotificationDetailsBinding::bind)
 
-    private val notificationDetailsVM by viewModels<NotificationDetailsVM>()
+    private val args by navArgs<NotificationDetailsFragmentArgs>()
+
+    @Inject
+    lateinit var notificationDetailsVMFactory: NotificationDetailsVM.NotificationDetailsVMFactory
+
+    private val notificationDetailsVM by assistedViewModel {
+        notificationDetailsVMFactory.create(args.notificationID)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

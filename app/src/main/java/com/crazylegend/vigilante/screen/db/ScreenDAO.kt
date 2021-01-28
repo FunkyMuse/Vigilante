@@ -26,10 +26,10 @@ interface ScreenDAO {
     fun getTotalActionsCount(): Flow<Int>
 
     @Query("select count(wasScreenLocked) from screenActions where wasScreenLocked = 1")
-    fun getTotalLocks(): Flow<Int>
+    fun getTotalLocksCount(): Flow<Int>
 
     @Query("select count(wasScreenLocked) from screenActions where wasScreenLocked = 0")
-    fun getTotalUnlocks(): Flow<Int>
+    fun getTotalUnlocksCount(): Flow<Int>
 
     @Insert
     suspend fun insertScreenAction(screenModel: ScreenModel)

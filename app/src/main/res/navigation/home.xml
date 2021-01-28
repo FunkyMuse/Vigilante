@@ -242,7 +242,7 @@
     <include app:graph="@navigation/confirmation" />
     <fragment
         android:id="@+id/detailedCrashFragment"
-        android:name="com.crazylegend.vigilante.crashes.DetailedCrashFragment"
+        android:name="com.crazylegend.vigilante.crashes.details.DetailedCrashFragment"
         android:label="DetailedCrashFragment">
         <argument
             android:name="position"

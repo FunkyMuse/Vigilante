@@ -1,4 +1,4 @@
-package com.crazylegend.vigilante.activities
+package com.crazylegend.vigilante
 
 import android.content.Context
 import android.content.res.Configuration
@@ -14,7 +14,6 @@ import com.crazylegend.kotlinextensions.power.isIgnoringBatteryOptimization
 import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
 import com.crazylegend.navigation.navigateUpSafe
 import com.crazylegend.viewbinding.viewBinding
-import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.databinding.ActivityMainBinding
 import com.crazylegend.vigilante.utils.DEFAULT_LANGUAGE
 import com.crazylegend.vigilante.utils.EdgeToEdge

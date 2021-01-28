@@ -20,7 +20,7 @@ interface PermissionRequestsDAO {
     fun getAllPermissionRequests(): PagingSource<Int, PermissionRequestModel>
 
     @Query("select count(*) from permissionRequests")
-    fun permissionCountRequest(): Flow<Int>
+    fun permissionRequestsCount(): Flow<Int>
 
     @Query("select count(*) from permissionRequests where packageRequestingThePermission is not null and packageRequestingThePermission =:nameOfThePackage")
     fun getPermissionRequestsForPackage(nameOfThePackage: String): Flow<Int>

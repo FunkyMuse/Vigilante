@@ -2,7 +2,7 @@ package com.crazylegend.vigilante.power.details
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.crazylegend.crashyreporter.CrashyReporter
 import com.crazylegend.database.DBResult
 import com.crazylegend.database.handle
@@ -15,8 +15,10 @@ import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractBottomSheet
 import com.crazylegend.vigilante.databinding.DialogPowerDetailsBinding
 import com.crazylegend.vigilante.power.db.PowerModel
+import com.crazylegend.vigilante.utils.assistedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import javax.inject.Inject
 
 /**
  * Created by crazy on 11/7/20 to long live and prosper !
@@ -27,7 +29,14 @@ class PowerDetailsDialog : AbstractBottomSheet<DialogPowerDetailsBinding>() {
     override val viewRes: Int
         get() = R.layout.dialog_power_details
 
-    private val powerDetailsVM by viewModels<PowerDetailsVM>()
+    private val args by navArgs<PowerDetailsDialogArgs>()
+
+    @Inject
+    lateinit var powerDetailsVMFactory: PowerDetailsVM.PowerDetailsVMFactory
+
+    private val powerDetailsVM by assistedViewModel {
+        powerDetailsVMFactory.create(args.powerID)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

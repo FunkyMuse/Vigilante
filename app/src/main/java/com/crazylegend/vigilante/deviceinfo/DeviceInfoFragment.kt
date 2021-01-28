@@ -33,7 +33,7 @@ class DeviceInfoFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.layo
         EdgeToEdge.setUpScrollingContent(binding.recycler)
     }
 
-
+    //should be moved to a new thread respectively to sustain performance and not clog the UI thread
     private val deviceInfoList
         get() = listOf(
                 DeviceInfoModel(R.string.disk_status, if (isDiskEncrypted) R.string.disk_encrypted else R.string.disk_not_encrypted),

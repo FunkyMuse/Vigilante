@@ -39,8 +39,8 @@ class AdapterProvider @Inject constructor() {
     }
 
     val crashesAdapter by lazy(LazyThreadSafetyMode.NONE) {
-        generateRecyclerWithHolder<String, ItemviewCrashBinding>(ItemviewCrashBinding::inflate) { _, position, _, binding, _ ->
-            binding.text.text = binding.root.context.getString(R.string.crash_report, position + 1)
+        generateRecyclerWithHolder<String, ItemviewCrashBinding>(ItemviewCrashBinding::inflate) { _, position, _, binding, context ->
+            binding.text.text = context.getString(R.string.crash_report, position + 1)
         }
     }
 

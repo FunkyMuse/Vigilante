@@ -2,8 +2,8 @@ package com.crazylegend.vigilante.crashes
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.crazylegend.crashyreporter.CrashyReporter
 import com.crazylegend.kotlinextensions.context.copyToClipboard
 import com.crazylegend.kotlinextensions.fragments.shortToast
 import com.crazylegend.kotlinextensions.intent.openWebPage
@@ -26,6 +26,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class CrashFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.layout_recycler), EdgeToEdgeScrolling {
 
     override val binding by viewBinding(LayoutRecyclerBinding::bind)
+    private val crashVM by viewModels<CrashVM>()
 
     private val crashesAdapter by lazy {
         adapterProvider.crashesAdapter
@@ -38,7 +39,7 @@ class CrashFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.layout_re
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.recycler.adapter = crashesAdapter
-        crashesAdapter.submitList(CrashyReporter.getLogsAsStrings())
+        crashesAdapter.submitList(crashVM.crashes)
         crashesAdapter.forItemClickListener = forItemClickListener { position, item, _ ->
             tryOrElse(defaultBlock = {
                 onUnableToCopyCrash(position)

@@ -3,7 +3,6 @@ package com.crazylegend.vigilante.power
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import com.crazylegend.coroutines.ioDispatcher
 import com.crazylegend.kotlinextensions.batteryStatusIntent
 import com.crazylegend.kotlinextensions.getBatteryInfo
 import com.crazylegend.vigilante.power.db.PowerModel
@@ -12,7 +11,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 /**
@@ -44,10 +42,8 @@ class PowerReceiver : BroadcastReceiver() {
                 chargingType = batteryStatusModel.chargingType,
                 batteryPercentage = batteryStatusModel.batteryPercentage,
                 isCharging = isCharging)
-        GlobalScope.launch(ioDispatcher) {
-            withContext(NonCancellable) {
-                powerRepository.insertPowerAction(powerModel)
-            }
+        GlobalScope.launch(NonCancellable) {
+            powerRepository.insertPowerAction(powerModel)
         }
     }
 }

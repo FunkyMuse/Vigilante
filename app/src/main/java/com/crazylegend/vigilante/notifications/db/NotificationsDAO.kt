@@ -12,7 +12,7 @@ import androidx.room.Query
 interface NotificationsDAO {
 
     @Insert
-    fun insertNotificationModel(notificationsModel: NotificationsModel)
+    fun insertNotification(notificationsModel: NotificationsModel)
 
     @Query("select * from notifications order by showTime desc")
     fun getAllNotifications(): PagingSource<Int, NotificationsModel>

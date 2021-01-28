@@ -1,21 +1,22 @@
 package com.crazylegend.vigilante.screen.ui
 
 import android.app.Application
-import androidx.hilt.Assisted
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractAVM
 import com.crazylegend.vigilante.filter.FilterModel
 import com.crazylegend.vigilante.screen.db.ScreenRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
 /**
  * Created by crazy on 11/4/20 to long live and prosper !
  */
-class ScreenVM @ViewModelInject constructor(
+@HiltViewModel
+class ScreenVM @Inject constructor(
         private val repo: ScreenRepository,
         application: Application,
-        @Assisted private val savedStateHandle: SavedStateHandle) : AbstractAVM(application) {
+        private val savedStateHandle: SavedStateHandle) : AbstractAVM(application) {
 
     companion object {
         private const val FILTER_MODEL_KEY = "filterModel"
@@ -47,9 +48,9 @@ class ScreenVM @ViewModelInject constructor(
     }
 
 
-    val totalActions get() = repo.totalActions()
-    val totalLocks get() = repo.totalLocks()
-    val totalUnlocks get() = repo.totalUnlocks()
+    val totalActions get() = repo.getTotalActionsCount()
+    val totalLocks get() = repo.getTotalLocksCount()
+    val totalUnlocks get() = repo.getTotalUnlocksCount()
 
     private val allScreenAccess = provideDatabaseData { repo.getAllScreenActions() }
 

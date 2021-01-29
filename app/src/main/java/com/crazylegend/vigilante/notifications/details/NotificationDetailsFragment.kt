@@ -18,6 +18,8 @@ import com.crazylegend.kotlinextensions.context.getAppName
 import com.crazylegend.kotlinextensions.dateAndTime.toString
 import com.crazylegend.kotlinextensions.fragments.shortToast
 import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
+import com.crazylegend.kotlinextensions.tryOrElse
+import com.crazylegend.kotlinextensions.tryOrNull
 import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
 import com.crazylegend.kotlinextensions.views.visibleIfTrueGoneOtherwise
 import com.crazylegend.viewbinding.viewBinding
@@ -95,8 +97,8 @@ class NotificationDetailsFragment : AbstractBottomSheet<DialogNotificationDetail
                 generateTextHolder(getString(R.string.channel_id_placeholder, this))
             }
             sentByPackage?.apply {
-                binding.appIcon.setImageDrawable(requireContext().getAppIcon(this))
-                binding.appName.text = requireContext().getAppName(this)
+                binding.appIcon.setImageDrawable(tryOrNull { requireContext().getAppIcon(this) })
+                binding.appName.text = tryOrElse(getString(R.string.app_not_installed)) { requireContext().getAppName(this) }
             }
             generateTextHolder(getString(R.string.date_placeholder, showTime.toString(prefsProvider.getDateFormat)))
 

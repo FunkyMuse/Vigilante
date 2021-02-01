@@ -1,7 +1,6 @@
 package com.crazylegend.vigilante.di.modules
 
 import android.content.Context
-import com.crazylegend.kotlinextensions.internetdetector.InternetDetector
 import com.crazylegend.security.MagiskDetector
 import com.crazylegend.security.encryptedSharedPreferences
 import com.crazylegend.vigilante.di.qualifiers.EncryptedPrefs
@@ -18,10 +17,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-
-    @Provides
-    @Singleton
-    fun internetDetector(@ApplicationContext context: Context) = InternetDetector(context)
 
     @Provides
     @EncryptedPrefs

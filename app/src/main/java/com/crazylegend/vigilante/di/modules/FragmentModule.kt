@@ -1,7 +1,6 @@
 package com.crazylegend.vigilante.di.modules
 
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LifecycleOwner
 import com.crazylegend.vigilante.di.qualifiers.FragmentContext
 import dagger.Module
 import dagger.Provides
@@ -19,8 +18,5 @@ object FragmentModule {
     @Provides
     @FragmentContext
     fun provideContext(fragment: Fragment) = fragment.requireContext()
-
-    @Provides
-    fun viewLifecycleOwner(fragment: Fragment): LifecycleOwner = fragment.viewLifecycleOwner
 
 }

@@ -18,6 +18,7 @@ import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
 import com.crazylegend.vigilante.confirmation.DialogConfirmation
 import com.crazylegend.vigilante.databinding.FragmentHomeBinding
+import com.crazylegend.vigilante.di.providers.AdapterProvider
 import com.crazylegend.vigilante.di.providers.PermissionProvider
 import com.crazylegend.vigilante.home.section.SectionItem
 import com.crazylegend.vigilante.settings.CAMERA_CUSTOMIZATION_BASE_PREF
@@ -36,6 +37,9 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
 
     @Inject
     lateinit var permissionProvider: PermissionProvider
+
+    @Inject
+    lateinit var adapterProvider: AdapterProvider
 
     private val sectionAdapter by lazy {
         adapterProvider.sectionAdapter

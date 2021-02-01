@@ -1,221 +1,227 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:id="@+id/scroller"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <include
+        android:id="@+id/backButton"
+        layout="@layout/layout_back_button"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:focusableInTouchMode="true"
-        android:focusable="true"
-        android:layout_height="wrap_content">
+        android:id="@+id/scroller"
+        android:layout_height="match_parent">
 
-        <include
-            android:id="@+id/backButton"
-            layout="@layout/layout_back_button"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="36dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="69dp"
-            android:textAlignment="center"
-            android:textSize="23sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/backButton"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Camera" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/preview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title"
-            app:srcCompat="@drawable/ic_dot" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/sizeTitle"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/size_title"
-            android:textAlignment="center"
-            android:textSize="18sp"
-            app:layout_constraintTop_toBottomOf="@id/preview" />
+            android:focusableInTouchMode="true"
+            android:focusable="true"
+            android:layout_height="wrap_content">
 
-        <com.google.android.material.slider.Slider
-            android:id="@+id/sizeSlider"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:stepSize="2"
-            android:valueFrom="20"
-            android:valueTo="200"
-            app:layout_constraintTop_toBottomOf="@id/sizeTitle" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/colorPick"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/pick_color"
-            app:cornerRadius="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/sizeSlider"
-            app:layout_constraintWidth_percent="0.5" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/dotPositionText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="18sp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/dot_position"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/colorPick" />
-
-        <androidx.appcompat.widget.AppCompatSpinner
-            android:id="@+id/layoutPosition"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:entries="@array/layout_positions"
-            android:padding="15dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/dotPositionText" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inputSpacingLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:boxCornerRadiusBottomEnd="8dp"
-            app:boxCornerRadiusBottomStart="8dp"
-            android:hint="@string/spacing"
-            app:helperText="@string/spacing_expl"
-            app:helperTextEnabled="true"
-            app:boxCornerRadiusTopEnd="8dp"
-            app:boxCornerRadiusTopStart="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:counterMaxLength="2"
-            app:counterEnabled="true"
-            app:counterTextColor="@color/primaryDark"
-            app:layout_constraintTop_toBottomOf="@id/layoutPosition">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/inputSpacing"
-                android:layout_width="match_parent"
-                android:maxLines="1"
-                android:maxLength="2"
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:inputType="numberSigned" />
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:textAlignment="center"
+                android:textSize="23sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Camera" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/preview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title"
+                app:srcCompat="@drawable/ic_dot" />
 
-        <com.crazylegend.customviews.DividerView
-            android:id="@+id/dividerTopNotificationLed"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="8dp"
-            app:color="@color/dotInactive"
-            app:dashGap="0dp"
-            app:dashThickness="1dp"
-            app:layout_constraintTop_toBottomOf="@id/inputSpacingLayout" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/sizeTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/size_title"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                app:layout_constraintTop_toBottomOf="@id/preview" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/colorPickNotificationLed"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/notification_led_color"
-            app:cornerRadius="8dp"
-            app:layout_constraintBottom_toTopOf="@id/ledExplanation"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/dividerTopNotificationLed"
-            app:layout_constraintWidth_percent="0.8" />
+            <com.google.android.material.slider.Slider
+                android:id="@+id/sizeSlider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:stepSize="2"
+                android:valueFrom="20"
+                android:valueTo="200"
+                app:layout_constraintTop_toBottomOf="@id/sizeTitle" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/ledExplanation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="32dp"
-            android:text="@string/led_notification_expl"
-            android:textSize="12sp"
-            app:layout_constraintTop_toBottomOf="@+id/colorPickNotificationLed" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/colorPick"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/pick_color"
+                app:cornerRadius="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sizeSlider"
+                app:layout_constraintWidth_percent="0.5" />
 
-        <com.crazylegend.customviews.DividerView
-            android:id="@+id/dividerBottomNotificationLed"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="8dp"
-            app:color="@color/dotInactive"
-            app:dashGap="0dp"
-            app:dashThickness="1dp"
-            app:layout_constraintTop_toBottomOf="@id/ledExplanation" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/dotPositionText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="18sp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/dot_position"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/colorPick" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/vibrationText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="18sp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/vibration_on_notification"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/dividerBottomNotificationLed" />
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/layoutPosition"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/layout_positions"
+                android:padding="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dotPositionText" />
 
-        <androidx.appcompat.widget.AppCompatSpinner
-            android:id="@+id/vibration"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:entries="@array/vibration_entries"
-            android:padding="15dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/vibrationText" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputSpacingLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                android:hint="@string/spacing"
+                app:helperText="@string/spacing_expl"
+                app:helperTextEnabled="true"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:counterMaxLength="2"
+                app:counterEnabled="true"
+                app:counterTextColor="@color/primaryDark"
+                app:layout_constraintTop_toBottomOf="@id/layoutPosition">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/vibrationExplanation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="40dp"
-            android:text="@string/vibrations_not_happening_expl"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/vibration" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputSpacing"
+                    android:layout_width="match_parent"
+                    android:maxLines="1"
+                    android:maxLength="2"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberSigned" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-</ScrollView>
+            <com.crazylegend.customviews.DividerView
+                android:id="@+id/dividerTopNotificationLed"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                app:color="@color/dotInactive"
+                app:dashGap="0dp"
+                app:dashThickness="1dp"
+                app:layout_constraintTop_toBottomOf="@id/inputSpacingLayout" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/colorPickNotificationLed"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/notification_led_color"
+                app:cornerRadius="8dp"
+                app:layout_constraintBottom_toTopOf="@id/ledExplanation"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dividerTopNotificationLed"
+                app:layout_constraintWidth_percent="0.8" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/ledExplanation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="32dp"
+                android:text="@string/led_notification_expl"
+                android:textSize="12sp"
+                app:layout_constraintTop_toBottomOf="@+id/colorPickNotificationLed" />
+
+            <com.crazylegend.customviews.DividerView
+                android:id="@+id/dividerBottomNotificationLed"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                app:color="@color/dotInactive"
+                app:dashGap="0dp"
+                app:dashThickness="1dp"
+                app:layout_constraintTop_toBottomOf="@id/ledExplanation" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/vibrationText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="18sp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/vibration_on_notification"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dividerBottomNotificationLed" />
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/vibration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/vibration_entries"
+                android:padding="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/vibrationText" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/vibrationExplanation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="40dp"
+                android:text="@string/vibrations_not_happening_expl"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/vibration" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</LinearLayout>

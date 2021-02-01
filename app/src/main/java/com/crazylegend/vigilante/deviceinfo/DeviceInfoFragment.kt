@@ -2,16 +2,17 @@ package com.crazylegend.vigilante.deviceinfo
 
 import android.os.Bundle
 import android.view.View
-import com.crazylegend.kotlinextensions.root.RootUtils
-import com.crazylegend.kotlinextensions.storage.isDiskEncrypted
-import com.crazylegend.security.MagiskDetector
+import androidx.fragment.app.viewModels
+import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
 import com.crazylegend.vigilante.contracts.EdgeToEdgeScrolling
 import com.crazylegend.vigilante.databinding.LayoutRecyclerBinding
+import com.crazylegend.vigilante.di.providers.AdapterProvider
 import com.crazylegend.vigilante.utils.EdgeToEdge
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
 /**
@@ -21,7 +22,7 @@ import javax.inject.Inject
 class DeviceInfoFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.layout_recycler), EdgeToEdgeScrolling {
 
     @Inject
-    lateinit var magiskDetector: MagiskDetector
+    lateinit var adapterProvider: AdapterProvider
 
     override val binding: LayoutRecyclerBinding by viewBinding(LayoutRecyclerBinding::bind)
 
@@ -33,17 +34,17 @@ class DeviceInfoFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.layo
         EdgeToEdge.setUpScrollingContent(binding.recycler)
     }
 
-    //should be moved to a new thread respectively to sustain performance and not clog the UI thread
-    private val deviceInfoList
-        get() = listOf(
-                DeviceInfoModel(R.string.disk_status, if (isDiskEncrypted) R.string.disk_encrypted else R.string.disk_not_encrypted),
-                DeviceInfoModel(R.string.root_status, if (RootUtils.isDeviceRooted) R.string.device_rooted else R.string.device_not_rooted),
-                DeviceInfoModel(R.string.magisk_status, if (magiskDetector.checkForMagisk()) R.string.magisk_detected else R.string.magisk_not_detected),
-        )
+
+    private val deviceInfoVM by viewModels<DeviceInfoVM>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.recycler.adapter = adapter
-        adapter.submitList(deviceInfoList)
+
+        viewCoroutineScope.launchWhenResumed {
+            deviceInfoVM.deviceInfoList.collect {
+                adapter.submitList(it)
+            }
+        }
     }
 }

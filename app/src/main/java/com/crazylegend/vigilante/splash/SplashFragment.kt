@@ -6,12 +6,10 @@ import androidx.core.animation.doOnEnd
 import androidx.core.view.doOnLayout
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
-import com.crazylegend.coroutines.withMainContext
 import com.crazylegend.kotlinextensions.animations.playAnimation
 import com.crazylegend.kotlinextensions.animations.zoomInUp
 import com.crazylegend.kotlinextensions.fragments.finish
 import com.crazylegend.kotlinextensions.fragments.shortToast
-import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
@@ -19,7 +17,6 @@ import com.crazylegend.vigilante.databinding.FragmentSplashBinding
 import com.crazylegend.vigilante.di.providers.AuthProvider
 import com.crazylegend.vigilante.utils.DEFAULT_ANIM_TIME
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -70,19 +67,13 @@ class SplashFragment : AbstractFragment<FragmentSplashBinding>(R.layout.fragment
     }
 
     private fun proceedFurther(fragmentDirections: NavDirections) {
-        viewCoroutineScope.launch {
-            withMainContext {
-                findNavController().navigate(fragmentDirections)
-            }
-        }
+        onResumedUIFunction { findNavController().navigate(fragmentDirections) }
     }
 
     private fun authFailed() {
-        viewCoroutineScope.launch {
-            withMainContext {
-                shortToast(R.string.auth_failed)
-                finish()
-            }
+        onResumedUIFunction {
+            shortToast(R.string.auth_failed)
+            finish()
         }
     }
 }

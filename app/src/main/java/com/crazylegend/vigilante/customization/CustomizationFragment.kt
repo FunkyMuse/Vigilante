@@ -3,17 +3,14 @@ package com.crazylegend.vigilante.customization
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
-import android.view.MotionEvent
 import android.view.View
 import androidx.activity.addCallback
 import androidx.annotation.StringRes
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.crazylegend.coroutines.onMain
 import com.crazylegend.kotlinextensions.effects.vibrate
 import com.crazylegend.kotlinextensions.fragments.fragmentBooleanResult
 import com.crazylegend.kotlinextensions.fragments.shortToast
-import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
 import com.crazylegend.kotlinextensions.views.*
 import com.crazylegend.navigation.navigateSafe
 import com.crazylegend.navigation.navigateUpSafe
@@ -134,11 +131,8 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
             backButtonClick()
         }
 
-        binding.scroller.setOnTouchListener { _, event ->
-            if (event.action == MotionEvent.ACTION_DOWN) {
-                removeEditTextFocus()
-            }
-            return@setOnTouchListener false
+        binding.scroller.setOnScrollChangeListener { _, _, _, _, _ ->
+            removeEditTextFocus()
         }
 
     }
@@ -182,11 +176,9 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
     }
 
     private fun goBack() {
-        viewCoroutineScope.launchWhenResumed {
-            onMain {
-                findNavController().navigateUpSafe()
-                shortToast(R.string.saved)
-            }
+        onResumedUIFunction {
+            findNavController().navigateUpSafe()
+            shortToast(R.string.saved)
         }
     }
 

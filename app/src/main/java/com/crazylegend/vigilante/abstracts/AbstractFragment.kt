@@ -6,10 +6,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.crazylegend.coroutines.withMainContext
 import com.crazylegend.crashyreporter.CrashyReporter
+import com.crazylegend.kotlinextensions.fragments.finish
 import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
-import com.crazylegend.navigation.navigateUpSafe
-import com.crazylegend.vigilante.di.providers.AdapterProvider
-import com.crazylegend.vigilante.di.providers.CoreProvider
 import com.crazylegend.vigilante.di.providers.PrefsProvider
 import javax.inject.Inject
 
@@ -20,23 +18,11 @@ abstract class AbstractFragment<BINDING : ViewBinding>(contentLayoutId: Int) : F
 
     abstract val binding: BINDING
 
-    //region to refactor
-    @Inject
-    lateinit var adapterProvider: AdapterProvider
-
-    @Inject
-    lateinit var coreProvider: CoreProvider
-
     @Inject
     lateinit var prefsProvider: PrefsProvider
-    //endregion
 
     fun goToScreen(directions: NavDirections) {
-        viewCoroutineScope.launchWhenResumed {
-            withMainContext {
-                findNavController().navigate(directions)
-            }
-        }
+        onResumedUIFunction { findNavController().navigate(directions) }
     }
 
     inline fun onResumedUIFunction(crossinline action: () -> Unit) {
@@ -49,6 +35,6 @@ abstract class AbstractFragment<BINDING : ViewBinding>(contentLayoutId: Int) : F
 
     fun throwMissingArgException() {
         CrashyReporter.logException(IllegalStateException("Argument is missing in customization"))
-        findNavController().navigateUpSafe()
+        finish()
     }
 }

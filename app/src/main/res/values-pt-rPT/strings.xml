@@ -142,6 +142,7 @@
     <string name="vibrations_not_happening_expl">** If your vibrations do not work, go to App info &gt; Notifications &gt; Usage notifications and enable Sound with vibration.\nTap here to test the picked vibration.**</string>
     <string name="spacing">Spacing</string>
     <string name="spacing_expl">In case of rounded corners or notch blocking the dot visibility use spacing</string>
+
     <!--Languages-->
     <string name="english">English</string>
     <string name="spanish">Español</string>
@@ -151,4 +152,5 @@
     <string name="macedonian">Macedonian</string>
     <string name="german">German</string>
     <string name="french">French</string>
+    <string name="bulgarian">Bulgarian</string>
 </resources>

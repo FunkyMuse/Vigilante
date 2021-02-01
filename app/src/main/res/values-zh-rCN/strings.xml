@@ -142,6 +142,8 @@
     <string name="vibrations_not_happening_expl">** 如果振动不起作用，转到应用程序信息 &gt; 通知 &gt; 使用情况通知并启用响铃振动。\n点击这里测试选择的振动。**</string>
     <string name="spacing">间距</string>
     <string name="spacing_expl">如遇圆角或凹槽堵塞点的可见性，使用间距</string>
+    <string name="too_large_to_copy_to_clipboard">太大以致无法复制到剪贴板，请发送这个屏幕的截图！</string>
+    <string name="app_not_installed">应用程序未安装！</string>
     <!--Languages-->
     <string name="english">英语</string>
     <string name="spanish">西班牙语</string>
@@ -151,4 +153,5 @@
     <string name="macedonian">马其顿语</string>
     <string name="german">德语</string>
     <string name="french">法语</string>
+    <string name="bulgarian">保加利亚语</string>
 </resources>

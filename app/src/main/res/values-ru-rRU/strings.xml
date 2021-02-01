@@ -142,6 +142,8 @@
     <string name="vibrations_not_happening_expl">** Если вибрации не работают, перейдите в Информация &gt; Уведомления &gt;. Уведомления об использовании и включение звука с вибрацией. \nНажмите здесь для проверки выбранной вибрации.**</string>
     <string name="spacing">Пробелы</string>
     <string name="spacing_expl">В случае закругленных углов или блокирования точечной видимости используйте интервал</string>
+    <string name="too_large_to_copy_to_clipboard">Слишком большой для копирования в буфер обмена, пожалуйста, отправьте скриншоты экрана!</string>
+    <string name="app_not_installed">Приложение не установлено</string>
     <!--Languages-->
     <string name="english">Английский</string>
     <string name="spanish">Испанский</string>
@@ -151,4 +153,5 @@
     <string name="macedonian">Македонский</string>
     <string name="german">Немецкий</string>
     <string name="french">Французский</string>
+    <string name="bulgarian">Болгарский</string>
 </resources>

@@ -142,6 +142,8 @@
     <string name="vibrations_not_happening_expl">** Ако вибрациите не работат, одете во Информации за апликација&gt; Известувања&gt; Известувања за употреба и овозможете Звук со вибрации. \nДопрете тука за да ги тестирате избраните вибрации. **</string>
     <string name="spacing">Растојание</string>
     <string name="spacing_expl">Во случај на заоблени агли или засек на екранот што ја блокира видливоста на точката, користете растојание</string>
+    <string name="too_large_to_copy_to_clipboard">Премногу голем текст за копирање во таблата со исечоци, испратете слики од екранот!</string>
+    <string name="app_not_installed">Апликацијата не е инсталирана </string>
     <!--Languages-->
     <string name="english">Англиски</string>
     <string name="spanish">Шпански</string>

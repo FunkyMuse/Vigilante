@@ -142,6 +142,7 @@
     <string name="vibrations_not_happening_expl">** Wenn die Vibrationen nicht funktionieren, öffnen Sie App-Info &gt; Benachrichtigungen &gt; Nutzungsbenachrichtigungen und aktivieren Sie Sound mit Vibration.\nHier tippen, um die Vibration zu testen.**</string>
     <string name="spacing">Abstand</string>
     <string name="spacing_expl">Bei abgerundeten Ecken bitte den Abstand angeben um den Punk sichtbarer zu machen</string>
+
     <!--Languages-->
     <string name="english">Englisch</string>
     <string name="spanish">Spanisch</string>
@@ -151,4 +152,5 @@
     <string name="macedonian">Mazedonisch</string>
     <string name="german">Deutsch</string>
     <string name="french">Französisch</string>
+    <string name="bulgarian">Bulgarian</string>
 </resources>

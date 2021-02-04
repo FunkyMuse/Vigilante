@@ -1,7 +1,7 @@
 ### Features
 Many more translations
 
-###Fix
+### Fix
 Attempt to fix, camera notification doesn`t work when using additional sensors (macro and wide-angle)
 Opening notification details
 

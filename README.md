@@ -13,7 +13,7 @@ An app that focuses on your privacy and alerts you when a third-party applicatio
 ## Features
 - Notifications when microphone/camera is used
 - Screen dots when microphone/camera is used
-- Screen dots customizations when microphone/camera is useed (size, color, screen position)
+- Screen dots customizations when microphone/camera is used (size, color, screen position)
 - History when apps requested permissions
 - History when you disconnected/connected your charger
 - History when you connected/disconnected your headphones

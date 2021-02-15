@@ -23,6 +23,8 @@ abstract class AbstractLoadStateAdapter<VH : RecyclerView.ViewHolder, VB : ViewB
         bindState(loadState, holder)
     }
 
+    override fun displayLoadStateAsItem(loadState: LoadState): Boolean = true
+
     abstract fun bindState(loadState: LoadState, holder: VH)
 
     @Suppress("UNCHECKED_CAST")

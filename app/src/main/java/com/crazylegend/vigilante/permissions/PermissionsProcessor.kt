@@ -82,21 +82,11 @@ class PermissionsProcessor @Inject constructor(
         }
     }
 
-    private fun AccessibilityNodeInfo?.getTextForViewId(comparator1: String, comparator2: String): String? =
+    private fun AccessibilityNodeInfo?.getTextForViewId(comparator1: String, comparator2: String? = null): String? =
             if (this != null) {
                 when {
                     viewIdResourceName?.contains(comparator1, true) == true -> text?.toString()
-                    viewIdResourceName?.contains(comparator2, true) == true -> text?.toString()
-                    else -> null
-                }
-            } else {
-                null
-            }
-
-    private fun AccessibilityNodeInfo?.getTextForViewId(comparator1: String): String? =
-            if (this != null) {
-                when {
-                    viewIdResourceName?.contains(comparator1, true) == true -> text?.toString()
+                    comparator2?.let { viewIdResourceName?.contains(it, true) } == true -> text?.toString()
                     else -> null
                 }
             } else {

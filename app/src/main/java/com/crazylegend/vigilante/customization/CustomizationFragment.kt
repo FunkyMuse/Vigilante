@@ -4,8 +4,10 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.widget.LinearLayout
 import androidx.activity.addCallback
 import androidx.annotation.StringRes
+import androidx.core.view.updateLayoutParams
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.crazylegend.kotlinextensions.effects.vibrate
@@ -15,14 +17,17 @@ import com.crazylegend.kotlinextensions.views.*
 import com.crazylegend.navigation.navigateSafe
 import com.crazylegend.navigation.navigateUpSafe
 import com.crazylegend.viewbinding.viewBinding
+import com.crazylegend.vigilante.MainActivity
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
 import com.crazylegend.vigilante.confirmation.DialogConfirmation
+import com.crazylegend.vigilante.contracts.EdgeToEdgeScrolling
 import com.crazylegend.vigilante.databinding.FragmentCustomizationBinding
 import com.crazylegend.vigilante.di.providers.PrefsProvider.Companion.DEFAULT_SPACING
 import com.crazylegend.vigilante.home.HomeFragmentDirections
 import com.crazylegend.vigilante.service.VigilanteService
 import com.crazylegend.vigilante.settings.CAMERA_CUSTOMIZATION_BASE_PREF
+import com.crazylegend.vigilante.utils.EdgeToEdge
 import com.skydoves.colorpickerview.ColorEnvelope
 import com.skydoves.colorpickerview.ColorPickerDialog
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener
@@ -81,6 +86,9 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
         super.onViewCreated(view, savedInstanceState)
         if (prefBaseName.isEmpty()) {
             throwMissingArgException()
+        }
+        binding.backButton.root.updateLayoutParams<LinearLayout.LayoutParams> {
+            topMargin = (requireActivity() as MainActivity).statusBarScrollingHeight
         }
 
         pickedSpacing = spacing

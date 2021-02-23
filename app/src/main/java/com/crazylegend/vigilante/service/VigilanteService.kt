@@ -237,22 +237,22 @@ class VigilanteService : AccessibilityService() {
     private fun updateMicPrefs() {
         if (::micBinding.isInitialized)
             updatePrefs(micBinding, prefsProvider.getMicSizePref, prefsProvider.getMicColorPref,
-                    prefsProvider.getLayoutMicPositionPref, micParams, prefsProvider.getMicSpacing.dp, prefsProvider.getMicPositionPref)
+              prefsProvider.getLayoutMicPositionPref, micParams, prefsProvider.getMicSpacing.dp, prefsProvider.getMicPositionPref)
     }
 
     private fun updateCameraPrefs() {
         if (::cameraBinding.isInitialized)
             updatePrefs(cameraBinding, prefsProvider.getCameraSizePref, prefsProvider.getCameraColorPref,
-                    prefsProvider.getLayoutCameraPositionPref, cameraParams, prefsProvider.getCameraSpacing.dp, prefsProvider.getCameraPositionPref)
+              prefsProvider.getLayoutCameraPositionPref, cameraParams, prefsProvider.getCameraSpacing.dp, prefsProvider.getCameraPositionPref)
     }
 
     private fun updatePrefs(binding: ServiceLayoutDotBinding,
-                            sizePref: Float,
-                            colorPref: Int,
-                            positionPref: Int,
-                            params: WindowManager.LayoutParams,
-                            spacing: Int,
-                            gravityPosition: Int) {
+        sizePref: Float,
+        colorPref: Int,
+        positionPref: Int,
+        params: WindowManager.LayoutParams,
+        spacing: Int,
+        gravityPosition: Int) {
         binding.dot.setWidth(sizePref.toInt())
         binding.dot.setHeight(sizePref.toInt())
         binding.dot.setColorFilter(colorPref)

@@ -4,21 +4,25 @@ import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
+import androidx.core.view.updateLayoutParams
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.crazylegend.kotlinextensions.activity.hideBottomBar
+import com.crazylegend.kotlinextensions.context.isGestureNavigationEnabled
 import com.crazylegend.kotlinextensions.locale.LocaleHelper
 import com.crazylegend.kotlinextensions.misc.requestBatteryOptimizations
 import com.crazylegend.kotlinextensions.power.isIgnoringBatteryOptimization
+import com.crazylegend.kotlinextensions.views.dp
 import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
+import com.crazylegend.kotlinextensions.views.statusBarHeight
 import com.crazylegend.navigation.navigateUpSafe
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.databinding.ActivityMainBinding
 import com.crazylegend.vigilante.utils.DEFAULT_LANGUAGE
 import com.crazylegend.vigilante.utils.EdgeToEdge
 import dagger.hilt.android.AndroidEntryPoint
-
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -60,12 +64,18 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    val statusBarScrollingHeight get() = (statusBarHeight + 36.dp)
+
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         EdgeToEdge.setUpRoot(binding.root)
-        hideBottomBar()
 
+        if (isGestureNavigationEnabled())
+            hideBottomBar()
 
+        binding.backButton.root.updateLayoutParams<ConstraintLayout.LayoutParams> {
+            topMargin = statusBarScrollingHeight
+        }
         navController.addOnDestinationChangedListener { _, destination, _ ->
             binding.backButton.root.isVisible = destination.id in showBackButtonList
         }

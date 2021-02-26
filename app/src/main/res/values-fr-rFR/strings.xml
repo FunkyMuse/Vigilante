@@ -142,6 +142,8 @@
     <string name="vibrations_not_happening_expl">** Si vos vibrations ne fonctionnent pas, allez dans les Infos de l\'application &gt; Notifications &gt; Notifications d\'utilisation et activez le son avec vibration.\nAppuyez ici pour tester la vibration sélectionnée.**</string>
     <string name="spacing">Espacement</string>
     <string name="spacing_expl">En cas de coins arrondis ou d\'encoche bloquant la visibilité des points, utilisez l\'espacement</string>
+    <string name="too_large_to_copy_to_clipboard">Too large to copy to clipboard, please send screenshots of the screen!</string>
+    <string name="app_not_installed">Application is not installed</string>
     <!--Languages-->
     <string name="english">Anglais</string>
     <string name="spanish">Espagnol</string>

@@ -137,6 +137,13 @@
     <string name="medium">Mediano</string>
     <string name="heavy">Pesado</string>
     <string name="none">None</string>
+    <string name="vibration_on_notification">Vibrate on notification</string>
+    <string name="incompatible_os_version">Your Android OS is incompatible with this feature.</string>
+    <string name="vibrations_not_happening_expl">** If your vibrations do not work, go to App info &gt; Notifications &gt; Usage notifications and enable Sound with vibration.\nTap here to test the picked vibration.**</string>
+    <string name="spacing">Spacing</string>
+    <string name="spacing_expl">In case of rounded corners or notch blocking the dot visibility use spacing</string>
+    <string name="too_large_to_copy_to_clipboard">Too large to copy to clipboard, please send screenshots of the screen!</string>
+    <string name="app_not_installed">Application is not installed</string>
     <!--Languages-->
     <string name="english">Inglés</string>
     <string name="spanish">Español</string>

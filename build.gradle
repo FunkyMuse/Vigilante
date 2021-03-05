@@ -1,5 +1,5 @@
 ext {
-    utilsVersion = "2.2.10"
+    utilsVersion = "2.2.11"
     lifecycle = '2.3.0'
     retrofit = "2.9.0"
     rxBindings = "3.1.0"

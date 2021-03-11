@@ -10,7 +10,7 @@ ext {
     hiltJetpackVersion = '1.0.0-alpha03'
     crashyVersion = '1.0.9'
     room_version = "2.3.0-beta02"
-    paging_version = "3.0.0-beta01"
+    paging_version = "3.0.0-beta02"
     camerax_version = '1.1.0-alpha02'
 }
 

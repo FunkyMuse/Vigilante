@@ -17,7 +17,7 @@ import com.crazylegend.kotlinextensions.views.*
 import com.crazylegend.vigilante.camera.CameraProcessor
 import com.crazylegend.vigilante.databinding.ServiceLayoutDotBinding
 import com.crazylegend.vigilante.di.providers.BroadcastProvider
-import com.crazylegend.vigilante.di.providers.PrefsProvider
+import com.crazylegend.vigilante.di.providers.prefs.PrefsProvider
 import com.crazylegend.vigilante.microphone.MicrophoneProcessor
 import com.crazylegend.vigilante.notifications.NotificationsProvider
 import com.crazylegend.vigilante.permissions.PermissionsProcessor

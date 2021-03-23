@@ -8,7 +8,7 @@ import com.crazylegend.coroutines.withMainContext
 import com.crazylegend.crashyreporter.CrashyReporter
 import com.crazylegend.kotlinextensions.fragments.finish
 import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
-import com.crazylegend.vigilante.di.providers.PrefsProvider
+import com.crazylegend.vigilante.di.providers.prefs.PrefsProvider
 import javax.inject.Inject
 
 /**

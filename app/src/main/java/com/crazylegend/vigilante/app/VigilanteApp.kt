@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 import com.crazylegend.kotlinextensions.locale.LocaleHelper
 import com.crazylegend.vigilante.di.providers.CoreProvider
-import com.crazylegend.vigilante.di.providers.PrefsProvider
+import com.crazylegend.vigilante.di.providers.prefs.PrefsProvider
 import com.crazylegend.vigilante.utils.DEFAULT_LANGUAGE
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject

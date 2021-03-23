@@ -21,13 +21,11 @@ import com.crazylegend.vigilante.MainActivity
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
 import com.crazylegend.vigilante.confirmation.DialogConfirmation
-import com.crazylegend.vigilante.contracts.EdgeToEdgeScrolling
 import com.crazylegend.vigilante.databinding.FragmentCustomizationBinding
-import com.crazylegend.vigilante.di.providers.PrefsProvider.Companion.DEFAULT_SPACING
+import com.crazylegend.vigilante.di.providers.prefs.PrefsProvider.Companion.DEFAULT_SPACING
 import com.crazylegend.vigilante.home.HomeFragmentDirections
 import com.crazylegend.vigilante.service.VigilanteService
 import com.crazylegend.vigilante.settings.CAMERA_CUSTOMIZATION_BASE_PREF
-import com.crazylegend.vigilante.utils.EdgeToEdge
 import com.skydoves.colorpickerview.ColorEnvelope
 import com.skydoves.colorpickerview.ColorPickerDialog
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener

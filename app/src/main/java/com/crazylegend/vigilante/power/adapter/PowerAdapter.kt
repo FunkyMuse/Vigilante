@@ -1,7 +1,7 @@
 package com.crazylegend.vigilante.power.adapter
 
 import com.crazylegend.vigilante.databinding.ItemviewLogBinding
-import com.crazylegend.vigilante.di.providers.PrefsProvider
+import com.crazylegend.vigilante.di.providers.prefs.PrefsProvider
 import com.crazylegend.vigilante.paging.AbstractPagingAdapter
 import com.crazylegend.vigilante.power.db.PowerModel
 import com.crazylegend.vigilante.utils.LogViewHolder

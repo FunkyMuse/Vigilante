@@ -1,4 +1,4 @@
-package com.crazylegend.vigilante.di.providers
+package com.crazylegend.vigilante.di.providers.prefs
 
 import android.content.SharedPreferences
 import android.view.Gravity
@@ -25,7 +25,7 @@ import javax.inject.Singleton
  */
 @Singleton
 class PrefsProvider @Inject constructor(@EncryptedPrefs
-                                        private val defaultPrefs: SharedPreferences) {
+                                        private val defaultPrefs: SharedPreferences) : DefaultPreferences {
 
     companion object {
         const val DEFAULT_LAYOUT_POSITION = 0
@@ -37,19 +37,19 @@ class PrefsProvider @Inject constructor(@EncryptedPrefs
     }
 
     //region date format
-    fun updateDateFormat(value: String) = defaultPrefs.putString(DATE_PREF_KEY, value)
-    val getDateFormat
+    override fun updateDateFormat(value: String) = defaultPrefs.putString(DATE_PREF_KEY, value)
+    override val getDateFormat
         get() = defaultPrefs.getString(DATE_PREF_KEY, DEFAULT_DATE_FORMAT) ?: DEFAULT_DATE_FORMAT
     //endregion
 
     //region notifications status
-    val areNotificationsEnabled get() = defaultPrefs.getBoolean(NOTIFICATIONS_PREF_KEY, true)
-    fun updateNotificationsValue(value: Boolean) = defaultPrefs.putBoolean(NOTIFICATIONS_PREF_KEY, value)
+    override val areNotificationsEnabled get() = defaultPrefs.getBoolean(NOTIFICATIONS_PREF_KEY, true)
+    override fun updateNotificationsValue(value: Boolean) = defaultPrefs.putBoolean(NOTIFICATIONS_PREF_KEY, value)
     //endregion
 
     //region theme
-    val isDarkThemeEnabled get() = defaultPrefs.getBoolean(THEME_PREF_KEY, false)
-    fun changeTheme() {
+    override val isDarkThemeEnabled get() = defaultPrefs.getBoolean(THEME_PREF_KEY, false)
+    override fun changeTheme() {
         defaultPrefs.edit(true) { putBoolean(THEME_PREF_KEY, !isDarkThemeEnabled) }
         applyThemeLogic()
     }
@@ -60,35 +60,35 @@ class PrefsProvider @Inject constructor(@EncryptedPrefs
     //endregion
 
     //region dot status
-    val isDotEnabled get() = defaultPrefs.getBoolean(DOT_PREF_KEY, true)
-    fun setDotStatus(status: Boolean) = defaultPrefs.putBoolean(DOT_PREF_KEY, status)
+    override val isDotEnabled get() = defaultPrefs.getBoolean(DOT_PREF_KEY, true)
+    override fun setDotStatus(status: Boolean) = defaultPrefs.putBoolean(DOT_PREF_KEY, status)
     //endregion
 
     //region notification exclusion
-    val isVigilanteExcludedFromNotifications get() = defaultPrefs.getBoolean(EXCLUDE_VIGILANTE_FROM_NOTIFICATIONS_PREF_KEY, false)
-    fun setExcludeVigilanteFromNotificationsStatus(newValue: Boolean) = defaultPrefs.putBoolean(EXCLUDE_VIGILANTE_FROM_NOTIFICATIONS_PREF_KEY, newValue)
+    override val isVigilanteExcludedFromNotifications get() = defaultPrefs.getBoolean(EXCLUDE_VIGILANTE_FROM_NOTIFICATIONS_PREF_KEY, false)
+    override fun setExcludeVigilanteFromNotificationsStatus(newValue: Boolean) = defaultPrefs.putBoolean(EXCLUDE_VIGILANTE_FROM_NOTIFICATIONS_PREF_KEY, newValue)
     //endregion
 
     //region camera prefs
-    val getCameraColorPref get() = getColorPref(CAMERA_CUSTOMIZATION_BASE_PREF)
-    val getCameraSizePref get() = getSizePref(CAMERA_CUSTOMIZATION_BASE_PREF)
-    val getCameraPositionPref get() = getPositionPref(CAMERA_CUSTOMIZATION_BASE_PREF)
-    val getLayoutCameraPositionPref get() = getLayoutPosition(getCameraPositionPref)
-    val getCameraNotificationLEDColorPref get() = getNotificationColorPref(CAMERA_CUSTOMIZATION_BASE_PREF)
-    val getCameraSpacing get() = getPositionSpacing(CAMERA_CUSTOMIZATION_BASE_PREF)
-    val getCameraVibrationPositionPref get() = getVibrationPref(CAMERA_CUSTOMIZATION_BASE_PREF)
-    val getCameraVibrationEffectPref get() = getVibrationEffect(getCameraVibrationPositionPref)
+    override val getCameraColorPref get() = getColorPref(CAMERA_CUSTOMIZATION_BASE_PREF)
+    override val getCameraSizePref get() = getSizePref(CAMERA_CUSTOMIZATION_BASE_PREF)
+    override val getCameraPositionPref get() = getPositionPref(CAMERA_CUSTOMIZATION_BASE_PREF)
+    override val getLayoutCameraPositionPref get() = getLayoutPosition(getCameraPositionPref)
+    override val getCameraNotificationLEDColorPref get() = getNotificationColorPref(CAMERA_CUSTOMIZATION_BASE_PREF)
+    override val getCameraSpacing get() = getPositionSpacing(CAMERA_CUSTOMIZATION_BASE_PREF)
+    override val getCameraVibrationPositionPref get() = getVibrationPref(CAMERA_CUSTOMIZATION_BASE_PREF)
+    override val getCameraVibrationEffectPref get() = getVibrationEffect(getCameraVibrationPositionPref)
     //endregion
 
     //region mic prefs
-    val getMicColorPref get() = getColorPref(MIC_CUSTOMIZATION_BASE_PREF)
-    val getMicSizePref get() = getSizePref(MIC_CUSTOMIZATION_BASE_PREF)
-    val getMicPositionPref get() = getPositionPref(MIC_CUSTOMIZATION_BASE_PREF)
-    val getLayoutMicPositionPref get() = getLayoutPosition(getMicPositionPref)
-    val getMicNotificationLEDColorPref get() = getNotificationColorPref(MIC_CUSTOMIZATION_BASE_PREF)
-    val getMicSpacing get() = getPositionSpacing(MIC_CUSTOMIZATION_BASE_PREF)
-    val getMicVibrationPositionPref get() = getVibrationPref(MIC_CUSTOMIZATION_BASE_PREF)
-    val getMicVibrationEffectPref get() = getVibrationEffect(getMicVibrationPositionPref)
+    override val getMicColorPref get() = getColorPref(MIC_CUSTOMIZATION_BASE_PREF)
+    override val getMicSizePref get() = getSizePref(MIC_CUSTOMIZATION_BASE_PREF)
+    override val getMicPositionPref get() = getPositionPref(MIC_CUSTOMIZATION_BASE_PREF)
+    override val getLayoutMicPositionPref get() = getLayoutPosition(getMicPositionPref)
+    override val getMicNotificationLEDColorPref get() = getNotificationColorPref(MIC_CUSTOMIZATION_BASE_PREF)
+    override val getMicSpacing get() = getPositionSpacing(MIC_CUSTOMIZATION_BASE_PREF)
+    override val getMicVibrationPositionPref get() = getVibrationPref(MIC_CUSTOMIZATION_BASE_PREF)
+    override val getMicVibrationEffectPref get() = getVibrationEffect(getMicVibrationPositionPref)
     //endregion
 
     fun saveColorPref(prefBaseName: String, pickedColor: Int) = defaultPrefs.putInt(prefBaseName, pickedColor)
@@ -126,20 +126,20 @@ class PrefsProvider @Inject constructor(@EncryptedPrefs
     }
 
     //region intro
-    val isIntroShown get() = defaultPrefs.getBoolean(INTRO_PREF, false)
-    fun setIntroShown() {
+    override val isIntroShown get() = defaultPrefs.getBoolean(INTRO_PREF, false)
+    override fun setIntroShown() {
         defaultPrefs.putBoolean(INTRO_PREF, true)
     }
     //endregion
 
     //region biometric auth
-    val isBiometricAuthEnabled get() = defaultPrefs.getBoolean(BIOMETRIC_AUTH_PREF_KEY, false)
-    fun updateBiometricStatus(status: Boolean) = defaultPrefs.putBoolean(BIOMETRIC_AUTH_PREF_KEY, status)
+    override val isBiometricAuthEnabled get() = defaultPrefs.getBoolean(BIOMETRIC_AUTH_PREF_KEY, false)
+    override fun updateBiometricStatus(status: Boolean) = defaultPrefs.putBoolean(BIOMETRIC_AUTH_PREF_KEY, status)
     //endregion
 
     //region bypass dnd
-    val isBypassDNDEnabled get() = defaultPrefs.getBoolean(BYPASS_DND_PREF_KEY, false)
-    fun updateDNDValue(value: Boolean) = defaultPrefs.putBoolean(BYPASS_DND_PREF_KEY, value)
+    override val isBypassDNDEnabled get() = defaultPrefs.getBoolean(BYPASS_DND_PREF_KEY, false)
+    override fun updateDNDValue(value: Boolean) = defaultPrefs.putBoolean(BYPASS_DND_PREF_KEY, value)
     //endregion
 
 

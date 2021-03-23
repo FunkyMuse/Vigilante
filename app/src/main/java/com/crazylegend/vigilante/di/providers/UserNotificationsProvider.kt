@@ -11,6 +11,7 @@ import androidx.core.app.NotificationCompat
 import com.crazylegend.kotlinextensions.context.notificationManager
 import com.crazylegend.kotlinextensions.locale.LocaleHelper
 import com.crazylegend.vigilante.R
+import com.crazylegend.vigilante.di.providers.prefs.PrefsProvider
 import com.crazylegend.vigilante.di.qualifiers.ServiceContext
 import dagger.hilt.android.scopes.ServiceScoped
 import javax.inject.Inject

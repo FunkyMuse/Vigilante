@@ -1,7 +1,7 @@
 package com.crazylegend.vigilante.notifications.ui
 
 import com.crazylegend.vigilante.databinding.ItemviewLogBinding
-import com.crazylegend.vigilante.di.providers.PrefsProvider
+import com.crazylegend.vigilante.di.providers.prefs.PrefsProvider
 import com.crazylegend.vigilante.notifications.db.NotificationsModel
 import com.crazylegend.vigilante.paging.AbstractPagingAdapter
 import com.crazylegend.vigilante.utils.LogViewHolder

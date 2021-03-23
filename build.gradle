@@ -5,7 +5,7 @@ ext {
     rxBindings = "3.1.0"
     glide = "4.11.0"
     constraint_layout = '2.0.4'
-    coroutines = "1.4.2"
+    coroutines = "1.4.2-native-mt"
     daggerVersion = '2.33'
     hiltJetpackVersion = '1.0.0-alpha03'
     crashyVersion = '1.0.9'

@@ -6,6 +6,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.crazylegend.kotlinextensions.fragments.ifIsAttachedAction
 import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
 import com.crazylegend.navigation.navigateUpSafe
 import com.crazylegend.viewbinding.viewBinding
@@ -46,11 +47,11 @@ class DialogConfirmation : AbstractDialogFragment(R.layout.dialog_confirmation) 
         binding.cancel.text = cancelButtonText
 
         binding.cancel.setOnClickListenerCooldown {
-            addArgs(false, customCancellationKey)
+            ifIsAttachedAction { addArgs(false, customCancellationKey) }
         }
 
         binding.confirm.setOnClickListenerCooldown {
-            addArgs(true, customConfirmationKey)
+            ifIsAttachedAction { addArgs(true, customConfirmationKey) }
         }
     }
 

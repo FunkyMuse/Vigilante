@@ -32,7 +32,7 @@ class PowerDetailsDialog : AbstractBottomSheet<DialogPowerDetailsBinding>() {
     private val args by navArgs<PowerDetailsDialogArgs>()
 
     @Inject
-    lateinit var powerDetailsVMFactory: PowerDetailsVM.PowerDetailsVMFactory
+    lateinit var powerDetailsVMFactory: PowerDetailsViewModel.PowerDetailsVMFactory
 
     private val powerDetailsVM by assistedViewModel {
         powerDetailsVMFactory.create(args.powerID)

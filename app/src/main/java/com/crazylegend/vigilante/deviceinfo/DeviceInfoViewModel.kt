@@ -1,13 +1,12 @@
 package com.crazylegend.vigilante.deviceinfo
 
-import android.app.Application
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.crazylegend.coroutines.defaultDispatcher
 import com.crazylegend.kotlinextensions.root.RootUtils
 import com.crazylegend.kotlinextensions.storage.isDiskEncrypted
 import com.crazylegend.security.MagiskDetector
 import com.crazylegend.vigilante.R
-import com.crazylegend.vigilante.abstracts.AbstractAVM
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -18,8 +17,7 @@ import javax.inject.Inject
  * Created by crazy on 2/1/21 to long live and prosper !
  */
 @HiltViewModel
-class DeviceInfoVM @Inject constructor(private val magiskDetector: MagiskDetector,
-                                       application: Application) : AbstractAVM(application) {
+class DeviceInfoViewModel @Inject constructor(private val magiskDetector: MagiskDetector) : ViewModel() {
 
     private val deviceInfoDataList: MutableStateFlow<List<DeviceInfoModel>> = MutableStateFlow(emptyList())
     val deviceInfoList = deviceInfoDataList.asStateFlow()

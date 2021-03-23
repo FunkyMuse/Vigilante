@@ -1,7 +1,6 @@
 package com.crazylegend.vigilante.permissions.ui.details
 
-import android.app.Application
-import com.crazylegend.vigilante.abstracts.AbstractAVM
+import androidx.lifecycle.ViewModel
 import com.crazylegend.vigilante.permissions.db.PermissionRequestsRepository
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
@@ -10,14 +9,13 @@ import dagger.assisted.AssistedInject
 /**
  * Created by crazy on 11/5/20 to long live and prosper !
  */
-class PermissionDetailsVM @AssistedInject constructor(
+class PermissionDetailsViewModel @AssistedInject constructor(
         permissionRequestRepository: PermissionRequestsRepository,
-        @Assisted private val packageName: String,
-        application: Application) : AbstractAVM(application) {
+        @Assisted private val packageName: String) : ViewModel() {
 
     @AssistedFactory
     interface PermissionDetailsVMFactory {
-        fun create(packageName: String): PermissionDetailsVM
+        fun create(packageName: String): PermissionDetailsViewModel
     }
 
     val permissionRequests = permissionRequestRepository.getPermissionRequestsForPackage(packageName)

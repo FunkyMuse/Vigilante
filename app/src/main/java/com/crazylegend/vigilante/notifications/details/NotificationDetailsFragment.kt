@@ -47,7 +47,7 @@ class NotificationDetailsFragment : AbstractBottomSheet<DialogNotificationDetail
     private val args by navArgs<NotificationDetailsFragmentArgs>()
 
     @Inject
-    lateinit var notificationDetailsVMFactory: NotificationDetailsVM.NotificationDetailsVMFactory
+    lateinit var notificationDetailsVMFactory: NotificationDetailsViewModel.NotificationDetailsVMFactory
 
     private val notificationDetailsVM by assistedViewModel {
         notificationDetailsVMFactory.create(args.notificationID)

@@ -35,7 +35,7 @@ class DeviceInfoFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.layo
     }
 
 
-    private val deviceInfoVM by viewModels<DeviceInfoVM>()
+    private val deviceInfoVM by viewModels<DeviceInfoViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

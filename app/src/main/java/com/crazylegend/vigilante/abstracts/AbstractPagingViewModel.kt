@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 /**
  * Created by crazy on 11/4/20 to long live and prosper !
  */
-abstract class AbstractAVM(application: Application) : AndroidViewModel(application) {
+abstract class AbstractPagingViewModel(application: Application) : AndroidViewModel(application) {
 
     @PublishedApi
     internal val pagingConfig = PagingConfig(pageSize = 20, enablePlaceholders = false)

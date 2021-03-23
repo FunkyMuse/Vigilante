@@ -1,71 +1,81 @@
 package com.crazylegend.vigilante.di.providers.prefs
 
+import android.graphics.Color
+import com.crazylegend.vigilante.di.providers.prefs.PrefsProvider.Companion.DEFAULT_DOT_COLOR
+import com.crazylegend.vigilante.di.providers.prefs.PrefsProvider.Companion.DEFAULT_DOT_SIZE
+import com.crazylegend.vigilante.utils.toggleValue
 import com.crazylegend.vigilante.utils.verifyBooleanInstanceAndCall
 import com.crazylegend.vigilante.utils.verifyFloatInstanceAndCall
 import com.crazylegend.vigilante.utils.verifyIntInstanceAndCall
-import io.mockk.*
+import io.mockk.MockKAnnotations
+import io.mockk.every
+import io.mockk.unmockkAll
 import org.hamcrest.CoreMatchers.instanceOf
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertThat
 import org.junit.Before
 import org.junit.Test
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Created by funkymuse on 3/23/21 to long live and prosper !
  */
 class PrefsProviderTest {
 
-    val defaultPreferences = spyk<DefaultPreferences>()
+    val defaultPreferences = FakePrefsProvider()
 
     @Test
     fun `update Date Format and get the updated date`() {
-
-        val dateFormat = "dd.MM.yyyy HH:mm:ss"
-        defaultPreferences.updateDateFormat(dateFormat)
-        every { defaultPreferences.getDateFormat } returns dateFormat
+        val dateFormat = "yyyy.MM.dd HH:mm:ss"
         assertThat(defaultPreferences.getDateFormat, instanceOf(String::class.java))
-        assertEquals(defaultPreferences.getDateFormat, dateFormat)
+        defaultPreferences.updateDateFormat(dateFormat)
+        assertThat(defaultPreferences.getDateFormat, instanceOf(String::class.java))
+        assertThat(SimpleDateFormat(dateFormat), instanceOf(SimpleDateFormat::class.java))
     }
 
     @Test
     fun `notifications test`() {
-        verifyBooleanInstanceAndCall { defaultPreferences.areNotificationsEnabled }
+        toggleValue(initialExpectation = false, { defaultPreferences.areNotificationsEnabled }) { defaultPreferences.updateNotificationsValue(true) }
     }
 
     @Test
     fun `dark theme test`() {
-        verifyBooleanInstanceAndCall { defaultPreferences.isDarkThemeEnabled }
+        toggleValue(initialExpectation = false, { defaultPreferences.isDarkThemeEnabled }) { defaultPreferences.changeTheme() }
     }
 
     @Test
     fun `dot status test`() {
-        verifyBooleanInstanceAndCall { defaultPreferences.isDotEnabled }
+        toggleValue(initialExpectation = false, { defaultPreferences.isDotEnabled }) { defaultPreferences.setDotStatus(true) }
     }
 
     @Test
     fun `is app excluded from notifications test`() {
-        verifyBooleanInstanceAndCall { defaultPreferences.isVigilanteExcludedFromNotifications }
+        toggleValue(initialExpectation = false, { defaultPreferences.isVigilanteExcludedFromNotifications }) { defaultPreferences.setExcludeVigilanteFromNotificationsStatus(true) }
     }
 
     @Test
     fun `camera color test`() {
-        verifyIntInstanceAndCall { defaultPreferences.getCameraColorPref }
+        val setColor = Color.CYAN
+        assertEquals(defaultPreferences.getCameraColorPref, DEFAULT_DOT_COLOR)
+        defaultPreferences.setCameraColor(setColor)
+        assertEquals(defaultPreferences.getCameraColorPref, setColor)
     }
 
     @Test
     fun `camera size`() {
-        verifyFloatInstanceAndCall { defaultPreferences.getCameraSizePref }
+        val customSize = 50f
+        assertEquals(defaultPreferences.getCameraSizePref, DEFAULT_DOT_SIZE)
+        defaultPreferences.setCameraSize(customSize)
+        assertEquals(defaultPreferences.getCameraSizePref, customSize)
     }
 
     @Test
     fun `intro shown`() {
-        every { defaultPreferences.isIntroShown } returns false
-        defaultPreferences.setIntroShown()
-        every { defaultPreferences.isIntroShown } returns true
-        assertEquals(defaultPreferences.isIntroShown, true)
-        verify { defaultPreferences.setIntroShown() }
+        toggleValue(initialExpectation = false, { defaultPreferences.isIntroShown }) { defaultPreferences.setIntroShown() }
     }
+
 
     @Before
     fun setUp() {

@@ -31,7 +31,7 @@ class HeadsetFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.layout_
         EdgeToEdge.setUpScrollingContent(binding.recycler)
     }
 
-    private val headsetVM by viewModels<HeadsetVM>()
+    private val headsetVM by viewModels<HeadsetViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -28,7 +28,7 @@ import javax.inject.Inject
 class CrashFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.layout_recycler), EdgeToEdgeScrolling {
 
     override val binding by viewBinding(LayoutRecyclerBinding::bind)
-    private val crashVM by viewModels<CrashVM>()
+    private val crashVM by viewModels<CrashViewModel>()
 
     @Inject
     lateinit var adapterProvider: AdapterProvider

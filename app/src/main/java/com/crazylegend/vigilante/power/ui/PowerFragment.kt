@@ -36,7 +36,7 @@ class PowerFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.layout_re
     @Inject
     lateinit var adapter: PowerAdapter
 
-    private val powerVM by viewModels<PowerVM>()
+    private val powerVM by viewModels<PowerViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

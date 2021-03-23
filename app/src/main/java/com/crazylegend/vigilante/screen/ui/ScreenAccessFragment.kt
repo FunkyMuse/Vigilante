@@ -42,7 +42,7 @@ class ScreenAccessFragment : AbstractFragment<FragmentScreenAccessBinding>(R.lay
     @Inject
     lateinit var adapter: ScreenAccessAdapter
 
-    private val screenVM by viewModels<ScreenVM>()
+    private val screenVM by viewModels<ScreenViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

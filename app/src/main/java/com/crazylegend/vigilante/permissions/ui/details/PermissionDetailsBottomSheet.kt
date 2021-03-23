@@ -37,7 +37,7 @@ class PermissionDetailsBottomSheet : AbstractBottomSheet<DialogPermissionDetails
     private val settingsAppName get() = args.settingsAppName
 
     @Inject
-    lateinit var permissionDetailsVMFactory: PermissionDetailsVM.PermissionDetailsVMFactory
+    lateinit var permissionDetailsVMFactory: PermissionDetailsViewModel.PermissionDetailsVMFactory
     private val permissionDetailsVM by assistedViewModel {
         permissionDetailsVMFactory.create(packageName)
     }

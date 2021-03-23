@@ -6,7 +6,7 @@ import com.crazylegend.crashyreporter.CrashyReporter
 /**
  * Created by crazy on 1/28/21 to long live and prosper !
  */
-class CrashVM : ViewModel() {
+class CrashViewModel : ViewModel() {
 
     val crashes = CrashyReporter.getLogsAsStrings()
 }

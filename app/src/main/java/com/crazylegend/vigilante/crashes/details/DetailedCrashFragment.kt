@@ -29,7 +29,7 @@ class DetailedCrashFragment : AbstractFragment<FragmentDetailedCrashBinding>(R.l
     private val clickedPosition get() = args.position
 
     @Inject
-    lateinit var detailedCrashVMFactory: DetailedCrashVM.DetailedCrashVMFactory
+    lateinit var detailedCrashVMFactory: DetailedCrashViewModel.DetailedCrashVMFactory
 
     private val detailedCrashVM by assistedViewModel {
         detailedCrashVMFactory.create(clickedPosition)

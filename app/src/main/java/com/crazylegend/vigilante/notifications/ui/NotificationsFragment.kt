@@ -35,7 +35,7 @@ class NotificationsFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.l
     @Inject
     lateinit var adapter: NotificationsAdapter
 
-    private val notificationsVM by viewModels<NotificationsVM>()
+    private val notificationsVM by viewModels<NotificationsViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

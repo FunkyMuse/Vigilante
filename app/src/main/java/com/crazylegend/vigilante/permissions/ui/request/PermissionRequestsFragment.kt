@@ -35,7 +35,7 @@ class PermissionRequestsFragment : AbstractFragment<FragmentPermissionsBinding>(
     @Inject
     override lateinit var databaseLoadingProvider: DatabaseLoadingProvider
     override val binding by viewBinding(FragmentPermissionsBinding::bind)
-    private val permissionRequestVM by viewModels<PermissionRequestsVM>()
+    private val permissionRequestVM by viewModels<PermissionRequestsViewModel>()
 
     @Inject
     lateinit var adapter: PermissionRequestsAdapter

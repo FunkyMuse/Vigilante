@@ -7,6 +7,7 @@ import androidx.lifecycle.coroutineScope
 import androidx.navigation.fragment.findNavController
 import com.crazylegend.kotlinextensions.fragments.fragmentIntResult
 import com.crazylegend.kotlinextensions.fragments.viewLifecycleOwnerLifecycle
+import com.crazylegend.kotlinextensions.gestureNavigation.EdgeToEdge
 import com.crazylegend.kotlinextensions.views.hideViews
 import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
 import com.crazylegend.kotlinextensions.views.showViews
@@ -19,7 +20,6 @@ import com.crazylegend.vigilante.contracts.LoadingDBsInFragments
 import com.crazylegend.vigilante.databinding.FragmentScreenAccessBinding
 import com.crazylegend.vigilante.di.providers.DatabaseLoadingProvider
 import com.crazylegend.vigilante.filter.ListFilterBottomSheet
-import com.crazylegend.vigilante.utils.EdgeToEdge
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject

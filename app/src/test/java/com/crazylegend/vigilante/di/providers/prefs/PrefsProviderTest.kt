@@ -1,14 +1,10 @@
 package com.crazylegend.vigilante.di.providers.prefs
 
 import android.graphics.Color
-import com.crazylegend.vigilante.di.providers.prefs.PrefsProvider.Companion.DEFAULT_DOT_COLOR
-import com.crazylegend.vigilante.di.providers.prefs.PrefsProvider.Companion.DEFAULT_DOT_SIZE
+import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider.Companion.DEFAULT_DOT_COLOR
+import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider.Companion.DEFAULT_DOT_SIZE
 import com.crazylegend.vigilante.utils.toggleValue
-import com.crazylegend.vigilante.utils.verifyBooleanInstanceAndCall
-import com.crazylegend.vigilante.utils.verifyFloatInstanceAndCall
-import com.crazylegend.vigilante.utils.verifyIntInstanceAndCall
 import io.mockk.MockKAnnotations
-import io.mockk.every
 import io.mockk.unmockkAll
 import org.hamcrest.CoreMatchers.instanceOf
 import org.junit.After
@@ -17,7 +13,6 @@ import org.junit.Assert.assertThat
 import org.junit.Before
 import org.junit.Test
 import java.text.SimpleDateFormat
-import java.util.*
 
 /**
  * Created by funkymuse on 3/23/21 to long live and prosper !

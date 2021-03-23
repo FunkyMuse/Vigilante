@@ -1,7 +1,7 @@
 package com.crazylegend.vigilante.headset.ui
 
 import com.crazylegend.vigilante.databinding.ItemviewLogBinding
-import com.crazylegend.vigilante.di.providers.prefs.PrefsProvider
+import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider
 import com.crazylegend.vigilante.headset.database.HeadsetModel
 import com.crazylegend.vigilante.paging.AbstractPagingAdapter
 import com.crazylegend.vigilante.utils.LogViewHolder
@@ -13,7 +13,7 @@ import javax.inject.Inject
  */
 @FragmentScoped
 class HeadsetAdapter @Inject constructor(
-        private val prefsProvider: PrefsProvider
+        private val prefsProvider: DefaultPreferencessProvider
 ) : AbstractPagingAdapter<HeadsetModel, LogViewHolder, ItemviewLogBinding>(::LogViewHolder, ItemviewLogBinding::inflate) {
     override fun bindItems(item: HeadsetModel?, holder: LogViewHolder, position: Int, itemCount: Int) {
         item ?: return

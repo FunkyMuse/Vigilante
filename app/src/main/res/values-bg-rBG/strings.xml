@@ -15,7 +15,7 @@
     <string name="lock_screen_history">Екран за заключване на историята</string>
     <string name="notifications_usage_expl">Като активирате тази опция, ще получавате известия, когато се използва камера / микрофон / итн., ако / когато е възможно.</string>
     <string name="notifications_usage_title">Заглавие за използване на известия</string>
-    <string name="crash_report">Отчет за срив = % 1 $ d</string>
+    <string name="crash_report">Отчет за срив = %1$d</string>
     <string name="no_crashes">Без сривове!</string>
     <string name="version">Версии</string>
     <string name="date_format">Дата на форматиране</string>
@@ -34,7 +34,7 @@
     <string name="connected">Свързан</string>
     <string name="connected_with_mic">Свързан с микрофон</string>
     <string name="not_available">Неприложимо</string>
-    <string name="headset_connection_type_title">Слушалки% 1 $ s</string>
+    <string name="headset_connection_type_title">Слушалки %1$s</string>
     <string name="allowed">Позволен</string>
     <string name="allowed_foreground_only">Разрешено само на преден план</string>
     <string name="always_allowed">Позволено винаги</string>
@@ -42,21 +42,21 @@
     <string name="denied">Отрича се</string>
     <string name="denied_and_do_not_ask_again">"Отказан с не питай отново "</string>
     <string name="ask_every_time">Питай всеки път</string>
-    <string name="permissions_requests_by_app_count">Общо% 1 $ d заявки за разрешение.</string>
+    <string name="permissions_requests_by_app_count">Общо %1$d заявки за разрешение.</string>
     <string name="total_permission_requests">Общо искания за разрешение</string>
-    <string name="title_placeholder">Заглавие:% 1 $ s</string>
-    <string name="big_text_placeholder">Голям текст:% 1 $ s</string>
-    <string name="text_placeholder">Текст:% 1 $ s</string>
-    <string name="category_placeholder">Категория:% 1 $ s</string>
-    <string name="group_placeholder">Група:% 1 $ s</string>
-    <string name="channel_id_placeholder">Идент. № на канала:% 1 $ s</string>
+    <string name="title_placeholder">Заглавие: %1$s</string>
+    <string name="big_text_placeholder">Голям текст: %1$s</string>
+    <string name="text_placeholder">Текст: %1$s</string>
+    <string name="category_placeholder">Категория: %1$s</string>
+    <string name="group_placeholder">Група: %1$s</string>
+    <string name="channel_id_placeholder">Идент. № на канала: %1$s</string>
     <string name="notification_visibility_public">Публично видимо известие</string>
     <string name="notification_visibility_private">Частно видимо известие</string>
     <string name="notification_visibility_secret">Тайно видимо известие</string>
-    <string name="notification_visibility_placeholder">Видимост:% 1 $ s</string>
-    <string name="notification_color_placeholder">Цвят на известието:% 1 $ s</string>
+    <string name="notification_visibility_placeholder">Видимост: %1$s</string>
+    <string name="notification_color_placeholder">Цвят на известието: %1$s</string>
     <string name="notification_color_copied_to_clipboard">Цветът на известието е копиран в клипборда!</string>
-    <string name="date_placeholder">Дата:% 1 $ s</string>
+    <string name="date_placeholder">Дата: %1$s</string>
     <string name="power_history">История на захранването</string>
     <string name="power_disconnected">Захранването е изключено</string>
     <string name="power_connected">Захранването е свързано</string>

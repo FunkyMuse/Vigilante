@@ -24,8 +24,8 @@ import javax.inject.Singleton
  * Created by crazy on 11/2/20 to long live and prosper !
  */
 @Singleton
-class PrefsProvider @Inject constructor(@EncryptedPrefs
-                                        private val defaultPrefs: SharedPreferences) : DefaultPreferences {
+class DefaultPreferencessProvider @Inject constructor(@EncryptedPrefs
+                                                      private val defaultPrefs: SharedPreferences) : DefaultPreferences {
 
     companion object {
         const val DEFAULT_LAYOUT_POSITION = 0

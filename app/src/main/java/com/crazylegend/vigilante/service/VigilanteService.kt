@@ -17,7 +17,7 @@ import com.crazylegend.kotlinextensions.views.*
 import com.crazylegend.vigilante.camera.CameraProcessor
 import com.crazylegend.vigilante.databinding.ServiceLayoutDotBinding
 import com.crazylegend.vigilante.di.providers.BroadcastProvider
-import com.crazylegend.vigilante.di.providers.prefs.PrefsProvider
+import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider
 import com.crazylegend.vigilante.microphone.MicrophoneProcessor
 import com.crazylegend.vigilante.notifications.NotificationsProvider
 import com.crazylegend.vigilante.permissions.PermissionsProcessor
@@ -57,7 +57,7 @@ class VigilanteService : AccessibilityService() {
     lateinit var permissionsProcessor: PermissionsProcessor
 
     @Inject
-    lateinit var prefsProvider: PrefsProvider
+    lateinit var prefsProvider: DefaultPreferencessProvider
 
     private lateinit var cameraParams: WindowManager.LayoutParams
     private lateinit var cameraBinding: ServiceLayoutDotBinding

@@ -8,8 +8,6 @@ import com.crazylegend.coroutines.withMainContext
 import com.crazylegend.crashyreporter.CrashyReporter
 import com.crazylegend.kotlinextensions.fragments.finish
 import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
-import com.crazylegend.vigilante.di.providers.prefs.PrefsProvider
-import javax.inject.Inject
 
 /**
  * Created by crazy on 10/14/20 to long live and prosper !
@@ -17,9 +15,6 @@ import javax.inject.Inject
 abstract class AbstractFragment<BINDING : ViewBinding>(contentLayoutId: Int) : Fragment(contentLayoutId) {
 
     abstract val binding: BINDING
-
-    @Inject
-    lateinit var prefsProvider: PrefsProvider
 
     fun goToScreen(directions: NavDirections) {
         onResumedUIFunction { findNavController().navigate(directions) }

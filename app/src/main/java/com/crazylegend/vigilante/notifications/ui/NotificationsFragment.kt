@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.crazylegend.kotlinextensions.gestureNavigation.EdgeToEdge
 import com.crazylegend.navigation.navigateSafe
 import com.crazylegend.recyclerview.clickListeners.forItemClickListener
 import com.crazylegend.viewbinding.viewBinding
@@ -13,7 +14,6 @@ import com.crazylegend.vigilante.contracts.EdgeToEdgeScrolling
 import com.crazylegend.vigilante.contracts.LoadingDBsInFragments
 import com.crazylegend.vigilante.databinding.LayoutRecyclerBinding
 import com.crazylegend.vigilante.di.providers.DatabaseLoadingProvider
-import com.crazylegend.vigilante.utils.EdgeToEdge
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

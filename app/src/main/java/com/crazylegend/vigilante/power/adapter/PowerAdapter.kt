@@ -1,7 +1,7 @@
 package com.crazylegend.vigilante.power.adapter
 
 import com.crazylegend.vigilante.databinding.ItemviewLogBinding
-import com.crazylegend.vigilante.di.providers.prefs.PrefsProvider
+import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider
 import com.crazylegend.vigilante.paging.AbstractPagingAdapter
 import com.crazylegend.vigilante.power.db.PowerModel
 import com.crazylegend.vigilante.utils.LogViewHolder
@@ -13,7 +13,7 @@ import javax.inject.Inject
  */
 @FragmentScoped
 class PowerAdapter @Inject constructor(
-        private val prefsProvider: PrefsProvider
+        private val prefsProvider: DefaultPreferencessProvider
 ) : AbstractPagingAdapter<PowerModel, LogViewHolder, ItemviewLogBinding>(::LogViewHolder, ItemviewLogBinding::inflate) {
 
     override fun bindItems(item: PowerModel?, holder: LogViewHolder, position: Int, itemCount: Int) {

@@ -15,6 +15,7 @@ import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
 import com.crazylegend.vigilante.databinding.FragmentSplashBinding
 import com.crazylegend.vigilante.di.providers.AuthProvider
+import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider
 import com.crazylegend.vigilante.utils.DEFAULT_ANIM_TIME
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -24,6 +25,9 @@ import javax.inject.Inject
  */
 @AndroidEntryPoint
 class SplashFragment : AbstractFragment<FragmentSplashBinding>(R.layout.fragment_splash) {
+
+    @Inject
+    lateinit var prefsProvider: DefaultPreferencessProvider
 
     @Inject
     lateinit var authProvider: AuthProvider

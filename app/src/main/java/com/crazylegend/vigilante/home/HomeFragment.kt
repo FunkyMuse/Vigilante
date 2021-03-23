@@ -10,6 +10,7 @@ import com.crazylegend.crashyreporter.CrashyReporter
 import com.crazylegend.kotlinextensions.fragments.fragmentBooleanResult
 import com.crazylegend.kotlinextensions.fragments.shortToast
 import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
+import com.crazylegend.kotlinextensions.gestureNavigation.EdgeToEdge
 import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
 import com.crazylegend.navigation.navigateSafe
 import com.crazylegend.recyclerview.clickListeners.forItemClickListener
@@ -20,11 +21,11 @@ import com.crazylegend.vigilante.confirmation.DialogConfirmation
 import com.crazylegend.vigilante.databinding.FragmentHomeBinding
 import com.crazylegend.vigilante.di.providers.AdapterProvider
 import com.crazylegend.vigilante.di.providers.PermissionProvider
+import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider
 import com.crazylegend.vigilante.home.section.SectionItem
 import com.crazylegend.vigilante.settings.CAMERA_CUSTOMIZATION_BASE_PREF
 import com.crazylegend.vigilante.settings.MIC_CUSTOMIZATION_BASE_PREF
 import com.crazylegend.vigilante.utils.DEFAULT_ANIM_TIME
-import com.crazylegend.vigilante.utils.EdgeToEdge
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -40,6 +41,9 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
 
     @Inject
     lateinit var adapterProvider: AdapterProvider
+
+    @Inject
+    lateinit var prefsProvider: DefaultPreferencessProvider
 
     private val sectionAdapter by lazy {
         adapterProvider.sectionAdapter

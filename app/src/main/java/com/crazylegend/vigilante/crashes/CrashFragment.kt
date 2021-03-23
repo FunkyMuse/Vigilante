@@ -6,6 +6,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.crazylegend.kotlinextensions.context.copyToClipboard
 import com.crazylegend.kotlinextensions.fragments.shortToast
+import com.crazylegend.kotlinextensions.gestureNavigation.EdgeToEdge
 import com.crazylegend.kotlinextensions.intent.openWebPage
 import com.crazylegend.kotlinextensions.tryOrElse
 import com.crazylegend.navigation.navigateSafe
@@ -16,7 +17,6 @@ import com.crazylegend.vigilante.abstracts.AbstractFragment
 import com.crazylegend.vigilante.contracts.EdgeToEdgeScrolling
 import com.crazylegend.vigilante.databinding.LayoutRecyclerBinding
 import com.crazylegend.vigilante.di.providers.AdapterProvider
-import com.crazylegend.vigilante.utils.EdgeToEdge
 import com.crazylegend.vigilante.utils.NEW_ISSUE_URL
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject

@@ -9,8 +9,8 @@ import com.crazylegend.kotlinextensions.context.notificationManager
 import com.crazylegend.kotlinextensions.ifTrue
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.contracts.service.ServiceManagersCoroutines
-import com.crazylegend.vigilante.di.providers.prefs.PrefsProvider
 import com.crazylegend.vigilante.di.providers.UserNotificationsProvider
+import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider
 import com.crazylegend.vigilante.di.qualifiers.ServiceContext
 import com.crazylegend.vigilante.service.VigilanteService
 import dagger.hilt.android.scopes.ServiceScoped
@@ -23,7 +23,7 @@ import javax.inject.Inject
 class MicrophoneProcessor @Inject constructor(
         @ServiceContext private val context: Context,
         private val userNotificationsProvider: UserNotificationsProvider,
-        private val prefsProvider: PrefsProvider) : ServiceManagersCoroutines {
+        private val prefsProvider: DefaultPreferencessProvider) : ServiceManagersCoroutines {
 
     private lateinit var microphoneCallback: AudioManager.AudioRecordingCallback
     override val serviceLifecycleDispatcher = ServiceLifecycleDispatcher(this)

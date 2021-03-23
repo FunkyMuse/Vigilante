@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 import com.crazylegend.kotlinextensions.locale.LocaleHelper
 import com.crazylegend.vigilante.di.providers.CoreProvider
-import com.crazylegend.vigilante.di.providers.prefs.PrefsProvider
+import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider
 import com.crazylegend.vigilante.utils.DEFAULT_LANGUAGE
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
@@ -19,7 +19,7 @@ class VigilanteApp : Application() {
     lateinit var coreProvider: CoreProvider
 
     @Inject
-    lateinit var prefsProvider: PrefsProvider
+    lateinit var prefsProvider: DefaultPreferencessProvider
 
     override fun onCreate() {
         super.onCreate()

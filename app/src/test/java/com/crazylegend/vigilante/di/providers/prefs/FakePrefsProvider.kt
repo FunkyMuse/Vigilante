@@ -1,7 +1,7 @@
 package com.crazylegend.vigilante.di.providers.prefs
 
-import com.crazylegend.vigilante.di.providers.prefs.PrefsProvider.Companion.DEFAULT_DOT_COLOR
-import com.crazylegend.vigilante.di.providers.prefs.PrefsProvider.Companion.DEFAULT_DOT_SIZE
+import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider.Companion.DEFAULT_DOT_COLOR
+import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider.Companion.DEFAULT_DOT_SIZE
 
 /**
  * Created by funkymuse on 3/23/21 to long live and prosper !

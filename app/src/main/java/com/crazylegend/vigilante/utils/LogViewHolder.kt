@@ -11,7 +11,7 @@ import com.crazylegend.recyclerview.context
 import com.crazylegend.recyclerview.getString
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.databinding.ItemviewLogBinding
-import com.crazylegend.vigilante.di.providers.prefs.PrefsProvider
+import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider
 import com.crazylegend.vigilante.headset.database.HeadsetModel
 import com.crazylegend.vigilante.notifications.db.NotificationsModel
 import com.crazylegend.vigilante.permissions.db.PermissionRequestModel
@@ -26,37 +26,37 @@ import java.util.*
 class LogViewHolder(private val binding: ItemviewLogBinding) : RecyclerView.ViewHolder(binding.root) {
 
 
-    fun bind(item: UsageStats, prefsProvider: PrefsProvider) {
+    fun bind(item: UsageStats, prefsProvider: DefaultPreferencessProvider) {
         binding.title.setPrecomputedText(tryOrNull { context.getAppName(item.packageName.toString()) })
         binding.image.setImageDrawable(tryOrNull { context.getAppIcon(item.packageName.toString()) })
         binding.content.setPrecomputedText(Date(item.lastTimeUsed).toString(prefsProvider.getDateFormat))
     }
 
-    fun bind(screenModel: ScreenModel, prefsProvider: PrefsProvider) {
+    fun bind(screenModel: ScreenModel, prefsProvider: DefaultPreferencessProvider) {
         binding.title.setPrecomputedText(screenModel.screenTitle(context))
         binding.content.setPrecomputedText(screenModel.screenActionTime.toString(prefsProvider.getDateFormat))
         binding.image.setImageResource(screenModel.screenRes)
     }
 
-    fun bind(item: NotificationsModel, prefsProvider: PrefsProvider) {
+    fun bind(item: NotificationsModel, prefsProvider: DefaultPreferencessProvider) {
         binding.title.setPrecomputedText(tryOrNull { context.getAppName(item.sentByPackage.toString()) })
         binding.image.setImageDrawable(tryOrNull { context.getAppIcon(item.sentByPackage.toString()) })
         binding.content.setPrecomputedText(item.showTime.toString(prefsProvider.getDateFormat))
     }
 
-    fun bind(item: HeadsetModel, prefsProvider: PrefsProvider) {
+    fun bind(item: HeadsetModel, prefsProvider: DefaultPreferencessProvider) {
         binding.title.setPrecomputedText(item.connectionTypeTitle(context))
         binding.image.setImageResource(R.drawable.headphones)
         binding.content.setPrecomputedText(item.headsetActionTime?.toString(prefsProvider.getDateFormat))
     }
 
-    fun bind(item: PermissionRequestModel, prefsProvider: PrefsProvider) {
+    fun bind(item: PermissionRequestModel, prefsProvider: DefaultPreferencessProvider) {
         binding.title.setPrecomputedText(tryOrNull { context.getAppName(item.packageRequestingThePermission.toString()) })
         binding.image.setImageDrawable(tryOrNull { context.getAppIcon(item.packageRequestingThePermission.toString()) })
         binding.content.setPrecomputedText(item.date.toString(prefsProvider.getDateFormat))
     }
 
-    fun bind(item: PowerModel, prefsProvider: PrefsProvider) {
+    fun bind(item: PowerModel, prefsProvider: DefaultPreferencessProvider) {
         binding.title.setPrecomputedText(getString(item.chargingTitle))
         binding.image.setImageResource(item.chargingDrawable)
         binding.content.setPrecomputedText(item.date.toString(prefsProvider.getDateFormat))

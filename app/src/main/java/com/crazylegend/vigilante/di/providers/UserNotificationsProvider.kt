@@ -11,7 +11,7 @@ import androidx.core.app.NotificationCompat
 import com.crazylegend.kotlinextensions.context.notificationManager
 import com.crazylegend.kotlinextensions.locale.LocaleHelper
 import com.crazylegend.vigilante.R
-import com.crazylegend.vigilante.di.providers.prefs.PrefsProvider
+import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider
 import com.crazylegend.vigilante.di.qualifiers.ServiceContext
 import dagger.hilt.android.scopes.ServiceScoped
 import javax.inject.Inject
@@ -21,7 +21,7 @@ import javax.inject.Inject
  */
 @ServiceScoped
 class UserNotificationsProvider @Inject constructor(@ServiceContext private val context: Context,
-                                                    private val prefsProvider: PrefsProvider) {
+                                                    private val prefsProvider: DefaultPreferencessProvider) {
 
     private val bypassDND get() = prefsProvider.isBypassDNDEnabled
 

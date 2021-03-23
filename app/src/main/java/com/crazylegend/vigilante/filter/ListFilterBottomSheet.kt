@@ -10,7 +10,9 @@ import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractBottomSheet
 import com.crazylegend.vigilante.databinding.LayoutRecyclerBinding
+import com.crazylegend.vigilante.di.providers.AdapterProvider
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 /**
  * Created by crazy on 11/4/20 to long live and prosper !
@@ -22,6 +24,9 @@ class ListFilterBottomSheet : AbstractBottomSheet<LayoutRecyclerBinding>() {
 
     override val viewRes: Int
         get() = R.layout.layout_recycler
+
+    @Inject
+    lateinit var adapterProvider: AdapterProvider
 
     private val adapter by lazy {
         adapterProvider.listFilterAdapter

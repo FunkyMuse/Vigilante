@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
+import com.crazylegend.kotlinextensions.gestureNavigation.EdgeToEdge
 import com.crazylegend.kotlinextensions.views.hideViews
 import com.crazylegend.kotlinextensions.views.showViews
 import com.crazylegend.navigation.navigateSafe
@@ -16,7 +17,6 @@ import com.crazylegend.vigilante.contracts.EdgeToEdgeScrolling
 import com.crazylegend.vigilante.contracts.LoadingDBsInFragments
 import com.crazylegend.vigilante.databinding.FragmentPermissionsBinding
 import com.crazylegend.vigilante.di.providers.DatabaseLoadingProvider
-import com.crazylegend.vigilante.utils.EdgeToEdge
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject

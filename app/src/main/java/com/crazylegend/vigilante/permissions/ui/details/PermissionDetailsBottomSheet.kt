@@ -13,6 +13,7 @@ import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractBottomSheet
 import com.crazylegend.vigilante.databinding.DialogPermissionDetailsBinding
+import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider
 import com.crazylegend.vigilante.utils.assistedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -25,6 +26,9 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class PermissionDetailsBottomSheet : AbstractBottomSheet<DialogPermissionDetailsBinding>() {
+
+    @Inject
+    lateinit var prefsProvider: DefaultPreferencessProvider
 
     override val binding by viewBinding(DialogPermissionDetailsBinding::bind)
     override val viewRes: Int

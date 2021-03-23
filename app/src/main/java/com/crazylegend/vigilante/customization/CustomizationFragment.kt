@@ -4,10 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.View
-import android.widget.LinearLayout
 import androidx.activity.addCallback
 import androidx.annotation.StringRes
-import androidx.core.view.updateLayoutParams
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.crazylegend.kotlinextensions.effects.vibrate
@@ -17,12 +15,12 @@ import com.crazylegend.kotlinextensions.views.*
 import com.crazylegend.navigation.navigateSafe
 import com.crazylegend.navigation.navigateUpSafe
 import com.crazylegend.viewbinding.viewBinding
-import com.crazylegend.vigilante.MainActivity
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
 import com.crazylegend.vigilante.confirmation.DialogConfirmation
 import com.crazylegend.vigilante.databinding.FragmentCustomizationBinding
-import com.crazylegend.vigilante.di.providers.prefs.PrefsProvider.Companion.DEFAULT_SPACING
+import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider
+import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider.Companion.DEFAULT_SPACING
 import com.crazylegend.vigilante.home.HomeFragmentDirections
 import com.crazylegend.vigilante.service.VigilanteService
 import com.crazylegend.vigilante.settings.CAMERA_CUSTOMIZATION_BASE_PREF
@@ -30,6 +28,7 @@ import com.skydoves.colorpickerview.ColorEnvelope
 import com.skydoves.colorpickerview.ColorPickerDialog
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 
 /**
@@ -37,6 +36,7 @@ import dagger.hilt.android.AndroidEntryPoint
  */
 @AndroidEntryPoint
 class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.layout.fragment_customization) {
+
 
     companion object {
         private const val COLOR_DOT_STATE = "colorState"
@@ -53,6 +53,9 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
         const val POSITION_SPACING_ADDITION = "spacingChoice"
         const val VIBRATION_PREF_ADDITION = "vibrationChoice"
     }
+
+    @Inject
+    lateinit var prefsProvider: DefaultPreferencessProvider
 
     override val binding by viewBinding(FragmentCustomizationBinding::bind)
 
@@ -84,9 +87,6 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
         super.onViewCreated(view, savedInstanceState)
         if (prefBaseName.isEmpty()) {
             throwMissingArgException()
-        }
-        binding.backButton.root.updateLayoutParams<LinearLayout.LayoutParams> {
-            topMargin = (requireActivity() as MainActivity).statusBarScrollingHeight
         }
 
         pickedSpacing = spacing

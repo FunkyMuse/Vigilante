@@ -4,13 +4,9 @@ import android.graphics.Color
 import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider.Companion.DEFAULT_DOT_COLOR
 import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider.Companion.DEFAULT_DOT_SIZE
 import com.crazylegend.vigilante.utils.toggleValue
-import io.mockk.MockKAnnotations
-import io.mockk.unmockkAll
 import org.hamcrest.CoreMatchers.instanceOf
-import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertThat
-import org.junit.Before
 import org.junit.Test
 import java.text.SimpleDateFormat
 
@@ -71,14 +67,4 @@ class PrefsProviderTest {
         toggleValue(initialExpectation = false, { defaultPreferences.isIntroShown }) { defaultPreferences.setIntroShown() }
     }
 
-
-    @Before
-    fun setUp() {
-        MockKAnnotations.init(this)
-    }
-
-    @After
-    fun tearDown() {
-        unmockkAll()
-    }
 }

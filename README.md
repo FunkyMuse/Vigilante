@@ -77,7 +77,9 @@ Some of the popular libraries and MVVM clean architecture used with Room databas
     * Clean Architecture
     * MVVM 
     * Offline with Room + SQL Cipher
-* Tests - TBA
+* Tests
+  * [Mockk](https://mockk.io) - mocking library for Kotlin
+  * [Coroutines test](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-test/)
 
 ## Find this repository useful? ❤️
 

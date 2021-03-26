@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
+import androidx.annotation.StringRes
 import androidx.core.view.setPadding
 import androidx.core.view.updateLayoutParams
 import androidx.navigation.fragment.navArgs
@@ -84,32 +85,17 @@ class NotificationDetailsBottomSheetFragment : AbstractBottomSheet<DialogNotific
 
     private fun updateUI(model: NotificationsModel) {
         model.apply {
-            title?.apply {
-                generateTextHolder(getString(R.string.title_placeholder, this))
-            }
-            bigText?.apply {
-                generateTextHolder(getString(R.string.big_text_placeholder, this))
-            }
-
-            text?.apply {
-                generateTextHolder(getString(R.string.text_placeholder, this))
-            }
-
-            category?.apply {
-                generateTextHolder(getString(R.string.category_placeholder, this))
-            }
-            group?.apply {
-                generateTextHolder(getString(R.string.group_placeholder, this))
-            }
-
-            channelId?.apply {
-                generateTextHolder(getString(R.string.channel_id_placeholder, this))
-            }
+            title?.apply { generateTextHolder(R.string.title_placeholder, this) }
+            bigText?.apply { generateTextHolder(R.string.big_text_placeholder, this) }
+            text?.apply { generateTextHolder(R.string.text_placeholder, this) }
+            category?.apply { generateTextHolder(R.string.category_placeholder, this) }
+            group?.apply { generateTextHolder(R.string.group_placeholder, this) }
+            channelId?.apply { generateTextHolder(R.string.channel_id_placeholder, this) }
             sentByPackage?.apply {
                 binding.appIcon.setImageDrawable(tryOrNull { requireContext().getAppIcon(this) })
                 binding.appName.text = tryOrElse(getString(R.string.app_not_installed)) { requireContext().getAppName(this) }
             }
-            generateTextHolder(getString(R.string.date_placeholder, showTime.toString(prefsProvider.getDateFormat)))
+            generateTextHolder(R.string.date_placeholder, showTime.toString(prefsProvider.getDateFormat))
 
             when (visibility) {
                 Notification.VISIBILITY_PUBLIC -> R.string.notification_visibility_public
@@ -117,26 +103,22 @@ class NotificationDetailsBottomSheetFragment : AbstractBottomSheet<DialogNotific
                 Notification.VISIBILITY_SECRET -> R.string.notification_visibility_secret
                 else -> null
             }?.apply {
-                generateTextHolder(getString(this))
+                generateTextHolder(this, getString(this))
             }
 
             color?.apply {
                 val hexColor = toHexString()
-                generateTextHolder(getString(R.string.notification_color_placeholder, hexColor)).also {
-                    it.setOnClickListenerCooldown {
-                        requireContext().copyToClipboard(hexColor)
-                        shortToast(R.string.notification_color_copied_to_clipboard)
-                    }
+                generateTextHolder(R.string.notification_color_placeholder, hexColor).also {
                     it.setTextColor(Color.parseColor(hexColor))
                 }
             }
         }
     }
 
-    private fun generateTextHolder(withText: String): MaterialTextView {
+    private fun generateTextHolder(@StringRes stringRes: Int, content: String): MaterialTextView {
         val textView = MaterialTextView(requireContext()).apply {
             setPadding(22)
-            text = withText
+            text = getString(stringRes, content)
         }
         binding.textHolder.addView(textView)
         textView.updateLayoutParams<LinearLayout.LayoutParams> {
@@ -146,7 +128,7 @@ class NotificationDetailsBottomSheetFragment : AbstractBottomSheet<DialogNotific
             height = LinearLayout.LayoutParams.WRAP_CONTENT
         }
         binding.textHolder.setOnClickListenerCooldown {
-            requireContext().copyToClipboard(withText)
+            requireContext().copyToClipboard(content)
             shortToast(R.string.content_copied_to_clipboard)
         }
         return textView

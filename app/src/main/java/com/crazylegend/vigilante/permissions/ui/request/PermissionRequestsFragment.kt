@@ -4,17 +4,16 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.isGone
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
-import com.crazylegend.kotlinextensions.gestureNavigation.EdgeToEdge
-import com.crazylegend.navigation.navigateSafe
+
 import com.crazylegend.recyclerview.clickListeners.forItemClickListener
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
-import com.crazylegend.vigilante.contracts.EdgeToEdgeScrolling
 import com.crazylegend.vigilante.contracts.LoadingDBsInFragments
 import com.crazylegend.vigilante.databinding.FragmentPermissionsBinding
 import com.crazylegend.vigilante.di.providers.DatabaseLoadingProvider
+import com.crazylegend.vigilante.utils.goToScreen
+import com.crazylegend.vigilante.utils.onStartedRepeatingAction
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
@@ -24,11 +23,8 @@ import javax.inject.Inject
  */
 
 @AndroidEntryPoint
-class PermissionRequestsFragment : AbstractFragment<FragmentPermissionsBinding>(R.layout.fragment_permissions), LoadingDBsInFragments, EdgeToEdgeScrolling {
+class PermissionRequestsFragment : AbstractFragment<FragmentPermissionsBinding>(R.layout.fragment_permissions), LoadingDBsInFragments {
 
-    override fun edgeToEdgeScrollingContent() {
-        EdgeToEdge.setUpScrollingContent(binding.recycler)
-    }
 
     @Inject
     override lateinit var databaseLoadingProvider: DatabaseLoadingProvider
@@ -51,7 +47,7 @@ class PermissionRequestsFragment : AbstractFragment<FragmentPermissionsBinding>(
         }
         adapter.forItemClickListener = forItemClickListener { _, item, _ ->
             item.packageRequestingThePermission?.let {
-                findNavController().navigateSafe(PermissionRequestsFragmentDirections.destinationPermissionDetails(it,
+                goToScreen(PermissionRequestsFragmentDirections.destinationPermissionDetails(it,
                         item.permissionMessage, item.date.time, item.settingsAppName))
             }
         }

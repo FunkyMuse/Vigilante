@@ -14,7 +14,6 @@ import com.crazylegend.kotlinextensions.fragments.finish
 import com.crazylegend.kotlinextensions.fragments.fragmentBooleanResult
 import com.crazylegend.kotlinextensions.fragments.shortToast
 import com.crazylegend.kotlinextensions.views.*
-import com.crazylegend.navigation.navigateSafe
 import com.crazylegend.navigation.navigateUpSafe
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
@@ -26,6 +25,8 @@ import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider.
 import com.crazylegend.vigilante.home.HomeFragmentDirections
 import com.crazylegend.vigilante.service.VigilanteService
 import com.crazylegend.vigilante.settings.CAMERA_CUSTOMIZATION_BASE_PREF
+import com.crazylegend.vigilante.utils.goToScreen
+import com.crazylegend.vigilante.utils.uiAction
 import com.skydoves.colorpickerview.ColorEnvelope
 import com.skydoves.colorpickerview.ColorPickerDialog
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener
@@ -80,7 +81,8 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
     private val prefBaseName get() = navArgs.prefBaseName
 
 
-    private fun updatePreviewColor(newValue: Int) {
+    private fun updatePreviewColor(newValue: Int?) {
+        newValue ?: return
         binding.preview.setColorFilter(newValue)
     }
 
@@ -91,49 +93,53 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
             throwMissingArgException()
         }
 
+        //region spacing
         pickedSpacing = spacing
         binding.inputSpacing.setTheText(pickedSpacing.toString())
         binding.title.text = title
+        //endregion
 
+        //region color
         pickedDotColor = defaultDotColor
         pickedNotificationLEDColor = defaultNotificationLEDColor
-        updatePreviewColor(pickedDotColor!!)
+        updatePreviewColor(pickedDotColor)
+        binding.colorPick.setOnClickListenerCooldown {
+            showColorPicker(requireContext(), R.string.pick_dot_color, COLOR_DOT_PREF_ADDITION, ::setDotColor)
+        }
+        binding.colorPickNotificationLed.setOnClickListenerCooldown {
+            showColorPicker(requireContext(), R.string.pick_notification_LED_color, COLOR_NOTIFICATION_PREF_ADDITION, ::setNotificationLEDColor)
+        }
+        //endregion
 
+        //region size
         pickedSize = defaultSize
-        binding.sizeSlider.value = pickedSize!!
-        updatePreviewWidthAndHeight(pickedSize!!)
-
-        pickedLayoutPosition = defaultLayoutPosition
-        binding.layoutPosition.setSelection(pickedLayoutPosition!!)
-
-        pickedVibrationPosition = defaultVibrationPosition
-        binding.vibration.setSelection(pickedVibrationPosition!!)
-
+        updatePickedSize(pickedSize)
         binding.sizeSlider.addOnChangeListener { _, value, _ ->
             updatePreviewWidthAndHeight(value)
             prefsProvider.saveSizePref(prefBaseName + SIZE_PREF_ADDITION, value)
         }
+        //endregion
 
-        binding.colorPick.setOnClickListenerCooldown {
-            showColorPicker(requireContext(), R.string.pick_dot_color, COLOR_DOT_PREF_ADDITION, ::setDotColor)
-        }
-
-        binding.colorPickNotificationLed.setOnClickListenerCooldown {
-            showColorPicker(requireContext(), R.string.pick_notification_LED_color, COLOR_NOTIFICATION_PREF_ADDITION, ::setNotificationLEDColor)
-        }
-
+        //region layout
+        pickedLayoutPosition = defaultLayoutPosition
+        updateLayoutPosition(pickedLayoutPosition)
         binding.layoutPosition.onItemSelected { _, _, position, _ ->
             pickedLayoutPosition = position
         }
+        //endregion
+
+        //region vibration
+        pickedVibrationPosition = defaultVibrationPosition
+        updateVibrationPosition(pickedVibrationPosition)
 
         binding.vibration.onItemSelected { _, _, position, _ ->
             pickedVibrationPosition = position
         }
-
         binding.vibrationExplanation.setOnClickListenerCooldown {
             val vibrationPosition = pickedVibrationPosition ?: return@setOnClickListenerCooldown
             prefsProvider.getVibrationEffect(vibrationPosition)?.let { longs -> requireContext().vibrate(longs, -1) }
         }
+        //endregion
 
         binding.backButton.root.setOnClickListenerCooldown {
             backButtonClick()
@@ -143,14 +149,6 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
             removeEditTextFocus()
         }
 
-    }
-
-    private fun removeEditTextFocus() {
-        if (binding.inputSpacing.isFocused)
-            binding.inputSpacing.clearFocusAndKeyboard()
-
-        if (binding.inputSpacingLayout.isFocused)
-            binding.inputSpacingLayout.clearFocus()
     }
 
     override fun onResume() {
@@ -174,7 +172,7 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
     }
 
     private fun backButtonClick() {
-        findNavController().navigateSafe(
+        goToScreen(
                 HomeFragmentDirections.destinationConfirmation(
                         cancelButtonText = getString(R.string.discard_changes),
                         confirmationButtonText = getString(R.string.save),
@@ -212,14 +210,13 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
                 ?: defaultVibrationPosition
         pickedSpacing = savedInstanceState?.getInt(SPACING_STATE, DEFAULT_SPACING) ?: spacing
         binding.inputSpacing.setTheText(pickedSpacing.toString())
-        updatePreviewColor(pickedDotColor!!)
-        updatePreviewWidthAndHeight(pickedSize!!)
-        binding.sizeSlider.value = pickedSize!!
-        binding.layoutPosition.setSelection(pickedLayoutPosition!!)
-        binding.vibration.setSelection(pickedVibrationPosition!!)
+        updatePreviewColor(pickedDotColor)
+        updatePickedSize(pickedSize)
+        updateLayoutPosition(pickedLayoutPosition)
+        updateVibrationPosition(pickedVibrationPosition)
     }
 
-    private fun showColorPicker(context: Context, @StringRes title: Int, prefAddition: String, onColorPicked: (ColorEnvelope?.() -> Unit)) {
+    private inline fun showColorPicker(context: Context, @StringRes title: Int, prefAddition: String, crossinline onColorPicked: (ColorEnvelope?.() -> Unit)) {
         ColorPickerDialog.Builder(context).apply {
             setTitle(getString(title))
             setPreferenceName(prefBaseName + prefAddition)
@@ -230,24 +227,51 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
         }
     }
 
-    private fun setNotificationLEDColor(envelope: ColorEnvelope?) {
-        envelope ?: return
-        pickedNotificationLEDColor = envelope.color
-    }
-
     private fun throwMissingArgException() {
         CrashyReporter.logException(IllegalStateException("Argument is missing in customization"))
         finish()
     }
 
+    //region ui updates
+    private fun removeEditTextFocus() {
+        if (binding.inputSpacing.isFocused)
+            binding.inputSpacing.clearFocusAndKeyboard()
+
+        if (binding.inputSpacingLayout.isFocused)
+            binding.inputSpacingLayout.clearFocus()
+    }
+
+    private fun setNotificationLEDColor(envelope: ColorEnvelope?) {
+        envelope ?: return
+        pickedNotificationLEDColor = envelope.color
+    }
+
     private fun setDotColor(envelope: ColorEnvelope?) {
         envelope ?: return
         pickedDotColor = envelope.color
-        updatePreviewColor(pickedDotColor!!)
+        updatePreviewColor(pickedDotColor)
     }
 
-    private fun updatePreviewWidthAndHeight(value: Float) {
+    private fun updatePickedSize(pickedSize: Float?) {
+        pickedSize ?: return
+        binding.sizeSlider.value = pickedSize
+        updatePreviewWidthAndHeight(pickedSize)
+    }
+
+    private fun updateVibrationPosition(pickedVibrationPosition: Int?) {
+        pickedVibrationPosition ?: return
+        binding.vibration.setSelection(pickedVibrationPosition)
+    }
+
+    private fun updateLayoutPosition(pickedLayoutPosition: Int?) {
+        pickedLayoutPosition ?: return
+        binding.layoutPosition.setSelection(pickedLayoutPosition)
+    }
+
+    private fun updatePreviewWidthAndHeight(value: Float?) {
+        value ?: return
         binding.preview.width(value / 2)
         binding.preview.height(value / 2)
     }
+    //endregion
 }

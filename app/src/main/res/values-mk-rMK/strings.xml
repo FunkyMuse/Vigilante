@@ -98,6 +98,7 @@
     <string name="saved">Зачувано!</string>
     <string name="disk_status">Статус на дискот</string>
     <string name="crash_copied_to_clipboard">Деталите за падот се копираат во таблата со исечоци!</string>
+    <string name="content_copied_to_clipboard">Kопирано во таблата со исечоци!</string>
     <string name="web_browser_required">Потребен е веб прелистувач за оваа акција!</string>
     <string name="informational">Информативно</string>
     <string name="customizations">Прилагодувања</string>

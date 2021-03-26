@@ -6,7 +6,6 @@ import androidx.navigation.fragment.navArgs
 import com.crazylegend.kotlinextensions.context.getAppIcon
 import com.crazylegend.kotlinextensions.context.getAppName
 import com.crazylegend.kotlinextensions.dateAndTime.toString
-import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
 import com.crazylegend.kotlinextensions.tryOrNull
 import com.crazylegend.kotlinextensions.views.setTextAndShowOrGone
 import com.crazylegend.viewbinding.viewBinding
@@ -15,6 +14,7 @@ import com.crazylegend.vigilante.abstracts.AbstractBottomSheet
 import com.crazylegend.vigilante.databinding.DialogPermissionDetailsBinding
 import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider
 import com.crazylegend.vigilante.utils.assistedViewModel
+import com.crazylegend.vigilante.utils.onStartedRepeatingAction
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import java.util.*
@@ -50,7 +50,7 @@ class PermissionDetailsBottomSheet : AbstractBottomSheet<DialogPermissionDetails
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewCoroutineScope.launchWhenResumed {
+        onStartedRepeatingAction {
             permissionDetailsVM.permissionRequests.collectLatest {
                 binding.appPermissionRequestCount.text.text = getString(R.string.permissions_requests_by_app_count, it)
             }

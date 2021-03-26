@@ -3,21 +3,20 @@ package com.crazylegend.vigilante.crashes
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.crazylegend.kotlinextensions.context.copyToClipboard
 import com.crazylegend.kotlinextensions.fragments.shortToast
-import com.crazylegend.kotlinextensions.gestureNavigation.EdgeToEdge
+
 import com.crazylegend.kotlinextensions.intent.openWebPage
 import com.crazylegend.kotlinextensions.tryOrElse
-import com.crazylegend.navigation.navigateSafe
 import com.crazylegend.recyclerview.clickListeners.forItemClickListener
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
-import com.crazylegend.vigilante.contracts.EdgeToEdgeScrolling
 import com.crazylegend.vigilante.databinding.LayoutRecyclerBinding
 import com.crazylegend.vigilante.di.providers.AdapterProvider
 import com.crazylegend.vigilante.utils.NEW_ISSUE_URL
+import com.crazylegend.vigilante.utils.goToScreen
+import com.crazylegend.vigilante.utils.uiAction
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -25,7 +24,7 @@ import javax.inject.Inject
  * Created by crazy on 11/2/20 to long live and prosper !
  */
 @AndroidEntryPoint
-class CrashFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.layout_recycler), EdgeToEdgeScrolling {
+class CrashFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.layout_recycler) {
 
     override val binding by viewBinding(LayoutRecyclerBinding::bind)
     private val crashVM by viewModels<CrashViewModel>()
@@ -37,9 +36,7 @@ class CrashFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.layout_re
         adapterProvider.crashesAdapter
     }
 
-    override fun edgeToEdgeScrollingContent() {
-        EdgeToEdge.setUpScrollingContent(binding.recycler)
-    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -55,7 +52,7 @@ class CrashFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.layout_re
     }
 
     private fun onUnableToCopyCrash(position: Int) {
-        findNavController().navigateSafe(CrashFragmentDirections.actionDetailedCrash(position))
+        goToScreen(CrashFragmentDirections.actionDetailedCrash(position))
     }
 
     private fun shareCrash(item: String) {

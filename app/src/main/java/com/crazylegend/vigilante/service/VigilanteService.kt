@@ -253,6 +253,7 @@ class VigilanteService : AccessibilityService() {
         params: WindowManager.LayoutParams,
         spacing: Int,
         gravityPosition: Int) {
+
         binding.dot.setWidth(sizePref.toInt())
         binding.dot.setHeight(sizePref.toInt())
         binding.dot.setColorFilter(colorPref)

@@ -12,7 +12,7 @@ import com.crazylegend.coroutines.mainDispatcher
 import com.crazylegend.kotlinextensions.context.packageVersionName
 import com.crazylegend.kotlinextensions.fragments.shortToast
 import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
-import com.crazylegend.kotlinextensions.gestureNavigation.EdgeToEdge
+
 import com.crazylegend.kotlinextensions.intent.openWebPage
 import com.crazylegend.kotlinextensions.locale.LocaleHelper
 import com.crazylegend.kotlinextensions.preferences.booleanChangeListener
@@ -20,7 +20,6 @@ import com.crazylegend.kotlinextensions.preferences.onClick
 import com.crazylegend.kotlinextensions.preferences.stringChangeListener
 import com.crazylegend.kotlinextensions.views.dimen
 import com.crazylegend.vigilante.R
-import com.crazylegend.vigilante.contracts.EdgeToEdgeScrolling
 import com.crazylegend.vigilante.di.providers.AuthProvider
 import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider
 import com.crazylegend.vigilante.utils.GITHUB_URL
@@ -32,7 +31,7 @@ import javax.inject.Inject
  * Created by crazy on 11/2/20 to long live and prosper !
  */
 @AndroidEntryPoint
-class SettingsFragment : PreferenceFragmentCompat(), EdgeToEdgeScrolling {
+class SettingsFragment : PreferenceFragmentCompat() {
 
     @Inject
     lateinit var prefsProvider: DefaultPreferencessProvider
@@ -171,7 +170,4 @@ class SettingsFragment : PreferenceFragmentCompat(), EdgeToEdgeScrolling {
         updateDNDSummary()
     }
 
-    override fun edgeToEdgeScrollingContent() {
-        EdgeToEdge.setUpScrollingContent(listView)
-    }
 }

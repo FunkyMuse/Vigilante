@@ -5,14 +5,15 @@ package com.crazylegend.vigilante.utils
 import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.AbstractSavedStateViewModelFactory
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.crazylegend.kotlinextensions.activity.newIntent
 import com.crazylegend.kotlinextensions.services.isServiceRunning
 import com.crazylegend.kotlinextensions.services.startForegroundService
+import com.crazylegend.navigation.navigateSafe
 import com.crazylegend.vigilante.database.migrations.CameraAndMicRemovalMigration
 import com.crazylegend.vigilante.service.VigilanteService
 import net.sqlcipher.database.SQLiteDatabase
@@ -65,3 +66,19 @@ inline fun <reified T : ViewModel> Fragment.assistedViewModel(
 }
 
 fun <T> lazyNonSynchronized(initializer: () -> T): Lazy<T> = lazy(LazyThreadSafetyMode.NONE, initializer)
+
+inline fun Fragment.onStartedRepeatingAction(crossinline action: suspend () -> Unit) {
+    viewLifecycleOwner.addRepeatingJob(Lifecycle.State.STARTED) {
+        action()
+    }
+}
+
+fun Fragment.goToScreen(directions: NavDirections) {
+    uiAction { findNavController().navigateSafe(directions) }
+}
+
+inline fun Fragment.uiAction(crossinline action: () -> Unit) {
+    if (viewLifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) {
+        action()
+    }
+}

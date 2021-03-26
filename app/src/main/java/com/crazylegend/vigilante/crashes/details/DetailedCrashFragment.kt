@@ -14,6 +14,7 @@ import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
 import com.crazylegend.vigilante.databinding.FragmentDetailedCrashBinding
 import com.crazylegend.vigilante.utils.assistedViewModel
+import com.crazylegend.vigilante.utils.uiAction
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

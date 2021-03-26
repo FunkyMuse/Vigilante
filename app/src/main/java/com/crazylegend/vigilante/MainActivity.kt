@@ -7,9 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import com.crazylegend.kotlinextensions.activity.hideBottomBar
-import com.crazylegend.kotlinextensions.context.isGestureNavigationEnabled
-import com.crazylegend.kotlinextensions.gestureNavigation.EdgeToEdge
 import com.crazylegend.kotlinextensions.locale.LocaleHelper
 import com.crazylegend.kotlinextensions.misc.requestBatteryOptimizations
 import com.crazylegend.kotlinextensions.power.isIgnoringBatteryOptimization
@@ -25,8 +22,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(newBase)
-        val config = Configuration()
-        applyOverrideConfiguration(config)
+        applyOverrideConfiguration(Configuration())
     }
 
     override fun applyOverrideConfiguration(overrideConfiguration: Configuration?) {
@@ -62,11 +58,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
-        EdgeToEdge.setUpRoot(binding.root)
-
-        if (isGestureNavigationEnabled())
-            hideBottomBar()
-
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             binding.backButton.root.isVisible = destination.id in showBackButtonList

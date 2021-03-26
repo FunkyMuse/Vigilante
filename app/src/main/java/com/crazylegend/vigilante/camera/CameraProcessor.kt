@@ -30,6 +30,10 @@ class CameraProcessor @Inject constructor(
         private val userNotificationsProvider: UserNotificationsProvider,
         private val prefsProvider: DefaultPreferencessProvider) : ServiceManagersCoroutines {
 
+    private companion object {
+        private const val cameraNotificationID = 69
+    }
+
     private lateinit var manager: CameraManagerCompat
 
     //lifecycle
@@ -37,7 +41,6 @@ class CameraProcessor @Inject constructor(
 
     //camera
     private lateinit var cameraCallback: CameraManager.AvailabilityCallback
-    private val cameraNotificationID = 69
 
     override fun initVars() {
         cameraCallback = cameraListener()

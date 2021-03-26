@@ -17,7 +17,6 @@ import com.crazylegend.kotlinextensions.context.getAppIcon
 import com.crazylegend.kotlinextensions.context.getAppName
 import com.crazylegend.kotlinextensions.dateAndTime.toString
 import com.crazylegend.kotlinextensions.fragments.shortToast
-import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
 import com.crazylegend.kotlinextensions.tryOrElse
 import com.crazylegend.kotlinextensions.tryOrNull
 import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
@@ -29,6 +28,7 @@ import com.crazylegend.vigilante.databinding.DialogNotificationDetailsBinding
 import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider
 import com.crazylegend.vigilante.notifications.db.NotificationsModel
 import com.crazylegend.vigilante.utils.assistedViewModel
+import com.crazylegend.vigilante.utils.onStartedRepeatingAction
 import com.google.android.material.textview.MaterialTextView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -38,7 +38,7 @@ import javax.inject.Inject
  * Created by crazy on 11/7/20 to long live and prosper !
  */
 @AndroidEntryPoint
-class NotificationDetailsFragment : AbstractBottomSheet<DialogNotificationDetailsBinding>() {
+class NotificationDetailsBottomSheetFragment : AbstractBottomSheet<DialogNotificationDetailsBinding>() {
 
     @Inject
     lateinit var prefsProvider: DefaultPreferencessProvider
@@ -49,7 +49,7 @@ class NotificationDetailsFragment : AbstractBottomSheet<DialogNotificationDetail
 
     override val binding by viewBinding(DialogNotificationDetailsBinding::bind)
 
-    private val args by navArgs<NotificationDetailsFragmentArgs>()
+    private val args by navArgs<NotificationDetailsBottomSheetFragmentArgs>()
 
     @Inject
     lateinit var notificationDetailsVMFactory: NotificationDetailsViewModel.NotificationDetailsVMFactory
@@ -61,21 +61,25 @@ class NotificationDetailsFragment : AbstractBottomSheet<DialogNotificationDetail
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewCoroutineScope.launchWhenResumed {
+        onStartedRepeatingAction {
             notificationDetailsVM.notification.collectLatest {
-                binding.loading.visibleIfTrueGoneOtherwise(it is DBResult.Querying)
-                it.handle(
-                        dbError = {
-                            CrashyReporter.logException(it)
-                            dismissAllowingStateLoss()
-                            shortToast(R.string.error_occurred)
-                        },
-                        success = {
-                            updateUI(this)
-                        }
-                )
+                handleDatabaseResult(it)
             }
         }
+    }
+
+    private fun handleDatabaseResult(dbResult: DBResult<NotificationsModel>) {
+        binding.loading.visibleIfTrueGoneOtherwise(dbResult is DBResult.Querying)
+        dbResult.handle(
+                dbError = {
+                    CrashyReporter.logException(it)
+                    dismissAllowingStateLoss()
+                    shortToast(R.string.error_occurred)
+                },
+                success = {
+                    updateUI(this)
+                }
+        )
     }
 
     private fun updateUI(model: NotificationsModel) {
@@ -140,6 +144,10 @@ class NotificationDetailsFragment : AbstractBottomSheet<DialogNotificationDetail
             marginEnd = 12
             width = LinearLayout.LayoutParams.MATCH_PARENT
             height = LinearLayout.LayoutParams.WRAP_CONTENT
+        }
+        binding.textHolder.setOnClickListenerCooldown {
+            requireContext().copyToClipboard(withText)
+            shortToast(R.string.content_copied_to_clipboard)
         }
         return textView
     }

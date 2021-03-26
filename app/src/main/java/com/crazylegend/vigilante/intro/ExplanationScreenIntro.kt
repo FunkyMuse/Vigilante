@@ -11,6 +11,8 @@ import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
 import com.crazylegend.vigilante.databinding.FragmentIntroExplanationBinding
 import com.crazylegend.vigilante.utils.DEFAULT_ANIM_TIME
+import com.crazylegend.vigilante.utils.goToScreen
+import com.crazylegend.vigilante.utils.uiAction
 import dagger.hilt.android.AndroidEntryPoint
 
 /**

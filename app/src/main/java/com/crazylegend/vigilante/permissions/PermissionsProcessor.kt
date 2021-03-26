@@ -26,7 +26,9 @@ class PermissionsProcessor @Inject constructor(
 
     override val serviceLifecycleDispatcher: ServiceLifecycleDispatcher = ServiceLifecycleDispatcher(this)
 
-    override fun initVars() {}
+    override fun initVars() {
+        settingsPermissionTitle = AtomicReference(null)
+    }
 
     override fun registerCallbacks() {
         scope.launch {
@@ -48,7 +50,10 @@ class PermissionsProcessor @Inject constructor(
         }
     }
 
-    override fun disposeResources() {}
+    override fun disposeResources() {
+        permissionMessage = null
+        packageRequestingPermission = null
+    }
 
 
     fun eventActionByPackageName(eventPackageName: CharSequence) {
@@ -56,7 +61,7 @@ class PermissionsProcessor @Inject constructor(
     }
 
     private var permissionMessage: String? = null
-    private var settingsPermissionTitle: AtomicReference<String?> = AtomicReference(null)
+    private lateinit var settingsPermissionTitle: AtomicReference<String?>
     private var packageRequestingPermission: String? = null
     private val permissionFlow = MutableStateFlow("")
 

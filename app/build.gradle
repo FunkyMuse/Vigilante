@@ -14,14 +14,14 @@ android {
         applicationId "com.crazylegend.vigilante"
         minSdkVersion 24
         targetSdkVersion 30
-        versionCode 9
-        versionName "1.1.0"
+        versionCode 10
+        versionName "1.1.1"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments += ["room.incremental": "true"]
+                arguments += ["room.incremental": "true", "room.schemaLocation": "$projectDir/schemas".toString()]
             }
         }
     }
@@ -79,10 +79,12 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation "androidx.startup:startup-runtime:1.0.0"
 
-    //tests
-    testImplementation 'junit:junit:4.13.2'
+    //android tests
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    //unit tests
+    testImplementation 'junit:junit:4.13.2'
     testImplementation "io.mockk:mockk:$mockk"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines"
 
@@ -117,7 +119,7 @@ dependencies {
     implementation "com.github.FunkyMuse.KAHelpers:security:$utilsVersion"
     implementation "com.github.FunkyMuse.KAHelpers:database:$utilsVersion"
     implementation "com.github.FunkyMuse.KAHelpers:biometrics:$utilsVersion"
-    implementation "com.github.CraZyLegenD:Crashy:$crashyVersion"
+    implementation "com.github.FunkyMuse:Crashy:$crashyVersion"
 
     //sql cipher
     implementation "net.zetetic:android-database-sqlcipher:4.4.0"

@@ -5,7 +5,6 @@ import android.view.View
 import androidx.core.animation.doOnEnd
 import androidx.core.view.doOnLayout
 import androidx.navigation.NavDirections
-import androidx.navigation.fragment.findNavController
 import com.crazylegend.kotlinextensions.animations.playAnimation
 import com.crazylegend.kotlinextensions.animations.zoomInUp
 import com.crazylegend.kotlinextensions.fragments.finish
@@ -17,6 +16,8 @@ import com.crazylegend.vigilante.databinding.FragmentSplashBinding
 import com.crazylegend.vigilante.di.providers.AuthProvider
 import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider
 import com.crazylegend.vigilante.utils.DEFAULT_ANIM_TIME
+import com.crazylegend.vigilante.utils.goToScreen
+import com.crazylegend.vigilante.utils.uiAction
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -37,11 +38,11 @@ class SplashFragment : AbstractFragment<FragmentSplashBinding>(R.layout.fragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view.doOnLayout {
-            goToDestination(if (prefsProvider.isIntroShown) SplashFragmentDirections.destinationHome() else SplashFragmentDirections.destinationIntro())
+            destinationLogic(if (prefsProvider.isIntroShown) SplashFragmentDirections.destinationHome() else SplashFragmentDirections.destinationIntro())
         }
     }
 
-    private fun goToDestination(fragmentDirections: NavDirections) {
+    private fun destinationLogic(fragmentDirections: NavDirections) {
         uiAction {
             binding.logo.zoomInUp().playAnimation(DEFAULT_ANIM_TIME).doOnEnd {
                 checkIfAuthIsEnabled(fragmentDirections)
@@ -53,7 +54,7 @@ class SplashFragment : AbstractFragment<FragmentSplashBinding>(R.layout.fragment
         if (prefsProvider.isBiometricAuthEnabled) {
             attemptBiometricAuth(fragmentDirections)
         } else {
-            findNavController().navigate(fragmentDirections)
+            goToScreen(fragmentDirections)
         }
     }
 
@@ -71,7 +72,7 @@ class SplashFragment : AbstractFragment<FragmentSplashBinding>(R.layout.fragment
     }
 
     private fun proceedFurther(fragmentDirections: NavDirections) {
-        uiAction { findNavController().navigate(fragmentDirections) }
+        goToScreen(fragmentDirections)
     }
 
     private fun authFailed() {

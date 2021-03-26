@@ -8,7 +8,6 @@ import com.crazylegend.database.DBResult
 import com.crazylegend.database.handle
 import com.crazylegend.kotlinextensions.dateAndTime.toString
 import com.crazylegend.kotlinextensions.fragments.shortToast
-import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
 import com.crazylegend.kotlinextensions.views.visibleIfTrueGoneOtherwise
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
@@ -17,6 +16,7 @@ import com.crazylegend.vigilante.databinding.DialogPowerDetailsBinding
 import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider
 import com.crazylegend.vigilante.power.db.PowerModel
 import com.crazylegend.vigilante.utils.assistedViewModel
+import com.crazylegend.vigilante.utils.onStartedRepeatingAction
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
@@ -45,19 +45,23 @@ class PowerDetailsDialog : AbstractBottomSheet<DialogPowerDetailsBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewCoroutineScope.launchWhenResumed {
+        onStartedRepeatingAction {
             powerDetailsVM.powerModel.collectLatest {
-                binding.loading.visibleIfTrueGoneOtherwise(it is DBResult.Querying)
-                it.handle(
-                        dbError = { throwable ->
-                            handleDBError(throwable)
-                        },
-                        success = {
-                            updateUI(this)
-                        }
-                )
+                handleDBResult(it)
             }
         }
+    }
+
+    private fun handleDBResult(dbResult: DBResult<PowerModel>) {
+        binding.loading.visibleIfTrueGoneOtherwise(dbResult is DBResult.Querying)
+        dbResult.handle(
+                dbError = { throwable ->
+                    handleDBError(throwable)
+                },
+                success = {
+                    updateUI(this)
+                }
+        )
     }
 
     private fun handleDBError(throwable: Throwable) {

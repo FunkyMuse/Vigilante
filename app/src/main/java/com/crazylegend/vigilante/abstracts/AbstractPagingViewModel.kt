@@ -14,9 +14,7 @@ abstract class AbstractPagingViewModel(application: Application) : AndroidViewMo
     @PublishedApi
     internal val pagingConfig = PagingConfig(pageSize = 20, enablePlaceholders = false)
 
-    inline fun <T : Any> provideDatabaseData(crossinline function: () -> PagingSource<Int, T>): Flow<PagingData<T>> {
-        return Pager(pagingConfig) {
-            function()
-        }.flow.cachedIn(viewModelScope)
-    }
+    inline fun <T : Any> provideDatabaseData(crossinline function: () -> PagingSource<Int, T>): Flow<PagingData<T>> =
+            Pager(pagingConfig) { function() }.flow.cachedIn(viewModelScope)
+
 }

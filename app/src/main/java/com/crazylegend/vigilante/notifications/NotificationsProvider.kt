@@ -5,7 +5,7 @@ import android.os.Build
 import android.text.SpannableString
 import android.view.accessibility.AccessibilityEvent
 import androidx.lifecycle.ServiceLifecycleDispatcher
-import com.crazylegend.coroutines.makeIOCall
+import com.crazylegend.coroutines.ioDispatcher
 import com.crazylegend.kotlinextensions.currentTimeMillis
 import com.crazylegend.kotlinextensions.tryOrElse
 import com.crazylegend.vigilante.BuildConfig
@@ -14,6 +14,7 @@ import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider
 import com.crazylegend.vigilante.notifications.db.NotificationsModel
 import com.crazylegend.vigilante.notifications.db.NotificationsRepo
 import dagger.hilt.android.scopes.ServiceScoped
+import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
 
@@ -60,7 +61,7 @@ class NotificationsProvider @Inject constructor(
     }
 
     private fun saveNotification(notificationModel: NotificationsModel) {
-        scope.makeIOCall {
+        scope.launch(ioDispatcher) {
             notificationsRepo.insertNotification(notificationModel)
         }
     }

@@ -25,9 +25,12 @@ class MicrophoneProcessor @Inject constructor(
         private val userNotificationsProvider: UserNotificationsProvider,
         private val prefsProvider: DefaultPreferencessProvider) : ServiceManagersCoroutines {
 
+    private companion object {
+        private const val micNotificationID = 68
+    }
+
     private lateinit var microphoneCallback: AudioManager.AudioRecordingCallback
     override val serviceLifecycleDispatcher = ServiceLifecycleDispatcher(this)
-    private val micNotificationID = 68
 
     override fun initVars() {
         microphoneCallback = microphoneListener()

@@ -98,6 +98,7 @@
     <string name="saved">Saved!</string>
     <string name="disk_status">Disk status</string>
     <string name="crash_copied_to_clipboard">Crash details copied to clipboard!</string>
+    <string name="content_copied_to_clipboard">Copied to clipboard!</string>
     <string name="web_browser_required">Web browser required for this action!</string>
     <string name="informational">Informational</string>
     <string name="customizations">Customizations</string>

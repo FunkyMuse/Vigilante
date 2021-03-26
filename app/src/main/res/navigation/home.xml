@@ -179,7 +179,7 @@
 
     <dialog
         android:id="@+id/notificationDetailsFragment"
-        android:name="com.crazylegend.vigilante.notifications.details.NotificationDetailsFragment"
+        android:name="com.crazylegend.vigilante.notifications.details.NotificationDetailsBottomSheetFragment"
         android:label="">
         <argument
             android:name="notificationID"

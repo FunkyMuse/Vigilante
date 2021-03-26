@@ -10,6 +10,7 @@ import com.crazylegend.kotlinextensions.views.visibleIfTrueGoneOtherwise
 import com.crazylegend.recyclerview.isEmpty
 import com.crazylegend.vigilante.paging.AbstractPagingAdapter
 import com.crazylegend.vigilante.paging.LoadStateFooter
+import com.crazylegend.vigilante.utils.onStartedRepeatingAction
 import dagger.hilt.android.scopes.FragmentScoped
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
@@ -39,19 +40,12 @@ class DatabaseLoadingProvider @Inject constructor(private val fragment: Fragment
                 header = LoadStateFooter(),
                 footer = LoadStateFooter()
         )
-        fragment.viewLifecycleOwner.addRepeatingJob(Lifecycle.State.RESUMED) {
-            flow.collect {
-                adapter.submitData(it)
-            }
-        }
-
-        fragment.viewLifecycleOwner.addRepeatingJob(Lifecycle.State.RESUMED) {
+        fragment.onStartedRepeatingAction { flow.collect { adapter.submitData(it) } }
+        fragment.onStartedRepeatingAction {
             adapter.loadStateFlow.collectLatest {
                 noDataView.visibleIfTrueGoneOtherwise(adapter.isEmpty)
                 onAdapterCount(adapter.isEmpty)
-
             }
         }
     }
-
 }

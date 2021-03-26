@@ -3,14 +3,11 @@ package com.crazylegend.vigilante.home
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.crazylegend.crashyreporter.CrashyReporter
 import com.crazylegend.kotlinextensions.fragments.fragmentBooleanResult
 import com.crazylegend.kotlinextensions.fragments.shortToast
-import com.crazylegend.kotlinextensions.gestureNavigation.EdgeToEdge
 import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
-import com.crazylegend.navigation.navigateSafe
 import com.crazylegend.recyclerview.clickListeners.forItemClickListener
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
@@ -24,6 +21,8 @@ import com.crazylegend.vigilante.home.section.SectionItem
 import com.crazylegend.vigilante.settings.CAMERA_CUSTOMIZATION_BASE_PREF
 import com.crazylegend.vigilante.settings.MIC_CUSTOMIZATION_BASE_PREF
 import com.crazylegend.vigilante.utils.DEFAULT_ANIM_TIME
+import com.crazylegend.vigilante.utils.goToScreen
+import com.crazylegend.vigilante.utils.uiAction
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -64,7 +63,6 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        EdgeToEdge.setUpScrollingContent(binding.scrollView)
 
         binding.sections.apply {
             layoutManager = GridLayoutManager(requireContext(), 2)
@@ -83,7 +81,7 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
                 SectionItem.SectionItemAction.NOTIFICATIONS -> HomeFragmentDirections.destinationNotifications()
                 SectionItem.SectionItemAction.LOCK_SCREEN -> HomeFragmentDirections.destinationScreenHistory()
             }
-            findNavController().navigateSafe(directions)
+            goToScreen(directions)
         }
 
         binding.statusButton.setOnClickListenerCooldown {
@@ -91,7 +89,7 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
         }
 
         binding.settings.setOnClickListenerCooldown {
-            findNavController().navigateSafe(HomeFragmentDirections.destinationSettings())
+            goToScreen(HomeFragmentDirections.destinationSettings())
         }
 
         binding.themeSwitcher.setOnClickListenerCooldown {
@@ -106,7 +104,7 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
             } else {
                 shortToast(R.string.enable_dot_customization)
                 uiAction {
-                    findNavController().navigateSafe(HomeFragmentDirections.destinationSettings())
+                    goToScreen(HomeFragmentDirections.destinationSettings())
                 }
             }
         }
@@ -115,7 +113,7 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
             if (CrashyReporter.getLogsAsStrings().isNullOrEmpty()) {
                 shortToast(R.string.no_crashes)
             } else {
-                uiAction { findNavController().navigateSafe(HomeFragmentDirections.destinationCrashes()) }
+                uiAction { goToScreen(HomeFragmentDirections.destinationCrashes()) }
             }
         }
 
@@ -129,7 +127,7 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
     }
 
     private fun cameraOrMicCustomizationChoice() {
-        findNavController().navigate(HomeFragmentDirections.destinationConfirmation(
+        goToScreen(HomeFragmentDirections.destinationConfirmation(
                 cancelButtonText = getString(R.string.camera_title),
                 confirmationButtonText = getString(R.string.microphone_title),
                 titleText = getString(R.string.customize_cam_or_mic)
@@ -137,9 +135,7 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
     }
 
     private fun openCustomization(prefBase: String) {
-        uiAction {
-            findNavController().navigate(HomeFragmentDirections.destinationCustomization(prefBase))
-        }
+        goToScreen(HomeFragmentDirections.destinationCustomization(prefBase))
     }
 
     private val darkThemeIcon get() = if (prefsProvider.isDarkThemeEnabled) R.drawable.dark_mode else R.drawable.light_mode

@@ -19,7 +19,7 @@
     <string name="no_crashes">Без сривове!</string>
     <string name="version">Версии</string>
     <string name="date_format">Дата на форматиране</string>
-    <string name="current_date_format">Текущ формат на датата</string>
+    <string name="current_date_format">Текущ формат на датата: %1$s</string>
     <string name="no_results_expl">Няма резултати, шеф, опитайте да се върнете по-късно, ще продължим да търсим!</string>
     <string name="screen_unlocked">Екранът е отключен</string>
     <string name="screen_locked">Екранът е заключен</string>
@@ -98,6 +98,7 @@
     <string name="saved">Запазено!</string>
     <string name="disk_status">Състояние на диска</string>
     <string name="crash_copied_to_clipboard">Подробности за срива са копирани в клипборда!</string>
+    <string name="content_copied_to_clipboard">Kопирани в клипборда!</string>
     <string name="web_browser_required">За това действие е необходим уеб браузър!</string>
     <string name="informational">Информационен</string>
     <string name="customizations">Персонализации</string>

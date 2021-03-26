@@ -2,12 +2,10 @@ package com.crazylegend.vigilante.permissions.ui.request
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isGone
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
 import com.crazylegend.kotlinextensions.gestureNavigation.EdgeToEdge
-import com.crazylegend.kotlinextensions.views.hideViews
-import com.crazylegend.kotlinextensions.views.showViews
 import com.crazylegend.navigation.navigateSafe
 import com.crazylegend.recyclerview.clickListeners.forItemClickListener
 import com.crazylegend.viewbinding.viewBinding
@@ -40,22 +38,13 @@ class PermissionRequestsFragment : AbstractFragment<FragmentPermissionsBinding>(
     @Inject
     lateinit var adapter: PermissionRequestsAdapter
 
-    private val viewProneToVisibilityChange: Array<View>
-        get() = arrayOf(
-                binding.totalPermissionRequests, binding.totalPermissionRequestsTitle
-        )
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        databaseLoadingProvider.provideListState(permissionRequestVM.permissionRequests, binding.recycler, binding.noDataViewHolder.noDataView, adapter) {
-            if (it) {
-                hideViews(*viewProneToVisibilityChange)
-            } else {
-                showViews(*viewProneToVisibilityChange)
-            }
+        databaseLoadingProvider.provideListState(permissionRequestVM.permissionRequests, binding.recycler, binding.noDataViewHolder.noDataView, adapter) { viewsVisibility ->
+            binding.viewsProneToVisibilityChange.isGone = viewsVisibility
         }
-        viewCoroutineScope.launchWhenResumed {
+        onStartedRepeatingAction {
             permissionRequestVM.totalPermissionRequests.collectLatest {
                 binding.totalPermissionRequests.text = it.toString()
             }

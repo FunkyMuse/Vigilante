@@ -24,7 +24,7 @@ class HelloScreenIntro : AbstractFragment<FragmentIntroHelloBinding>(R.layout.fr
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view.doOnLayout {
-            onResumedUIFunction {
+            uiAction {
                 binding.image.attentionBounce().playAnimation(DEFAULT_ANIM_TIME)
             }
         }

@@ -2,10 +2,7 @@ package com.crazylegend.vigilante.di.providers
 
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.*
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
 import com.crazylegend.kotlinextensions.fragments.observeLifecycleOwnerThroughLifecycleCreation
@@ -42,13 +39,13 @@ class DatabaseLoadingProvider @Inject constructor(private val fragment: Fragment
                 header = LoadStateFooter(),
                 footer = LoadStateFooter()
         )
-        fragment.viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        fragment.viewLifecycleOwner.addRepeatingJob(Lifecycle.State.RESUMED) {
             flow.collect {
                 adapter.submitData(it)
             }
         }
 
-        fragment.viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        fragment.viewLifecycleOwner.addRepeatingJob(Lifecycle.State.RESUMED) {
             adapter.loadStateFlow.collectLatest {
                 noDataView.visibleIfTrueGoneOtherwise(adapter.isEmpty)
                 onAdapterCount(adapter.isEmpty)

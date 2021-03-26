@@ -20,7 +20,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class ListFilterBottomSheet : AbstractBottomSheet<LayoutRecyclerBinding>() {
 
-    override val binding: LayoutRecyclerBinding by viewBinding(LayoutRecyclerBinding::bind)
+    override val binding by viewBinding(LayoutRecyclerBinding::bind)
 
     override val viewRes: Int
         get() = R.layout.layout_recycler

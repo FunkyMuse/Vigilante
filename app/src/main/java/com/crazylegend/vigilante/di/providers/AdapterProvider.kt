@@ -12,6 +12,7 @@ import com.crazylegend.vigilante.databinding.ItemviewSectionBinding
 import com.crazylegend.vigilante.deviceinfo.DeviceInfoModel
 import com.crazylegend.vigilante.filter.FilterModel
 import com.crazylegend.vigilante.home.section.SectionItem
+import com.crazylegend.vigilante.utils.lazyNonSynchronized
 import dagger.hilt.android.scopes.FragmentScoped
 import javax.inject.Inject
 
@@ -21,7 +22,7 @@ import javax.inject.Inject
 @FragmentScoped
 class AdapterProvider @Inject constructor() {
 
-    val listFilterAdapter by lazy(LazyThreadSafetyMode.NONE) {
+    val listFilterAdapter by lazyNonSynchronized {
         generateRecyclerWithHolder<FilterModel, ItemviewFilterBinding>(ItemviewFilterBinding::inflate) { item, position, itemCount, binding, context ->
             binding.checked.visibleIfTrueGoneOtherwise(item.isChecked)
             binding.title.setPrecomputedText(context.getString(item.title))
@@ -29,7 +30,7 @@ class AdapterProvider @Inject constructor() {
         }
     }
 
-    val sectionAdapter by lazy(LazyThreadSafetyMode.NONE) {
+    val sectionAdapter by lazyNonSynchronized {
         generateRecyclerWithHolder<SectionItem, ItemviewSectionBinding>(ItemviewSectionBinding::inflate) { item, position, itemCount, binding, context ->
             binding.title.text = context.getString(item.title)
             binding.icon.setImageResource(item.icon)
@@ -38,13 +39,13 @@ class AdapterProvider @Inject constructor() {
         }
     }
 
-    val crashesAdapter by lazy(LazyThreadSafetyMode.NONE) {
+    val crashesAdapter by lazyNonSynchronized {
         generateRecyclerWithHolder<String, ItemviewCrashBinding>(ItemviewCrashBinding::inflate) { _, position, _, binding, context ->
             binding.text.text = context.getString(R.string.crash_report, position + 1)
         }
     }
 
-    val deviceInfoAdapter by lazy(LazyThreadSafetyMode.NONE) {
+    val deviceInfoAdapter by lazyNonSynchronized {
         generateRecyclerWithHolder<DeviceInfoModel, ItemviewDeviceInfoBinding>(ItemviewDeviceInfoBinding::inflate) { item, _, _, binding, context ->
             binding.title.setPrecomputedText(context.getString(item.title))
             binding.content.setPrecomputedText(context.getString(item.content))

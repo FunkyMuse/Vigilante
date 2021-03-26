@@ -49,9 +49,8 @@ class CrashFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.layout_re
             tryOrElse(defaultBlock = {
                 onUnableToCopyCrash(position)
             }) {
-                onResumedUIFunction { shareCrash(item) }
+                uiAction { shareCrash(item) }
             }
-
         }
     }
 

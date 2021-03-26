@@ -1,6 +1,7 @@
 package com.crazylegend.vigilante.di.providers
 
 import android.app.Service
+import android.content.BroadcastReceiver
 import android.content.Intent
 import android.content.IntentFilter
 import androidx.lifecycle.ServiceLifecycleDispatcher
@@ -47,19 +48,24 @@ class BroadcastProvider @Inject constructor(private val service: Service) : Serv
     }
 
     private fun registerPowerReceiver() {
-        val filter = IntentFilter(Intent.ACTION_POWER_CONNECTED)
-        filter.addAction(Intent.ACTION_POWER_DISCONNECTED)
-        service.registerReceiver(powerReceiver, filter)
+        registerReceiver(Intent.ACTION_POWER_CONNECTED, powerReceiver) {
+            addAction(Intent.ACTION_POWER_DISCONNECTED)
+        }
     }
 
     private fun registerHeadsetReceiver() {
-        val filter = IntentFilter(Intent.ACTION_HEADSET_PLUG)
-        service.registerReceiver(headsetPlugReceiver, filter)
+        registerReceiver(Intent.ACTION_HEADSET_PLUG, headsetPlugReceiver)
     }
 
     private fun registerScreenReceiver() {
-        val filter = IntentFilter(Intent.ACTION_SCREEN_ON)
-        filter.addAction(Intent.ACTION_SCREEN_OFF)
-        service.registerReceiver(screenReceiver, filter)
+        registerReceiver(Intent.ACTION_SCREEN_ON, screenReceiver) {
+            addAction(Intent.ACTION_SCREEN_OFF)
+        }
+    }
+
+    private inline fun registerReceiver(initialAction: String, broadcastReceiver: BroadcastReceiver, filterConfig: IntentFilter.() -> Unit = {}) {
+        val filter = IntentFilter(initialAction)
+        filter.filterConfig()
+        service.registerReceiver(broadcastReceiver, filter)
     }
 }

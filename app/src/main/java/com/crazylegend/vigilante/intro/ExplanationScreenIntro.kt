@@ -22,7 +22,7 @@ class ExplanationScreenIntro : AbstractFragment<FragmentIntroExplanationBinding>
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view.doOnLayout {
-            onResumedUIFunction {
+            uiAction {
                 binding.image.zoomInDown().playAnimation(DEFAULT_ANIM_TIME)
             }
         }

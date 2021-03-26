@@ -104,6 +104,8 @@ dependencies {
 
     //lifecycle
     implementation "androidx.lifecycle:lifecycle-service:$lifecycle"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle"
+
 
     //my libs
     implementation "com.github.FunkyMuse.KAHelpers:viewbinding:$utilsVersion"

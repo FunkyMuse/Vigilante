@@ -22,6 +22,10 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class HeadsetReceiver : BroadcastReceiver() {
 
+    private companion object {
+        private const val STATE_EXTRA_TAG = "state"
+    }
+
     @Inject
     lateinit var headsetRepository: HeadsetRepository
 
@@ -32,7 +36,7 @@ class HeadsetReceiver : BroadcastReceiver() {
         context ?: return
         if (intent.action == Intent.ACTION_HEADSET_PLUG) {
 
-            when (val connectionType = intent.getIntExtra("state", -1)) {
+            when (val connectionType = intent.getIntExtra(STATE_EXTRA_TAG, -1)) {
                 0 -> {
                     lastState.set(0)
                     saveToDatabase(connectionType, context)

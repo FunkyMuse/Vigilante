@@ -23,7 +23,7 @@ import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.contracts.EdgeToEdgeScrolling
 import com.crazylegend.vigilante.di.providers.AuthProvider
 import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider
-import com.crazylegend.vigilante.utils.HOME_PAGE
+import com.crazylegend.vigilante.utils.GITHUB_URL
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -87,7 +87,7 @@ class SettingsFragment : PreferenceFragmentCompat(), EdgeToEdgeScrolling {
         }
 
         homePage.onClick {
-            requireContext().openWebPage(HOME_PAGE) {
+            requireContext().openWebPage(GITHUB_URL) {
                 shortToast(R.string.web_browser_required)
             }
         }

@@ -4,6 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.constraintlayout.widget.Group
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/viewsProneToVisibilityChange"
+        app:constraint_referenced_ids="filter, totalActions,
+totalActionsTitle, totalLocks, totalLocksTitle, totalUnlocks, totalUnlocksTitle" />
+
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/totalActionsTitle"
         android:layout_width="0dp"
@@ -81,14 +88,14 @@
 
     <include
         android:id="@+id/noDataViewHolder"
+        layout="@layout/layout_no_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        layout="@layout/layout_no_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
@@ -96,10 +103,10 @@
         android:layout_height="0dp"
         android:clipToPadding="false"
         android:fadeScrollbars="true"
-        android:splitMotionEvents="false"
         android:paddingTop="16dp"
         android:paddingBottom="84dp"
         android:scrollbars="vertical"
+        android:splitMotionEvents="false"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -111,12 +118,12 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginBottom="24dp"
-        app:rippleColor="@color/secondary"
         app:cardBackgroundColor="@color/backgroundVariant"
         app:cardCornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:rippleColor="@color/secondary">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="35dp"

@@ -3,7 +3,6 @@ package com.crazylegend.vigilante.deviceinfo
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
-import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
 import com.crazylegend.kotlinextensions.gestureNavigation.EdgeToEdge
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
@@ -41,7 +40,7 @@ class DeviceInfoFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.layo
         super.onViewCreated(view, savedInstanceState)
         binding.recycler.adapter = adapter
 
-        viewCoroutineScope.launchWhenResumed {
+        onStartedRepeatingAction {
             deviceInfoVM.deviceInfoList.collect {
                 adapter.submitList(it)
             }

@@ -8,7 +8,9 @@ import androidx.activity.addCallback
 import androidx.annotation.StringRes
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.crazylegend.crashyreporter.CrashyReporter
 import com.crazylegend.kotlinextensions.effects.vibrate
+import com.crazylegend.kotlinextensions.fragments.finish
 import com.crazylegend.kotlinextensions.fragments.fragmentBooleanResult
 import com.crazylegend.kotlinextensions.fragments.shortToast
 import com.crazylegend.kotlinextensions.views.*
@@ -182,7 +184,7 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
     }
 
     private fun goBack() {
-        onResumedUIFunction {
+        uiAction {
             findNavController().navigateUpSafe()
             shortToast(R.string.saved)
         }
@@ -231,6 +233,11 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
     private fun setNotificationLEDColor(envelope: ColorEnvelope?) {
         envelope ?: return
         pickedNotificationLEDColor = envelope.color
+    }
+
+    private fun throwMissingArgException() {
+        CrashyReporter.logException(IllegalStateException("Argument is missing in customization"))
+        finish()
     }
 
     private fun setDotColor(envelope: ColorEnvelope?) {

@@ -16,6 +16,10 @@ import kotlin.system.exitProcess
 @Singleton
 class CoreProvider @Inject constructor(@ApplicationContext private val context: Context) {
 
+    private companion object {
+        private const val APP_ID = "com.crazylegend.vigilante"
+    }
+
     fun setVMPolicy() {
         if (BuildConfig.DEBUG) {
             StrictMode.VmPolicy.Builder()
@@ -33,7 +37,7 @@ class CoreProvider @Inject constructor(@ApplicationContext private val context: 
     }
 
     fun checkAppId() {
-        if (BuildConfig.APPLICATION_ID != "com.crazylegend.vigilante") {
+        if (BuildConfig.APPLICATION_ID != APP_ID) {
             exitProcess(-1)
         }
     }

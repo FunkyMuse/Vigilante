@@ -27,7 +27,7 @@ class DialogConfirmation : AbstractDialogFragment(R.layout.dialog_confirmation) 
     }
 
     override val binding by viewBinding(DialogConfirmationBinding::bind)
-    override val dimAmount: Float?
+    override val dimAmount: Float
         get() = 0.6f
     override val isCancellable: Boolean
         get() = true

@@ -69,7 +69,7 @@ class UserNotificationsProvider @Inject constructor(@ServiceContext private val 
         return NOTIFICATION_CHANNEL
     }
 
-    companion object {
+    private companion object {
         private const val NOTIFICATION_CHANNEL = "11"
     }
 

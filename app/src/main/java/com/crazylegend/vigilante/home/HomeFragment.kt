@@ -5,11 +5,9 @@ import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.crazylegend.coroutines.onMain
 import com.crazylegend.crashyreporter.CrashyReporter
 import com.crazylegend.kotlinextensions.fragments.fragmentBooleanResult
 import com.crazylegend.kotlinextensions.fragments.shortToast
-import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
 import com.crazylegend.kotlinextensions.gestureNavigation.EdgeToEdge
 import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
 import com.crazylegend.navigation.navigateSafe
@@ -107,7 +105,9 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
                 cameraOrMicCustomizationChoice()
             } else {
                 shortToast(R.string.enable_dot_customization)
-                findNavController().navigateSafe(HomeFragmentDirections.destinationSettings())
+                uiAction {
+                    findNavController().navigateSafe(HomeFragmentDirections.destinationSettings())
+                }
             }
         }
 
@@ -115,7 +115,7 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
             if (CrashyReporter.getLogsAsStrings().isNullOrEmpty()) {
                 shortToast(R.string.no_crashes)
             } else {
-                findNavController().navigateSafe(HomeFragmentDirections.destinationCrashes())
+                uiAction { findNavController().navigateSafe(HomeFragmentDirections.destinationCrashes()) }
             }
         }
 
@@ -137,10 +137,8 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
     }
 
     private fun openCustomization(prefBase: String) {
-        viewCoroutineScope.launchWhenResumed {
-            onMain {
-                findNavController().navigate(HomeFragmentDirections.destinationCustomization(prefBase))
-            }
+        uiAction {
+            findNavController().navigate(HomeFragmentDirections.destinationCustomization(prefBase))
         }
     }
 

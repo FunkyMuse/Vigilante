@@ -42,7 +42,7 @@ class SplashFragment : AbstractFragment<FragmentSplashBinding>(R.layout.fragment
     }
 
     private fun goToDestination(fragmentDirections: NavDirections) {
-        onResumedUIFunction {
+        uiAction {
             binding.logo.zoomInUp().playAnimation(DEFAULT_ANIM_TIME).doOnEnd {
                 checkIfAuthIsEnabled(fragmentDirections)
             }
@@ -71,11 +71,11 @@ class SplashFragment : AbstractFragment<FragmentSplashBinding>(R.layout.fragment
     }
 
     private fun proceedFurther(fragmentDirections: NavDirections) {
-        onResumedUIFunction { findNavController().navigate(fragmentDirections) }
+        uiAction { findNavController().navigate(fragmentDirections) }
     }
 
     private fun authFailed() {
-        onResumedUIFunction {
+        uiAction {
             shortToast(R.string.auth_failed)
             finish()
         }

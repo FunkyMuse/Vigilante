@@ -16,7 +16,6 @@ import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider
 import com.crazylegend.vigilante.di.qualifiers.ServiceContext
 import com.crazylegend.vigilante.service.VigilanteService
 import dagger.hilt.android.scopes.ServiceScoped
-import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import java.util.concurrent.Executors
 import javax.inject.Inject
@@ -90,7 +89,7 @@ class CameraProcessor @Inject constructor(
     }
 
     private inline fun ServiceLifecycleDispatcher.updateUI(crossinline function: () -> Unit) =
-            lifecycle.coroutineScope.launch(mainDispatcher + SupervisorJob()) {
+            lifecycle.coroutineScope.launch(mainDispatcher) {
                 function()
             }
 

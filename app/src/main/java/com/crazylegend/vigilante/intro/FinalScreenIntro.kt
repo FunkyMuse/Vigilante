@@ -27,7 +27,7 @@ class FinalScreenIntro : AbstractFragment<FragmentIntroFinalBinding>(R.layout.fr
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        onResumedUIFunction {
+        uiAction {
             binding.image.zoomInDown().playAnimation(DEFAULT_ANIM_TIME)
         }
         binding.finish.setOnClickListenerCooldown {

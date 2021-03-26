@@ -24,8 +24,8 @@ import net.sqlcipher.database.SupportFactory
 
 const val DEFAULT_LANGUAGE = "en"
 const val VIGILANTE_DB_NAME = "vigilante-db"
-const val NEW_ISSUE_URL = "https://github.com/FunkyMuse/Vigilante/issues/new"
-const val HOME_PAGE = "https://github.com/FunkyMuse/Vigilante"
+const val GITHUB_URL = "https://github.com/FunkyMuse/Vigilante/"
+const val NEW_ISSUE_URL = "${GITHUB_URL}issues/new"
 const val DEFAULT_ANIM_TIME = 1000L
 val dismissPackages = setOf(
         "com.google.android.permissioncontroller",
@@ -63,3 +63,5 @@ inline fun <reified T : ViewModel> Fragment.assistedViewModel(
                 viewModelProducer(handle) as T
     }
 }
+
+fun <T> lazyNonSynchronized(initializer: () -> T): Lazy<T> = lazy(LazyThreadSafetyMode.NONE, initializer)

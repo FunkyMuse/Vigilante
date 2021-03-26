@@ -1,13 +1,12 @@
 package com.crazylegend.vigilante.abstracts
 
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.addRepeatingJob
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
-import com.crazylegend.coroutines.withMainContext
-import com.crazylegend.crashyreporter.CrashyReporter
-import com.crazylegend.kotlinextensions.fragments.finish
-import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
+import com.crazylegend.navigation.navigateSafe
 
 /**
  * Created by crazy on 10/14/20 to long live and prosper !
@@ -17,19 +16,18 @@ abstract class AbstractFragment<BINDING : ViewBinding>(contentLayoutId: Int) : F
     abstract val binding: BINDING
 
     fun goToScreen(directions: NavDirections) {
-        onResumedUIFunction { findNavController().navigate(directions) }
+        uiAction { findNavController().navigateSafe(directions) }
     }
 
-    inline fun onResumedUIFunction(crossinline action: () -> Unit) {
-        viewCoroutineScope.launchWhenResumed {
-            withMainContext {
-                action()
-            }
+    inline fun uiAction(crossinline action: () -> Unit) {
+        if (viewLifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) {
+            action()
         }
     }
 
-    fun throwMissingArgException() {
-        CrashyReporter.logException(IllegalStateException("Argument is missing in customization"))
-        finish()
+    inline fun onStartedRepeatingAction(crossinline action: suspend () -> Unit) {
+        viewLifecycleOwner.addRepeatingJob(Lifecycle.State.STARTED) {
+            action()
+        }
     }
 }

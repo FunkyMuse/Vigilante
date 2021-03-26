@@ -41,7 +41,7 @@ class DetailedCrashFragment : AbstractFragment<FragmentDetailedCrashBinding>(R.l
             showToast()
         }
 
-        binding.backButton.root.setOnClickListenerCooldown { onResumedUIFunction { findNavController().navigateUpSafe() } }
+        binding.backButton.root.setOnClickListenerCooldown { uiAction { findNavController().navigateUpSafe() } }
 
         detailedCrashVM.detailedCrash.apply {
             if (this.isNotNullOrEmpty()) {

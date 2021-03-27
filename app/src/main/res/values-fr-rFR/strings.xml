@@ -98,6 +98,7 @@
     <string name="saved">Enregistré !</string>
     <string name="disk_status">État du disque</string>
     <string name="crash_copied_to_clipboard">Rapport d\'incident copié dans le presse-papiers !</string>
+    <string name="content_copied_to_clipboard">Copié dans le presse-papiers !</string>
     <string name="web_browser_required">Navigateur Web requis pour cette action !</string>
     <string name="informational">Informatif</string>
     <string name="customizations">Personnalisation</string>
@@ -142,8 +143,8 @@
     <string name="vibrations_not_happening_expl">** Si vos vibrations ne fonctionnent pas, allez dans les Infos de l\'application &gt; Notifications &gt; Notifications d\'utilisation et activez le son avec vibration.\nAppuyez ici pour tester la vibration sélectionnée.**</string>
     <string name="spacing">Espacement</string>
     <string name="spacing_expl">En cas de coins arrondis ou d\'encoche bloquant la visibilité des points, utilisez l\'espacement</string>
-    <string name="too_large_to_copy_to_clipboard">Too large to copy to clipboard, please send screenshots of the screen!</string>
-    <string name="app_not_installed">Application is not installed</string>
+    <string name="too_large_to_copy_to_clipboard">Trop volumineux pour copier dans le presse-papiers, veuillez envoyer des captures d\'écran !</string>
+    <string name="app_not_installed">Application non installée</string>
     <!--Languages-->
     <string name="english">Anglais</string>
     <string name="spanish">Espagnol</string>
@@ -153,5 +154,6 @@
     <string name="macedonian">Macédonien</string>
     <string name="german">Allemand</string>
     <string name="french">Français</string>
-    <string name="bulgarian">Bulgarian</string>
+    <string name="bulgarian">Bulgare</string>
+    <string name="italian">Italien</string>
 </resources>

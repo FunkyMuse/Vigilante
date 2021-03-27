@@ -98,6 +98,7 @@
     <string name="saved">Сохранено</string>
     <string name="disk_status">Статус диска</string>
     <string name="crash_copied_to_clipboard">Детали сбоя скопированы в буфер обмена!</string>
+    <string name="content_copied_to_clipboard">Скопировано в буфер!</string>
     <string name="web_browser_required">Для этого действия требуется веб-браузер!</string>
     <string name="informational">Информативно</string>
     <string name="customizations">Кастомизация</string>

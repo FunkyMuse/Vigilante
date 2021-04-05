@@ -98,6 +98,7 @@
     <string name="saved">Salvato!</string>
     <string name="disk_status">Stato disco</string>
     <string name="crash_copied_to_clipboard">Dettagli dell\'arresto copiati negli appunti!</string>
+    <string name="content_copied_to_clipboard">Copiato negli appunti!</string>
     <string name="web_browser_required">Browser web richiesto per questa azione!</string>
     <string name="informational">Informazioni</string>
     <string name="customizations">Personalizzazioni</string>
@@ -155,5 +156,4 @@
     <string name="french">Francese</string>
     <string name="bulgarian">Bulgaro</string>
     <string name="italian">Italiano</string>
-
 </resources>

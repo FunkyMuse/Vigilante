@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.crazylegend.kotlinextensions.activity.newIntent
+import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
 import com.crazylegend.kotlinextensions.services.isServiceRunning
 import com.crazylegend.kotlinextensions.services.startForegroundService
 import com.crazylegend.navigation.navigateSafe
@@ -78,7 +79,5 @@ fun Fragment.goToScreen(directions: NavDirections) {
 }
 
 inline fun Fragment.uiAction(crossinline action: () -> Unit) {
-    if (viewLifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) {
-        action()
-    }
+    viewCoroutineScope.launchWhenResumed { action() }
 }

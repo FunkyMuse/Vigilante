@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.crazylegend.crashyreporter.CrashyReporter
 import com.crazylegend.kotlinextensions.fragments.fragmentBooleanResult
 import com.crazylegend.kotlinextensions.fragments.shortToast
+import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
 import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
 import com.crazylegend.recyclerview.clickListeners.forItemClickListener
 import com.crazylegend.viewbinding.viewBinding
@@ -24,6 +25,7 @@ import com.crazylegend.vigilante.utils.DEFAULT_ANIM_TIME
 import com.crazylegend.vigilante.utils.goToScreen
 import com.crazylegend.vigilante.utils.uiAction
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 
@@ -135,7 +137,10 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
     }
 
     private fun openCustomization(prefBase: String) {
-        goToScreen(HomeFragmentDirections.destinationCustomization(prefBase))
+        viewCoroutineScope.launchWhenStarted {
+            delay(500) //wait for the animation to finish up, ehhh Android
+            goToScreen(HomeFragmentDirections.destinationCustomization(prefBase))
+        }
     }
 
     private val darkThemeIcon get() = if (prefsProvider.isDarkThemeEnabled) R.drawable.dark_mode else R.drawable.light_mode

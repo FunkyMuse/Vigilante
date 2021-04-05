@@ -8,7 +8,7 @@ import com.crazylegend.kotlinextensions.currentTimeMillis
 import com.crazylegend.kotlinextensions.getBatteryInfo
 import com.crazylegend.vigilante.headset.database.HeadsetModel
 import com.crazylegend.vigilante.headset.database.HeadsetRepository
-import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.scopes.ServiceScoped
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.launch
@@ -19,15 +19,12 @@ import javax.inject.Inject
 /**
  * Created by crazy on 10/30/20 to long live and prosper !
  */
-@AndroidEntryPoint
-class HeadsetReceiver : BroadcastReceiver() {
+@ServiceScoped
+class HeadsetReceiver @Inject constructor(private val headsetRepository: HeadsetRepository) : BroadcastReceiver() {
 
     private companion object {
         private const val STATE_EXTRA_TAG = "state"
     }
-
-    @Inject
-    lateinit var headsetRepository: HeadsetRepository
 
     private val lastState = AtomicInteger(-1)
 

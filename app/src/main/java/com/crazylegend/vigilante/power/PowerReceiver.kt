@@ -7,7 +7,7 @@ import com.crazylegend.kotlinextensions.batteryStatusIntent
 import com.crazylegend.kotlinextensions.getBatteryInfo
 import com.crazylegend.vigilante.power.db.PowerModel
 import com.crazylegend.vigilante.power.db.PowerRepository
-import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.scopes.ServiceScoped
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.launch
@@ -16,11 +16,9 @@ import javax.inject.Inject
 /**
  * Created by crazy on 11/7/20 to long live and prosper !
  */
-@AndroidEntryPoint
-class PowerReceiver : BroadcastReceiver() {
+@ServiceScoped
+class PowerReceiver @Inject constructor(private val powerRepository: PowerRepository) : BroadcastReceiver() {
 
-    @Inject
-    lateinit var powerRepository: PowerRepository
     override fun onReceive(context: Context?, intent: Intent?) {
         context ?: return
         intent ?: return

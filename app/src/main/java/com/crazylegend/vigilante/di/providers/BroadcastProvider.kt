@@ -17,24 +17,20 @@ import javax.inject.Inject
  */
 
 @ServiceScoped
-class BroadcastProvider @Inject constructor(private val service: Service) : ServiceManagersCoroutines {
+class BroadcastProvider @Inject constructor(
+        private val screenReceiver: ScreenReceiver,
+        private val headsetPlugReceiver: HeadsetReceiver,
+        private val powerReceiver: PowerReceiver,
+        private val service: Service) : ServiceManagersCoroutines {
 
     override val serviceLifecycleDispatcher = ServiceLifecycleDispatcher(this)
-
-    private lateinit var screenReceiver: ScreenReceiver
-    private lateinit var headsetPlugReceiver: HeadsetReceiver
-    private lateinit var powerReceiver: PowerReceiver
 
     private val receivers
         get() = listOf(
                 screenReceiver, headsetPlugReceiver, powerReceiver
         )
 
-    override fun initVars() {
-        screenReceiver = ScreenReceiver()
-        headsetPlugReceiver = HeadsetReceiver()
-        powerReceiver = PowerReceiver()
-    }
+    override fun initVars() {}
 
     override fun registerCallbacks() {
         registerHeadsetReceiver()

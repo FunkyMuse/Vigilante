@@ -1,6 +1,6 @@
 # Vigilante
 
-[![Kotlin Version](https://img.shields.io/badge/kotlin-1.4.31-blue.svg)](https://kotlinlang.org)
+[![Kotlin Version](https://img.shields.io/badge/kotlin-1.4.32-blue.svg)](https://kotlinlang.org)
 [![API](https://img.shields.io/badge/API-24%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
 [![GitHub release (including pre-releases)](https://img.shields.io/github/v/release/FunkyMuse/Vigilante?include_prereleases)](https://github.com/FunkyMuse/Vigilante/releases/latest)
 ![GitHub Repo Size](https://img.shields.io/github/repo-size/FunkyMuse/Vigilante)

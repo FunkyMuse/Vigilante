@@ -14,7 +14,7 @@ An app that focuses on your privacy and alerts you when a third-party applicatio
 -Dark mode/light mode
 
 <b>Check out the all of my apps:</b>
-https://www.funkymuse.dev
+https://funkymuse.dev
 
 <b>GitHub:</b>
 https://github.com/FunkyMuse

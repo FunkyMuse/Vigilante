@@ -6,7 +6,7 @@ ext {
     glide = "4.11.0"
     constraint_layout = '2.0.4'
     coroutines = "1.4.3"
-    daggerVersion = '2.34.1'
+    daggerVersion = '2.35'
     hiltJetpackVersion = '1.0.0-alpha03'
     crashyVersion = '1.1.0'
     room_version = "2.4.0-alpha01"

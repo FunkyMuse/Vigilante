@@ -96,11 +96,11 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
 
     //hilt
-    implementation "com.google.dagger:hilt-android:$hilt_version"
-    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+    implementation "com.google.dagger:hilt-android:$daggerVersion"
+    kapt "com.google.dagger:hilt-android-compiler:$daggerVersion"
 
     //hilt jetpack
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hiltJetpackVersion"
+    implementation "androidx.hilt:hilt-navigation-fragment:$hiltJetpackVersion"
     kapt "androidx.hilt:hilt-compiler:$hiltJetpackVersion"
 
     //lifecycle

@@ -136,7 +136,7 @@ class VigilanteService : AccessibilityService() {
             micParams = initParams(prefsProvider.getLayoutMicPositionPref)
             micBinding = ServiceLayoutDotBinding.inflate(LayoutInflater.from(this))
             updateMicPrefs()
-            windowManager?.addView(micBinding.root, micParams)
+            addLayout(micBinding.root, micParams)
             micBinding.dot.gone()
         }
     }
@@ -284,9 +284,13 @@ class VigilanteService : AccessibilityService() {
             cameraParams = initParams(prefsProvider.getLayoutCameraPositionPref)
             cameraBinding = ServiceLayoutDotBinding.inflate(LayoutInflater.from(this))
             updateCameraPrefs()
-            windowManager?.addView(cameraBinding.root, cameraParams)
+            addLayout(cameraBinding.root, cameraParams)
             cameraBinding.dot.gone()
         }
+    }
+
+    private fun addLayout(root: FrameLayout, params: WindowManager.LayoutParams) {
+        windowManager?.addView(root, params)
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int = START_STICKY

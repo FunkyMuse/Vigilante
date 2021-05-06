@@ -13,7 +13,6 @@ import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.databinding.ItemviewLogBinding
 import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider
 import com.crazylegend.vigilante.headset.database.HeadsetModel
-import com.crazylegend.vigilante.notifications.db.NotificationsModel
 import com.crazylegend.vigilante.permissions.db.PermissionRequestModel
 import com.crazylegend.vigilante.power.db.PowerModel
 import com.crazylegend.vigilante.screen.db.ScreenModel
@@ -36,12 +35,6 @@ class LogViewHolder(private val binding: ItemviewLogBinding) : RecyclerView.View
         binding.title.setPrecomputedText(screenModel.screenTitle(context))
         binding.content.setPrecomputedText(screenModel.screenActionTime.toString(prefsProvider.getDateFormat))
         binding.image.setImageResource(screenModel.screenRes)
-    }
-
-    fun bind(item: NotificationsModel, prefsProvider: DefaultPreferencessProvider) {
-        binding.title.setPrecomputedText(tryOrNull { context.getAppName(item.sentByPackage.toString()) })
-        binding.image.setImageDrawable(tryOrNull { context.getAppIcon(item.sentByPackage.toString()) })
-        binding.content.setPrecomputedText(item.showTime.toString(prefsProvider.getDateFormat))
     }
 
     fun bind(item: HeadsetModel, prefsProvider: DefaultPreferencessProvider) {

@@ -8,7 +8,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.crazylegend.kotlinextensions.fragments.ifIsAttachedAction
 import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
-import com.crazylegend.navigation.navigateUpSafe
+
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractDialogFragment
@@ -57,6 +57,6 @@ class DialogConfirmation : AbstractDialogFragment(R.layout.dialog_confirmation) 
 
     private fun addArgs(confirmation: Boolean, customKey: Int) {
         setFragmentResult(RESULT_KEY, bundleOf(Pair(DEFAULT_REQ_KEY, confirmation), Pair(CUSTOM_REQ_KEY, customKey)))
-        findNavController().navigateUpSafe()
+        findNavController().navigateUp()
     }
 }

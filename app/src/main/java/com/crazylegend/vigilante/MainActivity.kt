@@ -11,7 +11,6 @@ import com.crazylegend.kotlinextensions.locale.LocaleHelper
 import com.crazylegend.kotlinextensions.misc.requestBatteryOptimizations
 import com.crazylegend.kotlinextensions.power.isIgnoringBatteryOptimization
 import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
-import com.crazylegend.navigation.navigateUpSafe
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.databinding.ActivityMainBinding
 import com.crazylegend.vigilante.utils.DEFAULT_LANGUAGE
@@ -63,7 +62,7 @@ class MainActivity : AppCompatActivity() {
             binding.backButton.root.isVisible = destination.id in showBackButtonList
         }
         binding.backButton.root.setOnClickListenerCooldown {
-            navController.navigateUpSafe()
+            navController.navigateUp()
         }
     }
 }

@@ -8,7 +8,6 @@ import com.crazylegend.kotlinextensions.fragments.longToast
 import com.crazylegend.kotlinextensions.fragments.shortToast
 import com.crazylegend.kotlinextensions.string.isNotNullOrEmpty
 import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
-import com.crazylegend.navigation.navigateUpSafe
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
@@ -42,13 +41,13 @@ class DetailedCrashFragment : AbstractFragment<FragmentDetailedCrashBinding>(R.l
             showToast()
         }
 
-        binding.backButton.root.setOnClickListenerCooldown { uiAction { findNavController().navigateUpSafe() } }
+        binding.backButton.root.setOnClickListenerCooldown { uiAction { findNavController().navigateUp() } }
 
         detailedCrashVM.detailedCrash.apply {
             if (this.isNotNullOrEmpty()) {
                 binding.detailedCrash.text = this
             } else {
-                findNavController().navigateUpSafe()
+                findNavController().navigateUp()
                 shortToast(R.string.error_occurred)
             }
         }

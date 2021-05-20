@@ -14,7 +14,7 @@ import com.crazylegend.kotlinextensions.activity.newIntent
 import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
 import com.crazylegend.kotlinextensions.services.isServiceRunning
 import com.crazylegend.kotlinextensions.services.startForegroundService
-import com.crazylegend.navigation.navigateSafe
+import com.crazylegend.kotlinextensions.tryOrPrint
 import com.crazylegend.vigilante.database.migrations.CameraAndMicRemovalMigration
 import com.crazylegend.vigilante.service.VigilanteService
 import net.sqlcipher.database.SQLiteDatabase
@@ -75,7 +75,7 @@ inline fun Fragment.onStartedRepeatingAction(crossinline action: suspend () -> U
 }
 
 fun Fragment.goToScreen(directions: NavDirections) {
-    uiAction { findNavController().navigateSafe(directions) }
+    uiAction { tryOrPrint { findNavController().navigate(directions) } }
 }
 
 inline fun Fragment.uiAction(crossinline action: () -> Unit) {

@@ -14,7 +14,6 @@ import com.crazylegend.kotlinextensions.fragments.finish
 import com.crazylegend.kotlinextensions.fragments.fragmentBooleanResult
 import com.crazylegend.kotlinextensions.fragments.shortToast
 import com.crazylegend.kotlinextensions.views.*
-import com.crazylegend.navigation.navigateUpSafe
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
@@ -158,7 +157,7 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
         }
 
         fragmentBooleanResult(DialogConfirmation.RESULT_KEY, DialogConfirmation.DEFAULT_REQ_KEY, onDenied = {
-            findNavController().navigateUpSafe()
+            findNavController().navigateUp()
         }, onGranted = {
             prefsProvider.saveSizePref(prefBaseName + SIZE_PREF_ADDITION, binding.sizeSlider.value)
             pickedDotColor?.let { prefsProvider.saveColorPref(prefBaseName + COLOR_DOT_PREF_ADDITION, it) }
@@ -183,7 +182,7 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
 
     private fun goBack() {
         uiAction {
-            findNavController().navigateUpSafe()
+            findNavController().navigateUp()
             shortToast(R.string.saved)
         }
     }

@@ -14,7 +14,7 @@ buildscript {
         camerax_version = '1.1.0-alpha04'
         mockk = "1.11.0"
         nav_version = '2.4.0-alpha01'
-        daggerVersion = '2.35.1'
+        daggerVersion = '2.36'
         kotlin_version = "1.5.10"
     }
 

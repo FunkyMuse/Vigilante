@@ -25,14 +25,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun applyOverrideConfiguration(overrideConfiguration: Configuration?) {
-        super.applyOverrideConfiguration(overrideConfiguration?.let { LocaleHelper.updateConfigurationIfSupported(this, it, DEFAULT_LANGUAGE) })
+        super.applyOverrideConfiguration(overrideConfiguration?.let {
+            LocaleHelper.updateConfigurationIfSupported(
+                this,
+                it,
+                DEFAULT_LANGUAGE
+            )
+        })
     }
 
     private val binding by viewBinding(ActivityMainBinding::inflate)
 
     private val navController: NavController
         get() {
-            val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostContainer) as NavHostFragment
+            val navHostFragment =
+                supportFragmentManager.findFragmentById(R.id.navHostContainer) as NavHostFragment
             return navHostFragment.navController
         }
 
@@ -40,11 +47,18 @@ class MainActivity : AppCompatActivity() {
 
     private val showBackButtonList
         get() = listOf(
-                R.id.settingsFragment, R.id.crashFragment,
-                R.id.appsUsageFragment, R.id.screenAccessFragment,
-                R.id.listFilterBottomSheet, R.id.notificationsFragment, R.id.headsetFragment,
-                R.id.permissionRequestFragment, R.id.permissionDetailsBottomSheet, R.id.notificationDetailsFragment,
-                R.id.powerFragment, R.id.powerDetailsDialog
+            R.id.settingsFragment,
+            R.id.crashFragment,
+            R.id.appsUsageFragment,
+            R.id.screenAccessFragment,
+            R.id.listFilterBottomSheet,
+            R.id.notificationsFragment,
+            R.id.headsetFragment,
+            R.id.permissionRequestFragment,
+            R.id.permissionDetailsBottomSheet,
+            R.id.notificationDetailsFragment,
+            R.id.powerFragment,
+            R.id.powerDetailsDialog
         )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,5 +78,7 @@ class MainActivity : AppCompatActivity() {
         binding.backButton.root.setOnClickListenerCooldown {
             navController.navigateUp()
         }
+
     }
+
 }

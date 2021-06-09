@@ -146,6 +146,9 @@
     <string name="spacing_expl">In case of rounded corners or notch blocking the dot visibility use spacing</string>
     <string name="too_large_to_copy_to_clipboard">Too large to copy to clipboard, please send screenshots of the screen!</string>
     <string name="app_not_installed">Application is not installed</string>
+    <string name="history_deletion">Delete history</string>
+    <string name="history_deletion_expl">Delete entire history after 30 days to avoid clutter</string>
+
 
     <!--Languages-->
     <string name="english">English</string>

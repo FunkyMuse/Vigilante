@@ -2,8 +2,8 @@ package com.crazylegend.vigilante.deviceinfo
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
@@ -37,7 +37,11 @@ class DeviceInfoFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.layo
 
         onStartedRepeatingAction {
             deviceInfoVM.deviceInfoList.collect {
-                adapter.submitList(it)
+                binding.progressIndicator.isVisible =
+                    it is DeviceInfoViewModel.DeviceInfoStatus.Loading
+                if (it is DeviceInfoViewModel.DeviceInfoStatus.Success) {
+                    adapter.submitList(it.list)
+                }
             }
         }
     }

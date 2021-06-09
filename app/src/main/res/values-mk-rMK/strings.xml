@@ -145,6 +145,9 @@
     <string name="spacing_expl">Во случај на заоблени агли или засек на екранот што ја блокира видливоста на точката, користете растојание</string>
     <string name="too_large_to_copy_to_clipboard">Премногу голем текст за копирање во таблата со исечоци, испратете слики од екранот!</string>
     <string name="app_not_installed">Апликацијата не е инсталирана </string>
+    <string name="history_deletion">Избришај историја</string>
+    <string name="history_deletion_expl">Автоматски избришај ја зачуваната историја после секои 30 дена за да не ти зафаќа простор</string>
+
     <!--Languages-->
     <string name="english">Англиски</string>
     <string name="spanish">Шпански</string>

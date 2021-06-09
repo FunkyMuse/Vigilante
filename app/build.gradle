@@ -101,6 +101,7 @@ dependencies {
 
     //hilt jetpack
     implementation "androidx.hilt:hilt-navigation-fragment:$hiltJetpackVersion"
+    implementation "androidx.hilt:hilt-work:$hiltJetpackVersion"
     kapt "androidx.hilt:hilt-compiler:$hiltJetpackVersion"
 
     //lifecycle
@@ -132,5 +133,7 @@ dependencies {
     //paging
     implementation "androidx.paging:paging-runtime-ktx:$paging_version"
 
+    //work
+    implementation "androidx.work:work-runtime-ktx:$work_version"
 
 }

@@ -39,27 +39,21 @@ class SettingsFragment : PreferenceFragmentCompat() {
     @Inject
     lateinit var authProvider: AuthProvider
 
-    private var notificationsSwitch: SwitchPreferenceCompat? = null
-    private var version: Preference? = null
-    private var dateFormat: ListPreference? = null
-    private var dotSwitch: SwitchPreferenceCompat? = null
-    private var bypassDND: SwitchPreferenceCompat? = null
-    private var homePage: Preference? = null
-    private var excludeVigilanteFromNotificationsSwitch: SwitchPreferenceCompat? = null
-    private var biometricAuth: SwitchPreferenceCompat? = null
-    private var language: ListPreference? = null
+    private val notificationsSwitch by getPreference<SwitchPreferenceCompat>(NOTIFICATIONS_PREF_KEY)
+    private val version by getPreference<Preference>(VERSION_PREF_KEY)
+    private val dateFormat by getPreference<ListPreference>(DATE_PREF_KEY)
+    private val dotSwitch by getPreference<SwitchPreferenceCompat>(DOT_PREF_KEY)
+    private val bypassDND by getPreference<SwitchPreferenceCompat>(BYPASS_DND_PREF_KEY)
+    private val homePage by getPreference<Preference>(HOME_PAGE_PREF)
+    private val excludeVigilanteFromNotificationsSwitch by getPreference<SwitchPreferenceCompat>(
+        EXCLUDE_VIGILANTE_FROM_NOTIFICATIONS_PREF_KEY
+    )
+    private val biometricAuth by getPreference<SwitchPreferenceCompat>(BIOMETRIC_AUTH_PREF_KEY)
+    private val language by getPreference<ListPreference>(LANG_PREF_KEY)
+    private val deleteHistory by getPreference<SwitchPreferenceCompat>(DELETE_HISTORY_PREF_KEY)
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.settings)
-        notificationsSwitch = findPreference(NOTIFICATIONS_PREF_KEY)
-        dateFormat = findPreference(DATE_PREF_KEY)
-        homePage = findPreference(HOME_PAGE_PREF)
-        version = findPreference(VERSION_PREF_KEY)
-        dotSwitch = findPreference(DOT_PREF_KEY)
-        language = findPreference(LANG_PREF_KEY)
-        bypassDND = findPreference(BYPASS_DND_PREF_KEY)
-        biometricAuth = findPreference(BIOMETRIC_AUTH_PREF_KEY)
-        excludeVigilanteFromNotificationsSwitch = findPreference(EXCLUDE_VIGILANTE_FROM_NOTIFICATIONS_PREF_KEY)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -68,11 +62,19 @@ class SettingsFragment : PreferenceFragmentCompat() {
             clipToPadding = false
             updatePadding(bottom = dimen(R.dimen.padding_bottom_scroll).toInt())
         }
-        version?.summary = requireContext().packageVersionName
+        version.summary = requireContext().packageVersionName
 
         notificationsSwitch.booleanChangeListener { _, newValue ->
             prefsProvider.updateNotificationsValue(newValue)
             updateNotificationSwitch()
+        }
+
+        deleteHistory.booleanChangeListener { _, newValue ->
+            if (newValue) {
+                prefsProvider.scheduleDeletionHistory()
+            } else {
+                prefsProvider.cancelDeletionHistory()
+            }
         }
 
         bypassDND.booleanChangeListener { _, newValue ->
@@ -116,19 +118,22 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     private fun updateDNDSummary() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            bypassDND?.isEnabled = prefsProvider.areNotificationsEnabled
+            bypassDND.isEnabled = prefsProvider.areNotificationsEnabled
         } else {
-            bypassDND?.summary = getString(R.string.incompatible_os_version)
-            bypassDND?.isEnabled = false
+            bypassDND.summary = getString(R.string.incompatible_os_version)
+            bypassDND.isEnabled = false
         }
     }
 
     private fun updateBiometricAuthAvailability() {
-        val summary = if (authProvider.canAuthenticate) getString(R.string.biometric_auth_expl) else getString(R.string.unsupported_device)
-        biometricAuth?.summary = summary
-        biometricAuth?.isEnabled = authProvider.canAuthenticate
+        val summary =
+            if (authProvider.canAuthenticate) getString(R.string.biometric_auth_expl) else getString(
+                R.string.unsupported_device
+            )
+        biometricAuth.summary = summary
+        biometricAuth.isEnabled = authProvider.canAuthenticate
         if (authProvider.canAuthenticate) {
-            biometricAuth?.isChecked = prefsProvider.isBiometricAuthEnabled
+            biometricAuth.isChecked = prefsProvider.isBiometricAuthEnabled
             biometricAuth.booleanChangeListener { _, newValue ->
                 if (newValue) {
                     confirmBiometricAuth()
@@ -157,16 +162,16 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     private fun updateCheckBiometricAuth(status: Boolean = false) {
         viewCoroutineScope.launch(mainDispatcher) {
-            biometricAuth?.isChecked = status
+            biometricAuth.isChecked = status
         }
     }
 
     private fun updateDateSummary() {
-        dateFormat?.summary = getString(R.string.current_date_format, prefsProvider.getDateFormat)
+        dateFormat.summary = getString(R.string.current_date_format, prefsProvider.getDateFormat)
     }
 
     private fun updateNotificationSwitch() {
-        notificationsSwitch?.isChecked = prefsProvider.areNotificationsEnabled
+        notificationsSwitch.isChecked = prefsProvider.areNotificationsEnabled
         updateDNDSummary()
     }
 

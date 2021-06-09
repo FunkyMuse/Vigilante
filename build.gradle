@@ -15,6 +15,7 @@ buildscript {
         mockk = "1.11.0"
         nav_version = '2.4.0-alpha02'
         daggerVersion = '2.36'
+        work_version = "2.6.0-beta01"
         kotlin_version = "1.5.10"
     }
 

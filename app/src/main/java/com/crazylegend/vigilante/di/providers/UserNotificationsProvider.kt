@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory
 import android.os.Build
 import androidx.annotation.StringRes
 import androidx.core.app.NotificationCompat
+import com.crazylegend.kotlinextensions.collections.isNullOrEmpty
 import com.crazylegend.kotlinextensions.context.notificationManager
 import com.crazylegend.kotlinextensions.locale.LocaleHelper
 import com.crazylegend.vigilante.R
@@ -33,17 +34,25 @@ class UserNotificationsProvider @Inject constructor(@ServiceContext private val 
 
         val usageContentText = LocaleHelper.getLocalizedString(context, usageTypeString)
 
-        val notificationCompatBuilder = NotificationCompat.Builder(context, context.createNotificationChannel(notificationLEDColorPref))
-                .setDefaults(Notification.DEFAULT_LIGHTS)
-                .setSmallIcon(R.drawable.ic_logo)
-                .setLargeIcon(BitmapFactory.decodeResource(context.resources, R.drawable.ic_launcher_foreground))
-                .setContentTitle(LocaleHelper.getLocalizedString(context, R.string.usage_title))
-                .setContentText(usageContentText)
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setAutoCancel(false)
-                .setOngoing(true)
-                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                .setColorized(true)
+        val notificationCompatBuilder = NotificationCompat.Builder(
+            context,
+            context.createNotificationChannel(notificationLEDColorPref, effect)
+        )
+            .setDefaults(Notification.DEFAULT_LIGHTS)
+            .setSmallIcon(R.drawable.ic_logo)
+            .setLargeIcon(
+                BitmapFactory.decodeResource(
+                    context.resources,
+                    R.drawable.ic_launcher_foreground
+                )
+            )
+            .setContentTitle(LocaleHelper.getLocalizedString(context, R.string.usage_title))
+            .setContentText(usageContentText)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setAutoCancel(false)
+            .setOngoing(true)
+            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+            .setColorized(true)
                 .setVibrate(effect)
                 .setStyle(NotificationCompat.BigTextStyle().bigText(usageContentText))
                 .setShowWhen(true)
@@ -53,13 +62,24 @@ class UserNotificationsProvider @Inject constructor(@ServiceContext private val 
         context.notificationManager?.notify(notificationID, notificationCompatBuilder.build())
     }
 
-    private fun Context.createNotificationChannel(notificationLEDColorPref: Int): String {
+    private fun Context.createNotificationChannel(
+        notificationLEDColorPref: Int,
+        effect: LongArray?
+    ): String {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val notificationChannel = with(NotificationChannel(NOTIFICATION_CHANNEL, getString(R.string.channel_name), NotificationManager.IMPORTANCE_HIGH)) {
+            val notificationChannel = with(
+                NotificationChannel(
+                    NOTIFICATION_CHANNEL,
+                    getString(R.string.channel_name),
+                    NotificationManager.IMPORTANCE_HIGH
+                )
+            ) {
                 description = getString(R.string.channel_description)
                 description = getString(R.string.channel_description)
                 enableLights(true)
                 setBypassDnd(bypassDND)
+                vibrationPattern = effect
+                enableVibration(!effect.isNullOrEmpty())
                 lightColor = notificationLEDColorPref
                 //return the same created instance
                 this

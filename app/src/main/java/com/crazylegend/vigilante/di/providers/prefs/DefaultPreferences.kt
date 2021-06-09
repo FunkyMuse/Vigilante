@@ -68,4 +68,9 @@ interface DefaultPreferences {
     fun updateDNDValue(value: Boolean)
     //endregion
 
+
+    //region history deletion
+    fun scheduleDeletionHistory()
+    fun cancelDeletionHistory()
+    //endregion
 }

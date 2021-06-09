@@ -67,6 +67,12 @@
             app:summary="@string/biometric_auth_expl"
             app:iconSpaceReserved="false" />
 
+        <SwitchPreferenceCompat
+            app:key="pref_delete_history"
+            app:title="@string/history_deletion"
+            app:summary="@string/history_deletion_expl"
+            app:iconSpaceReserved="false" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

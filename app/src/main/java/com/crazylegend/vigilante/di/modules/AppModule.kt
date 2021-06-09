@@ -1,6 +1,7 @@
 package com.crazylegend.vigilante.di.modules
 
 import android.content.Context
+import androidx.work.WorkManager
 import com.crazylegend.security.MagiskDetector
 import com.crazylegend.security.encryptedSharedPreferences
 import com.crazylegend.vigilante.di.qualifiers.EncryptedPrefs
@@ -21,9 +22,14 @@ object AppModule {
     @Provides
     @EncryptedPrefs
     @Singleton
-    fun encryptedDefaultSharedPreferences(@ApplicationContext context: Context) = context.encryptedSharedPreferences()
+    fun encryptedDefaultSharedPreferences(@ApplicationContext context: Context) =
+        context.encryptedSharedPreferences()
 
     @Provides
     @Singleton
     fun magiskDetector(@ApplicationContext context: Context) = MagiskDetector(context)
+
+    @Provides
+    @Singleton
+    fun workManager(@ApplicationContext context: Context) = WorkManager.getInstance(context)
 }

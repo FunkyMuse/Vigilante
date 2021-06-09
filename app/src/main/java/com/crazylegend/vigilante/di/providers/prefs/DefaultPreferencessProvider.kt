@@ -3,6 +3,9 @@ package com.crazylegend.vigilante.di.providers.prefs
 import android.content.SharedPreferences
 import android.view.Gravity
 import androidx.core.content.edit
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 import com.crazylegend.kotlinextensions.misc.disableNightMode
 import com.crazylegend.kotlinextensions.misc.enableNightMode
 import com.crazylegend.kotlinextensions.sharedprefs.putBoolean
@@ -16,7 +19,9 @@ import com.crazylegend.vigilante.customization.CustomizationFragment.Companion.P
 import com.crazylegend.vigilante.customization.CustomizationFragment.Companion.SIZE_PREF_ADDITION
 import com.crazylegend.vigilante.customization.CustomizationFragment.Companion.VIBRATION_PREF_ADDITION
 import com.crazylegend.vigilante.di.qualifiers.EncryptedPrefs
+import com.crazylegend.vigilante.historyDeletionWorker.HistoryDeletionWorker
 import com.crazylegend.vigilante.settings.*
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -24,8 +29,10 @@ import javax.inject.Singleton
  * Created by crazy on 11/2/20 to long live and prosper !
  */
 @Singleton
-class DefaultPreferencessProvider @Inject constructor(@EncryptedPrefs
-                                                      private val defaultPrefs: SharedPreferences) : DefaultPreferences {
+class DefaultPreferencessProvider @Inject constructor(
+    @EncryptedPrefs private val defaultPrefs: SharedPreferences,
+    private val workManager: WorkManager
+) : DefaultPreferences {
 
     companion object {
         const val DEFAULT_LAYOUT_POSITION = 0
@@ -43,8 +50,14 @@ class DefaultPreferencessProvider @Inject constructor(@EncryptedPrefs
     //endregion
 
     //region notifications status
-    override val areNotificationsEnabled get() = defaultPrefs.getBoolean(NOTIFICATIONS_PREF_KEY, true)
-    override fun updateNotificationsValue(value: Boolean) = defaultPrefs.putBoolean(NOTIFICATIONS_PREF_KEY, value)
+    override val areNotificationsEnabled
+        get() = defaultPrefs.getBoolean(
+            NOTIFICATIONS_PREF_KEY,
+            true
+        )
+
+    override fun updateNotificationsValue(value: Boolean) =
+        defaultPrefs.putBoolean(NOTIFICATIONS_PREF_KEY, value)
     //endregion
 
     //region theme
@@ -65,8 +78,14 @@ class DefaultPreferencessProvider @Inject constructor(@EncryptedPrefs
     //endregion
 
     //region notification exclusion
-    override val isVigilanteExcludedFromNotifications get() = defaultPrefs.getBoolean(EXCLUDE_VIGILANTE_FROM_NOTIFICATIONS_PREF_KEY, false)
-    override fun setExcludeVigilanteFromNotificationsStatus(newValue: Boolean) = defaultPrefs.putBoolean(EXCLUDE_VIGILANTE_FROM_NOTIFICATIONS_PREF_KEY, newValue)
+    override val isVigilanteExcludedFromNotifications
+        get() = defaultPrefs.getBoolean(
+            EXCLUDE_VIGILANTE_FROM_NOTIFICATIONS_PREF_KEY,
+            false
+        )
+
+    override fun setExcludeVigilanteFromNotificationsStatus(newValue: Boolean) =
+        defaultPrefs.putBoolean(EXCLUDE_VIGILANTE_FROM_NOTIFICATIONS_PREF_KEY, newValue)
     //endregion
 
     //region camera prefs
@@ -74,10 +93,19 @@ class DefaultPreferencessProvider @Inject constructor(@EncryptedPrefs
     override val getCameraSizePref get() = getSizePref(CAMERA_CUSTOMIZATION_BASE_PREF)
     override val getCameraPositionPref get() = getPositionPref(CAMERA_CUSTOMIZATION_BASE_PREF)
     override val getLayoutCameraPositionPref get() = getLayoutPosition(getCameraPositionPref)
-    override val getCameraNotificationLEDColorPref get() = getNotificationColorPref(CAMERA_CUSTOMIZATION_BASE_PREF)
+    override val getCameraNotificationLEDColorPref
+        get() = getNotificationColorPref(
+            CAMERA_CUSTOMIZATION_BASE_PREF
+        )
     override val getCameraSpacing get() = getPositionSpacing(CAMERA_CUSTOMIZATION_BASE_PREF)
-    override val getCameraVibrationPositionPref get() = getVibrationPref(CAMERA_CUSTOMIZATION_BASE_PREF)
-    override val getCameraVibrationEffectPref get() = getVibrationEffect(getCameraVibrationPositionPref)
+    override val getCameraVibrationPositionPref
+        get() = getVibrationPref(
+            CAMERA_CUSTOMIZATION_BASE_PREF
+        )
+    override val getCameraVibrationEffectPref
+        get() = getVibrationEffect(
+            getCameraVibrationPositionPref
+        )
     //endregion
 
     //region mic prefs
@@ -85,20 +113,35 @@ class DefaultPreferencessProvider @Inject constructor(@EncryptedPrefs
     override val getMicSizePref get() = getSizePref(MIC_CUSTOMIZATION_BASE_PREF)
     override val getMicPositionPref get() = getPositionPref(MIC_CUSTOMIZATION_BASE_PREF)
     override val getLayoutMicPositionPref get() = getLayoutPosition(getMicPositionPref)
-    override val getMicNotificationLEDColorPref get() = getNotificationColorPref(MIC_CUSTOMIZATION_BASE_PREF)
+    override val getMicNotificationLEDColorPref
+        get() = getNotificationColorPref(
+            MIC_CUSTOMIZATION_BASE_PREF
+        )
     override val getMicSpacing get() = getPositionSpacing(MIC_CUSTOMIZATION_BASE_PREF)
     override val getMicVibrationPositionPref get() = getVibrationPref(MIC_CUSTOMIZATION_BASE_PREF)
     override val getMicVibrationEffectPref get() = getVibrationEffect(getMicVibrationPositionPref)
     //endregion
 
-    fun saveColorPref(prefBaseName: String, pickedColor: Int) = defaultPrefs.putInt(prefBaseName, pickedColor)
-    fun saveSizePref(prefBaseName: String, sizeSlider: Float) = defaultPrefs.putFloat(prefBaseName, sizeSlider)
-    fun savePositionPref(prefBaseName: String, position: Int) = defaultPrefs.putInt(prefBaseName, position)
-    fun saveNotificationColorPref(prefBaseName: String, pickedColor: Int) = defaultPrefs.putInt(prefBaseName, pickedColor)
+    fun saveColorPref(prefBaseName: String, pickedColor: Int) =
+        defaultPrefs.putInt(prefBaseName, pickedColor)
 
-    private fun getColorPref(basePref: String) = defaultPrefs.getInt(basePref + COLOR_DOT_PREF_ADDITION, DEFAULT_DOT_COLOR)
-    private fun getNotificationColorPref(basePref: String) = defaultPrefs.getInt(basePref + COLOR_NOTIFICATION_PREF_ADDITION, DEFAULT_NOTIFICATION_COLOR)
-    private fun getSizePref(basePref: String) = defaultPrefs.getFloat(basePref + SIZE_PREF_ADDITION, DEFAULT_DOT_SIZE)
+    fun saveSizePref(prefBaseName: String, sizeSlider: Float) =
+        defaultPrefs.putFloat(prefBaseName, sizeSlider)
+
+    fun savePositionPref(prefBaseName: String, position: Int) =
+        defaultPrefs.putInt(prefBaseName, position)
+
+    fun saveNotificationColorPref(prefBaseName: String, pickedColor: Int) =
+        defaultPrefs.putInt(prefBaseName, pickedColor)
+
+    private fun getColorPref(basePref: String) =
+        defaultPrefs.getInt(basePref + COLOR_DOT_PREF_ADDITION, DEFAULT_DOT_COLOR)
+
+    private fun getNotificationColorPref(basePref: String) =
+        defaultPrefs.getInt(basePref + COLOR_NOTIFICATION_PREF_ADDITION, DEFAULT_NOTIFICATION_COLOR)
+
+    private fun getSizePref(basePref: String) =
+        defaultPrefs.getFloat(basePref + SIZE_PREF_ADDITION, DEFAULT_DOT_SIZE)
 
     /**
     0 is top right corner
@@ -111,9 +154,14 @@ class DefaultPreferencessProvider @Inject constructor(@EncryptedPrefs
     5 is bottom left corner
      * @return Int
      */
-    private fun getPositionPref(basePref: String) = defaultPrefs.getInt(basePref + POSITION_PREF_ADDITION, DEFAULT_LAYOUT_POSITION)
-    private fun getPositionSpacing(basePref: String) = defaultPrefs.getInt(basePref + POSITION_SPACING_ADDITION, DEFAULT_SPACING)
-    fun saveSpacing(basePref: String, spacing: Int) = defaultPrefs.putInt(basePref + POSITION_SPACING_ADDITION, spacing)
+    private fun getPositionPref(basePref: String) =
+        defaultPrefs.getInt(basePref + POSITION_PREF_ADDITION, DEFAULT_LAYOUT_POSITION)
+
+    private fun getPositionSpacing(basePref: String) =
+        defaultPrefs.getInt(basePref + POSITION_SPACING_ADDITION, DEFAULT_SPACING)
+
+    fun saveSpacing(basePref: String, spacing: Int) =
+        defaultPrefs.putInt(basePref + POSITION_SPACING_ADDITION, spacing)
 
     private fun getLayoutPosition(pref: Int) = when (pref) {
         0 -> Gravity.TOP or Gravity.END
@@ -133,18 +181,25 @@ class DefaultPreferencessProvider @Inject constructor(@EncryptedPrefs
     //endregion
 
     //region biometric auth
-    override val isBiometricAuthEnabled get() = defaultPrefs.getBoolean(BIOMETRIC_AUTH_PREF_KEY, false)
-    override fun updateBiometricStatus(status: Boolean) = defaultPrefs.putBoolean(BIOMETRIC_AUTH_PREF_KEY, status)
+    override val isBiometricAuthEnabled
+        get() = defaultPrefs.getBoolean(
+            BIOMETRIC_AUTH_PREF_KEY,
+            false
+        )
+
+    override fun updateBiometricStatus(status: Boolean) =
+        defaultPrefs.putBoolean(BIOMETRIC_AUTH_PREF_KEY, status)
     //endregion
 
     //region bypass dnd
     override val isBypassDNDEnabled get() = defaultPrefs.getBoolean(BYPASS_DND_PREF_KEY, false)
-    override fun updateDNDValue(value: Boolean) = defaultPrefs.putBoolean(BYPASS_DND_PREF_KEY, value)
+    override fun updateDNDValue(value: Boolean) =
+        defaultPrefs.putBoolean(BYPASS_DND_PREF_KEY, value)
     //endregion
 
-
     //region vibration
-    private fun getVibrationPref(basePref: String) = defaultPrefs.getInt(basePref + VIBRATION_PREF_ADDITION, DEFAULT_VIBRATION_POSITION)
+    private fun getVibrationPref(basePref: String) =
+        defaultPrefs.getInt(basePref + VIBRATION_PREF_ADDITION, DEFAULT_VIBRATION_POSITION)
 
     fun getVibrationEffect(pref: Int) = when (pref) {
         0 -> null
@@ -152,6 +207,22 @@ class DefaultPreferencessProvider @Inject constructor(@EncryptedPrefs
         2 -> longArrayOf(150, 180, 200)
         3 -> longArrayOf(250, 300, 350)
         else -> null
+    }
+    //endregion
+
+    //region history deletion
+    override fun scheduleDeletionHistory() {
+        val builder = PeriodicWorkRequestBuilder<HistoryDeletionWorker>(30, TimeUnit.DAYS)
+        builder.addTag(HistoryDeletionWorker.WORK_ID)
+        workManager.enqueueUniquePeriodicWork(
+            HistoryDeletionWorker.WORK_ID,
+            ExistingPeriodicWorkPolicy.KEEP,
+            builder.build()
+        )
+    }
+
+    override fun cancelDeletionHistory() {
+        workManager.cancelAllWorkByTag(HistoryDeletionWorker.WORK_ID)
     }
     //endregion
 }

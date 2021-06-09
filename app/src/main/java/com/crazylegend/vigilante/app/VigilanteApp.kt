@@ -2,6 +2,8 @@ package com.crazylegend.vigilante.app
 
 import android.app.Application
 import android.content.Context
+import androidx.hilt.work.HiltWorkerFactory
+import androidx.work.Configuration
 import com.crazylegend.kotlinextensions.locale.LocaleHelper
 import com.crazylegend.vigilante.di.providers.CoreProvider
 import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider
@@ -13,7 +15,14 @@ import javax.inject.Inject
  * Created by crazy on 10/14/20 to long live and prosper !
  */
 @HiltAndroidApp
-class VigilanteApp : Application() {
+class VigilanteApp : Application(), Configuration.Provider {
+
+    @Inject
+    lateinit var workerFactory: HiltWorkerFactory
+
+    override fun getWorkManagerConfiguration() = Configuration.Builder()
+        .setWorkerFactory(workerFactory)
+        .build()
 
     @Inject
     lateinit var coreProvider: CoreProvider

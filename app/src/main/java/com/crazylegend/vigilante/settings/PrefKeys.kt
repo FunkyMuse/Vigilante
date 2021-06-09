@@ -19,5 +19,5 @@ const val CAMERA_CUSTOMIZATION_BASE_PREF = "camera_"
 const val MIC_CUSTOMIZATION_BASE_PREF = "mic_"
 const val INTRO_PREF = "intro"
 const val BIOMETRIC_AUTH_PREF_KEY = "pref_biometric_auth"
-
+const val DELETE_HISTORY_PREF_KEY = "pref_delete_history"
 const val DEFAULT_DATE_FORMAT = "dd.MM.yyyy HH:mm:ss"

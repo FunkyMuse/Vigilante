@@ -1,10 +1,11 @@
 package com.crazylegend.vigilante.screen.ui
 
-import android.app.Application
 import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.crazylegend.vigilante.R
-import com.crazylegend.vigilante.abstracts.AbstractPagingViewModel
 import com.crazylegend.vigilante.filter.FilterModel
+import com.crazylegend.vigilante.paging.PagingProvider
 import com.crazylegend.vigilante.screen.db.ScreenRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -14,9 +15,10 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class ScreenViewModel @Inject constructor(
-        private val repo: ScreenRepository,
-        application: Application,
-        private val savedStateHandle: SavedStateHandle) : AbstractPagingViewModel(application) {
+    private val repo: ScreenRepository,
+    private val savedStateHandle: SavedStateHandle,
+    private val pagingProvider: PagingProvider
+) : ViewModel() {
 
     companion object {
         private const val FILTER_MODEL_KEY = "filterModel"
@@ -52,10 +54,13 @@ class ScreenViewModel @Inject constructor(
     val totalLocks get() = repo.getTotalLocksCount()
     val totalUnlocks get() = repo.getTotalUnlocksCount()
 
-    private val allScreenAccess = provideDatabaseData { repo.getAllScreenActions() }
+    private val allScreenAccess =
+        pagingProvider.provideDatabaseData(viewModelScope) { repo.getAllScreenActions() }
 
-    private val allScreenLocks = provideDatabaseData { repo.getAllScreenLocks() }
+    private val allScreenLocks =
+        pagingProvider.provideDatabaseData(viewModelScope) { repo.getAllScreenLocks() }
 
-    private val allScreenUnLocks = provideDatabaseData { repo.getAllScreenUnlocks() }
+    private val allScreenUnLocks =
+        pagingProvider.provideDatabaseData(viewModelScope) { repo.getAllScreenUnlocks() }
 
 }

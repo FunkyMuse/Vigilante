@@ -1,7 +1,8 @@
 package com.crazylegend.vigilante.power.ui
 
-import android.app.Application
-import com.crazylegend.vigilante.abstracts.AbstractPagingViewModel
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.crazylegend.vigilante.paging.PagingProvider
 import com.crazylegend.vigilante.power.db.PowerRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -10,7 +11,11 @@ import javax.inject.Inject
  * Created by crazy on 11/7/20 to long live and prosper !
  */
 @HiltViewModel
-class PowerViewModel @Inject constructor(private val powerRepository: PowerRepository, application: Application) : AbstractPagingViewModel(application) {
+class PowerViewModel @Inject constructor(
+    private val powerRepository: PowerRepository,
+    pagingProvider: PagingProvider
+) : ViewModel() {
 
-    val powerHistory = provideDatabaseData { powerRepository.getAllPowerActions() }
+    val powerHistory =
+        pagingProvider.provideDatabaseData(viewModelScope) { powerRepository.getAllPowerActions() }
 }

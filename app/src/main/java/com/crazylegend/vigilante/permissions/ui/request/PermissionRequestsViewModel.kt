@@ -1,7 +1,8 @@
 package com.crazylegend.vigilante.permissions.ui.request
 
-import android.app.Application
-import com.crazylegend.vigilante.abstracts.AbstractPagingViewModel
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.crazylegend.vigilante.paging.PagingProvider
 import com.crazylegend.vigilante.permissions.db.PermissionRequestsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -11,9 +12,11 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class PermissionRequestsViewModel @Inject constructor(
-        private val permissionRequestRepository: PermissionRequestsRepository,
-        application: Application) : AbstractPagingViewModel(application) {
+    private val permissionRequestRepository: PermissionRequestsRepository,
+    pagingProvider: PagingProvider
+) : ViewModel() {
 
-    val permissionRequests = provideDatabaseData { permissionRequestRepository.getAllPermissionRequests() }
+    val permissionRequests =
+        pagingProvider.provideDatabaseData(viewModelScope) { permissionRequestRepository.getAllPermissionRequests() }
     val totalPermissionRequests = permissionRequestRepository.permissionRequestsCount()
 }

@@ -153,6 +153,12 @@
     <string name="history_deletion_expl">Delete entire history after 30 days to avoid clutter</string>
     <string name="application">Application</string>
     <string name="dot_indicator_customizations">Dot indicator customizations.</string>
+    <string name="generate">Generate</string>
+    <string name="generate_one_time_password">Generate one time password</string>
+    <string name="password_length">Password length</string>
+    <string name="password_length_expl">The recommended password length should be more or equals to 8 characters</string>
+    <string name="shuffle_characters">Shuffle characters</string>
+    <string name="password_too_short">Password too short</string>
 
     <!--Languages-->
     <string name="english">English</string>

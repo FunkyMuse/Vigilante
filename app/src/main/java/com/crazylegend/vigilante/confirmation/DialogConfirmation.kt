@@ -18,7 +18,7 @@ import com.crazylegend.vigilante.databinding.DialogConfirmationBinding
 /**
  * Created by crazy on 7/16/20 to long live and prosper !
  */
-class DialogConfirmation : AbstractDialogFragment(R.layout.dialog_confirmation) {
+class DialogConfirmation : AbstractDialogFragment<DialogConfirmationBinding>(R.layout.dialog_confirmation) {
 
     companion object {
         const val RESULT_KEY = "fragmentResultConfirmation"

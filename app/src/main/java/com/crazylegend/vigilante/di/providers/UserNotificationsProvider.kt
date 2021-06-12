@@ -12,7 +12,6 @@ import com.crazylegend.kotlinextensions.collections.isNullOrEmpty
 import com.crazylegend.kotlinextensions.context.notificationManager
 import com.crazylegend.kotlinextensions.locale.LocaleHelper
 import com.crazylegend.vigilante.R
-import com.crazylegend.vigilante.di.providers.prefs.defaultPrefs.DefaultPreferencessProvider
 import com.crazylegend.vigilante.di.qualifiers.ServiceContext
 import dagger.hilt.android.scopes.ServiceScoped
 import javax.inject.Inject
@@ -21,9 +20,7 @@ import javax.inject.Inject
  * Created by crazy on 11/8/20 to long live and prosper !
  */
 @ServiceScoped
-class UserNotificationsProvider @Inject constructor(@ServiceContext private val context: Context,
-                                                    private val prefsProvider: DefaultPreferencessProvider
-) {
+class UserNotificationsProvider @Inject constructor(@ServiceContext private val context: Context) {
 
 
     /**

@@ -51,7 +51,6 @@ class CameraPreferenceFragment : PreferenceFragmentCompat() {
 
         bypassDND.booleanChangeListener { _, newValue ->
             prefsProvider.updateDNDValue(newValue)
-
         }
 
         dotSwitch.booleanChangeListener { _, newValue ->

@@ -69,7 +69,6 @@
             app:popExitAnim="@anim/fade_out" />
 
 
-
         <action
             android:id="@+id/destination_confirmation"
             app:destination="@id/dialog_confirmation">
@@ -96,6 +95,10 @@
 
         </action>
 
+        <action
+            android:id="@+id/destination_otp"
+            app:destination="@id/oneTimePasswordDialog" />
+
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -103,18 +106,18 @@
         android:label="">
         <action
             android:id="@+id/openMicPrefs"
+            app:destination="@id/microphonePreferenceFragment"
             app:enterAnim="@anim/scale"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/scale"
-            app:popExitAnim="@anim/fade_out"
-            app:destination="@id/microphonePreferenceFragment" />
+            app:popExitAnim="@anim/fade_out" />
         <action
             android:id="@+id/openCameraPrefs"
+            app:destination="@id/cameraPreferenceFragment"
             app:enterAnim="@anim/scale"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/scale"
-            app:popExitAnim="@anim/fade_out"
-            app:destination="@id/cameraPreferenceFragment" />
+            app:popExitAnim="@anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/crashFragment"
@@ -281,5 +284,9 @@
             app:popEnterAnim="@anim/enter_from_right"
             app:popExitAnim="@anim/exit_to_right" />
     </fragment>
+    <dialog
+        android:id="@+id/oneTimePasswordDialog"
+        android:name="com.crazylegend.vigilante.otp.OneTimePasswordDialog"
+        android:label="" />
 
 </navigation>

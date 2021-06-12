@@ -3,6 +3,7 @@ package com.crazylegend.vigilante.home
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.crazylegend.crashyreporter.CrashyReporter
 import com.crazylegend.kotlinextensions.fragments.shortToast
@@ -94,7 +95,8 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
             }
         }
 
-        binding.customizations.setOnClickListenerCooldown {
+        binding.oneTimePasswordGenerator.setOnClickListenerCooldown {
+            findNavController().navigate(HomeFragmentDirections.destinationOtp())
         }
 
         binding.crashes.setOnClickListenerCooldown {

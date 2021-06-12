@@ -2,6 +2,7 @@ package com.crazylegend.vigilante.di.modules
 
 import android.content.Context
 import androidx.work.WorkManager
+import com.crazylegend.kotlinextensions.toaster.Toaster
 import com.crazylegend.security.MagiskDetector
 import com.crazylegend.security.encryptedSharedPreferences
 import com.crazylegend.vigilante.di.qualifiers.EncryptedPrefs
@@ -20,10 +21,14 @@ import javax.inject.Singleton
 object AppModule {
 
     @Provides
+    @Singleton
+    fun toaster(@ApplicationContext context: Context) = Toaster(context)
+
+    @Provides
     @EncryptedPrefs
     @Singleton
     fun encryptedDefaultSharedPreferences(@ApplicationContext context: Context) =
-        context.encryptedSharedPreferences()
+            context.encryptedSharedPreferences()
 
     @Provides
     @Singleton

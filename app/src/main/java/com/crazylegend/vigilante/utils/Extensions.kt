@@ -3,11 +3,13 @@
 package com.crazylegend.vigilante.utils
 
 import android.content.Context
+import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.*
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
+import androidx.preference.PreferenceFragmentCompat
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.crazylegend.kotlinextensions.activity.newIntent
@@ -15,6 +17,8 @@ import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
 import com.crazylegend.kotlinextensions.services.isServiceRunning
 import com.crazylegend.kotlinextensions.services.startForegroundService
 import com.crazylegend.kotlinextensions.tryOrPrint
+import com.crazylegend.kotlinextensions.views.dimen
+import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.database.migrations.CameraAndMicRemovalMigration
 import com.crazylegend.vigilante.service.VigilanteService
 import net.sqlcipher.database.SQLiteDatabase
@@ -80,4 +84,11 @@ fun Fragment.goToScreen(directions: NavDirections) {
 
 inline fun Fragment.uiAction(crossinline action: () -> Unit) {
     viewCoroutineScope.launchWhenResumed { action() }
+}
+
+fun PreferenceFragmentCompat.addSpacingForPreferenceBackButton() {
+    listView.apply {
+        clipToPadding = false
+        updatePadding(bottom = dimen(R.dimen.padding_bottom_scroll).toInt())
+    }
 }

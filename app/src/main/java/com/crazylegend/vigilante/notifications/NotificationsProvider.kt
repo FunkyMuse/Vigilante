@@ -10,7 +10,7 @@ import com.crazylegend.kotlinextensions.currentTimeMillis
 import com.crazylegend.kotlinextensions.tryOrElse
 import com.crazylegend.vigilante.BuildConfig
 import com.crazylegend.vigilante.contracts.service.ServiceManagersCoroutines
-import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider
+import com.crazylegend.vigilante.di.providers.prefs.defaultPrefs.DefaultPreferencessProvider
 import com.crazylegend.vigilante.notifications.db.NotificationsModel
 import com.crazylegend.vigilante.notifications.db.NotificationsRepo
 import dagger.hilt.android.scopes.ServiceScoped

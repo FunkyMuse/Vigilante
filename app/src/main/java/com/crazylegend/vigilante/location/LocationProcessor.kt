@@ -60,8 +60,9 @@ class LocationProcessor @Inject constructor(@ServiceContext private val context:
     }
 
     override fun registerCallbacks() {
-        val filter = IntentFilter()
-        filter.addAction(LocationManager.PROVIDERS_CHANGED_ACTION)
+        val filter = IntentFilter().apply {
+            addAction(LocationManager.PROVIDERS_CHANGED_ACTION)
+        }
         context.registerReceiver(locationStatusReceiver, filter)
     }
 

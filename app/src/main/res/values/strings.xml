@@ -14,6 +14,9 @@
     <string name="notifications_history">Notifications history</string>
     <string name="lock_screen_history">Lock screen history</string>
     <string name="notifications_usage_expl">By enabling this option, you\'ll be receiving notifications when camera/microphone/etc.. is used, if/when possible.</string>
+    <string name="notifications_usage_expl_camera">By enabling this option, you\'ll be receiving notifications when camera is used, if/when possible.</string>
+    <string name="notifications_usage_expl_mic">By enabling this option, you\'ll be receiving notifications when microphone is used, if/when possible.</string>
+    <string name="notifications_usage_expl_location">By enabling this option, you\'ll be receiving notifications when location is enabled, if/when possible.</string>
     <string name="notifications_usage_title">Enable usage notifications</string>
     <string name="crash_report">Crash report #%1$d</string>
     <string name="no_crashes">There are no crashes recorded!</string>
@@ -148,7 +151,8 @@
     <string name="app_not_installed">Application is not installed</string>
     <string name="history_deletion">Delete history</string>
     <string name="history_deletion_expl">Delete entire history after 30 days to avoid clutter</string>
-
+    <string name="application">Application</string>
+    <string name="dot_indicator_customizations">Dot indicator customizations.</string>
 
     <!--Languages-->
     <string name="english">English</string>

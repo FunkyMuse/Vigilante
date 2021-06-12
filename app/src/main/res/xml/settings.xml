@@ -2,23 +2,33 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
+        app:title="@string/customizations"
+        app:iconSpaceReserved="false">
+
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="camera_pref_category"
+            app:title="@string/camera_title" />
+
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="mic_pref_category"
+            app:title="@string/microphone_title" />
+
+    </PreferenceCategory>
+
+
+    <PreferenceCategory
         app:iconSpaceReserved="false"
-        app:title="@string/customizations">
+        app:title="@string/application">
 
         <ListPreference
-            app:iconSpaceReserved="false"
-            app:key="pref_language"
             app:defaultValue="en"
             app:entries="@array/language_entries"
             app:entryValues="@array/language_values"
-            app:title="@string/language_title" />
-
-        <SwitchPreferenceCompat
             app:iconSpaceReserved="false"
-            app:key="pref_dot"
-            app:defaultValue="true"
-            app:summary="@string/dot_usage_expl"
-            app:title="@string/dot_usage_title" />
+            app:key="pref_language"
+            app:title="@string/language_title" />
 
 
         <ListPreference
@@ -31,47 +41,28 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory
+
+    <SwitchPreferenceCompat
         app:iconSpaceReserved="false"
-        app:title="@string/notifications">
-
-        <SwitchPreferenceCompat
-            app:iconSpaceReserved="false"
-            app:defaultValue="true"
-            app:key="pref_notifications"
-            app:summary="@string/notifications_usage_expl"
-            app:title="@string/notifications_usage_title" />
-
-        <SwitchPreferenceCompat
-            app:iconSpaceReserved="false"
-            app:defaultValue="false"
-            app:key="pref_bypass_dnd"
-            app:summary="@string/bypass_dnd_expl"
-            app:title="@string/bypass_dnd_title" />
-
-        <SwitchPreferenceCompat
-            app:iconSpaceReserved="false"
-            app:key="pref_exclude_vigilante_from_notifications"
-            app:summary="@string/exclude_from_notifications_expl"
-            app:title="@string/exclude_from_notifications_title" />
-
-    </PreferenceCategory>
+        app:key="pref_exclude_vigilante_from_notifications"
+        app:summary="@string/exclude_from_notifications_expl"
+        app:title="@string/exclude_from_notifications_title" />
 
     <PreferenceCategory
         app:iconSpaceReserved="false"
         app:title="@string/security">
 
         <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
             app:key="pref_biometric_auth"
-            app:title="@string/biometric_auth_title"
             app:summary="@string/biometric_auth_expl"
-            app:iconSpaceReserved="false" />
+            app:title="@string/biometric_auth_title" />
 
         <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
             app:key="pref_delete_history"
-            app:title="@string/history_deletion"
             app:summary="@string/history_deletion_expl"
-            app:iconSpaceReserved="false" />
+            app:title="@string/history_deletion" />
 
     </PreferenceCategory>
 
@@ -82,8 +73,8 @@
         <Preference
             app:iconSpaceReserved="false"
             app:key="pref_license"
-            app:title="@string/license_title"
-            app:summary="@string/license" />
+            app:summary="@string/license"
+            app:title="@string/license_title" />
 
         <Preference
             app:iconSpaceReserved="false"

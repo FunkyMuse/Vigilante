@@ -1,8 +1,8 @@
 package com.crazylegend.vigilante.di.providers.prefs
 
 import android.graphics.Color
-import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider.Companion.DEFAULT_DOT_COLOR
-import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider.Companion.DEFAULT_DOT_SIZE
+import com.crazylegend.vigilante.di.providers.prefs.customization.CustomizationPrefs.Companion.DEFAULT_DOT_COLOR
+import com.crazylegend.vigilante.di.providers.prefs.customization.CustomizationPrefs.Companion.DEFAULT_DOT_SIZE
 import com.crazylegend.vigilante.utils.toggleValue
 import org.hamcrest.CoreMatchers.instanceOf
 import org.junit.Assert.assertEquals

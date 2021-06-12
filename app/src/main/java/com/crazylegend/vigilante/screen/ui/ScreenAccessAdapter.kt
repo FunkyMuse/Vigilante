@@ -1,7 +1,7 @@
 package com.crazylegend.vigilante.screen.ui
 
 import com.crazylegend.vigilante.databinding.ItemviewLogBinding
-import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider
+import com.crazylegend.vigilante.di.providers.prefs.defaultPrefs.DefaultPreferencessProvider
 import com.crazylegend.vigilante.paging.AbstractPagingAdapter
 import com.crazylegend.vigilante.screen.db.ScreenModel
 import com.crazylegend.vigilante.utils.LogViewHolder

@@ -68,13 +68,7 @@
             app:popEnterAnim="@anim/scale"
             app:popExitAnim="@anim/fade_out" />
 
-        <action
-            android:id="@+id/destination_customization"
-            app:destination="@id/customizationFragment"
-            app:enterAnim="@anim/enter_from_right"
-            app:exitAnim="@anim/exit_to_right"
-            app:popEnterAnim="@anim/enter_from_right"
-            app:popExitAnim="@anim/exit_to_right" />
+
 
         <action
             android:id="@+id/destination_confirmation"
@@ -106,7 +100,22 @@
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.crazylegend.vigilante.settings.SettingsFragment"
-        android:label="" />
+        android:label="">
+        <action
+            android:id="@+id/openMicPrefs"
+            app:enterAnim="@anim/scale"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/scale"
+            app:popExitAnim="@anim/fade_out"
+            app:destination="@id/microphonePreferenceFragment" />
+        <action
+            android:id="@+id/openCameraPrefs"
+            app:enterAnim="@anim/scale"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/scale"
+            app:popExitAnim="@anim/fade_out"
+            app:destination="@id/cameraPreferenceFragment" />
+    </fragment>
     <fragment
         android:id="@+id/crashFragment"
         android:name="com.crazylegend.vigilante.crashes.CrashFragment"
@@ -247,6 +256,30 @@
         <argument
             android:name="position"
             app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/microphonePreferenceFragment"
+        android:name="com.crazylegend.vigilante.di.providers.prefs.mic.MicrophonePreferenceFragment"
+        android:label="@string/microphone_title">
+        <action
+            android:id="@+id/destination_customization"
+            app:destination="@id/customizationFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_right"
+            app:popEnterAnim="@anim/enter_from_right"
+            app:popExitAnim="@anim/exit_to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/cameraPreferenceFragment"
+        android:name="com.crazylegend.vigilante.di.providers.prefs.camera.CameraPreferenceFragment"
+        android:label="@string/camera_title">
+        <action
+            android:id="@+id/destination_customization"
+            app:destination="@id/customizationFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_right"
+            app:popEnterAnim="@anim/enter_from_right"
+            app:popExitAnim="@anim/exit_to_right" />
     </fragment>
 
 </navigation>

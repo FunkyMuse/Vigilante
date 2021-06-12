@@ -17,7 +17,10 @@ import com.crazylegend.kotlinextensions.views.*
 import com.crazylegend.vigilante.camera.CameraProcessor
 import com.crazylegend.vigilante.databinding.ServiceLayoutDotBinding
 import com.crazylegend.vigilante.di.providers.BroadcastProvider
-import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider
+import com.crazylegend.vigilante.di.providers.prefs.camera.CameraPrefs
+import com.crazylegend.vigilante.di.providers.prefs.customization.CustomizationPrefs
+import com.crazylegend.vigilante.di.providers.prefs.defaultPrefs.DefaultPreferencessProvider
+import com.crazylegend.vigilante.di.providers.prefs.mic.MicrophonePrefs
 import com.crazylegend.vigilante.location.LocationProcessor
 import com.crazylegend.vigilante.microphone.MicrophoneProcessor
 import com.crazylegend.vigilante.notifications.NotificationsProvider
@@ -63,14 +66,23 @@ class VigilanteService : AccessibilityService() {
     @Inject
     lateinit var prefsProvider: DefaultPreferencessProvider
 
+    @Inject
+    lateinit var microphonePrefs: MicrophonePrefs
+
+    @Inject
+    lateinit var cameraPrefs: CameraPrefs
+
+    @Inject
+    lateinit var customizationPrefs: CustomizationPrefs
+
     private lateinit var cameraParams: WindowManager.LayoutParams
     private lateinit var cameraBinding: ServiceLayoutDotBinding
 
     private lateinit var micParams: WindowManager.LayoutParams
     private lateinit var micBinding: ServiceLayoutDotBinding
 
-    private val layoutCameraPositionPref get() = prefsProvider.getCameraPositionPref
-    private val layoutMicPositionPref get() = prefsProvider.getMicPositionPref
+    private val layoutCameraPositionPref get() = cameraPrefs.getCameraPositionPref
+    private val layoutMicPositionPref get() = microphonePrefs.getMicPositionPref
 
     @SuppressLint("MissingPermission")
     override fun onServiceConnected() {
@@ -140,8 +152,8 @@ class VigilanteService : AccessibilityService() {
     }
 
     private fun setupMicLayout() {
-        if (prefsProvider.isDotEnabled) {
-            micParams = initParams(prefsProvider.getLayoutMicPositionPref)
+        if (microphonePrefs.isDotEnabled) {
+            micParams = initParams(microphonePrefs.getLayoutMicPositionPref)
             micBinding = ServiceLayoutDotBinding.inflate(LayoutInflater.from(this))
             updateMicPrefs()
             addLayout(micBinding.root, micParams)
@@ -245,26 +257,26 @@ class VigilanteService : AccessibilityService() {
     private fun updateMicPrefs() {
         if (::micBinding.isInitialized)
             updatePrefs(
-                micBinding,
-                prefsProvider.getMicSizePref,
-                prefsProvider.getMicColorPref,
-                prefsProvider.getLayoutMicPositionPref,
-                micParams,
-                prefsProvider.getMicSpacing.dp,
-                prefsProvider.getMicPositionPref
+                    micBinding,
+                    microphonePrefs.getMicSizePref,
+                    microphonePrefs.getMicColorPref,
+                    microphonePrefs.getLayoutMicPositionPref,
+                    micParams,
+                    microphonePrefs.getMicSpacing.dp,
+                    microphonePrefs.getMicPositionPref
             )
     }
 
     private fun updateCameraPrefs() {
         if (::cameraBinding.isInitialized)
             updatePrefs(
-                cameraBinding,
-                prefsProvider.getCameraSizePref,
-                prefsProvider.getCameraColorPref,
-                prefsProvider.getLayoutCameraPositionPref,
-                cameraParams,
-                prefsProvider.getCameraSpacing.dp,
-                prefsProvider.getCameraPositionPref
+                    cameraBinding,
+                    cameraPrefs.getCameraSizePref,
+                    cameraPrefs.getCameraColorPref,
+                    cameraPrefs.getLayoutCameraPositionPref,
+                    cameraParams,
+                    cameraPrefs.getCameraSpacing.dp,
+                    cameraPrefs.getCameraPositionPref
             )
     }
 
@@ -340,8 +352,8 @@ class VigilanteService : AccessibilityService() {
     }
 
     private fun setupCameraLayout() {
-        if (prefsProvider.isDotEnabled) {
-            cameraParams = initParams(prefsProvider.getLayoutCameraPositionPref)
+        if (cameraPrefs.isDotEnabled) {
+            cameraParams = initParams(cameraPrefs.getLayoutCameraPositionPref)
             cameraBinding = ServiceLayoutDotBinding.inflate(LayoutInflater.from(this))
             updateCameraPrefs()
             addLayout(cameraBinding.root, cameraParams)

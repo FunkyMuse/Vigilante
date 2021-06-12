@@ -19,8 +19,10 @@ import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
 import com.crazylegend.vigilante.confirmation.DialogConfirmation
 import com.crazylegend.vigilante.databinding.FragmentCustomizationBinding
-import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider
-import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider.Companion.DEFAULT_SPACING
+import com.crazylegend.vigilante.di.providers.prefs.camera.CameraPrefs
+import com.crazylegend.vigilante.di.providers.prefs.customization.CustomizationPrefs
+import com.crazylegend.vigilante.di.providers.prefs.customization.CustomizationPrefs.Companion.DEFAULT_SPACING
+import com.crazylegend.vigilante.di.providers.prefs.mic.MicrophonePrefs
 import com.crazylegend.vigilante.home.HomeFragmentDirections
 import com.crazylegend.vigilante.service.VigilanteService
 import com.crazylegend.vigilante.settings.CAMERA_CUSTOMIZATION_BASE_PREF
@@ -57,16 +59,22 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
     }
 
     @Inject
-    lateinit var prefsProvider: DefaultPreferencessProvider
+    lateinit var cameraPrefs: CameraPrefs
+
+    @Inject
+    lateinit var microphonePrefs: MicrophonePrefs
+
+    @Inject
+    lateinit var customizationPrefs: CustomizationPrefs
 
     override val binding by viewBinding(FragmentCustomizationBinding::bind)
 
-    private val defaultDotColor get() = if (prefBaseName == CAMERA_CUSTOMIZATION_BASE_PREF) prefsProvider.getCameraColorPref else prefsProvider.getMicColorPref
-    private val defaultNotificationLEDColor get() = if (prefBaseName == CAMERA_CUSTOMIZATION_BASE_PREF) prefsProvider.getCameraColorPref else prefsProvider.getMicColorPref
-    private val defaultSize get() = if (prefBaseName == CAMERA_CUSTOMIZATION_BASE_PREF) prefsProvider.getCameraSizePref else prefsProvider.getMicSizePref
-    private val defaultLayoutPosition get() = if (prefBaseName == CAMERA_CUSTOMIZATION_BASE_PREF) prefsProvider.getCameraPositionPref else prefsProvider.getMicPositionPref
-    private val defaultVibrationPosition get() = if (prefBaseName == CAMERA_CUSTOMIZATION_BASE_PREF) prefsProvider.getCameraVibrationPositionPref else prefsProvider.getMicVibrationPositionPref
-    private val spacing get() = if (prefBaseName == CAMERA_CUSTOMIZATION_BASE_PREF) prefsProvider.getCameraSpacing else prefsProvider.getMicSpacing
+    private val defaultDotColor get() = if (prefBaseName == CAMERA_CUSTOMIZATION_BASE_PREF) cameraPrefs.getCameraColorPref else microphonePrefs.getMicColorPref
+    private val defaultNotificationLEDColor get() = if (prefBaseName == CAMERA_CUSTOMIZATION_BASE_PREF) cameraPrefs.getCameraColorPref else microphonePrefs.getMicColorPref
+    private val defaultSize get() = if (prefBaseName == CAMERA_CUSTOMIZATION_BASE_PREF) cameraPrefs.getCameraSizePref else microphonePrefs.getMicSizePref
+    private val defaultLayoutPosition get() = if (prefBaseName == CAMERA_CUSTOMIZATION_BASE_PREF) cameraPrefs.getCameraPositionPref else microphonePrefs.getMicPositionPref
+    private val defaultVibrationPosition get() = if (prefBaseName == CAMERA_CUSTOMIZATION_BASE_PREF) cameraPrefs.getCameraVibrationPositionPref else microphonePrefs.getMicVibrationPositionPref
+    private val spacing get() = if (prefBaseName == CAMERA_CUSTOMIZATION_BASE_PREF) cameraPrefs.getCameraSpacing else microphonePrefs.getMicSpacing
     private val title get() = if (prefBaseName == CAMERA_CUSTOMIZATION_BASE_PREF) getString(R.string.camera_title) else getString(R.string.microphone_title)
 
     private var pickedDotColor: Int? = null
@@ -115,7 +123,7 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
         updatePickedSize(pickedSize)
         binding.sizeSlider.addOnChangeListener { _, value, _ ->
             updatePreviewWidthAndHeight(value)
-            prefsProvider.saveSizePref(prefBaseName + SIZE_PREF_ADDITION, value)
+            customizationPrefs.saveSizePref(prefBaseName + SIZE_PREF_ADDITION, value)
         }
         //endregion
 
@@ -136,7 +144,7 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
         }
         binding.vibrationExplanation.setOnClickListenerCooldown {
             val vibrationPosition = pickedVibrationPosition ?: return@setOnClickListenerCooldown
-            prefsProvider.getVibrationEffect(vibrationPosition)?.let { longs -> requireContext().vibrate(longs, -1) }
+            customizationPrefs.getVibrationEffect(vibrationPosition)?.let { longs -> requireContext().vibrate(longs, -1) }
         }
         //endregion
 
@@ -159,12 +167,12 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
         fragmentBooleanResult(DialogConfirmation.RESULT_KEY, DialogConfirmation.DEFAULT_REQ_KEY, onDenied = {
             findNavController().navigateUp()
         }, onGranted = {
-            prefsProvider.saveSizePref(prefBaseName + SIZE_PREF_ADDITION, binding.sizeSlider.value)
-            pickedDotColor?.let { prefsProvider.saveColorPref(prefBaseName + COLOR_DOT_PREF_ADDITION, it) }
-            pickedNotificationLEDColor?.let { prefsProvider.saveNotificationColorPref(prefBaseName + COLOR_NOTIFICATION_PREF_ADDITION, it) }
-            pickedLayoutPosition?.let { prefsProvider.savePositionPref(prefBaseName + POSITION_PREF_ADDITION, it) }
-            pickedVibrationPosition?.let { prefsProvider.savePositionPref(prefBaseName + VIBRATION_PREF_ADDITION, it) }
-            binding.inputSpacing.textString.toIntOrNull()?.let { prefsProvider.saveSpacing(prefBaseName, it) }
+            customizationPrefs.saveSizePref(prefBaseName + SIZE_PREF_ADDITION, binding.sizeSlider.value)
+            pickedDotColor?.let { customizationPrefs.saveColorPref(prefBaseName + COLOR_DOT_PREF_ADDITION, it) }
+            pickedNotificationLEDColor?.let { customizationPrefs.saveNotificationColorPref(prefBaseName + COLOR_NOTIFICATION_PREF_ADDITION, it) }
+            pickedLayoutPosition?.let { customizationPrefs.savePositionPref(prefBaseName + POSITION_PREF_ADDITION, it) }
+            pickedVibrationPosition?.let { customizationPrefs.savePositionPref(prefBaseName + VIBRATION_PREF_ADDITION, it) }
+            binding.inputSpacing.textString.toIntOrNull()?.let { customizationPrefs.saveSpacing(prefBaseName, it) }
             VigilanteService.serviceParamsListener?.updateForBasePref(prefBaseName)
             goBack()
         })

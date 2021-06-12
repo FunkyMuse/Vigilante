@@ -12,7 +12,7 @@ import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractBottomSheet
 import com.crazylegend.vigilante.databinding.DialogPermissionDetailsBinding
-import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider
+import com.crazylegend.vigilante.di.providers.prefs.defaultPrefs.DefaultPreferencessProvider
 import com.crazylegend.vigilante.utils.assistedViewModel
 import com.crazylegend.vigilante.utils.onStartedRepeatingAction
 import dagger.hilt.android.AndroidEntryPoint

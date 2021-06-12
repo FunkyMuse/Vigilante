@@ -95,7 +95,7 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
         }
 
         binding.customizations.setOnClickListenerCooldown {
-
+            //replace with something else
         }
 
         binding.crashes.setOnClickListenerCooldown {

@@ -63,6 +63,9 @@ class CustomizationPrefs @Inject constructor(
 
     4 is bottom right corner
     5 is bottom left corner
+
+    6 is top center horizontal
+    7 is bottom center horizontal
      * @return Int
      */
     override fun getPositionPref(basePref: String) =
@@ -78,7 +81,6 @@ class CustomizationPrefs @Inject constructor(
     override fun saveSpacing(basePref: String, spacing: Int) =
             defaultPrefs.putInt(basePref + CustomizationFragment.POSITION_SPACING_ADDITION, spacing)
 
-
     override fun getLayoutPosition(pref: Int) = when (pref) {
         0 -> Gravity.TOP or Gravity.END
         1 -> Gravity.TOP or Gravity.START
@@ -86,6 +88,8 @@ class CustomizationPrefs @Inject constructor(
         3 -> Gravity.CENTER_VERTICAL or Gravity.START
         4 -> Gravity.BOTTOM or Gravity.END
         5 -> Gravity.BOTTOM or Gravity.START
+        6 -> Gravity.TOP or Gravity.CENTER_HORIZONTAL
+        7 -> Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL
         else -> Gravity.TOP or Gravity.END
     }
 

@@ -6,6 +6,10 @@ package com.crazylegend.vigilante.service
 interface ServiceLayoutListener {
     fun showCamera()
     fun hideCamera()
+
     fun showMic()
     fun hideMic()
+
+    fun showLocation()
+    fun hideLocation()
 }

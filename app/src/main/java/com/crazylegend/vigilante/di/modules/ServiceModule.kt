@@ -18,6 +18,6 @@ object ServiceModule {
 
     @Provides
     @ServiceContext
-    fun serviceContext(service: Service): Context = service.applicationContext
+    fun serviceContext(service: Service): Context = service
 
 }

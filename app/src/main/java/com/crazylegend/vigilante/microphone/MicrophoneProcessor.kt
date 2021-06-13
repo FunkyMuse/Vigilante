@@ -10,7 +10,6 @@ import com.crazylegend.kotlinextensions.ifTrue
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.contracts.service.ServiceManagersCoroutines
 import com.crazylegend.vigilante.di.providers.UserNotificationsProvider
-import com.crazylegend.vigilante.di.providers.prefs.defaultPrefs.DefaultPreferencessProvider
 import com.crazylegend.vigilante.di.providers.prefs.mic.MicrophonePrefs
 import com.crazylegend.vigilante.di.qualifiers.ServiceContext
 import com.crazylegend.vigilante.service.VigilanteService
@@ -24,8 +23,7 @@ import javax.inject.Inject
 class MicrophoneProcessor @Inject constructor(
         @ServiceContext private val context: Context,
         private val userNotificationsProvider: UserNotificationsProvider,
-        private val microphonePrefs: MicrophonePrefs,
-        private val prefsProvider: DefaultPreferencessProvider
+        private val microphonePrefs: MicrophonePrefs
 ) : ServiceManagersCoroutines {
 
     private companion object {

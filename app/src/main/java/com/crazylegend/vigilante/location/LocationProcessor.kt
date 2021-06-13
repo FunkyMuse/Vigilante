@@ -8,9 +8,14 @@ import android.location.LocationManager
 import androidx.lifecycle.ServiceLifecycleDispatcher
 import com.crazylegend.kotlinextensions.context.deviceNetworkType
 import com.crazylegend.kotlinextensions.context.locationManager
-import com.crazylegend.kotlinextensions.log.debug
+import com.crazylegend.kotlinextensions.context.notificationManager
+import com.crazylegend.kotlinextensions.ifTrue
+import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.contracts.service.ServiceManagersCoroutines
+import com.crazylegend.vigilante.di.providers.UserNotificationsProvider
+import com.crazylegend.vigilante.di.providers.prefs.location.LocationPrefs
 import com.crazylegend.vigilante.di.qualifiers.ServiceContext
+import com.crazylegend.vigilante.service.VigilanteService
 import dagger.hilt.android.scopes.ServiceScoped
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -20,12 +25,17 @@ import javax.inject.Inject
  * Created by funkymuse on 6/10/21 to long live and prosper !
  */
 @ServiceScoped
-class LocationProcessor @Inject constructor(@ServiceContext private val context: Context) :
-    ServiceManagersCoroutines {
+class LocationProcessor @Inject constructor(
+        @ServiceContext private val context: Context,
+        private val userNotificationsProvider: UserNotificationsProvider,
+        private val locationPrefs: LocationPrefs) : ServiceManagersCoroutines {
+
+    private companion object {
+        private const val locationNotificationID = 420
+    }
 
     private val locationStatusData = MutableStateFlow(false)
-    private val locationStatus =
-        locationStatusData.asStateFlow().shareIn(scope, SharingStarted.WhileSubscribed())
+    private val locationStatus = locationStatusData.asStateFlow().shareIn(scope, SharingStarted.WhileSubscribed())
 
     override val serviceLifecycleDispatcher = ServiceLifecycleDispatcher(this)
 
@@ -36,7 +46,13 @@ class LocationProcessor @Inject constructor(@ServiceContext private val context:
 
         scope.launch {
             locationStatus.collectLatest {
-                debug { "LOCATION STATUS $it" }
+                if (it) {
+                    setLocationIsUsed()
+                    VigilanteService.serviceLayoutListener?.showLocation()
+                } else {
+                    stopNotificationIfUserEnabled()
+                    VigilanteService.serviceLayoutListener?.hideLocation()
+                }
             }
         }
     }
@@ -49,14 +65,29 @@ class LocationProcessor @Inject constructor(@ServiceContext private val context:
                 if (LocationManager.PROVIDERS_CHANGED_ACTION == intent.action) {
                     val locationManager = context.locationManager ?: return
                     val isGpsEnabled =
-                        locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+                            locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                     val isNetworkEnabled =
-                        locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+                            locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
                     locationStatusData.value = isGpsEnabled || isNetworkEnabled
                     context.deviceNetworkType()
                 }
             }
         }
+    }
+
+    private fun sendNotificationIfUserEnabled() {
+        locationPrefs.areNotificationsEnabled.ifTrue {
+            userNotificationsProvider.buildUsageNotification(locationNotificationID, R.string.location_being_used, locationPrefs.getLocationNotificationLEDColorPref,
+                    locationPrefs.getLocationVibrationEffectPref, locationPrefs.isBypassDNDEnabled)
+        }
+    }
+
+    private fun stopNotificationIfUserEnabled() {
+        context.notificationManager?.cancel(locationNotificationID)
+    }
+
+    private fun setLocationIsUsed() {
+        sendNotificationIfUserEnabled()
     }
 
     override fun registerCallbacks() {

@@ -1,12 +1,23 @@
 package com.crazylegend.vigilante.di.providers.prefs
 
-import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider.Companion.DEFAULT_DOT_COLOR
-import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider.Companion.DEFAULT_DOT_SIZE
+import com.crazylegend.vigilante.di.providers.prefs.camera.CameraPreferences
+import com.crazylegend.vigilante.di.providers.prefs.contracts.DotContract
+import com.crazylegend.vigilante.di.providers.prefs.contracts.NotificationsContract
+import com.crazylegend.vigilante.di.providers.prefs.customization.CustomizationPrefs.Companion.DEFAULT_DOT_COLOR
+import com.crazylegend.vigilante.di.providers.prefs.customization.CustomizationPrefs.Companion.DEFAULT_DOT_SIZE
+import com.crazylegend.vigilante.di.providers.prefs.defaultPrefs.DefaultPreferences
+import com.crazylegend.vigilante.di.providers.prefs.mic.MicrophonePreferences
 
 /**
  * Created by funkymuse on 3/23/21 to long live and prosper !
  */
-class FakePrefsProvider : DefaultPreferences {
+class FakePrefsProvider : DefaultPreferences, DotContract, NotificationsContract, CameraPreferences,
+        MicrophonePreferences {
+
+    override fun scheduleDeletionHistory() {}
+
+    override fun cancelDeletionHistory() {}
+
     override fun updateDateFormat(value: String) {
         getDateFormat = value
     }
@@ -40,12 +51,12 @@ class FakePrefsProvider : DefaultPreferences {
         getCameraColorPref = color
     }
 
-    fun setCameraSize(size:Float){
+    fun setCameraSize(size: Float) {
         getCameraSizePref = size
     }
 
     override var getCameraColorPref: Int = DEFAULT_DOT_COLOR
-    override var getCameraSizePref: Float =DEFAULT_DOT_SIZE
+    override var getCameraSizePref: Float = DEFAULT_DOT_SIZE
     override var getCameraPositionPref: Int = 0
     override var getLayoutCameraPositionPref: Int = 0
     override var getCameraNotificationLEDColorPref: Int = 0

@@ -8,7 +8,8 @@
         <item>@string/center_left_side</item>
         <item>@string/bottom_right_corner</item>
         <item>@string/bottom_left_corner</item>
+        <item>@string/top_center_horizontal</item>
+        <item>@string/bottom_center_horizontal</item>
     </string-array>
-
 
 </resources>

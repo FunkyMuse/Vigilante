@@ -14,6 +14,9 @@
     <string name="notifications_history">Notifications history</string>
     <string name="lock_screen_history">Lock screen history</string>
     <string name="notifications_usage_expl">By enabling this option, you\'ll be receiving notifications when camera/microphone/etc.. is used, if/when possible.</string>
+    <string name="notifications_usage_expl_camera">By enabling this option, you\'ll be receiving notifications when camera is used, if/when possible.</string>
+    <string name="notifications_usage_expl_mic">By enabling this option, you\'ll be receiving notifications when microphone is used, if/when possible.</string>
+    <string name="notifications_usage_expl_location">By enabling this option, you\'ll be receiving notifications when location is enabled, if/when possible.</string>
     <string name="notifications_usage_title">Enable usage notifications</string>
     <string name="crash_report">Crash report #%1$d</string>
     <string name="no_crashes">There are no crashes recorded!</string>
@@ -67,6 +70,7 @@
     <string name="channel_name">Vigilante usage notifications</string>
     <string name="channel_description">Notifications are sent when privacy usage happens</string>
     <string name="mic_being_used">Your microphone is being used!</string>
+    <string name="location_being_used">Your location is enabled, could be that it\'s being used!</string>
     <string name="cam_being_used">Your camera is being used!</string>
     <string name="usage_title">Usage detected</string>
     <string name="dot_usage_title">Show dot usage</string>
@@ -89,6 +93,8 @@
     <string name="center_left_side">Center left side</string>
     <string name="bottom_right_corner">Bottom right corner</string>
     <string name="bottom_left_corner">Bottom left corner</string>
+    <string name="top_center_horizontal">Center top</string>
+    <string name="bottom_center_horizontal">Center bottom</string>
     <string name="dot_position">Dot position on screen</string>
     <string name="cancel">Cancel</string>
     <string name="discard_changes">Discard</string>
@@ -148,7 +154,15 @@
     <string name="app_not_installed">Application is not installed</string>
     <string name="history_deletion">Delete history</string>
     <string name="history_deletion_expl">Delete entire history after 30 days to avoid clutter</string>
-
+    <string name="application">Application</string>
+    <string name="dot_indicator_customizations">Dot indicator customizations.</string>
+    <string name="generate">Generate</string>
+    <string name="generate_one_time_password">Generate one time password</string>
+    <string name="password_length">Password length</string>
+    <string name="password_length_expl">The recommended password length should be more or equals to 8 characters</string>
+    <string name="shuffle_characters">Shuffle characters</string>
+    <string name="password_too_short">Password too short</string>
+    <string name="location_title">Location</string>
 
     <!--Languages-->
     <string name="english">English</string>

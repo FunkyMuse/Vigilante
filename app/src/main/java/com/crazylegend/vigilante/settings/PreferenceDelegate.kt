@@ -16,4 +16,4 @@ class PreferenceDelegate<T : Preference>(private val key: String) :
     }
 }
 
-fun <T : Preference> getPreference(key: String) = PreferenceDelegate<T>(key)
+fun <T : Preference> preference(key: String) = PreferenceDelegate<T>(key)

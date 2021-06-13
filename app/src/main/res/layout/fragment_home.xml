@@ -75,7 +75,7 @@
             </FrameLayout>
 
             <FrameLayout
-                android:id="@+id/customizations"
+                android:id="@+id/oneTimePasswordGenerator"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@drawable/half_oval"
@@ -88,7 +88,7 @@
                     android:layout_height="30dp"
                     android:layout_gravity="center"
                     android:rotation="-90"
-                    app:srcCompat="@drawable/settings_adjsut" />
+                    app:srcCompat="@drawable/ic_password" />
 
             </FrameLayout>
 

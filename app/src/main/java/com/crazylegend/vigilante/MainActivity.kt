@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.findNavController
 import com.crazylegend.kotlinextensions.locale.LocaleHelper
 import com.crazylegend.kotlinextensions.misc.requestBatteryOptimizations
 import com.crazylegend.kotlinextensions.power.isIgnoringBatteryOptimization
@@ -25,26 +25,37 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun applyOverrideConfiguration(overrideConfiguration: Configuration?) {
-        super.applyOverrideConfiguration(overrideConfiguration?.let { LocaleHelper.updateConfigurationIfSupported(this, it, DEFAULT_LANGUAGE) })
+        super.applyOverrideConfiguration(overrideConfiguration?.let {
+            LocaleHelper.updateConfigurationIfSupported(this, it, DEFAULT_LANGUAGE)
+        })
     }
 
     private val binding by viewBinding(ActivityMainBinding::inflate)
 
     private val navController: NavController
         get() {
-            val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostContainer) as NavHostFragment
-            return navHostFragment.navController
+            return binding.navHostContainer.findNavController()
         }
 
     override fun onSupportNavigateUp() = navController.navigateUp()
 
     private val showBackButtonList
         get() = listOf(
-                R.id.settingsFragment, R.id.crashFragment,
-                R.id.appsUsageFragment, R.id.screenAccessFragment,
-                R.id.listFilterBottomSheet, R.id.notificationsFragment, R.id.headsetFragment,
-                R.id.permissionRequestFragment, R.id.permissionDetailsBottomSheet, R.id.notificationDetailsFragment,
-                R.id.powerFragment, R.id.powerDetailsDialog
+                R.id.settingsFragment,
+                R.id.cameraPreferenceFragment,
+                R.id.microphonePreferenceFragment,
+                R.id.locationPreferenceFragment,
+                R.id.crashFragment,
+                R.id.appsUsageFragment,
+                R.id.screenAccessFragment,
+                R.id.listFilterBottomSheet,
+                R.id.notificationsFragment,
+                R.id.headsetFragment,
+                R.id.permissionRequestFragment,
+                R.id.permissionDetailsBottomSheet,
+                R.id.notificationDetailsFragment,
+                R.id.powerFragment,
+            R.id.powerDetailsDialog
         )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,5 +75,7 @@ class MainActivity : AppCompatActivity() {
         binding.backButton.root.setOnClickListenerCooldown {
             navController.navigateUp()
         }
+
     }
+
 }

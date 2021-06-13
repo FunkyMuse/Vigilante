@@ -1,9 +1,8 @@
 package com.crazylegend.vigilante.settings
 
-import android.os.Build
 import android.os.Bundle
 import android.view.View
-import androidx.core.view.updatePadding
+import androidx.navigation.fragment.findNavController
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
@@ -18,11 +17,11 @@ import com.crazylegend.kotlinextensions.locale.LocaleHelper
 import com.crazylegend.kotlinextensions.preferences.booleanChangeListener
 import com.crazylegend.kotlinextensions.preferences.onClick
 import com.crazylegend.kotlinextensions.preferences.stringChangeListener
-import com.crazylegend.kotlinextensions.views.dimen
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.di.providers.AuthProvider
-import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider
+import com.crazylegend.vigilante.di.providers.prefs.defaultPrefs.DefaultPreferencessProvider
 import com.crazylegend.vigilante.utils.GITHUB_URL
+import com.crazylegend.vigilante.utils.addSpacingForPreferenceBackButton
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -39,18 +38,19 @@ class SettingsFragment : PreferenceFragmentCompat() {
     @Inject
     lateinit var authProvider: AuthProvider
 
-    private val notificationsSwitch by getPreference<SwitchPreferenceCompat>(NOTIFICATIONS_PREF_KEY)
-    private val version by getPreference<Preference>(VERSION_PREF_KEY)
-    private val dateFormat by getPreference<ListPreference>(DATE_PREF_KEY)
-    private val dotSwitch by getPreference<SwitchPreferenceCompat>(DOT_PREF_KEY)
-    private val bypassDND by getPreference<SwitchPreferenceCompat>(BYPASS_DND_PREF_KEY)
-    private val homePage by getPreference<Preference>(HOME_PAGE_PREF)
-    private val excludeVigilanteFromNotificationsSwitch by getPreference<SwitchPreferenceCompat>(
-        EXCLUDE_VIGILANTE_FROM_NOTIFICATIONS_PREF_KEY
+    private val version by preference<Preference>(VERSION_PREF_KEY)
+    private val dateFormat by preference<ListPreference>(DATE_PREF_KEY)
+    private val homePage by preference<Preference>(HOME_PAGE_PREF)
+    private val excludeVigilanteFromNotificationsSwitch by preference<SwitchPreferenceCompat>(
+            EXCLUDE_VIGILANTE_FROM_NOTIFICATIONS_PREF_KEY
     )
-    private val biometricAuth by getPreference<SwitchPreferenceCompat>(BIOMETRIC_AUTH_PREF_KEY)
-    private val language by getPreference<ListPreference>(LANG_PREF_KEY)
-    private val deleteHistory by getPreference<SwitchPreferenceCompat>(DELETE_HISTORY_PREF_KEY)
+    private val biometricAuth by preference<SwitchPreferenceCompat>(BIOMETRIC_AUTH_PREF_KEY)
+    private val language by preference<ListPreference>(LANG_PREF_KEY)
+    private val deleteHistory by preference<SwitchPreferenceCompat>(DELETE_HISTORY_PREF_KEY)
+
+    private val cameraCategory by preference<Preference>(PREF_CATEGORY_CAMERA)
+    private val micCategory by preference<Preference>(PREF_CATEGORY_MIC)
+    private val locationCategory by preference<Preference>(PREF_CATEGORY_LOCATION)
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.settings)
@@ -58,16 +58,12 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        listView.apply {
-            clipToPadding = false
-            updatePadding(bottom = dimen(R.dimen.padding_bottom_scroll).toInt())
-        }
+        addSpacingForPreferenceBackButton()
         version.summary = requireContext().packageVersionName
 
-        notificationsSwitch.booleanChangeListener { _, newValue ->
-            prefsProvider.updateNotificationsValue(newValue)
-            updateNotificationSwitch()
-        }
+        cameraCategory.onClick { findNavController().navigate(SettingsFragmentDirections.openCameraPrefs()) }
+        micCategory.onClick { findNavController().navigate(SettingsFragmentDirections.openMicPrefs()) }
+        locationCategory.onClick { findNavController().navigate(SettingsFragmentDirections.openLocationPrefs()) }
 
         deleteHistory.booleanChangeListener { _, newValue ->
             if (newValue) {
@@ -77,10 +73,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
             }
         }
 
-        bypassDND.booleanChangeListener { _, newValue ->
-            prefsProvider.updateDNDValue(newValue)
 
-        }
 
         language.stringChangeListener { _, newValue ->
             LocaleHelper.setLocale(requireContext(), newValue)
@@ -97,9 +90,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
             prefsProvider.setExcludeVigilanteFromNotificationsStatus(newValue)
         }
 
-        dotSwitch.booleanChangeListener { _, newValue ->
-            prefsProvider.setDotStatus(newValue)
-        }
+
 
         dateFormat.stringChangeListener { _, newValue ->
             prefsProvider.updateDateFormat(newValue)
@@ -110,20 +101,10 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     override fun onResume() {
         super.onResume()
-        updateNotificationSwitch()
         updateDateSummary()
         updateBiometricAuthAvailability()
-        updateDNDSummary()
     }
 
-    private fun updateDNDSummary() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            bypassDND.isEnabled = prefsProvider.areNotificationsEnabled
-        } else {
-            bypassDND.summary = getString(R.string.incompatible_os_version)
-            bypassDND.isEnabled = false
-        }
-    }
 
     private fun updateBiometricAuthAvailability() {
         val summary =
@@ -170,9 +151,5 @@ class SettingsFragment : PreferenceFragmentCompat() {
         dateFormat.summary = getString(R.string.current_date_format, prefsProvider.getDateFormat)
     }
 
-    private fun updateNotificationSwitch() {
-        notificationsSwitch.isChecked = prefsProvider.areNotificationsEnabled
-        updateDNDSummary()
-    }
 
 }

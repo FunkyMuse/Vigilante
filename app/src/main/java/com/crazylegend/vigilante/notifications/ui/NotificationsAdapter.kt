@@ -1,7 +1,7 @@
 package com.crazylegend.vigilante.notifications.ui
 
 import com.crazylegend.vigilante.databinding.ItemviewNotificationBinding
-import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider
+import com.crazylegend.vigilante.di.providers.prefs.defaultPrefs.DefaultPreferencessProvider
 import com.crazylegend.vigilante.notifications.db.NotificationsModel
 import com.crazylegend.vigilante.paging.AbstractPagingAdapter
 import dagger.hilt.android.scopes.FragmentScoped

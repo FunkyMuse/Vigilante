@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.addCallback
 import androidx.annotation.StringRes
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.crazylegend.crashyreporter.CrashyReporter
@@ -19,11 +20,10 @@ import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
 import com.crazylegend.vigilante.confirmation.DialogConfirmation
 import com.crazylegend.vigilante.databinding.FragmentCustomizationBinding
-import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider
-import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider.Companion.DEFAULT_SPACING
+import com.crazylegend.vigilante.di.providers.prefs.customization.CustomizationPrefs
+import com.crazylegend.vigilante.di.providers.prefs.customization.CustomizationPrefs.Companion.DEFAULT_SPACING
 import com.crazylegend.vigilante.home.HomeFragmentDirections
 import com.crazylegend.vigilante.service.VigilanteService
-import com.crazylegend.vigilante.settings.CAMERA_CUSTOMIZATION_BASE_PREF
 import com.crazylegend.vigilante.utils.goToScreen
 import com.crazylegend.vigilante.utils.uiAction
 import com.skydoves.colorpickerview.ColorEnvelope
@@ -57,17 +57,12 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
     }
 
     @Inject
-    lateinit var prefsProvider: DefaultPreferencessProvider
+    lateinit var customizationPrefs: CustomizationPrefs
 
     override val binding by viewBinding(FragmentCustomizationBinding::bind)
 
-    private val defaultDotColor get() = if (prefBaseName == CAMERA_CUSTOMIZATION_BASE_PREF) prefsProvider.getCameraColorPref else prefsProvider.getMicColorPref
-    private val defaultNotificationLEDColor get() = if (prefBaseName == CAMERA_CUSTOMIZATION_BASE_PREF) prefsProvider.getCameraColorPref else prefsProvider.getMicColorPref
-    private val defaultSize get() = if (prefBaseName == CAMERA_CUSTOMIZATION_BASE_PREF) prefsProvider.getCameraSizePref else prefsProvider.getMicSizePref
-    private val defaultLayoutPosition get() = if (prefBaseName == CAMERA_CUSTOMIZATION_BASE_PREF) prefsProvider.getCameraPositionPref else prefsProvider.getMicPositionPref
-    private val defaultVibrationPosition get() = if (prefBaseName == CAMERA_CUSTOMIZATION_BASE_PREF) prefsProvider.getCameraVibrationPositionPref else prefsProvider.getMicVibrationPositionPref
-    private val spacing get() = if (prefBaseName == CAMERA_CUSTOMIZATION_BASE_PREF) prefsProvider.getCameraSpacing else prefsProvider.getMicSpacing
-    private val title get() = if (prefBaseName == CAMERA_CUSTOMIZATION_BASE_PREF) getString(R.string.camera_title) else getString(R.string.microphone_title)
+
+    private val viewModel by viewModels<CustomizationViewModel>()
 
     private var pickedDotColor: Int? = null
     private var pickedNotificationLEDColor: Int? = null
@@ -93,14 +88,14 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
         }
 
         //region spacing
-        pickedSpacing = spacing
+        pickedSpacing = viewModel.spacing
         binding.inputSpacing.setTheText(pickedSpacing.toString())
-        binding.title.text = title
+        binding.title.text = getString(viewModel.title)
         //endregion
 
         //region color
-        pickedDotColor = defaultDotColor
-        pickedNotificationLEDColor = defaultNotificationLEDColor
+        pickedDotColor = viewModel.defaultDotColor
+        pickedNotificationLEDColor = viewModel.defaultNotificationLEDColor
         updatePreviewColor(pickedDotColor)
         binding.colorPick.setOnClickListenerCooldown {
             showColorPicker(requireContext(), R.string.pick_dot_color, COLOR_DOT_PREF_ADDITION, ::setDotColor)
@@ -111,16 +106,16 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
         //endregion
 
         //region size
-        pickedSize = defaultSize
+        pickedSize = viewModel.defaultSize
         updatePickedSize(pickedSize)
         binding.sizeSlider.addOnChangeListener { _, value, _ ->
             updatePreviewWidthAndHeight(value)
-            prefsProvider.saveSizePref(prefBaseName + SIZE_PREF_ADDITION, value)
+            customizationPrefs.saveSizePref(prefBaseName + SIZE_PREF_ADDITION, value)
         }
         //endregion
 
         //region layout
-        pickedLayoutPosition = defaultLayoutPosition
+        pickedLayoutPosition = viewModel.defaultLayoutPosition
         updateLayoutPosition(pickedLayoutPosition)
         binding.layoutPosition.onItemSelected { _, _, position, _ ->
             pickedLayoutPosition = position
@@ -128,7 +123,7 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
         //endregion
 
         //region vibration
-        pickedVibrationPosition = defaultVibrationPosition
+        pickedVibrationPosition = viewModel.defaultVibrationPosition
         updateVibrationPosition(pickedVibrationPosition)
 
         binding.vibration.onItemSelected { _, _, position, _ ->
@@ -136,7 +131,7 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
         }
         binding.vibrationExplanation.setOnClickListenerCooldown {
             val vibrationPosition = pickedVibrationPosition ?: return@setOnClickListenerCooldown
-            prefsProvider.getVibrationEffect(vibrationPosition)?.let { longs -> requireContext().vibrate(longs, -1) }
+            customizationPrefs.getVibrationEffect(vibrationPosition)?.let { longs -> requireContext().vibrate(longs, -1) }
         }
         //endregion
 
@@ -159,12 +154,12 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
         fragmentBooleanResult(DialogConfirmation.RESULT_KEY, DialogConfirmation.DEFAULT_REQ_KEY, onDenied = {
             findNavController().navigateUp()
         }, onGranted = {
-            prefsProvider.saveSizePref(prefBaseName + SIZE_PREF_ADDITION, binding.sizeSlider.value)
-            pickedDotColor?.let { prefsProvider.saveColorPref(prefBaseName + COLOR_DOT_PREF_ADDITION, it) }
-            pickedNotificationLEDColor?.let { prefsProvider.saveNotificationColorPref(prefBaseName + COLOR_NOTIFICATION_PREF_ADDITION, it) }
-            pickedLayoutPosition?.let { prefsProvider.savePositionPref(prefBaseName + POSITION_PREF_ADDITION, it) }
-            pickedVibrationPosition?.let { prefsProvider.savePositionPref(prefBaseName + VIBRATION_PREF_ADDITION, it) }
-            binding.inputSpacing.textString.toIntOrNull()?.let { prefsProvider.saveSpacing(prefBaseName, it) }
+            customizationPrefs.saveSizePref(prefBaseName + SIZE_PREF_ADDITION, binding.sizeSlider.value)
+            pickedDotColor?.let { customizationPrefs.saveColorPref(prefBaseName + COLOR_DOT_PREF_ADDITION, it) }
+            pickedNotificationLEDColor?.let { customizationPrefs.saveNotificationColorPref(prefBaseName + COLOR_NOTIFICATION_PREF_ADDITION, it) }
+            pickedLayoutPosition?.let { customizationPrefs.savePositionPref(prefBaseName + POSITION_PREF_ADDITION, it) }
+            pickedVibrationPosition?.let { customizationPrefs.savePositionPref(prefBaseName + VIBRATION_PREF_ADDITION, it) }
+            binding.inputSpacing.textString.toIntOrNull()?.let { customizationPrefs.saveSpacing(prefBaseName, it) }
             VigilanteService.serviceParamsListener?.updateForBasePref(prefBaseName)
             goBack()
         })
@@ -199,15 +194,17 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
-        pickedDotColor = savedInstanceState?.getInt(COLOR_DOT_STATE, defaultDotColor)
-                ?: defaultDotColor
-        pickedLayoutPosition = savedInstanceState?.getInt(LAYOUT_STATE, defaultLayoutPosition)
-                ?: defaultLayoutPosition
-        pickedSize = savedInstanceState?.getFloat(SIZE_STATE, defaultSize) ?: defaultSize
-        pickedNotificationLEDColor = savedInstanceState?.getInt(COLOR_NOTIFICATION_STATE, defaultNotificationLEDColor)
-        pickedVibrationPosition = savedInstanceState?.getInt(VIBRATION_STATE, defaultVibrationPosition)
-                ?: defaultVibrationPosition
-        pickedSpacing = savedInstanceState?.getInt(SPACING_STATE, DEFAULT_SPACING) ?: spacing
+        pickedDotColor = savedInstanceState?.getInt(COLOR_DOT_STATE, viewModel.defaultDotColor)
+                ?: viewModel.defaultDotColor
+        pickedLayoutPosition = savedInstanceState?.getInt(LAYOUT_STATE, viewModel.defaultLayoutPosition)
+                ?: viewModel.defaultLayoutPosition
+        pickedSize = savedInstanceState?.getFloat(SIZE_STATE, viewModel.defaultSize)
+                ?: viewModel.defaultSize
+        pickedNotificationLEDColor = savedInstanceState?.getInt(COLOR_NOTIFICATION_STATE, viewModel.defaultNotificationLEDColor)
+        pickedVibrationPosition = savedInstanceState?.getInt(VIBRATION_STATE, viewModel.defaultVibrationPosition)
+                ?: viewModel.defaultVibrationPosition
+        pickedSpacing = savedInstanceState?.getInt(SPACING_STATE, DEFAULT_SPACING)
+                ?: viewModel.spacing
         binding.inputSpacing.setTheText(pickedSpacing.toString())
         updatePreviewColor(pickedDotColor)
         updatePickedSize(pickedSize)

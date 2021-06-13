@@ -9,7 +9,7 @@ import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
 import com.crazylegend.vigilante.databinding.FragmentIntroFinalBinding
-import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider
+import com.crazylegend.vigilante.di.providers.prefs.defaultPrefs.DefaultPreferencessProvider
 import com.crazylegend.vigilante.utils.DEFAULT_ANIM_TIME
 import com.crazylegend.vigilante.utils.goToScreen
 import com.crazylegend.vigilante.utils.uiAction

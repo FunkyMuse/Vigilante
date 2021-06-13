@@ -10,7 +10,7 @@ import com.crazylegend.kotlinextensions.ifTrue
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.contracts.service.ServiceManagersCoroutines
 import com.crazylegend.vigilante.di.providers.UserNotificationsProvider
-import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider
+import com.crazylegend.vigilante.di.providers.prefs.mic.MicrophonePrefs
 import com.crazylegend.vigilante.di.qualifiers.ServiceContext
 import com.crazylegend.vigilante.service.VigilanteService
 import dagger.hilt.android.scopes.ServiceScoped
@@ -23,7 +23,8 @@ import javax.inject.Inject
 class MicrophoneProcessor @Inject constructor(
         @ServiceContext private val context: Context,
         private val userNotificationsProvider: UserNotificationsProvider,
-        private val prefsProvider: DefaultPreferencessProvider) : ServiceManagersCoroutines {
+        private val microphonePrefs: MicrophonePrefs
+) : ServiceManagersCoroutines {
 
     private companion object {
         private const val micNotificationID = 68
@@ -52,9 +53,9 @@ class MicrophoneProcessor @Inject constructor(
             }
 
     private fun sendNotificationIfUserEnabled() {
-        prefsProvider.areNotificationsEnabled.ifTrue {
-            userNotificationsProvider.buildUsageNotification(micNotificationID, R.string.mic_being_used, prefsProvider.getMicNotificationLEDColorPref,
-                    prefsProvider.getMicVibrationEffectPref)
+        microphonePrefs.areNotificationsEnabled.ifTrue {
+            userNotificationsProvider.buildUsageNotification(micNotificationID, R.string.mic_being_used, microphonePrefs.getMicNotificationLEDColorPref,
+                    microphonePrefs.getMicVibrationEffectPref, microphonePrefs.isBypassDNDEnabled)
         }
     }
 

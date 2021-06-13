@@ -7,6 +7,7 @@ import com.crazylegend.kotlinextensions.context.copyToClipboard
 import com.crazylegend.kotlinextensions.fragments.shortToast
 
 import com.crazylegend.kotlinextensions.intent.openWebPage
+import com.crazylegend.kotlinextensions.toaster.Toaster
 import com.crazylegend.kotlinextensions.tryOrElse
 import com.crazylegend.recyclerview.clickListeners.forItemClickListener
 import com.crazylegend.viewbinding.viewBinding
@@ -30,12 +31,14 @@ class CrashFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.layout_re
     private val crashVM by viewModels<CrashViewModel>()
 
     @Inject
+    lateinit var toaster: Toaster
+
+    @Inject
     lateinit var adapterProvider: AdapterProvider
 
     private val crashesAdapter by lazy {
         adapterProvider.crashesAdapter
     }
-
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -57,7 +60,7 @@ class CrashFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.layout_re
 
     private fun shareCrash(item: String) {
         requireContext().copyToClipboard(item)
-        shortToast(R.string.crash_copied_to_clipboard)
+        toaster.shortToast(R.string.crash_copied_to_clipboard)
         requireContext().openWebPage(NEW_ISSUE_URL) {
             shortToast(R.string.web_browser_required)
         }

@@ -9,7 +9,7 @@ import com.crazylegend.kotlinextensions.tryOrNull
 import com.crazylegend.kotlinextensions.views.setPrecomputedText
 import com.crazylegend.recyclerview.context
 import com.crazylegend.vigilante.databinding.ItemviewNotificationBinding
-import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider
+import com.crazylegend.vigilante.di.providers.prefs.defaultPrefs.DefaultPreferencessProvider
 import com.crazylegend.vigilante.notifications.db.NotificationsModel
 
 /**

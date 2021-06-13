@@ -4,9 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.crazylegend.kotlinextensions.fragments.longToast
-import com.crazylegend.kotlinextensions.fragments.shortToast
 import com.crazylegend.kotlinextensions.string.isNotNullOrEmpty
+import com.crazylegend.kotlinextensions.toaster.Toaster
 import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
@@ -29,6 +28,9 @@ class DetailedCrashFragment : AbstractFragment<FragmentDetailedCrashBinding>(R.l
     private val clickedPosition get() = args.position
 
     @Inject
+    lateinit var toaster: Toaster
+
+    @Inject
     lateinit var detailedCrashVMFactory: DetailedCrashViewModel.DetailedCrashVMFactory
 
     private val detailedCrashVM by assistedViewModel {
@@ -48,14 +50,14 @@ class DetailedCrashFragment : AbstractFragment<FragmentDetailedCrashBinding>(R.l
                 binding.detailedCrash.text = this
             } else {
                 findNavController().navigateUp()
-                shortToast(R.string.error_occurred)
+                toaster.shortToast(R.string.error_occurred)
             }
         }
 
     }
 
     private fun showToast() {
-        longToast(R.string.too_large_to_copy_to_clipboard)
+        toaster.longToast(R.string.too_large_to_copy_to_clipboard)
     }
 
 

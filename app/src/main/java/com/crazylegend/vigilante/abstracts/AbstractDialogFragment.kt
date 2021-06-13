@@ -9,9 +9,9 @@ import com.crazylegend.vigilante.R
 /**
  * Created by crazy on 4/27/20 to long live and prosper !
  */
-abstract class AbstractDialogFragment(contentLayoutId: Int) : DialogFragment(contentLayoutId) {
+abstract class AbstractDialogFragment<BINDING : ViewBinding>(contentLayoutId: Int) : DialogFragment(contentLayoutId) {
 
-    abstract val binding: ViewBinding
+    abstract val binding: BINDING
     abstract val dimAmount: Float?
     abstract val isCancellable: Boolean
 

@@ -4,7 +4,7 @@
     android:width="24dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <path
-        android:fillColor="#007BEF"
+        android:fillColor="@color/iconsColor"
         android:fillType="evenOdd"
         android:pathData="M210.084,582.979s-160.368,-30.042 -171.238,-69.69c-10.87,-39.647 117.935,-58.747 117.935,-58.747s61.765,-10.445 71.223,-18.907c9.458,-8.462 197.738,-5.198 288.708,-72.676 90.97,-67.479 121.017,-101.697 165.988,-63.368 44.97,38.329 34.083,151.973 -15.498,217.681 -49.581,65.707 -246.822,76.658 -246.822,76.658l-210.296,-10.951z" />
     <path

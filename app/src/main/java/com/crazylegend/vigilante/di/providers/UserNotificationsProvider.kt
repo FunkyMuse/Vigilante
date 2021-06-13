@@ -12,7 +12,6 @@ import com.crazylegend.kotlinextensions.collections.isNullOrEmpty
 import com.crazylegend.kotlinextensions.context.notificationManager
 import com.crazylegend.kotlinextensions.locale.LocaleHelper
 import com.crazylegend.vigilante.R
-import com.crazylegend.vigilante.di.providers.prefs.DefaultPreferencessProvider
 import com.crazylegend.vigilante.di.qualifiers.ServiceContext
 import dagger.hilt.android.scopes.ServiceScoped
 import javax.inject.Inject
@@ -21,26 +20,24 @@ import javax.inject.Inject
  * Created by crazy on 11/8/20 to long live and prosper !
  */
 @ServiceScoped
-class UserNotificationsProvider @Inject constructor(@ServiceContext private val context: Context,
-                                                    private val prefsProvider: DefaultPreferencessProvider) {
+class UserNotificationsProvider @Inject constructor(@ServiceContext private val context: Context) {
 
-    private val bypassDND get() = prefsProvider.isBypassDNDEnabled
 
     /**
      * @param notificationID Int - to cancel once done
      * @return Notification?
      */
-    fun buildUsageNotification(notificationID: Int, @StringRes usageTypeString: Int, notificationLEDColorPref: Int, effect: LongArray?) {
+    fun buildUsageNotification(notificationID: Int, @StringRes usageTypeString: Int, notificationLEDColorPref: Int, effect: LongArray?, bypassDND: Boolean) {
 
         val usageContentText = LocaleHelper.getLocalizedString(context, usageTypeString)
 
         val notificationCompatBuilder = NotificationCompat.Builder(
-            context,
-            context.createNotificationChannel(notificationLEDColorPref, effect)
+                context,
+                context.createNotificationChannel(notificationLEDColorPref, effect, bypassDND)
         )
-            .setDefaults(Notification.DEFAULT_LIGHTS)
-            .setSmallIcon(R.drawable.ic_logo)
-            .setLargeIcon(
+                .setDefaults(Notification.DEFAULT_LIGHTS)
+                .setSmallIcon(R.drawable.ic_logo)
+                .setLargeIcon(
                 BitmapFactory.decodeResource(
                     context.resources,
                     R.drawable.ic_launcher_foreground
@@ -63,8 +60,9 @@ class UserNotificationsProvider @Inject constructor(@ServiceContext private val 
     }
 
     private fun Context.createNotificationChannel(
-        notificationLEDColorPref: Int,
-        effect: LongArray?
+            notificationLEDColorPref: Int,
+            effect: LongArray?,
+            bypassDND: Boolean
     ): String {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val notificationChannel = with(

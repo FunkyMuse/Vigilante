@@ -2,8 +2,8 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
-        app:title="@string/customizations"
-        app:iconSpaceReserved="false">
+        app:iconSpaceReserved="false"
+        app:title="@string/customizations">
 
         <Preference
             app:iconSpaceReserved="false"
@@ -14,6 +14,11 @@
             app:iconSpaceReserved="false"
             app:key="mic_pref_category"
             app:title="@string/microphone_title" />
+
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="location_pref_category"
+            app:title="@string/location_title" />
 
     </PreferenceCategory>
 

@@ -118,6 +118,9 @@
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/scale"
             app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/openLocationPrefs"
+            app:destination="@id/locationPreferenceFragment" />
     </fragment>
     <fragment
         android:id="@+id/crashFragment"
@@ -288,5 +291,18 @@
         android:id="@+id/oneTimePasswordDialog"
         android:name="com.crazylegend.vigilante.otp.OneTimePasswordDialog"
         android:label="" />
+
+    <fragment
+        android:id="@+id/locationPreferenceFragment"
+        android:name="com.crazylegend.vigilante.di.providers.prefs.location.LocationPreferenceFragment"
+        android:label="@string/location_title">
+        <action
+            android:id="@+id/destination_customization"
+            app:destination="@id/customizationFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_right"
+            app:popEnterAnim="@anim/enter_from_right"
+            app:popExitAnim="@anim/exit_to_right" />
+    </fragment>
 
 </navigation>

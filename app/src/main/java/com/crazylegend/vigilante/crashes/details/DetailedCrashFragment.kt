@@ -6,6 +6,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.crazylegend.kotlinextensions.string.isNotNullOrEmpty
 import com.crazylegend.kotlinextensions.toaster.Toaster
+import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment

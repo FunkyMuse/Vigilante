@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.settingsFragment,
                 R.id.cameraPreferenceFragment,
                 R.id.microphonePreferenceFragment,
+                R.id.locationPreferenceFragment,
                 R.id.crashFragment,
                 R.id.appsUsageFragment,
                 R.id.screenAccessFragment,

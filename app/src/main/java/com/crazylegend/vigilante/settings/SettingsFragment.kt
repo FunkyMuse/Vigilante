@@ -50,6 +50,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     private val cameraCategory by preference<Preference>(PREF_CATEGORY_CAMERA)
     private val micCategory by preference<Preference>(PREF_CATEGORY_MIC)
+    private val locationCategory by preference<Preference>(PREF_CATEGORY_LOCATION)
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.settings)
@@ -62,6 +63,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
         cameraCategory.onClick { findNavController().navigate(SettingsFragmentDirections.openCameraPrefs()) }
         micCategory.onClick { findNavController().navigate(SettingsFragmentDirections.openMicPrefs()) }
+        locationCategory.onClick { findNavController().navigate(SettingsFragmentDirections.openLocationPrefs()) }
 
         deleteHistory.booleanChangeListener { _, newValue ->
             if (newValue) {

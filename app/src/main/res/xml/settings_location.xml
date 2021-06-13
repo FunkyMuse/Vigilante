@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Preference
+        app:selectable="false"
+        app:persistent="false"
+        app:layout="@layout/layout_title_location" />
+
+    <SwitchPreferenceCompat
+        app:iconSpaceReserved="false"
+        app:key="location_pref_dot"
+        app:defaultValue="true"
+        app:summary="@string/dot_usage_expl"
+        app:title="@string/dot_usage_title" />
+
+    <Preference
+        app:iconSpaceReserved="false"
+        app:key="location_dot_appearance"
+        app:title="@string/dot_indicator"
+        app:dependency="location_pref_dot"
+        app:summary="@string/dot_indicator_customizations" />
+
+
+    <SwitchPreferenceCompat
+        app:iconSpaceReserved="false"
+        app:defaultValue="true"
+        app:key="location_pref_notifications"
+        app:summary="@string/notifications_usage_expl_location"
+        app:title="@string/notifications_usage_title" />
+
+
+    <SwitchPreferenceCompat
+        app:iconSpaceReserved="false"
+        app:defaultValue="false"
+        app:key="location_pref_bypass_dnd"
+        app:dependency="location_pref_notifications"
+        app:summary="@string/bypass_dnd_expl"
+        app:title="@string/bypass_dnd_title" />
+</PreferenceScreen>

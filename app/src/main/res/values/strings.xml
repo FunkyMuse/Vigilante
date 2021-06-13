@@ -159,6 +159,7 @@
     <string name="password_length_expl">The recommended password length should be more or equals to 8 characters</string>
     <string name="shuffle_characters">Shuffle characters</string>
     <string name="password_too_short">Password too short</string>
+    <string name="location_title">Location</string>
 
     <!--Languages-->
     <string name="english">English</string>

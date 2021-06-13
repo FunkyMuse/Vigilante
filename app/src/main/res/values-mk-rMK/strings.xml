@@ -68,6 +68,7 @@
     <string name="channel_description">Известувањата се испраќаат кога ќе се случи злоупотреба на приватност</string>
     <string name="mic_being_used">Вашиот микрофон се користи!</string>
     <string name="cam_being_used">Вашата камера се користи!</string>
+    <string name="location_being_used">Вашата локација е вклучена, можно е некои апликации да ја користат во позадина!</string>
     <string name="usage_title">Откриена е употреба</string>
     <string name="dot_usage_title">Покажи употреба на точки</string>
     <string name="dot_usage_expl">Со овозможување на оваа опција, ќе видите точка на вашиот екран кога ќе се случи злоупотреба.</string>
@@ -89,6 +90,8 @@
     <string name="center_left_side">Централна лева страна</string>
     <string name="bottom_right_corner">Долен десен агол</string>
     <string name="bottom_left_corner">Долен лев агол</string>
+    <string name="top_center_horizontal">Централно горе на екран</string>
+    <string name="bottom_center_horizontal">Централно доле на екран</string>
     <string name="dot_position">Позиција на точка на екранот</string>
     <string name="cancel">Откажи</string>
     <string name="discard_changes">Отфрли</string>
@@ -147,6 +150,15 @@
     <string name="app_not_installed">Апликацијата не е инсталирана </string>
     <string name="history_deletion">Избришај историја</string>
     <string name="history_deletion_expl">Автоматски избришај ја зачуваната историја после секои 30 дена за да не ти зафаќа простор</string>
+    <string name="application">Апликација</string>
+    <string name="dot_indicator_customizations">Прилагодувања на индикаторот за точки.</string>
+    <string name="generate">Генерирај</string>
+    <string name="generate_one_time_password">Генерирај лозинка за една употреба</string>
+    <string name="password_length">Должина на лозинката</string>
+    <string name="password_length_expl">Препорачаната должина на лозинка треба да биде поголема или еднаква на 8 карактери</string>
+    <string name="shuffle_characters">Мешај карактери</string>
+    <string name="password_too_short">Лозинката е премногу кратка</string>
+    <string name="location_title">Локација</string>
 
     <!--Languages-->
     <string name="english">Англиски</string>

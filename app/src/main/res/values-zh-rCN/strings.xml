@@ -14,6 +14,9 @@
     <string name="notifications_history">通知历史</string>
     <string name="lock_screen_history">锁屏历史</string>
     <string name="notifications_usage_expl">启用该选项，如果可能的话/在可能的时候，你会收到相机、麦克风等被使用的通知。</string>
+    <string name="notifications_usage_expl_camera">启用此选项，如果可能的话，你将在相机被使用收到通知。</string>
+    <string name="notifications_usage_expl_mic">启用此选项，如果可能的话，你将在麦克风被使用时收到通知。</string>
+    <string name="notifications_usage_expl_location">启用此选项，如果可能的话，你将在位置启用时收到通知。</string>
     <string name="notifications_usage_title">启用使用通知</string>
     <string name="crash_report">崩溃报告 #%1$d</string>
     <string name="no_crashes">未记录到崩溃！</string>
@@ -67,6 +70,7 @@
     <string name="channel_name">Vigilante 使用通知</string>
     <string name="channel_description">当隐私使用发生时，会发送通知</string>
     <string name="mic_being_used">你的麦克风正被使用！</string>
+    <string name="location_being_used">您的位置已启用，可以有应用正在使用它！</string>
     <string name="cam_being_used">你的相机正被使用！</string>
     <string name="usage_title">检测到使用</string>
     <string name="dot_usage_title">显示点使用</string>
@@ -89,6 +93,8 @@
     <string name="center_left_side">中间靠左</string>
     <string name="bottom_right_corner">右下角</string>
     <string name="bottom_left_corner">左下角</string>
+    <string name="top_center_horizontal">顶部居中</string>
+    <string name="bottom_center_horizontal">底部居中</string>
     <string name="dot_position">屏幕上点的位置</string>
     <string name="cancel">取消</string>
     <string name="discard_changes">丢弃</string>
@@ -98,6 +104,7 @@
     <string name="saved">已保存！</string>
     <string name="disk_status">磁盘状态</string>
     <string name="crash_copied_to_clipboard">已将崩溃详情复制到剪贴板！</string>
+    <string name="content_copied_to_clipboard">已复制到剪贴板！</string>
     <string name="web_browser_required">此操作需要 Web 浏览器！</string>
     <string name="informational">信息</string>
     <string name="customizations">自定义</string>
@@ -144,6 +151,17 @@
     <string name="spacing_expl">如遇圆角或凹槽堵塞点的可见性，使用间距</string>
     <string name="too_large_to_copy_to_clipboard">太大以致无法复制到剪贴板，请发送这个屏幕的截图！</string>
     <string name="app_not_installed">应用程序未安装！</string>
+    <string name="history_deletion">删除历史</string>
+    <string name="history_deletion_expl">30 天后删除整个历史记录以避免混乱</string>
+    <string name="application">应用程序</string>
+    <string name="dot_indicator_customizations">自定义点状指示器</string>
+    <string name="generate">生成</string>
+    <string name="generate_one_time_password">生成一次性密码</string>
+    <string name="password_length">密码长度</string>
+    <string name="password_length_expl">推荐的密码长度应该大于或等于 8 个字符</string>
+    <string name="shuffle_characters">随机字符</string>
+    <string name="password_too_short">密码过短</string>
+    <string name="location_title">位置</string>
     <!--Languages-->
     <string name="english">英语</string>
     <string name="spanish">西班牙语</string>
@@ -154,4 +172,5 @@
     <string name="german">德语</string>
     <string name="french">法语</string>
     <string name="bulgarian">保加利亚语</string>
+    <string name="italian">意大利语</string>
 </resources>

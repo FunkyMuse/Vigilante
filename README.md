@@ -88,8 +88,9 @@ Support it by joining [stargazers](https://github.com/FunkyMuse/Vigilante/starga
 And [follow me](https://github.com/FunkyMuse) or check my [blog](https://funkymuse.dev/) for my next creations! ⭐
 
 ## Contributions
+To add a language that the app wasn't translated into, please open an issue!
 
-Feature requests and translations are welcome
+Feature requests and translations are always welcome!
 
 ## License
 [GNU General Public License v3.0](https://github.com/FunkyMuse/Vigilante/blob/master/LICENSE)

@@ -1,0 +1,10 @@
+### Improvements
+- Added an ability to generate one time password
+- Added an ability to toggle dots, notifications and DND for camera, mic and location
+- Added a location dot, when you enable your GPS it's there to remind you that it's ON!
+- Improved the dots positioning
+- Added a center horizontal for the top and bottom dot positioning
+- Improved the performance
+- Added delete the history after 30 days, it cleans everything
+- Moved every customization into settings for more clarity
+

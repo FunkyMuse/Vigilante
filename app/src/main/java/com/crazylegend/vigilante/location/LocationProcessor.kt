@@ -6,7 +6,6 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.location.LocationManager
 import androidx.lifecycle.ServiceLifecycleDispatcher
-import com.crazylegend.kotlinextensions.context.deviceNetworkType
 import com.crazylegend.kotlinextensions.context.locationManager
 import com.crazylegend.kotlinextensions.context.notificationManager
 import com.crazylegend.kotlinextensions.ifTrue
@@ -69,7 +68,6 @@ class LocationProcessor @Inject constructor(
                     val isNetworkEnabled =
                             locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
                     locationStatusData.value = isGpsEnabled || isNetworkEnabled
-                    context.deviceNetworkType()
                 }
             }
         }

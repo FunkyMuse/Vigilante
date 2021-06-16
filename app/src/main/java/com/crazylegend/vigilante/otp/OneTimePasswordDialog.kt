@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.crazylegend.kotlinextensions.context.copyToClipboard
 import com.crazylegend.kotlinextensions.insets.hideKeyboard
+import com.crazylegend.kotlinextensions.string.isNotNullOrEmpty
 import com.crazylegend.kotlinextensions.toaster.Toaster
 import com.crazylegend.kotlinextensions.views.*
 import com.crazylegend.security.generateOneTimePassword
@@ -19,6 +20,10 @@ import javax.inject.Inject
  */
 @AndroidEntryPoint
 class OneTimePasswordDialog : AbstractBottomSheet<DialogOneTimePasswordBinding>() {
+
+    private companion object {
+        private const val PASSWORD_STATE = "isPasswordShownState"
+    }
 
     override val viewRes: Int
         get() = R.layout.dialog_one_time_password
@@ -42,6 +47,27 @@ class OneTimePasswordDialog : AbstractBottomSheet<DialogOneTimePasswordBinding>(
         }
         binding.inputPasswordLength.onImeAction2 { _, _ ->
             validatePasswordLength()
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString(PASSWORD_STATE, binding.password.textString)
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        restorePassword(savedInstanceState)
+    }
+
+    private fun restorePassword(savedInstanceState: Bundle?) {
+        savedInstanceState?.apply {
+            getString(PASSWORD_STATE, null).let { pass ->
+                if (pass.isNotNullOrEmpty()) {
+                    binding.password.text = pass
+                    binding.password.visible()
+                }
+            }
         }
     }
 

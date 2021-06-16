@@ -88,6 +88,7 @@ class OneTimePasswordDialog : AbstractBottomSheet<DialogOneTimePasswordBinding>(
                     visible()
                     text = generateOneTimePassword(passwordLength, binding.shuffleCharactersCheckBox.isChecked)
                     clearFocus()
+                    hideSoftInput()
                     hideKeyboard()
                 }
             }

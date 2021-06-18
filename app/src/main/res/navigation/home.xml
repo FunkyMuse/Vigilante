@@ -120,7 +120,11 @@
             app:popExitAnim="@anim/fade_out" />
         <action
             android:id="@+id/openLocationPrefs"
-            app:destination="@id/locationPreferenceFragment" />
+            app:destination="@id/locationPreferenceFragment"
+            app:enterAnim="@anim/scale"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/scale"
+            app:popExitAnim="@anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/crashFragment"

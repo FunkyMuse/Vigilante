@@ -3,7 +3,6 @@
 package com.crazylegend.vigilante.utils
 
 import android.content.Context
-import android.content.Intent
 import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -17,6 +16,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.crazylegend.common.tryOrPrint
 import com.crazylegend.fragment.viewCoroutineScope
+import com.crazylegend.intent.newIntent
 import com.crazylegend.receivers.isServiceRunning
 import com.crazylegend.receivers.startForegroundService
 import com.crazylegend.view.dimen
@@ -47,7 +47,7 @@ fun Context.startVigilante() {
 }
 
 fun Context.stopVigilante(): Boolean {
-    val intent = Intent(this, VigilanteService::class.java)
+    val intent = newIntent<VigilanteService>()
     return stopService(intent)
 }
 

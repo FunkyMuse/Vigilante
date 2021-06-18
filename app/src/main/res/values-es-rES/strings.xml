@@ -156,4 +156,21 @@
     <string name="bulgarian">Búlgaro</string>
     <string name="italian">Italiano</string>
     <string name="content_copied_to_clipboard">¡Copiado al portapapeles!</string>
+    <string name="notifications_usage_expl_camera">Al activar esta opción, serás notificado cuando la cámara se active.</string>
+    <string name="notifications_usage_expl_mic">Al activar esta opción, serás notificado cuando el micrófono se active.</string>
+    <string name="notifications_usage_expl_location">Al activar esta opción, serás notificado cuando la ubicación se active.</string>
+    <string name="location_being_used">¡La ubicación está activada, puede ser que esté siendo usada!</string>
+    <string name="top_center_horizontal">Parte superior central</string>
+    <string name="bottom_center_horizontal">Parte inferior central</string>
+    <string name="history_deletion">Borrar historial</string>
+    <string name="history_deletion_expl">Borrar el historial después de 30 días para evitar desorden</string>
+    <string name="application">Aplicación</string>
+    <string name="dot_indicator_customizations">Personalización del punto indicador.</string>
+    <string name="generate">Generar</string>
+    <string name="generate_one_time_password">Generar contraseña de un solo uso</string>
+    <string name="password_length">Longitud de la contraseña</string>
+    <string name="password_length_expl">La longitud recomendada para la contraseña es de 8 o más caracteres</string>
+    <string name="shuffle_characters">Mezclar caracteres</string>
+    <string name="password_too_short">Contraseña demasiado corta</string>
+    <string name="location_title">Idioma</string>
 </resources>

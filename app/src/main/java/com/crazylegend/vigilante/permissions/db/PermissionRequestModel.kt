@@ -3,7 +3,7 @@ package com.crazylegend.vigilante.permissions.db
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.crazylegend.kotlinextensions.currentTimeMillis
+import com.crazylegend.common.currentTimeMillis
 import java.util.*
 
 /**

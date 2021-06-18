@@ -6,9 +6,9 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.location.LocationManager
 import androidx.lifecycle.ServiceLifecycleDispatcher
-import com.crazylegend.kotlinextensions.context.locationManager
-import com.crazylegend.kotlinextensions.context.notificationManager
-import com.crazylegend.kotlinextensions.ifTrue
+import com.crazylegend.common.ifTrue
+import com.crazylegend.contextgetters.locationManager
+import com.crazylegend.contextgetters.notificationManager
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.contracts.service.ServiceManagersCoroutines
 import com.crazylegend.vigilante.di.providers.UserNotificationsProvider

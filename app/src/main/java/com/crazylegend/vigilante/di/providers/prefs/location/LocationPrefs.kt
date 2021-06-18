@@ -1,7 +1,8 @@
 package com.crazylegend.vigilante.di.providers.prefs.location
 
 import android.content.SharedPreferences
-import com.crazylegend.kotlinextensions.sharedprefs.putBoolean
+import com.crazylegend.sharedpreferences.putBoolean
+
 import com.crazylegend.vigilante.di.providers.prefs.contracts.DotContract
 import com.crazylegend.vigilante.di.providers.prefs.contracts.NotificationsContract
 import com.crazylegend.vigilante.di.providers.prefs.customization.CustomizationPrefs

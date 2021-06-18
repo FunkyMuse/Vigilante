@@ -6,9 +6,9 @@ import android.hardware.camera2.CameraManager
 import androidx.camera.camera2.internal.compat.CameraManagerCompat
 import androidx.lifecycle.ServiceLifecycleDispatcher
 import androidx.lifecycle.coroutineScope
+import com.crazylegend.common.ifTrue
+import com.crazylegend.contextgetters.notificationManager
 import com.crazylegend.coroutines.mainDispatcher
-import com.crazylegend.kotlinextensions.context.notificationManager
-import com.crazylegend.kotlinextensions.ifTrue
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.contracts.service.ServiceManagersCoroutines
 import com.crazylegend.vigilante.di.providers.UserNotificationsProvider

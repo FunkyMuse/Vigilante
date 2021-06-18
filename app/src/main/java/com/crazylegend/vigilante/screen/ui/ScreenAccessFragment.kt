@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.isGone
 import androidx.fragment.app.viewModels
-import com.crazylegend.kotlinextensions.fragments.fragmentIntResult
-
-import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
+import com.crazylegend.fragment.fragmentIntResult
+import com.crazylegend.lifecycle.repeatingJobOnStarted
+import com.crazylegend.view.setOnClickListenerCooldown
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
@@ -15,7 +15,6 @@ import com.crazylegend.vigilante.databinding.FragmentScreenAccessBinding
 import com.crazylegend.vigilante.di.providers.DatabaseLoadingProvider
 import com.crazylegend.vigilante.filter.ListFilterBottomSheet
 import com.crazylegend.vigilante.utils.goToScreen
-import com.crazylegend.vigilante.utils.onStartedRepeatingAction
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
@@ -52,18 +51,18 @@ class ScreenAccessFragment : AbstractFragment<FragmentScreenAccessBinding>(R.lay
             goToScreen(ScreenAccessFragmentDirections.actionFilter(screenVM.getFilterList()))
         }
 
-        onStartedRepeatingAction {
+        repeatingJobOnStarted {
             screenVM.totalActions.collect {
                 binding.totalActions.text = it.toString()
             }
         }
 
-        onStartedRepeatingAction {
+        repeatingJobOnStarted {
             screenVM.totalLocks.collect {
                 binding.totalLocks.text = it.toString()
             }
         }
-        onStartedRepeatingAction {
+        repeatingJobOnStarted {
             screenVM.totalUnlocks.collect {
                 binding.totalUnlocks.text = it.toString()
             }

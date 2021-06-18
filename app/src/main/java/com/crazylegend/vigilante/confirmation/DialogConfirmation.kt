@@ -6,9 +6,8 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.crazylegend.kotlinextensions.fragments.ifIsAttachedAction
-import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
-
+import com.crazylegend.fragment.ifIsAttachedAction
+import com.crazylegend.view.setOnClickListenerCooldown
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractDialogFragment

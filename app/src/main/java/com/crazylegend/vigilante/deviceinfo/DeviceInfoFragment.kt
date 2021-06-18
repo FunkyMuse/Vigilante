@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import com.crazylegend.lifecycle.repeatingJobOnStarted
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
 import com.crazylegend.vigilante.databinding.LayoutRecyclerBinding
 import com.crazylegend.vigilante.di.providers.AdapterProvider
-import com.crazylegend.vigilante.utils.onStartedRepeatingAction
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
@@ -35,10 +35,10 @@ class DeviceInfoFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.layo
         super.onViewCreated(view, savedInstanceState)
         binding.recycler.adapter = adapter
 
-        onStartedRepeatingAction {
+        repeatingJobOnStarted {
             deviceInfoVM.deviceInfoList.collect {
                 binding.progressIndicator.isVisible =
-                    it is DeviceInfoViewModel.DeviceInfoStatus.Loading
+                        it is DeviceInfoViewModel.DeviceInfoStatus.Loading
                 if (it is DeviceInfoViewModel.DeviceInfoStatus.Success) {
                     adapter.submitList(it.list)
                 }

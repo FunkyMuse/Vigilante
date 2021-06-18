@@ -2,9 +2,9 @@ package com.crazylegend.vigilante.di.modules
 
 import android.content.Context
 import androidx.work.WorkManager
-import com.crazylegend.kotlinextensions.toaster.Toaster
 import com.crazylegend.security.MagiskDetector
 import com.crazylegend.security.encryptedSharedPreferences
+import com.crazylegend.toaster.Toaster
 import com.crazylegend.vigilante.di.qualifiers.EncryptedPrefs
 import dagger.Module
 import dagger.Provides

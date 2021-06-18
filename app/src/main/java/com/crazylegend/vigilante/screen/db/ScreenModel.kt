@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.crazylegend.kotlinextensions.currentTimeMillis
-import com.crazylegend.kotlinextensions.randomUUIDstring
+import com.crazylegend.common.currentTimeMillis
+import com.crazylegend.common.randomUUIDstring
 import com.crazylegend.vigilante.R
 import java.util.*
 

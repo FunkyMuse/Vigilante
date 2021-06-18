@@ -7,9 +7,9 @@ import android.view.LayoutInflater
 import android.view.WindowManager
 import android.widget.FrameLayout
 import android.widget.LinearLayout
-import com.crazylegend.kotlinextensions.context.windowManager
-import com.crazylegend.kotlinextensions.exhaustive
-import com.crazylegend.kotlinextensions.views.removeViewsByTag
+import com.crazylegend.common.exhaustive
+import com.crazylegend.contextgetters.windowManager
+import com.crazylegend.view.removeViewsByTag
 import com.crazylegend.vigilante.databinding.ServiceLayoutBinding
 import com.crazylegend.vigilante.di.qualifiers.ServiceContext
 import com.crazylegend.vigilante.utils.DotPosition

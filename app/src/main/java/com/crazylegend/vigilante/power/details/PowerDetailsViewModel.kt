@@ -3,7 +3,7 @@ package com.crazylegend.vigilante.power.details
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.crazylegend.database.coroutines.dbCallStateFlow
-import com.crazylegend.vigilante.power.db.PowerRepository
+import com.crazylegend.vigilante.power.db.PowerDAO
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
@@ -13,7 +13,7 @@ import dagger.assisted.AssistedInject
  */
 class PowerDetailsViewModel @AssistedInject constructor(
         @Assisted private val powerID: Int,
-        private val powerRepository: PowerRepository) : ViewModel() {
+        private val powerRepository: PowerDAO) : ViewModel() {
 
     @AssistedFactory
     interface PowerDetailsVMFactory {

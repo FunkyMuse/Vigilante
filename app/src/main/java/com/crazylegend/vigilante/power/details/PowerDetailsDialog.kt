@@ -6,9 +6,10 @@ import androidx.navigation.fragment.navArgs
 import com.crazylegend.crashyreporter.CrashyReporter
 import com.crazylegend.database.DBResult
 import com.crazylegend.database.handle
-import com.crazylegend.kotlinextensions.dateAndTime.toString
-import com.crazylegend.kotlinextensions.fragments.shortToast
-import com.crazylegend.kotlinextensions.views.visibleIfTrueGoneOtherwise
+import com.crazylegend.datetime.toString
+import com.crazylegend.lifecycle.repeatingJobOnStarted
+import com.crazylegend.toaster.Toaster
+import com.crazylegend.view.visibleIfTrueGoneOtherwise
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractBottomSheet
@@ -16,7 +17,6 @@ import com.crazylegend.vigilante.databinding.DialogPowerDetailsBinding
 import com.crazylegend.vigilante.di.providers.prefs.defaultPrefs.DefaultPreferencessProvider
 import com.crazylegend.vigilante.power.db.PowerModel
 import com.crazylegend.vigilante.utils.assistedViewModel
-import com.crazylegend.vigilante.utils.onStartedRepeatingAction
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
@@ -29,6 +29,9 @@ class PowerDetailsDialog : AbstractBottomSheet<DialogPowerDetailsBinding>() {
 
     @Inject
     lateinit var prefsProvider: DefaultPreferencessProvider
+
+    @Inject
+    lateinit var toaster: Toaster
 
     override val binding by viewBinding(DialogPowerDetailsBinding::bind)
     override val viewRes: Int
@@ -45,7 +48,7 @@ class PowerDetailsDialog : AbstractBottomSheet<DialogPowerDetailsBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        onStartedRepeatingAction {
+        repeatingJobOnStarted {
             powerDetailsVM.powerModel.collectLatest {
                 handleDBResult(it)
             }
@@ -67,7 +70,7 @@ class PowerDetailsDialog : AbstractBottomSheet<DialogPowerDetailsBinding>() {
     private fun handleDBError(throwable: Throwable) {
         CrashyReporter.logException(throwable)
         dismissAllowingStateLoss()
-        shortToast(R.string.error_occurred)
+        toaster.shortToast(R.string.error_occurred)
     }
 
     private fun updateUI(model: PowerModel) {

@@ -5,10 +5,10 @@ import android.view.View
 import androidx.core.animation.doOnEnd
 import androidx.core.view.doOnLayout
 import androidx.navigation.NavDirections
-import com.crazylegend.kotlinextensions.animations.playAnimation
-import com.crazylegend.kotlinextensions.animations.zoomInUp
-import com.crazylegend.kotlinextensions.fragments.finish
-import com.crazylegend.kotlinextensions.fragments.shortToast
+import com.crazylegend.animations.playAnimation
+import com.crazylegend.animations.zoomInUp
+import com.crazylegend.fragment.finish
+import com.crazylegend.toaster.Toaster
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
@@ -32,6 +32,9 @@ class SplashFragment : AbstractFragment<FragmentSplashBinding>(R.layout.fragment
 
     @Inject
     lateinit var authProvider: AuthProvider
+
+    @Inject
+    lateinit var toaster: Toaster
 
     override val binding by viewBinding(FragmentSplashBinding::bind)
 
@@ -77,7 +80,7 @@ class SplashFragment : AbstractFragment<FragmentSplashBinding>(R.layout.fragment
 
     private fun authFailed() {
         uiAction {
-            shortToast(R.string.auth_failed)
+            toaster.shortToast(R.string.auth_failed)
             finish()
         }
     }

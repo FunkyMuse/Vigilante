@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.isGone
 import androidx.fragment.app.viewModels
-
+import com.crazylegend.lifecycle.repeatingJobOnStarted
 import com.crazylegend.recyclerview.clickListeners.forItemClickListener
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
@@ -13,7 +13,6 @@ import com.crazylegend.vigilante.contracts.LoadingDBsInFragments
 import com.crazylegend.vigilante.databinding.FragmentPermissionsBinding
 import com.crazylegend.vigilante.di.providers.DatabaseLoadingProvider
 import com.crazylegend.vigilante.utils.goToScreen
-import com.crazylegend.vigilante.utils.onStartedRepeatingAction
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
@@ -40,7 +39,7 @@ class PermissionRequestsFragment : AbstractFragment<FragmentPermissionsBinding>(
         databaseLoadingProvider.provideListState(permissionRequestVM.permissionRequests, binding.recycler, binding.noDataViewHolder.noDataView, adapter) { viewsVisibility ->
             binding.viewsProneToVisibilityChange.isGone = viewsVisibility
         }
-        onStartedRepeatingAction {
+        repeatingJobOnStarted {
             permissionRequestVM.totalPermissionRequests.collectLatest {
                 binding.totalPermissionRequests.text = it.toString()
             }

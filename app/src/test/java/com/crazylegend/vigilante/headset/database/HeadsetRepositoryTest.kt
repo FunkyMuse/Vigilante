@@ -17,7 +17,7 @@ class HeadsetRepositoryTest {
     var mainCoroutineRule = MainCoroutineRule()
 
     @MockK
-    lateinit var headsetRepository: HeadsetRepository
+    lateinit var headsetRepository: HeadsetDAO
 
     @Test
     fun addHeadsetRecord() {

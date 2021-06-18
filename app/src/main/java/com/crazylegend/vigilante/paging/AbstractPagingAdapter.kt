@@ -5,9 +5,9 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
-import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
 import com.crazylegend.recyclerview.GenericDiffUtil
 import com.crazylegend.recyclerview.clickListeners.forItemClickListener
+import com.crazylegend.view.setOnClickListenerCooldown
 
 /**
  * Created by crazy on 11/4/20 to long live and prosper !

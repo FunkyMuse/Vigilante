@@ -7,16 +7,15 @@ import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
+import com.crazylegend.context.packageVersionName
 import com.crazylegend.coroutines.mainDispatcher
-import com.crazylegend.kotlinextensions.context.packageVersionName
-import com.crazylegend.kotlinextensions.fragments.shortToast
-import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
-
-import com.crazylegend.kotlinextensions.intent.openWebPage
-import com.crazylegend.kotlinextensions.locale.LocaleHelper
+import com.crazylegend.fragment.viewCoroutineScope
+import com.crazylegend.intent.openWebPage
 import com.crazylegend.kotlinextensions.preferences.booleanChangeListener
 import com.crazylegend.kotlinextensions.preferences.onClick
 import com.crazylegend.kotlinextensions.preferences.stringChangeListener
+import com.crazylegend.locale.LocaleHelper
+import com.crazylegend.toaster.Toaster
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.di.providers.AuthProvider
 import com.crazylegend.vigilante.di.providers.prefs.defaultPrefs.DefaultPreferencessProvider
@@ -37,6 +36,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     @Inject
     lateinit var authProvider: AuthProvider
+
+    @Inject
+    lateinit var toaster: Toaster
 
     private val version by preference<Preference>(VERSION_PREF_KEY)
     private val dateFormat by preference<ListPreference>(DATE_PREF_KEY)
@@ -82,7 +84,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
         homePage.onClick {
             requireContext().openWebPage(GITHUB_URL) {
-                shortToast(R.string.web_browser_required)
+                toaster.shortToast(R.string.web_browser_required)
             }
         }
 

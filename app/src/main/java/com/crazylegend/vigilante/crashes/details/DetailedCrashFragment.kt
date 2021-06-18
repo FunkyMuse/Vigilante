@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.crazylegend.kotlinextensions.string.isNotNullOrEmpty
-import com.crazylegend.kotlinextensions.toaster.Toaster
-import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
+import com.crazylegend.string.isNotNullOrEmpty
+
+import com.crazylegend.toaster.Toaster
+import com.crazylegend.view.setOnClickListenerCooldown
+
+
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment

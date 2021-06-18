@@ -3,12 +3,11 @@ package com.crazylegend.vigilante.screen
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import com.crazylegend.vigilante.di.modules.coroutines.appScope.ApplicationScope
 import com.crazylegend.vigilante.screen.db.ScreenModel
 import com.crazylegend.vigilante.screen.db.ScreenRepository
 import dagger.hilt.android.scopes.ServiceScoped
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.NonCancellable
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import javax.inject.Inject
 
 /**
@@ -16,7 +15,8 @@ import javax.inject.Inject
  */
 @ServiceScoped
 class ScreenReceiver @Inject constructor(
-        private val screenRepository: ScreenRepository
+        private val screenRepository: ScreenRepository,
+        @ApplicationScope private val appScope: CoroutineScope
 ) : BroadcastReceiver() {
 
 
@@ -28,8 +28,10 @@ class ScreenReceiver @Inject constructor(
             else -> null
         }
         screenModel?.apply {
-            GlobalScope.launch(NonCancellable) {
-                screenRepository.insertScreenAction(this@apply)
+            appScope.launch() {
+                withContext(NonCancellable) {
+                    screenRepository.insertScreenAction(this@apply)
+                }
             }
         }
     }

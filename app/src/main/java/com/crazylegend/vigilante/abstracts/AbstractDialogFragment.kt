@@ -16,7 +16,6 @@ abstract class AbstractDialogFragment<BINDING : ViewBinding>(contentLayoutId: In
     abstract val isCancellable: Boolean
 
     override fun onCreateDialog(savedInstanceState: Bundle?) = with(super.onCreateDialog(savedInstanceState)) {
-        window?.attributes?.windowAnimations = R.style.DialogAnimation
         setCancelable(isCancellable)
         window?.setDimAmount(dimAmount ?: 0f)
         setCanceledOnTouchOutside(isCancellable)

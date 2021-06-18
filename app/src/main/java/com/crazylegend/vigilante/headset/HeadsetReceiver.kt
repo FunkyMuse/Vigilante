@@ -3,15 +3,17 @@ package com.crazylegend.vigilante.headset
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import com.crazylegend.kotlinextensions.batteryStatusIntent
-import com.crazylegend.kotlinextensions.currentTimeMillis
-import com.crazylegend.kotlinextensions.getBatteryInfo
+import com.crazylegend.common.batteryStatusIntent
+import com.crazylegend.common.currentTimeMillis
+import com.crazylegend.common.getBatteryInfo
+import com.crazylegend.vigilante.di.modules.coroutines.appScope.ApplicationScope
+import com.crazylegend.vigilante.headset.database.HeadsetDAO
 import com.crazylegend.vigilante.headset.database.HeadsetModel
-import com.crazylegend.vigilante.headset.database.HeadsetRepository
 import dagger.hilt.android.scopes.ServiceScoped
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.*
 import java.util.concurrent.atomic.AtomicInteger
 import javax.inject.Inject
@@ -20,7 +22,8 @@ import javax.inject.Inject
  * Created by crazy on 10/30/20 to long live and prosper !
  */
 @ServiceScoped
-class HeadsetReceiver @Inject constructor(private val headsetRepository: HeadsetRepository) : BroadcastReceiver() {
+class HeadsetReceiver @Inject constructor(private val headsetRepository: HeadsetDAO,
+                                          @ApplicationScope private val appScope: CoroutineScope) : BroadcastReceiver() {
 
     private companion object {
         private const val STATE_EXTRA_TAG = "state"
@@ -52,8 +55,10 @@ class HeadsetReceiver @Inject constructor(private val headsetRepository: Headset
         val batteryStatusModel = getBatteryInfo(batteryIntent)
         val headsetModel = HeadsetModel(Date(currentTimeMillis), connectionType,
                 batteryStatusModel.batteryPercentage, batteryStatusModel.chargingType)
-        GlobalScope.launch(NonCancellable) {
-            headsetRepository.addHeadsetRecord(headsetModel)
+        appScope.launch {
+            withContext(NonCancellable) {
+                headsetRepository.addHeadsetRecord(headsetModel)
+            }
         }
     }
 }

@@ -10,11 +10,17 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.crazylegend.crashyreporter.CrashyReporter
+import com.crazylegend.fragment.finish
+import com.crazylegend.fragment.fragmentBooleanResult
 import com.crazylegend.kotlinextensions.effects.vibrate
-import com.crazylegend.kotlinextensions.fragments.finish
-import com.crazylegend.kotlinextensions.fragments.fragmentBooleanResult
-import com.crazylegend.kotlinextensions.fragments.shortToast
-import com.crazylegend.kotlinextensions.views.*
+import com.crazylegend.kotlinextensions.views.clearFocusAndKeyboard
+import com.crazylegend.kotlinextensions.views.setTheText
+import com.crazylegend.kotlinextensions.views.textString
+import com.crazylegend.toaster.Toaster
+import com.crazylegend.view.height
+import com.crazylegend.view.onItemSelected
+import com.crazylegend.view.setOnClickListenerCooldown
+import com.crazylegend.view.width
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
@@ -58,6 +64,9 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
 
     @Inject
     lateinit var customizationPrefs: CustomizationPrefs
+
+    @Inject
+    lateinit var toaster: Toaster
 
     override val binding by viewBinding(FragmentCustomizationBinding::bind)
 
@@ -178,7 +187,7 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
     private fun goBack() {
         uiAction {
             findNavController().navigateUp()
-            shortToast(R.string.saved)
+            toaster.shortToast(R.string.saved)
         }
     }
 

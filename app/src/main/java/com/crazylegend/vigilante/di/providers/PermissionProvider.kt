@@ -4,9 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.provider.Settings
 import androidx.core.os.bundleOf
-import com.crazylegend.kotlinextensions.accessibility.hasAccessibilityPermission
-import com.crazylegend.kotlinextensions.accessibility.isAccessibilityServiceRunning
-import com.crazylegend.kotlinextensions.context.shortToast
+import com.crazylegend.accessibility.hasAccessibilityPermission
+import com.crazylegend.accessibility.isAccessibilityServiceRunning
+import com.crazylegend.toaster.Toaster
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.di.qualifiers.FragmentContext
 import com.crazylegend.vigilante.service.VigilanteService
@@ -22,6 +22,7 @@ import javax.inject.Inject
 
 @FragmentScoped
 class PermissionProvider @Inject constructor(
+        private val toaster: Toaster,
         @FragmentContext private val context: Context) {
 
 
@@ -43,7 +44,7 @@ class PermissionProvider @Inject constructor(
 
     private fun disableTheService() {
         if (isVigilanteRunning()) {
-            context.shortToast(R.string.disable_the_service)
+            toaster.shortToast(R.string.disable_the_service)
             context.stopVigilante()
             askForAccessibilityPermissions()
         }
@@ -51,7 +52,7 @@ class PermissionProvider @Inject constructor(
 
     private fun enableTheService() {
         if (!hasAccessibilityPermission()) {
-            context.shortToast(R.string.enable_the_service)
+            toaster.shortToast(R.string.enable_the_service)
             askForAccessibilityPermissions()
         } else {
             context.startVigilante()

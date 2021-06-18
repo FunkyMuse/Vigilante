@@ -4,9 +4,9 @@ import android.content.Context
 import android.media.AudioManager
 import android.media.AudioRecordingConfiguration
 import androidx.lifecycle.ServiceLifecycleDispatcher
-import com.crazylegend.kotlinextensions.context.audioManager
-import com.crazylegend.kotlinextensions.context.notificationManager
-import com.crazylegend.kotlinextensions.ifTrue
+import com.crazylegend.common.ifTrue
+import com.crazylegend.contextgetters.audioManager
+import com.crazylegend.contextgetters.notificationManager
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.contracts.service.ServiceManagersCoroutines
 import com.crazylegend.vigilante.di.providers.UserNotificationsProvider

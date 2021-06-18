@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
-import com.crazylegend.kotlinextensions.locale.LocaleHelper
+import com.crazylegend.locale.LocaleHelper
 import com.crazylegend.vigilante.di.providers.CoreProvider
 import com.crazylegend.vigilante.di.providers.prefs.defaultPrefs.DefaultPreferencessProvider
 import com.crazylegend.vigilante.utils.DEFAULT_LANGUAGE

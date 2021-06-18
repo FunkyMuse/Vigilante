@@ -8,8 +8,8 @@ import android.view.WindowManager
 import android.widget.FrameLayout
 import androidx.core.view.setMargins
 import androidx.core.view.updateLayoutParams
-import com.crazylegend.kotlinextensions.views.setHeight
-import com.crazylegend.kotlinextensions.views.setWidth
+import com.crazylegend.view.setHeight
+import com.crazylegend.view.setWidth
 import com.crazylegend.vigilante.databinding.ServiceLayoutDotBinding
 import com.crazylegend.vigilante.di.providers.prefs.camera.CameraPrefs
 import com.crazylegend.vigilante.di.providers.prefs.location.LocationPrefs

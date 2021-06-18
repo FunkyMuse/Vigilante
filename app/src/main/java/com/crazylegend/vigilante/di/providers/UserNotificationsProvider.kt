@@ -8,9 +8,9 @@ import android.graphics.BitmapFactory
 import android.os.Build
 import androidx.annotation.StringRes
 import androidx.core.app.NotificationCompat
-import com.crazylegend.kotlinextensions.collections.isNullOrEmpty
-import com.crazylegend.kotlinextensions.context.notificationManager
-import com.crazylegend.kotlinextensions.locale.LocaleHelper
+import com.crazylegend.collections.isNullOrEmpty
+import com.crazylegend.contextgetters.notificationManager
+import com.crazylegend.locale.LocaleHelper
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.di.qualifiers.ServiceContext
 import dagger.hilt.android.scopes.ServiceScoped

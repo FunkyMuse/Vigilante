@@ -3,13 +3,11 @@ package com.crazylegend.vigilante.crashes
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
-import com.crazylegend.kotlinextensions.context.copyToClipboard
-import com.crazylegend.kotlinextensions.fragments.shortToast
-
-import com.crazylegend.kotlinextensions.intent.openWebPage
-import com.crazylegend.kotlinextensions.toaster.Toaster
-import com.crazylegend.kotlinextensions.tryOrElse
+import com.crazylegend.common.tryOrElse
+import com.crazylegend.context.copyToClipboard
+import com.crazylegend.intent.openWebPage
 import com.crazylegend.recyclerview.clickListeners.forItemClickListener
+import com.crazylegend.toaster.Toaster
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
@@ -62,7 +60,7 @@ class CrashFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.layout_re
         requireContext().copyToClipboard(item)
         toaster.shortToast(R.string.crash_copied_to_clipboard)
         requireContext().openWebPage(NEW_ISSUE_URL) {
-            shortToast(R.string.web_browser_required)
+            toaster.shortToast(R.string.web_browser_required)
         }
     }
 }

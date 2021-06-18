@@ -7,10 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import com.crazylegend.kotlinextensions.locale.LocaleHelper
 import com.crazylegend.kotlinextensions.misc.requestBatteryOptimizations
 import com.crazylegend.kotlinextensions.power.isIgnoringBatteryOptimization
-import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
+import com.crazylegend.locale.LocaleHelper
+import com.crazylegend.view.setOnClickListenerCooldown
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.databinding.ActivityMainBinding
 import com.crazylegend.vigilante.utils.DEFAULT_LANGUAGE

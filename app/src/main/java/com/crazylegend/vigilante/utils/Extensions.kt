@@ -3,21 +3,23 @@
 package com.crazylegend.vigilante.utils
 
 import android.content.Context
+import android.content.Intent
 import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.*
+import androidx.lifecycle.AbstractSavedStateViewModelFactory
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceFragmentCompat
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.crazylegend.kotlinextensions.activity.newIntent
-import com.crazylegend.kotlinextensions.fragments.viewCoroutineScope
-import com.crazylegend.kotlinextensions.services.isServiceRunning
-import com.crazylegend.kotlinextensions.services.startForegroundService
-import com.crazylegend.kotlinextensions.tryOrPrint
-import com.crazylegend.kotlinextensions.views.dimen
+import com.crazylegend.common.tryOrPrint
+import com.crazylegend.fragment.viewCoroutineScope
+import com.crazylegend.receivers.isServiceRunning
+import com.crazylegend.receivers.startForegroundService
+import com.crazylegend.view.dimen
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.database.migrations.CameraAndMicRemovalMigration
 import com.crazylegend.vigilante.service.VigilanteService
@@ -45,7 +47,7 @@ fun Context.startVigilante() {
 }
 
 fun Context.stopVigilante(): Boolean {
-    val intent = newIntent<VigilanteService>(this)
+    val intent = Intent(this, VigilanteService::class.java)
     return stopService(intent)
 }
 
@@ -67,14 +69,6 @@ inline fun <reified T : ViewModel> Fragment.assistedViewModel(
     object : AbstractSavedStateViewModelFactory(this, arguments) {
         override fun <T : ViewModel> create(key: String, modelClass: Class<T>, handle: SavedStateHandle) =
                 viewModelProducer(handle) as T
-    }
-}
-
-fun <T> lazyNonSynchronized(initializer: () -> T): Lazy<T> = lazy(LazyThreadSafetyMode.NONE, initializer)
-
-inline fun Fragment.onStartedRepeatingAction(crossinline action: suspend () -> Unit) {
-    viewLifecycleOwner.addRepeatingJob(Lifecycle.State.STARTED) {
-        action()
     }
 }
 

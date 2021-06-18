@@ -9,19 +9,20 @@ import androidx.annotation.StringRes
 import androidx.core.view.setPadding
 import androidx.core.view.updateLayoutParams
 import androidx.navigation.fragment.navArgs
+import com.crazylegend.color.toHexString
+import com.crazylegend.common.tryOrElse
+import com.crazylegend.common.tryOrNull
+import com.crazylegend.context.copyToClipboard
+import com.crazylegend.context.getAppIcon
+import com.crazylegend.context.getAppName
 import com.crazylegend.crashyreporter.CrashyReporter
 import com.crazylegend.database.DBResult
 import com.crazylegend.database.handle
-import com.crazylegend.kotlinextensions.color.toHexString
-import com.crazylegend.kotlinextensions.context.copyToClipboard
-import com.crazylegend.kotlinextensions.context.getAppIcon
-import com.crazylegend.kotlinextensions.context.getAppName
-import com.crazylegend.kotlinextensions.dateAndTime.toString
-import com.crazylegend.kotlinextensions.fragments.shortToast
-import com.crazylegend.kotlinextensions.tryOrElse
-import com.crazylegend.kotlinextensions.tryOrNull
-import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
-import com.crazylegend.kotlinextensions.views.visibleIfTrueGoneOtherwise
+import com.crazylegend.datetime.toString
+import com.crazylegend.lifecycle.repeatingJobOnStarted
+import com.crazylegend.toaster.Toaster
+import com.crazylegend.view.setOnClickListenerCooldown
+import com.crazylegend.view.visibleIfTrueGoneOtherwise
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractBottomSheet
@@ -29,7 +30,6 @@ import com.crazylegend.vigilante.databinding.DialogNotificationDetailsBinding
 import com.crazylegend.vigilante.di.providers.prefs.defaultPrefs.DefaultPreferencessProvider
 import com.crazylegend.vigilante.notifications.db.NotificationsModel
 import com.crazylegend.vigilante.utils.assistedViewModel
-import com.crazylegend.vigilante.utils.onStartedRepeatingAction
 import com.google.android.material.textview.MaterialTextView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -43,6 +43,9 @@ class NotificationDetailsBottomSheetFragment : AbstractBottomSheet<DialogNotific
 
     @Inject
     lateinit var prefsProvider: DefaultPreferencessProvider
+
+    @Inject
+    lateinit var toaster: Toaster
 
 
     override val viewRes: Int
@@ -62,7 +65,7 @@ class NotificationDetailsBottomSheetFragment : AbstractBottomSheet<DialogNotific
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        onStartedRepeatingAction {
+        repeatingJobOnStarted {
             notificationDetailsVM.notification.collectLatest {
                 handleDatabaseResult(it)
             }
@@ -75,7 +78,7 @@ class NotificationDetailsBottomSheetFragment : AbstractBottomSheet<DialogNotific
                 dbError = {
                     CrashyReporter.logException(it)
                     dismissAllowingStateLoss()
-                    shortToast(R.string.error_occurred)
+                    toaster.shortToast(R.string.error_occurred)
                 },
                 success = {
                     updateUI(this)
@@ -129,7 +132,7 @@ class NotificationDetailsBottomSheetFragment : AbstractBottomSheet<DialogNotific
         }
         binding.textHolder.setOnClickListenerCooldown {
             requireContext().copyToClipboard(content)
-            shortToast(R.string.content_copied_to_clipboard)
+            toaster.shortToast(R.string.content_copied_to_clipboard)
         }
         return textView
     }

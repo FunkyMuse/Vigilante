@@ -2,8 +2,8 @@ package com.crazylegend.vigilante.di.providers.prefs.customization
 
 import android.content.SharedPreferences
 import android.view.Gravity
-import com.crazylegend.kotlinextensions.sharedprefs.putFloat
-import com.crazylegend.kotlinextensions.sharedprefs.putInt
+import com.crazylegend.sharedpreferences.putFloat
+import com.crazylegend.sharedpreferences.putInt
 import com.crazylegend.vigilante.customization.CustomizationFragment
 import com.crazylegend.vigilante.di.qualifiers.EncryptedPrefs
 import javax.inject.Inject

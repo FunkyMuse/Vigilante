@@ -7,8 +7,8 @@ import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import com.crazylegend.kotlinextensions.misc.disableNightMode
 import com.crazylegend.kotlinextensions.misc.enableNightMode
-import com.crazylegend.kotlinextensions.sharedprefs.putBoolean
-import com.crazylegend.kotlinextensions.sharedprefs.putString
+import com.crazylegend.sharedpreferences.putBoolean
+import com.crazylegend.sharedpreferences.putString
 import com.crazylegend.vigilante.di.qualifiers.EncryptedPrefs
 import com.crazylegend.vigilante.historyDeletionWorker.HistoryDeletionWorker
 import com.crazylegend.vigilante.settings.*

@@ -6,9 +6,9 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.crazylegend.crashyreporter.CrashyReporter
-import com.crazylegend.kotlinextensions.fragments.shortToast
-import com.crazylegend.kotlinextensions.views.setOnClickListenerCooldown
 import com.crazylegend.recyclerview.clickListeners.forItemClickListener
+import com.crazylegend.toaster.Toaster
+import com.crazylegend.view.setOnClickListenerCooldown
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
@@ -39,6 +39,9 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
     @Inject
     lateinit var prefsProvider: DefaultPreferencessProvider
 
+    @Inject
+    lateinit var toaster: Toaster
+
     private val sectionAdapter by lazy {
         adapterProvider.sectionAdapter
     }
@@ -53,9 +56,12 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
                 SectionItem(R.string.device_info, R.drawable.ic_info, SectionItem.SectionItemAction.DEVICE_INFO),
         )
 
-    override val binding by viewBinding(FragmentHomeBinding::bind) {
-        //dispose any unneeded resources
-        themeIcon.animation?.cancel()
+    override val binding by viewBinding(FragmentHomeBinding::bind)
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding.themeIcon.animation?.cancel()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -101,7 +107,7 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
 
         binding.crashes.setOnClickListenerCooldown {
             if (CrashyReporter.getLogsAsStrings().isNullOrEmpty()) {
-                shortToast(R.string.no_crashes)
+                toaster.shortToast(R.string.no_crashes)
             } else {
                 uiAction { goToScreen(HomeFragmentDirections.destinationCrashes()) }
             }

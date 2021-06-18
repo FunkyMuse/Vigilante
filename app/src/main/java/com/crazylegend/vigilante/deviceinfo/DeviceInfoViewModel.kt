@@ -3,8 +3,8 @@ package com.crazylegend.vigilante.deviceinfo
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.crazylegend.coroutines.defaultDispatcher
-import com.crazylegend.kotlinextensions.root.RootUtils
 import com.crazylegend.kotlinextensions.storage.isDiskEncrypted
+import com.crazylegend.root.RootUtils
 import com.crazylegend.security.MagiskDetector
 import com.crazylegend.vigilante.R
 import dagger.hilt.android.lifecycle.HiltViewModel

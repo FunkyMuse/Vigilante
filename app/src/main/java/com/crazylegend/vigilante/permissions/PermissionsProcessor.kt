@@ -4,10 +4,10 @@ import android.annotation.SuppressLint
 import android.view.accessibility.AccessibilityNodeInfo
 import androidx.lifecycle.ServiceLifecycleDispatcher
 import com.crazylegend.coroutines.makeIOCall
-import com.crazylegend.kotlinextensions.string.isNotNullOrEmpty
+import com.crazylegend.string.isNotNullOrEmpty
 import com.crazylegend.vigilante.contracts.service.ServiceManagersCoroutines
 import com.crazylegend.vigilante.permissions.db.PermissionRequestModel
-import com.crazylegend.vigilante.permissions.db.PermissionRequestsRepository
+import com.crazylegend.vigilante.permissions.db.PermissionRequestsDAO
 import dagger.hilt.android.scopes.ServiceScoped
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
@@ -21,7 +21,7 @@ import javax.inject.Inject
 @ServiceScoped
 @SuppressLint("DefaultLocale")
 class PermissionsProcessor @Inject constructor(
-        private val permissionRequestsRepository: PermissionRequestsRepository,
+        private val permissionRequestsRepository: PermissionRequestsDAO,
 ) : ServiceManagersCoroutines {
 
     override val serviceLifecycleDispatcher: ServiceLifecycleDispatcher = ServiceLifecycleDispatcher(this)

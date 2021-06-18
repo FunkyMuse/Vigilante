@@ -1,9 +1,10 @@
 package com.crazylegend.vigilante.di.providers
 
 import androidx.core.view.isVisible
+import com.crazylegend.kotlinextensions.misc.lazyNonSynchronized
 import com.crazylegend.kotlinextensions.views.setPrecomputedText
-import com.crazylegend.kotlinextensions.views.visibleIfTrueGoneOtherwise
 import com.crazylegend.recyclerview.generateRecyclerWithHolder
+import com.crazylegend.view.visibleIfTrueGoneOtherwise
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.databinding.ItemviewCrashBinding
 import com.crazylegend.vigilante.databinding.ItemviewDeviceInfoBinding
@@ -12,7 +13,6 @@ import com.crazylegend.vigilante.databinding.ItemviewSectionBinding
 import com.crazylegend.vigilante.deviceinfo.DeviceInfoModel
 import com.crazylegend.vigilante.filter.FilterModel
 import com.crazylegend.vigilante.home.section.SectionItem
-import com.crazylegend.vigilante.utils.lazyNonSynchronized
 import dagger.hilt.android.scopes.FragmentScoped
 import javax.inject.Inject
 

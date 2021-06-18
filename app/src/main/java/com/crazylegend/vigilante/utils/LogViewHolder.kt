@@ -2,10 +2,10 @@ package com.crazylegend.vigilante.utils
 
 import android.app.usage.UsageStats
 import androidx.recyclerview.widget.RecyclerView
-import com.crazylegend.kotlinextensions.context.getAppIcon
-import com.crazylegend.kotlinextensions.context.getAppName
-import com.crazylegend.kotlinextensions.dateAndTime.toString
-import com.crazylegend.kotlinextensions.tryOrNull
+import com.crazylegend.common.tryOrNull
+import com.crazylegend.context.getAppIcon
+import com.crazylegend.context.getAppName
+import com.crazylegend.datetime.toString
 import com.crazylegend.kotlinextensions.views.setPrecomputedText
 import com.crazylegend.recyclerview.context
 import com.crazylegend.recyclerview.getString

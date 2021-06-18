@@ -2,12 +2,17 @@ package com.crazylegend.vigilante.otp
 
 import android.os.Bundle
 import android.view.View
-import com.crazylegend.kotlinextensions.context.copyToClipboard
+import com.crazylegend.context.copyToClipboard
 import com.crazylegend.kotlinextensions.insets.hideKeyboard
-import com.crazylegend.kotlinextensions.string.isNotNullOrEmpty
-import com.crazylegend.kotlinextensions.toaster.Toaster
-import com.crazylegend.kotlinextensions.views.*
+import com.crazylegend.kotlinextensions.views.clearError
+import com.crazylegend.kotlinextensions.views.onImeAction2
+import com.crazylegend.kotlinextensions.views.textString
 import com.crazylegend.security.generateOneTimePassword
+import com.crazylegend.string.isNotNullOrEmpty
+import com.crazylegend.toaster.Toaster
+import com.crazylegend.view.hideSoftInput
+import com.crazylegend.view.setOnClickListenerCooldown
+import com.crazylegend.view.visible
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractBottomSheet

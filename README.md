@@ -48,6 +48,9 @@ An app that focuses on your privacy and alerts you when a third-party applicatio
 * 🇲🇰 [@FunkyMuse](https://github.com/FunkyMuse)
 * 🇫🇷 [@Trukmuch](https://github.com/Trukmuch)
 
+## Known issues
+* [Cannot uninstall app via Package Installer](https://github.com/FunkyMuse/Vigilante/issues/150) this issue has a [fix](https://github.com/FunkyMuse/Vigilante/issues/71#issuecomment-769303018)
+
 ## Built With 🛠
 
 Some of the popular libraries and MVVM clean architecture used with Room database as a source

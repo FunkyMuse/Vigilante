@@ -22,6 +22,12 @@ class FakePrefsProvider : DefaultPreferences, DotContract, NotificationsContract
         getDateFormat = value
     }
 
+    override var isSoundEnabled: Boolean = false
+
+    override fun updateSoundValue(value: Boolean) {
+        isSoundEnabled = value
+    }
+
     override var getDateFormat: String = "dd.MM.yyyy HH:mm:ss"
     override var areNotificationsEnabled: Boolean = false
 

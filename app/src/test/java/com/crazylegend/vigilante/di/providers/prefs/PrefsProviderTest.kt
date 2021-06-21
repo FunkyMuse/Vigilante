@@ -5,8 +5,8 @@ import com.crazylegend.vigilante.di.providers.prefs.customization.CustomizationP
 import com.crazylegend.vigilante.di.providers.prefs.customization.CustomizationPrefs.Companion.DEFAULT_DOT_SIZE
 import com.crazylegend.vigilante.utils.toggleValue
 import org.hamcrest.CoreMatchers.instanceOf
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertThat
 import org.junit.Test
 import java.text.SimpleDateFormat
 
@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat
  */
 class PrefsProviderTest {
 
-    val defaultPreferences = FakePrefsProvider()
+    private val defaultPreferences = FakePrefsProvider()
 
     @Test
     fun `update Date Format and get the updated date`() {
@@ -24,6 +24,11 @@ class PrefsProviderTest {
         defaultPreferences.updateDateFormat(dateFormat)
         assertThat(defaultPreferences.getDateFormat, instanceOf(String::class.java))
         assertThat(SimpleDateFormat(dateFormat), instanceOf(SimpleDateFormat::class.java))
+    }
+
+    @Test
+    fun `notifications sound test`() {
+        toggleValue(initialExpectation = false, { defaultPreferences.isSoundEnabled }) { defaultPreferences.updateSoundValue(true) }
     }
 
     @Test

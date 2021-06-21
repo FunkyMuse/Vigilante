@@ -1,6 +1,6 @@
 package com.crazylegend.vigilante.crashes
 
-import com.crazylegend.kotlinextensions.collections.isNotNullOrEmpty
+import com.crazylegend.collections.isNotNullOrEmpty
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.mockk

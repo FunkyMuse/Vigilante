@@ -10,6 +10,11 @@ interface NotificationsContract {
     fun updateDNDValue(value: Boolean)
     //endregion
 
+    //region sound
+    val isSoundEnabled: Boolean
+    fun updateSoundValue(value: Boolean)
+    //endregion
+
     //region notifications status
     val areNotificationsEnabled: Boolean
     fun updateNotificationsValue(value: Boolean)

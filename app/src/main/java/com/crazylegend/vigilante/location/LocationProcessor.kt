@@ -76,7 +76,7 @@ class LocationProcessor @Inject constructor(
     private fun sendNotificationIfUserEnabled() {
         locationPrefs.areNotificationsEnabled.ifTrue {
             userNotificationsProvider.buildUsageNotification(locationNotificationID, R.string.location_being_used, locationPrefs.getLocationNotificationLEDColorPref,
-                    locationPrefs.getLocationVibrationEffectPref, locationPrefs.isBypassDNDEnabled)
+                    locationPrefs.getLocationVibrationEffectPref, locationPrefs.isBypassDNDEnabled, locationPrefs.isSoundEnabled)
         }
     }
 

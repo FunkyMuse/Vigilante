@@ -28,6 +28,14 @@
         app:summary="@string/notifications_usage_expl_camera"
         app:title="@string/notifications_usage_title" />
 
+    <SwitchPreferenceCompat
+        app:iconSpaceReserved="false"
+        app:defaultValue="false"
+        app:key="camera_pref_sound"
+        app:dependency="camera_pref_notifications"
+        app:summary="@string/sound_pref_summary"
+        app:title="@string/sound_pref_title" />
+
 
     <SwitchPreferenceCompat
         app:iconSpaceReserved="false"

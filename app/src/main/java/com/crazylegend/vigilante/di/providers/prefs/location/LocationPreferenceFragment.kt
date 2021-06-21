@@ -27,10 +27,9 @@ class LocationPreferenceFragment : PreferenceFragmentCompat() {
 
     private val dotSwitch by preference<SwitchPreferenceCompat>(LOCATION_DOT_PREF_KEY)
     private val bypassDND by preference<SwitchPreferenceCompat>(LOCATION_BYPASS_DND_PREF_KEY)
-    private val notificationsSwitch by preference<SwitchPreferenceCompat>(
-            LOCATION_NOTIFICATIONS_PREF_KEY
-    )
+    private val notificationsSwitch by preference<SwitchPreferenceCompat>(LOCATION_NOTIFICATIONS_PREF_KEY)
     private val dotAppearance by preference<Preference>(LOCATION_DOT_APPEARANCE)
+    private val notificationsSound by preference<SwitchPreferenceCompat>(LOCATION_SOUNDS_PREF_KEY)
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings_location, rootKey)
@@ -56,6 +55,10 @@ class LocationPreferenceFragment : PreferenceFragmentCompat() {
         dotSwitch.booleanChangeListener { _, newValue ->
             prefsProvider.setDotStatus(newValue)
         }
+
+        notificationsSound.booleanChangeListener { _, newValue ->
+            prefsProvider.updateSoundValue(newValue)
+        }
     }
 
     private fun updateDNDSummary() {
@@ -69,6 +72,7 @@ class LocationPreferenceFragment : PreferenceFragmentCompat() {
 
     private fun updateNotificationSwitch() {
         notificationsSwitch.isChecked = prefsProvider.areNotificationsEnabled
+        notificationsSound.isChecked = prefsProvider.isSoundEnabled
         updateDNDSummary()
     }
 

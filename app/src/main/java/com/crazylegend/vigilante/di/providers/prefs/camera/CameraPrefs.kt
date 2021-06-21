@@ -6,10 +6,7 @@ import com.crazylegend.vigilante.di.providers.prefs.contracts.DotContract
 import com.crazylegend.vigilante.di.providers.prefs.contracts.NotificationsContract
 import com.crazylegend.vigilante.di.providers.prefs.customization.CustomizationPrefs
 import com.crazylegend.vigilante.di.qualifiers.EncryptedPrefs
-import com.crazylegend.vigilante.settings.CAMERA_BYPASS_DND_PREF_KEY
-import com.crazylegend.vigilante.settings.CAMERA_CUSTOMIZATION_BASE_PREF
-import com.crazylegend.vigilante.settings.CAMERA_DOT_PREF_KEY
-import com.crazylegend.vigilante.settings.CAMERA_NOTIFICATIONS_PREF_KEY
+import com.crazylegend.vigilante.settings.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -36,6 +33,13 @@ class CameraPrefs @Inject constructor(
 
     override fun updateNotificationsValue(value: Boolean) =
             defaultPrefs.putBoolean(CAMERA_NOTIFICATIONS_PREF_KEY, value)
+    //endregion
+
+    //region notifications sound
+    override val isSoundEnabled: Boolean
+        get() = defaultPrefs.getBoolean(CAMERA_SOUNDS_PREF_KEY, true)
+
+    override fun updateSoundValue(value: Boolean) = defaultPrefs.putBoolean(CAMERA_SOUNDS_PREF_KEY, value)
     //endregion
 
     //region bypass dnd

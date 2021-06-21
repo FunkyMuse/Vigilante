@@ -55,7 +55,7 @@ class MicrophoneProcessor @Inject constructor(
     private fun sendNotificationIfUserEnabled() {
         microphonePrefs.areNotificationsEnabled.ifTrue {
             userNotificationsProvider.buildUsageNotification(micNotificationID, R.string.mic_being_used, microphonePrefs.getMicNotificationLEDColorPref,
-                    microphonePrefs.getMicVibrationEffectPref, microphonePrefs.isBypassDNDEnabled)
+                    microphonePrefs.getMicVibrationEffectPref, microphonePrefs.isBypassDNDEnabled, microphonePrefs.isSoundEnabled)
         }
     }
 

@@ -27,6 +27,13 @@
         app:summary="@string/notifications_usage_expl_mic"
         app:title="@string/notifications_usage_title" />
 
+    <SwitchPreferenceCompat
+        app:iconSpaceReserved="false"
+        app:defaultValue="true"
+        app:key="mic_pref_sound"
+        app:dependency="mic_pref_notifications"
+        app:summary="@string/sound_pref_summary"
+        app:title="@string/sound_pref_title" />
 
     <SwitchPreferenceCompat
         app:iconSpaceReserved="false"

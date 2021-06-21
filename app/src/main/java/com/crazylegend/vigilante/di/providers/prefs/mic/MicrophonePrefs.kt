@@ -6,10 +6,7 @@ import com.crazylegend.vigilante.di.providers.prefs.contracts.DotContract
 import com.crazylegend.vigilante.di.providers.prefs.contracts.NotificationsContract
 import com.crazylegend.vigilante.di.providers.prefs.customization.CustomizationPrefs
 import com.crazylegend.vigilante.di.qualifiers.EncryptedPrefs
-import com.crazylegend.vigilante.settings.MIC_BYPASS_DND_PREF_KEY
-import com.crazylegend.vigilante.settings.MIC_CUSTOMIZATION_BASE_PREF
-import com.crazylegend.vigilante.settings.MIC_DOT_PREF_KEY
-import com.crazylegend.vigilante.settings.MIC_NOTIFICATIONS_PREF_KEY
+import com.crazylegend.vigilante.settings.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -32,13 +29,20 @@ class MicrophonePrefs @Inject constructor(
         get() = defaultPrefs.getBoolean(MIC_NOTIFICATIONS_PREF_KEY, true)
 
     override fun updateNotificationsValue(value: Boolean) =
-        defaultPrefs.putBoolean(MIC_NOTIFICATIONS_PREF_KEY, value)
+            defaultPrefs.putBoolean(MIC_NOTIFICATIONS_PREF_KEY, value)
+    //endregion
+
+    //region notifications sound
+    override val isSoundEnabled: Boolean
+        get() = defaultPrefs.getBoolean(MIC_SOUNDS_PREF_KEY, true)
+
+    override fun updateSoundValue(value: Boolean) = defaultPrefs.putBoolean(MIC_SOUNDS_PREF_KEY, value)
     //endregion
 
     //region bypass dnd
     override val isBypassDNDEnabled get() = defaultPrefs.getBoolean(MIC_BYPASS_DND_PREF_KEY, false)
     override fun updateDNDValue(value: Boolean) =
-        defaultPrefs.putBoolean(MIC_BYPASS_DND_PREF_KEY, value)
+            defaultPrefs.putBoolean(MIC_BYPASS_DND_PREF_KEY, value)
     //endregion
 
 

@@ -27,34 +27,40 @@ class UserNotificationsProvider @Inject constructor(@ServiceContext private val 
      * @param notificationID Int - to cancel once done
      * @return Notification?
      */
-    fun buildUsageNotification(notificationID: Int, @StringRes usageTypeString: Int, notificationLEDColorPref: Int, effect: LongArray?, bypassDND: Boolean) {
+    fun buildUsageNotification(notificationID: Int,
+                               @StringRes usageTypeString: Int,
+                               notificationLEDColorPref: Int,
+                               effect: LongArray?,
+                               bypassDND: Boolean,
+                               isSoundEnabled: Boolean) {
 
         val usageContentText = LocaleHelper.getLocalizedString(context, usageTypeString)
 
         val notificationCompatBuilder = NotificationCompat.Builder(
                 context,
-                context.createNotificationChannel(notificationLEDColorPref, effect, bypassDND)
+                context.createNotificationChannel(notificationLEDColorPref, effect, bypassDND, isSoundEnabled)
         )
                 .setDefaults(Notification.DEFAULT_LIGHTS)
                 .setSmallIcon(R.drawable.ic_logo)
-                .setLargeIcon(
-                BitmapFactory.decodeResource(
-                    context.resources,
-                    R.drawable.ic_launcher_foreground
-                )
-            )
-            .setContentTitle(LocaleHelper.getLocalizedString(context, R.string.usage_title))
-            .setContentText(usageContentText)
-            .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setAutoCancel(false)
-            .setOngoing(true)
-            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-            .setColorized(true)
+                .setLargeIcon(BitmapFactory.decodeResource(context.resources, R.drawable.ic_launcher_foreground))
+                .setContentTitle(LocaleHelper.getLocalizedString(context, R.string.usage_title))
+                .setContentText(usageContentText)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setAutoCancel(false)
+                .setOngoing(true)
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                .setColorized(true)
                 .setVibrate(effect)
                 .setStyle(NotificationCompat.BigTextStyle().bigText(usageContentText))
                 .setShowWhen(true)
                 .setOnlyAlertOnce(true)
-                .setSound(null)
+                .setSilent(!isSoundEnabled)
+
+        notificationCompatBuilder.also {
+            if (!isSoundEnabled) {
+                it.setSound(null)
+            }
+        }
 
         context.notificationManager?.notify(notificationID, notificationCompatBuilder.build())
     }
@@ -62,20 +68,26 @@ class UserNotificationsProvider @Inject constructor(@ServiceContext private val 
     private fun Context.createNotificationChannel(
             notificationLEDColorPref: Int,
             effect: LongArray?,
-            bypassDND: Boolean
+            bypassDND: Boolean,
+            isSoundEnabled: Boolean
     ): String {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val notificationChannel = with(
-                NotificationChannel(
-                    NOTIFICATION_CHANNEL,
-                    getString(R.string.channel_name),
-                    NotificationManager.IMPORTANCE_HIGH
-                )
+                    NotificationChannel(
+                            NOTIFICATION_CHANNEL,
+                            getString(R.string.channel_name),
+                            NotificationManager.IMPORTANCE_HIGH
+                    )
             ) {
                 description = getString(R.string.channel_description)
                 description = getString(R.string.channel_description)
                 enableLights(true)
                 setBypassDnd(bypassDND)
+
+                if (!isSoundEnabled) {
+                    setSound(null, null)
+                }
+
                 vibrationPattern = effect
                 enableVibration(!effect.isNullOrEmpty())
                 lightColor = notificationLEDColorPref

@@ -7,10 +7,7 @@ import com.crazylegend.vigilante.di.providers.prefs.contracts.DotContract
 import com.crazylegend.vigilante.di.providers.prefs.contracts.NotificationsContract
 import com.crazylegend.vigilante.di.providers.prefs.customization.CustomizationPrefs
 import com.crazylegend.vigilante.di.qualifiers.EncryptedPrefs
-import com.crazylegend.vigilante.settings.LOCATION_BYPASS_DND_PREF_KEY
-import com.crazylegend.vigilante.settings.LOCATION_CUSTOMIZATION_BASE_PREF
-import com.crazylegend.vigilante.settings.LOCATION_DOT_PREF_KEY
-import com.crazylegend.vigilante.settings.LOCATION_NOTIFICATIONS_PREF_KEY
+import com.crazylegend.vigilante.settings.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -34,6 +31,13 @@ class LocationPrefs @Inject constructor(
                 LOCATION_NOTIFICATIONS_PREF_KEY,
                 true
         )
+
+    //region notifications sound
+    override val isSoundEnabled: Boolean
+        get() = defaultPrefs.getBoolean(LOCATION_SOUNDS_PREF_KEY, true)
+
+    override fun updateSoundValue(value: Boolean) = defaultPrefs.putBoolean(LOCATION_SOUNDS_PREF_KEY, value)
+    //endregion
 
     override fun updateNotificationsValue(value: Boolean) =
             defaultPrefs.putBoolean(LOCATION_NOTIFICATIONS_PREF_KEY, value)

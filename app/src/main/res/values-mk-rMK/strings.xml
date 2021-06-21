@@ -159,6 +159,8 @@
     <string name="shuffle_characters">Мешај карактери</string>
     <string name="password_too_short">Лозинката е премногу кратка</string>
     <string name="location_title">Локација</string>
+    <string name="sound_pref_title">Звук при нотификација</string>
+    <string name="sound_pref_summary">Со овозможување на оваа опција, ќе добивате звуци за известување кога ќе се случи употреба на камера/микрофон/локација.</string>
 
     <!--Languages-->
     <string name="english">Англиски</string>

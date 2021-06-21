@@ -27,10 +27,9 @@ class CameraPreferenceFragment : PreferenceFragmentCompat() {
 
     private val dotSwitch by preference<SwitchPreferenceCompat>(CAMERA_DOT_PREF_KEY)
     private val bypassDND by preference<SwitchPreferenceCompat>(CAMERA_BYPASS_DND_PREF_KEY)
-    private val notificationsSwitch by preference<SwitchPreferenceCompat>(
-            CAMERA_NOTIFICATIONS_PREF_KEY
-    )
+    private val notificationsSwitch by preference<SwitchPreferenceCompat>(CAMERA_NOTIFICATIONS_PREF_KEY)
     private val dotAppearance by preference<Preference>(CAMERA_DOT_APPEARANCE)
+    private val notificationsSound by preference<SwitchPreferenceCompat>(CAMERA_SOUNDS_PREF_KEY)
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings_camera, rootKey)
@@ -56,6 +55,10 @@ class CameraPreferenceFragment : PreferenceFragmentCompat() {
         dotSwitch.booleanChangeListener { _, newValue ->
             prefsProvider.setDotStatus(newValue)
         }
+
+        notificationsSound.booleanChangeListener { _, newValue ->
+            prefsProvider.updateSoundValue(newValue)
+        }
     }
 
     private fun updateDNDSummary() {
@@ -69,6 +72,7 @@ class CameraPreferenceFragment : PreferenceFragmentCompat() {
 
     private fun updateNotificationSwitch() {
         notificationsSwitch.isChecked = prefsProvider.areNotificationsEnabled
+        notificationsSound.isChecked = prefsProvider.isSoundEnabled
         updateDNDSummary()
     }
 

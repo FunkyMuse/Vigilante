@@ -163,6 +163,9 @@
     <string name="shuffle_characters">Shuffle characters</string>
     <string name="password_too_short">Password too short</string>
     <string name="location_title">Location</string>
+    <string name="sound_pref_title">Notification sound</string>
+    <string name="sound_pref_summary">By enabling this option, you\'ll be receiving notification sounds when usage happens.</string>
+
 
     <!--Languages-->
     <string name="english">English</string>
@@ -175,6 +178,5 @@
     <string name="french">French</string>
     <string name="bulgarian">Bulgarian</string>
     <string name="italian">Italian</string>
-
 
 </resources>

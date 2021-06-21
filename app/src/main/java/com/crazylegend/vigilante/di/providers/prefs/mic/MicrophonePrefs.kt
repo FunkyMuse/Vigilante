@@ -6,7 +6,10 @@ import com.crazylegend.vigilante.di.providers.prefs.contracts.DotContract
 import com.crazylegend.vigilante.di.providers.prefs.contracts.NotificationsContract
 import com.crazylegend.vigilante.di.providers.prefs.customization.CustomizationPrefs
 import com.crazylegend.vigilante.di.qualifiers.EncryptedPrefs
-import com.crazylegend.vigilante.settings.*
+import com.crazylegend.vigilante.settings.MIC_BYPASS_DND_PREF_KEY
+import com.crazylegend.vigilante.settings.MIC_CUSTOMIZATION_BASE_PREF
+import com.crazylegend.vigilante.settings.MIC_DOT_PREF_KEY
+import com.crazylegend.vigilante.settings.MIC_NOTIFICATIONS_PREF_KEY
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -26,10 +29,7 @@ class MicrophonePrefs @Inject constructor(
 
     //region notifications status
     override val areNotificationsEnabled
-        get() = defaultPrefs.getBoolean(
-            CAMERA_NOTIFICATIONS_PREF_KEY,
-            true
-        )
+        get() = defaultPrefs.getBoolean(MIC_NOTIFICATIONS_PREF_KEY, true)
 
     override fun updateNotificationsValue(value: Boolean) =
         defaultPrefs.putBoolean(MIC_NOTIFICATIONS_PREF_KEY, value)

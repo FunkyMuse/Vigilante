@@ -16,7 +16,7 @@ buildscript {
         nav_version = '2.4.0-alpha03'
         daggerVersion = '2.37'
         work_version = "2.6.0-beta01"
-        kotlin_version = "1.5.10"
+        kotlin_version = "1.5.20"
     }
 
     repositories {

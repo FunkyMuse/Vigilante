@@ -72,7 +72,7 @@ android {
 
 dependencies {
     //ui
-    implementation 'com.google.android.material:material:1.4.0-rc01'
+    implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation "com.github.skydoves:colorpickerview:2.2.3"
     implementation "androidx.transition:transition-ktx:1.4.1"

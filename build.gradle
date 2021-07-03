@@ -13,7 +13,7 @@ buildscript {
         paging_version = "3.0.0"
         camerax_version = '1.1.0-alpha06'
         mockk = "1.12.0"
-        nav_version = '2.4.0-alpha03'
+        nav_version = '2.4.0-alpha04'
         daggerVersion = '2.37'
         work_version = "2.6.0-beta01"
         kotlin_version = "1.5.20"

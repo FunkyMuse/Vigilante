@@ -20,6 +20,7 @@ import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.di.providers.AuthProvider
 import com.crazylegend.vigilante.di.providers.prefs.defaultPrefs.DefaultPreferencessProvider
 import com.crazylegend.vigilante.utils.GITHUB_URL
+import com.crazylegend.vigilante.utils.MY_OTHER_APPS_URL
 import com.crazylegend.vigilante.utils.addSpacingForPreferenceBackButton
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -53,6 +54,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     private val cameraCategory by preference<Preference>(PREF_CATEGORY_CAMERA)
     private val micCategory by preference<Preference>(PREF_CATEGORY_MIC)
     private val locationCategory by preference<Preference>(PREF_CATEGORY_LOCATION)
+    private val myOtherApps by preference<Preference>(MY_OTHER_APPS_PREF_KEY)
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.settings)
@@ -75,8 +77,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
             }
         }
 
-
-
         language.stringChangeListener { _, newValue ->
             LocaleHelper.setLocale(requireContext(), newValue)
             requireActivity().recreate()
@@ -84,6 +84,12 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
         homePage.onClick {
             requireContext().openWebPage(GITHUB_URL) {
+                toaster.shortToast(R.string.web_browser_required)
+            }
+        }
+
+        myOtherApps.onClick {
+            requireContext().openWebPage(MY_OTHER_APPS_URL) {
                 toaster.shortToast(R.string.web_browser_required)
             }
         }

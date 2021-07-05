@@ -3,6 +3,34 @@
 
     <PreferenceCategory
         app:iconSpaceReserved="false"
+        app:title="@string/informational">
+
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="pref_license"
+            app:summary="@string/license"
+            app:title="@string/license_title" />
+
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="pref_version"
+            app:title="@string/version" />
+
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="pref_home_page"
+            app:title="@string/home_page" />
+
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="pref_my_other_apps"
+            app:title="@string/my_other_apps" />
+
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
         app:title="@string/customizations">
 
         <Preference
@@ -71,27 +99,7 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory
-        app:iconSpaceReserved="false"
-        app:title="@string/informational">
 
-        <Preference
-            app:iconSpaceReserved="false"
-            app:key="pref_license"
-            app:summary="@string/license"
-            app:title="@string/license_title" />
-
-        <Preference
-            app:iconSpaceReserved="false"
-            app:key="pref_version"
-            app:title="@string/version" />
-
-        <Preference
-            app:iconSpaceReserved="false"
-            app:key="pref_home_page"
-            app:title="@string/home_page" />
-
-    </PreferenceCategory>
 
 
 </PreferenceScreen>

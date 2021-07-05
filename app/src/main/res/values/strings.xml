@@ -165,6 +165,7 @@
     <string name="location_title">Location</string>
     <string name="sound_pref_title">Notification sound</string>
     <string name="sound_pref_summary">By enabling this option, you\'ll be receiving notification sounds when usage happens.</string>
+    <string name="my_other_apps">My other apps</string>
 
 
     <!--Languages-->

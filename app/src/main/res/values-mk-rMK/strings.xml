@@ -161,6 +161,7 @@
     <string name="location_title">Локација</string>
     <string name="sound_pref_title">Звук при нотификација</string>
     <string name="sound_pref_summary">Со овозможување на оваа опција, ќе добивате звуци за известување кога ќе се случи употреба на камера/микрофон/локација.</string>
+    <string name="my_other_apps">Мои останати апликации</string>
 
     <!--Languages-->
     <string name="english">Англиски</string>

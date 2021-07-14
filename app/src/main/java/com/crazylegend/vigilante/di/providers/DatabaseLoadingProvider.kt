@@ -2,10 +2,8 @@ package com.crazylegend.vigilante.di.providers
 
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.*
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
-import com.crazylegend.fragment.observeLifecycleOwnerThroughLifecycleCreation
 import com.crazylegend.lifecycle.repeatingJobOnStarted
 import com.crazylegend.recyclerview.isEmpty
 import com.crazylegend.view.visibleIfTrueGoneOtherwise
@@ -21,16 +19,7 @@ import javax.inject.Inject
  * Created by crazy on 11/3/20 to long live and prosper !
  */
 @FragmentScoped
-class DatabaseLoadingProvider @Inject constructor(private val fragment: Fragment) : LifecycleObserver, LifecycleOwner {
-
-
-    override fun getLifecycle(): Lifecycle = fragment.viewLifecycleOwner.lifecycle
-
-    init {
-        fragment.observeLifecycleOwnerThroughLifecycleCreation {
-            lifecycle.addObserver(this@DatabaseLoadingProvider)
-        }
-    }
+class DatabaseLoadingProvider @Inject constructor(private val fragment: Fragment) {
 
     fun <T : Any> provideListState(flow: Flow<PagingData<T>>,
                                    recycler: RecyclerView, noDataView: ConstraintLayout,

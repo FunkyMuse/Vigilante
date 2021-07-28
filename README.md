@@ -4,8 +4,6 @@
 [![API](https://img.shields.io/badge/API-24%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
 [![GitHub release (including pre-releases)](https://img.shields.io/github/v/release/FunkyMuse/Vigilante?include_prereleases)](https://github.com/FunkyMuse/Vigilante/releases/latest)
 ![GitHub Repo Size](https://img.shields.io/github/repo-size/FunkyMuse/Vigilante)
-[![Crowdin](https://badges.crowdin.net/vigilante/localized.svg)](https://crowdin.com/project/vigilante)
-
 
 
 An app that focuses on your privacy and alerts you when a third-party application uses your device camera or microphone, plus few other goodies.
@@ -47,6 +45,8 @@ An app that focuses on your privacy and alerts you when a third-party applicatio
 * 🇷🇺 [@ferhadnecef](https://github.com/ferhadnecef)
 * 🇲🇰 [@FunkyMuse](https://github.com/FunkyMuse)
 * 🇫🇷 [@Trukmuch](https://github.com/Trukmuch)
+
+To add a translation, please open a pull request, Crowdin was removed because it worked 2 out of 10 times.
 
 ## Known issues
 * [Cannot uninstall app via Package Installer](https://github.com/FunkyMuse/Vigilante/issues/150) this issue has a [fix](https://github.com/FunkyMuse/Vigilante/issues/71#issuecomment-769303018)

@@ -1,0 +1,3 @@
+### Improvements
+- Added an option to see the apps of mine
+- Some performance code improvements and new goodies from Android

@@ -5,7 +5,7 @@ import android.content.BroadcastReceiver
 import android.content.Intent
 import android.content.IntentFilter
 import androidx.lifecycle.ServiceLifecycleDispatcher
-import com.crazylegend.vigilante.contracts.service.ServiceManagersCoroutines
+import com.crazylegend.vigilante.contracts.service.ServiceLifecycle
 import com.crazylegend.vigilante.headset.HeadsetReceiver
 import com.crazylegend.vigilante.power.PowerReceiver
 import com.crazylegend.vigilante.screen.ScreenReceiver
@@ -21,7 +21,7 @@ class BroadcastProvider @Inject constructor(
         private val screenReceiver: ScreenReceiver,
         private val headsetPlugReceiver: HeadsetReceiver,
         private val powerReceiver: PowerReceiver,
-        private val service: Service) : ServiceManagersCoroutines {
+        private val service: Service) : ServiceLifecycle {
 
     override val serviceLifecycleDispatcher = ServiceLifecycleDispatcher(this)
 

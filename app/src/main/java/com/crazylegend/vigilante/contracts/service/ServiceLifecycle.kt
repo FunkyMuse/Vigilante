@@ -1,15 +1,24 @@
 package com.crazylegend.vigilante.contracts.service
 
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ServiceLifecycleDispatcher
-import com.crazylegend.vigilante.contracts.LifecycleManagersContract
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlin.coroutines.CoroutineContext
 
 /**
  * Created by crazy on 10/16/20 to long live and prosper !
  */
-interface ServiceLifecycle : LifecycleOwner, LifecycleObserver, LifecycleManagersContract {
+interface ServiceLifecycle : LifecycleOwner, LifecycleEventObserver {
+
+    val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main
+
+    val scope get() = CoroutineScope(coroutineContext + SupervisorJob())
 
     val serviceLifecycleDispatcher: ServiceLifecycleDispatcher
     override fun getLifecycle(): Lifecycle = serviceLifecycleDispatcher.lifecycle
@@ -30,4 +39,23 @@ interface ServiceLifecycle : LifecycleOwner, LifecycleObserver, LifecycleManager
     fun onStart() {
         serviceLifecycleDispatcher.onServicePreSuperOnStart()
     }
+
+    override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
+        when (event) {
+            Lifecycle.Event.ON_CREATE -> initVars()
+            Lifecycle.Event.ON_START -> registerCallbacks()
+            Lifecycle.Event.ON_DESTROY -> {
+                scope.cancel()
+                disposeResources()
+            }
+            else -> {
+            }
+        }
+    }
+
+    fun initVars()
+
+    fun registerCallbacks()
+
+    fun disposeResources()
 }

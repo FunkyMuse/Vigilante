@@ -10,7 +10,7 @@ import com.crazylegend.common.ifTrue
 import com.crazylegend.contextgetters.locationManager
 import com.crazylegend.contextgetters.notificationManager
 import com.crazylegend.vigilante.R
-import com.crazylegend.vigilante.contracts.service.ServiceManagersCoroutines
+import com.crazylegend.vigilante.contracts.service.ServiceLifecycle
 import com.crazylegend.vigilante.di.providers.UserNotificationsProvider
 import com.crazylegend.vigilante.di.providers.prefs.location.LocationPrefs
 import com.crazylegend.vigilante.di.qualifiers.ServiceContext
@@ -27,7 +27,7 @@ import javax.inject.Inject
 class LocationProcessor @Inject constructor(
         @ServiceContext private val context: Context,
         private val userNotificationsProvider: UserNotificationsProvider,
-        private val locationPrefs: LocationPrefs) : ServiceManagersCoroutines {
+        private val locationPrefs: LocationPrefs) : ServiceLifecycle {
 
     private companion object {
         private const val locationNotificationID = 420

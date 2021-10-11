@@ -9,7 +9,7 @@ import com.crazylegend.common.currentTimeMillis
 import com.crazylegend.common.tryOrElse
 import com.crazylegend.coroutines.ioDispatcher
 import com.crazylegend.vigilante.BuildConfig
-import com.crazylegend.vigilante.contracts.service.ServiceManagersCoroutines
+import com.crazylegend.vigilante.contracts.service.ServiceLifecycle
 import com.crazylegend.vigilante.di.providers.prefs.defaultPrefs.DefaultPreferencessProvider
 import com.crazylegend.vigilante.notifications.db.NotificationsModel
 import com.crazylegend.vigilante.notifications.db.NotificationsRepo
@@ -25,7 +25,7 @@ import javax.inject.Inject
 class NotificationsProvider @Inject constructor(
         private val prefsProvider: DefaultPreferencessProvider,
         private val notificationsRepo: NotificationsRepo
-) : ServiceManagersCoroutines {
+) : ServiceLifecycle {
 
     fun processEvent(event: AccessibilityEvent) {
         if (event.eventType == AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED) {

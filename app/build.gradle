@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
 
     defaultConfig {
         applicationId "com.crazylegend.vigilante"
@@ -149,6 +149,7 @@ dependencies {
     implementation "androidx.sqlite:sqlite-ktx:2.1.0"
 
     implementation "androidx.room:room-ktx:$room_version"
+    implementation "androidx.room:room-paging:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
     //cameraX

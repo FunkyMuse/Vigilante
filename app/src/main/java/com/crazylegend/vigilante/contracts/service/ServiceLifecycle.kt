@@ -45,8 +45,8 @@ interface ServiceLifecycle : LifecycleOwner, LifecycleEventObserver {
             Lifecycle.Event.ON_CREATE -> initVars()
             Lifecycle.Event.ON_START -> registerCallbacks()
             Lifecycle.Event.ON_DESTROY -> {
-                scope.cancel()
                 disposeResources()
+                scope.cancel()
             }
             else -> {
             }

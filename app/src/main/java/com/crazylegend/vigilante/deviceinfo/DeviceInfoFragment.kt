@@ -9,7 +9,6 @@ import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
 import com.crazylegend.vigilante.databinding.LayoutRecyclerBinding
-import com.crazylegend.vigilante.di.providers.AdapterProvider
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
@@ -20,14 +19,10 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class DeviceInfoFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.layout_recycler) {
 
-    @Inject
-    lateinit var adapterProvider: AdapterProvider
-
     override val binding: LayoutRecyclerBinding by viewBinding(LayoutRecyclerBinding::bind)
 
-    private val adapter by lazy {
-        adapterProvider.deviceInfoAdapter
-    }
+    @Inject
+    lateinit var adapter: DeviceInfoAdapter
 
     private val deviceInfoVM by viewModels<DeviceInfoViewModel>()
 

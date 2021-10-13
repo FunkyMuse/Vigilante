@@ -13,7 +13,6 @@ import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
 import com.crazylegend.vigilante.databinding.FragmentHomeBinding
-import com.crazylegend.vigilante.di.providers.AdapterProvider
 import com.crazylegend.vigilante.di.providers.PermissionProvider
 import com.crazylegend.vigilante.di.providers.prefs.defaultPrefs.DefaultPreferencessProvider
 import com.crazylegend.vigilante.home.section.SectionItem
@@ -34,17 +33,13 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
     lateinit var permissionProvider: PermissionProvider
 
     @Inject
-    lateinit var adapterProvider: AdapterProvider
-
-    @Inject
     lateinit var prefsProvider: DefaultPreferencessProvider
 
     @Inject
     lateinit var toaster: Toaster
 
-    private val sectionAdapter by lazy {
-        adapterProvider.sectionAdapter
-    }
+    @Inject
+    lateinit var sectionAdapter: HomeAdapter
 
     private val sectionList
         get() = listOf(

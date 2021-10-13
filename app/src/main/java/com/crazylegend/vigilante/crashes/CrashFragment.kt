@@ -12,7 +12,6 @@ import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
 import com.crazylegend.vigilante.databinding.LayoutRecyclerBinding
-import com.crazylegend.vigilante.di.providers.AdapterProvider
 import com.crazylegend.vigilante.utils.NEW_ISSUE_URL
 import com.crazylegend.vigilante.utils.goToScreen
 import com.crazylegend.vigilante.utils.uiAction
@@ -32,11 +31,7 @@ class CrashFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.layout_re
     lateinit var toaster: Toaster
 
     @Inject
-    lateinit var adapterProvider: AdapterProvider
-
-    private val crashesAdapter by lazy {
-        adapterProvider.crashesAdapter
-    }
+    lateinit var crashesAdapter: CrashesAdapter
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

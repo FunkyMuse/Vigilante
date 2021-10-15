@@ -18,7 +18,8 @@ interface ServiceLifecycle : LifecycleOwner, LifecycleEventObserver {
     val coroutineContext: CoroutineContext
         get() = Dispatchers.Main
 
-    val scope get() = CoroutineScope(coroutineContext + SupervisorJob())
+    val scope: CoroutineScope
+        get() = CoroutineScope(coroutineContext + SupervisorJob())
 
     val serviceLifecycleDispatcher: ServiceLifecycleDispatcher
     override fun getLifecycle(): Lifecycle = serviceLifecycleDispatcher.lifecycle

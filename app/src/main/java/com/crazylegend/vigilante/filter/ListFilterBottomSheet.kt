@@ -10,7 +10,6 @@ import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractBottomSheet
 import com.crazylegend.vigilante.databinding.LayoutRecyclerBinding
-import com.crazylegend.vigilante.di.providers.AdapterProvider
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -26,11 +25,7 @@ class ListFilterBottomSheet : AbstractBottomSheet<LayoutRecyclerBinding>() {
         get() = R.layout.layout_recycler
 
     @Inject
-    lateinit var adapterProvider: AdapterProvider
-
-    private val adapter by lazy {
-        adapterProvider.listFilterAdapter
-    }
+    lateinit var adapter: ListFilterAdapter
 
     private val args by navArgs<ListFilterBottomSheetArgs>()
 

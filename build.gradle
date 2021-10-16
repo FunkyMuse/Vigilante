@@ -2,14 +2,11 @@ buildscript {
     ext {
         utilsVersion = "3.1.4"
         lifecycle = '2.4.0-rc01'
-        retrofit = "2.9.0"
-        glide = "4.11.0"
-        constraint_layout = '2.0.4'
         coroutines = "1.5.2-native-mt"
         hiltJetpackVersion = '1.0.0'
         crashyVersion = '1.2.0'
         room_version = "2.4.0-beta01"
-        paging_version = "3.0.1"
+        paging_version = "3.1.0-beta01"
         camerax_version = '1.1.0-alpha10'
         mockk = "1.12.0"
         nav_version = '2.4.0-alpha10'

@@ -5,7 +5,9 @@ import android.content.BroadcastReceiver
 import android.content.Intent
 import android.content.IntentFilter
 import androidx.lifecycle.ServiceLifecycleDispatcher
+import com.crazylegend.common.ifTrue
 import com.crazylegend.vigilante.contracts.service.ServiceLifecycle
+import com.crazylegend.vigilante.di.providers.prefs.logging.LoggingPrefs
 import com.crazylegend.vigilante.headset.HeadsetReceiver
 import com.crazylegend.vigilante.power.PowerReceiver
 import com.crazylegend.vigilante.screen.ScreenReceiver
@@ -21,26 +23,23 @@ class BroadcastProvider @Inject constructor(
         private val screenReceiver: ScreenReceiver,
         private val headsetPlugReceiver: HeadsetReceiver,
         private val powerReceiver: PowerReceiver,
-        private val service: Service) : ServiceLifecycle {
+        private val service: Service,
+        private val loggingPrefs: LoggingPrefs) : ServiceLifecycle {
 
     override val serviceLifecycleDispatcher = ServiceLifecycleDispatcher(this)
-
-    private val receivers
-        get() = listOf(
-                screenReceiver, headsetPlugReceiver, powerReceiver
-        )
 
     override fun initVars() {}
 
     override fun registerCallbacks() {
-        registerHeadsetReceiver()
-        registerScreenReceiver()
-        registerPowerReceiver()
-        registerPowerReceiver()
+        loggingPrefs.isHeadsetLoggingEnabled.ifTrue { registerHeadsetReceiver() }
+        loggingPrefs.isLockScreenLoggingEnabled.ifTrue { registerScreenReceiver() }
+        loggingPrefs.isPowerLoggingEnabled.ifTrue { registerPowerReceiver() }
     }
 
     override fun disposeResources() {
-        receivers.asSequence().forEach { service.unregisterReceiver(it) }
+        loggingPrefs.isHeadsetLoggingEnabled.ifTrue { service.unregisterReceiver(headsetPlugReceiver) }
+        loggingPrefs.isLockScreenLoggingEnabled.ifTrue { service.unregisterReceiver(screenReceiver) }
+        loggingPrefs.isPowerLoggingEnabled.ifTrue { service.unregisterReceiver(powerReceiver) }
     }
 
     private fun registerPowerReceiver() {

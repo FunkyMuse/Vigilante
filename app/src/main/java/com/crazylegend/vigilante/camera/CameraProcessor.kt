@@ -4,10 +4,10 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.hardware.camera2.CameraManager
 import androidx.camera.camera2.internal.compat.CameraManagerCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.ServiceLifecycleDispatcher
 import androidx.lifecycle.coroutineScope
 import com.crazylegend.common.ifTrue
-import com.crazylegend.contextgetters.notificationManager
 import com.crazylegend.coroutines.mainDispatcher
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.contracts.service.ServiceLifecycle
@@ -28,6 +28,7 @@ import javax.inject.Inject
 class CameraProcessor @Inject constructor(
         @ServiceContext private val context: Context,
         private val userNotificationsProvider: UserNotificationsProvider,
+        private val notificationManagerCompat: NotificationManagerCompat,
         private val cameraPrefs: CameraPrefs) : ServiceLifecycle {
 
     private companion object {
@@ -76,7 +77,7 @@ class CameraProcessor @Inject constructor(
 
 
     private fun stopNotificationIfUserEnabled() {
-        context.notificationManager?.cancel(cameraNotificationID)
+        notificationManagerCompat.cancel(cameraNotificationID)
     }
 
     private fun setCameraUsed() {

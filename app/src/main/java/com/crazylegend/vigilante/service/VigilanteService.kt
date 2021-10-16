@@ -10,6 +10,7 @@ import com.crazylegend.vigilante.di.providers.ServiceDotUIProvider
 import com.crazylegend.vigilante.di.providers.ServiceUIProvider
 import com.crazylegend.vigilante.di.providers.prefs.camera.CameraPrefs
 import com.crazylegend.vigilante.di.providers.prefs.location.LocationPrefs
+import com.crazylegend.vigilante.di.providers.prefs.logging.LoggingPrefs
 import com.crazylegend.vigilante.di.providers.prefs.mic.MicrophonePrefs
 import com.crazylegend.vigilante.location.LocationProcessor
 import com.crazylegend.vigilante.microphone.MicrophoneProcessor
@@ -19,6 +20,7 @@ import com.crazylegend.vigilante.settings.CAMERA_CUSTOMIZATION_BASE_PREF
 import com.crazylegend.vigilante.settings.LOCATION_CUSTOMIZATION_BASE_PREF
 import com.crazylegend.vigilante.settings.MIC_CUSTOMIZATION_BASE_PREF
 import com.crazylegend.vigilante.utils.dismissPackages
+import dagger.Lazy
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -49,10 +51,12 @@ class VigilanteService : AccessibilityService() {
     lateinit var microphoneProcessor: MicrophoneProcessor
 
     @Inject
-    lateinit var notificationsProvider: NotificationsProvider
+    lateinit var notificationsProviderLazy: Lazy<NotificationsProvider>
+    private val notificationsProvider get() = if (loggingPrefs.isNotificationsLoggingEnabled) notificationsProviderLazy.get() else null
 
     @Inject
-    lateinit var permissionsProcessor: PermissionsProcessor
+    lateinit var permissionsProcessorLazy: Lazy<PermissionsProcessor>
+    private val permissionsProcessor get() = if (loggingPrefs.isPermissionLoggingEnabled) permissionsProcessorLazy.get() else null
 
     @Inject
     lateinit var microphonePrefs: MicrophonePrefs
@@ -69,6 +73,9 @@ class VigilanteService : AccessibilityService() {
     @Inject
     lateinit var serviceDotUIProvider: ServiceDotUIProvider
 
+    @Inject
+    lateinit var loggingPrefs: LoggingPrefs
+
 
     private val layoutCameraPositionPref get() = cameraPrefs.getCameraPositionPref
     private val layoutMicPositionPref get() = microphonePrefs.getMicPositionPref
@@ -82,8 +89,8 @@ class VigilanteService : AccessibilityService() {
         cameraProcessor.setServiceConnected()
         microphoneProcessor.setServiceConnected()
         broadcastProvider.setServiceConnected()
-        notificationsProvider.setServiceConnected()
-        permissionsProcessor.setServiceConnected()
+        notificationsProvider?.setServiceConnected()
+        permissionsProcessor?.setServiceConnected()
         locationProcessor.setServiceConnected()
 
         serviceLayoutListener = object : ServiceLayoutListener {
@@ -139,7 +146,7 @@ class VigilanteService : AccessibilityService() {
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {
         event ?: return
         rememberEventPackageName(event)
-        notificationsProvider.processEvent(event)
+        notificationsProvider?.processEvent(event)
     }
 
     override fun onCreate() {
@@ -148,8 +155,8 @@ class VigilanteService : AccessibilityService() {
         cameraProcessor.initLifecycle()
         microphoneProcessor.initLifecycle()
         broadcastProvider.initLifecycle()
-        notificationsProvider.initLifecycle()
-        permissionsProcessor.initLifecycle()
+        notificationsProvider?.initLifecycle()
+        permissionsProcessor?.initLifecycle()
         locationProcessor.initLifecycle()
         //endregion
 
@@ -157,8 +164,8 @@ class VigilanteService : AccessibilityService() {
         cameraProcessor.onStart()
         microphoneProcessor.onStart()
         broadcastProvider.onStart()
-        notificationsProvider.onStart()
-        permissionsProcessor.onStart()
+        notificationsProvider?.onStart()
+        permissionsProcessor?.onStart()
         locationProcessor.onStart()
         //endregion
     }
@@ -168,9 +175,9 @@ class VigilanteService : AccessibilityService() {
         currentPackageString = eventPackageName?.toString() ?: packageName
         if (event.eventType == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED && eventPackageName != null) {
             if (eventPackageName !in dismissPackages) {
-                permissionsProcessor.eventActionByPackageName(eventPackageName)
+                permissionsProcessor?.eventActionByPackageName(eventPackageName)
             }
-            permissionsProcessor.extractPermissionMessage(event.source)
+            permissionsProcessor?.extractPermissionMessage(event.source)
         }
     }
 
@@ -180,8 +187,8 @@ class VigilanteService : AccessibilityService() {
         cameraProcessor.cleanUp()
         microphoneProcessor.cleanUp()
         broadcastProvider.cleanUp()
-        notificationsProvider.cleanUp()
-        permissionsProcessor.cleanUp()
+        notificationsProvider?.cleanUp()
+        permissionsProcessor?.cleanUp()
         locationProcessor.cleanUp()
 
         serviceUIProvider.cleanUp()

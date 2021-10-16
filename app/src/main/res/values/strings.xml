@@ -167,6 +167,13 @@
     <string name="sound_pref_summary">By enabling this option, you\'ll be receiving notification sounds when usage happens.</string>
     <string name="my_other_apps">My other apps</string>
 
+    <!--Logging-->
+    <string name="logging_title">Logging</string>
+    <string name="log_permissions_title">Log permissions</string>
+    <string name="log_power_title">Log power</string>
+    <string name="log_headset_title">Log headset</string>
+    <string name="log_notifications_title">Log notifications</string>
+    <string name="log_lockscreen_title">Log lockscreen</string>
 
     <!--Languages-->
     <string name="english">English</string>
@@ -179,5 +186,7 @@
     <string name="french">French</string>
     <string name="bulgarian">Bulgarian</string>
     <string name="italian">Italian</string>
+    <string name="restart_service_for_changes_to_take_effect">Restart Vigilante service to apply changes!</string>
+
 
 </resources>

@@ -15,11 +15,10 @@ abstract class AbstractDialogFragment<BINDING : ViewBinding>(contentLayoutId: In
     abstract val dimAmount: Float?
     abstract val isCancellable: Boolean
 
-    override fun onCreateDialog(savedInstanceState: Bundle?) = with(super.onCreateDialog(savedInstanceState)) {
+    override fun onCreateDialog(savedInstanceState: Bundle?) = super.onCreateDialog(savedInstanceState).apply {
         setCancelable(isCancellable)
         window?.setDimAmount(dimAmount ?: 0f)
         setCanceledOnTouchOutside(isCancellable)
         window?.setBackgroundDrawableResource(R.drawable.rounded_bg_theme_compatible)
-        this
     }
 }

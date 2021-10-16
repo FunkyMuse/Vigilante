@@ -48,6 +48,10 @@
             app:key="location_pref_category"
             app:title="@string/location_title" />
 
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="pref_logging"
+            app:title="@string/logging_title" />
     </PreferenceCategory>
 
 

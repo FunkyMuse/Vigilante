@@ -21,7 +21,7 @@ import org.junit.Test
 class HeadsetViewModelTest {
 
     @get:Rule
-    var mainCoroutineRule = MainCoroutineRule()
+    val mainCoroutineRule = MainCoroutineRule()
 
     //what a pain in the ass this paging library to test
     @Test

@@ -55,7 +55,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.permissionDetailsBottomSheet,
                 R.id.notificationDetailsFragment,
                 R.id.powerFragment,
-            R.id.powerDetailsDialog
+                R.id.loggingPreferenceFragment,
+                R.id.powerDetailsDialog
         )
 
     override fun onCreate(savedInstanceState: Bundle?) {

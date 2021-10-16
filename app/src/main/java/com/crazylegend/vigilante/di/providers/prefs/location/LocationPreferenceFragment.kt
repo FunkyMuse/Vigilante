@@ -9,6 +9,7 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import com.crazylegend.kotlinextensions.preferences.booleanChangeListener
 import com.crazylegend.kotlinextensions.preferences.onClick
+import com.crazylegend.kotlinextensions.preferences.preference
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.settings.*
 import com.crazylegend.vigilante.utils.addSpacingForPreferenceBackButton

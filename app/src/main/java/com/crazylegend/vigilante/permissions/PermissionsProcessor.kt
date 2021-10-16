@@ -21,7 +21,7 @@ import javax.inject.Inject
 @ServiceScoped
 @SuppressLint("DefaultLocale")
 class PermissionsProcessor @Inject constructor(
-        private val permissionRequestsRepository: PermissionRequestsDAO,
+        private val permissionRequestsRepository: PermissionRequestsDAO
 ) : ServiceLifecycle {
 
     override val serviceLifecycleDispatcher: ServiceLifecycleDispatcher = ServiceLifecycleDispatcher(this)

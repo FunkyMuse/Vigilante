@@ -14,7 +14,7 @@ import org.junit.Test
 class HeadsetRepositoryTest {
 
     @get:Rule
-    var mainCoroutineRule = MainCoroutineRule()
+    val mainCoroutineRule = MainCoroutineRule()
 
     @MockK
     lateinit var headsetRepository: HeadsetDAO

@@ -25,6 +25,12 @@ const val INTRO_PREF = "intro"
 const val BIOMETRIC_AUTH_PREF_KEY = "pref_biometric_auth"
 const val DELETE_HISTORY_PREF_KEY = "pref_delete_history"
 const val DEFAULT_DATE_FORMAT = "dd.MM.yyyy HH:mm:ss"
+const val LOG_PERMISSIONS_KEY = "pref_log_permissions"
+const val LOG_POWER_KEY = "pref_log_power"
+const val LOG_HEADSET_KEY = "pref_log_headset"
+const val LOG_NOTIFICATIONS_KEY = "pref_log_notifications"
+const val LOG_LOCKSCREEN_KEY = "pref_log_lockscreen"
+const val LOGGING_PREF = "pref_logging"
 
 const val PREF_CATEGORY_CAMERA = CAMERA_CUSTOMIZATION_BASE_PREF + PREF_CATEGORY_KEY
 const val CAMERA_DOT_APPEARANCE = CAMERA_CUSTOMIZATION_BASE_PREF + DOT_APPEARANCE

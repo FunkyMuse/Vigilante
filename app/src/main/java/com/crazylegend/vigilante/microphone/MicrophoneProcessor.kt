@@ -3,10 +3,10 @@ package com.crazylegend.vigilante.microphone
 import android.content.Context
 import android.media.AudioManager
 import android.media.AudioRecordingConfiguration
+import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.ServiceLifecycleDispatcher
 import com.crazylegend.common.ifTrue
 import com.crazylegend.contextgetters.audioManager
-import com.crazylegend.contextgetters.notificationManager
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.contracts.service.ServiceLifecycle
 import com.crazylegend.vigilante.di.providers.UserNotificationsProvider
@@ -23,7 +23,8 @@ import javax.inject.Inject
 class MicrophoneProcessor @Inject constructor(
         @ServiceContext private val context: Context,
         private val userNotificationsProvider: UserNotificationsProvider,
-        private val microphonePrefs: MicrophonePrefs
+        private val microphonePrefs: MicrophonePrefs,
+        private val notificationManager: NotificationManagerCompat
 ) : ServiceLifecycle {
 
     private companion object {
@@ -60,7 +61,7 @@ class MicrophoneProcessor @Inject constructor(
     }
 
     private fun stopNotificationIfUserEnabled() {
-        context.notificationManager?.cancel(micNotificationID)
+        notificationManager.cancel(micNotificationID)
     }
 
     private fun setMicrophoneIsUsed() {

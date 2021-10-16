@@ -125,6 +125,13 @@
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/scale"
             app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/openLoggingPrefs"
+            app:destination="@id/loggingPreferenceFragment"
+            app:enterAnim="@anim/scale"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/scale"
+            app:popExitAnim="@anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/crashFragment"
@@ -308,5 +315,11 @@
             app:popEnterAnim="@anim/enter_from_right"
             app:popExitAnim="@anim/exit_to_right" />
     </fragment>
+
+    <fragment
+        android:id="@+id/loggingPreferenceFragment"
+        android:name="com.crazylegend.vigilante.di.providers.prefs.logging.LoggingPreferenceFragment"
+        android:label="@string/logging_title" />
+
 
 </navigation>

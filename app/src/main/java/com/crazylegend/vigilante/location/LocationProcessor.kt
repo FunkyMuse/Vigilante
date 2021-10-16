@@ -5,10 +5,10 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.location.LocationManager
+import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.ServiceLifecycleDispatcher
 import com.crazylegend.common.ifTrue
 import com.crazylegend.contextgetters.locationManager
-import com.crazylegend.contextgetters.notificationManager
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.contracts.service.ServiceLifecycle
 import com.crazylegend.vigilante.di.providers.UserNotificationsProvider
@@ -27,6 +27,7 @@ import javax.inject.Inject
 class LocationProcessor @Inject constructor(
         @ServiceContext private val context: Context,
         private val userNotificationsProvider: UserNotificationsProvider,
+        private val notificationManagerCompat: NotificationManagerCompat,
         private val locationPrefs: LocationPrefs) : ServiceLifecycle {
 
     private companion object {
@@ -81,7 +82,7 @@ class LocationProcessor @Inject constructor(
     }
 
     private fun stopNotificationIfUserEnabled() {
-        context.notificationManager?.cancel(locationNotificationID)
+        notificationManagerCompat.cancel(locationNotificationID)
     }
 
     private fun setLocationIsUsed() {

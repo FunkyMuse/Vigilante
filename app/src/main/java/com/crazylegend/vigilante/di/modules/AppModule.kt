@@ -1,6 +1,7 @@
 package com.crazylegend.vigilante.di.modules
 
 import android.content.Context
+import androidx.core.app.NotificationManagerCompat
 import androidx.work.WorkManager
 import com.crazylegend.security.MagiskDetector
 import com.crazylegend.security.encryptedSharedPreferences
@@ -37,4 +38,7 @@ object AppModule {
     @Provides
     @Singleton
     fun workManager(@ApplicationContext context: Context) = WorkManager.getInstance(context)
+
+    @Provides
+    fun notificationManager(@ApplicationContext context: Context): NotificationManagerCompat = NotificationManagerCompat.from(context)
 }

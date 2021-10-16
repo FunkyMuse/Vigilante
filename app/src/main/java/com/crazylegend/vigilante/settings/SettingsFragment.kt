@@ -13,6 +13,7 @@ import com.crazylegend.fragment.viewCoroutineScope
 import com.crazylegend.intent.openWebPage
 import com.crazylegend.kotlinextensions.preferences.booleanChangeListener
 import com.crazylegend.kotlinextensions.preferences.onClick
+import com.crazylegend.kotlinextensions.preferences.preference
 import com.crazylegend.kotlinextensions.preferences.stringChangeListener
 import com.crazylegend.locale.LocaleHelper
 import com.crazylegend.toaster.Toaster
@@ -55,6 +56,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
     private val micCategory by preference<Preference>(PREF_CATEGORY_MIC)
     private val locationCategory by preference<Preference>(PREF_CATEGORY_LOCATION)
     private val myOtherApps by preference<Preference>(MY_OTHER_APPS_PREF_KEY)
+    private val logging by preference<Preference>(LOGGING_PREF)
+
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.settings)
@@ -68,6 +71,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         cameraCategory.onClick { findNavController().navigate(SettingsFragmentDirections.openCameraPrefs()) }
         micCategory.onClick { findNavController().navigate(SettingsFragmentDirections.openMicPrefs()) }
         locationCategory.onClick { findNavController().navigate(SettingsFragmentDirections.openLocationPrefs()) }
+        logging.onClick { findNavController().navigate(SettingsFragmentDirections.openLoggingPrefs()) }
 
         deleteHistory.booleanChangeListener { _, newValue ->
             if (newValue) {

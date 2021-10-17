@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name" translatable="false">Vigilante</string>
     <string name="vigilante_description">Vigilante 服务</string>
     <string name="vigilante_summary">Vigilante 的事件服务监听器，用于在相机/麦克风使用发生时显示点。</string>
     <string name="home">首页</string>
@@ -45,14 +45,14 @@
     <string name="denied">被拒绝</string>
     <string name="denied_and_do_not_ask_again">"拒绝且不再询问 "</string>
     <string name="ask_every_time">每次询问</string>
-    <string name="permissions_requests_by_app_count">共 %1$d 权限请求</string>
-    <string name="total_permission_requests">总共的权限请求</string>
+    <string name="permissions_requests_by_app_count">共 %1$d 次权限请求</string>
+    <string name="total_permission_requests">总共的权限请求数</string>
     <string name="title_placeholder">标题: %1$s</string>
     <string name="big_text_placeholder">大字: %1$s</string>
     <string name="text_placeholder">文本: %1$s</string>
     <string name="category_placeholder">类别: %1$s</string>
     <string name="group_placeholder">群组: %1$s</string>
-    <string name="channel_id_placeholder">频道 id: %1$s</string>
+    <string name="channel_id_placeholder">通道 id: %1$s</string>
     <string name="notification_visibility_public">公开可见的通知</string>
     <string name="notification_visibility_private">私下可见的通知</string>
     <string name="notification_visibility_secret">秘密可见的通知</string>
@@ -109,6 +109,7 @@
     <string name="informational">信息</string>
     <string name="customizations">自定义</string>
     <string name="home_page">主页</string>
+    <string name="license" translatable="false">GPL 3.0</string>
     <string name="license_title">许可证</string>
     <string name="root_status">Root 状态</string>
     <string name="device_not_rooted">设备未获取根权限</string>
@@ -162,6 +163,18 @@
     <string name="shuffle_characters">随机字符</string>
     <string name="password_too_short">密码过短</string>
     <string name="location_title">位置</string>
+    <string name="sound_pref_title">通知声音</string>
+    <string name="sound_pref_summary">启用此选项后，当使用发生时，你会收到通知声音。</string>
+    <string name="my_other_apps">我的其他应用</string>
+
+    <!--Logging-->
+    <string name="logging_title">记录</string>
+    <string name="log_permissions_title">记录权限</string>
+    <string name="log_power_title">记录电量</string>
+    <string name="log_headset_title">记录耳机操作</string>
+    <string name="log_notifications_title">记录通知</string>
+    <string name="log_lockscreen_title">记录锁屏</string>
+
     <!--Languages-->
     <string name="english">英语</string>
     <string name="spanish">西班牙语</string>
@@ -173,4 +186,7 @@
     <string name="french">法语</string>
     <string name="bulgarian">保加利亚语</string>
     <string name="italian">意大利语</string>
+    <string name="restart_service_for_changes_to_take_effect">重启 Vigilante 服务来使更改生效！</string>
+	
+	
 </resources>

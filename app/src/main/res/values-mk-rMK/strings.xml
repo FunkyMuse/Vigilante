@@ -174,4 +174,14 @@
     <string name="french">Француски</string>
     <string name="bulgarian">Бугарски</string>
     <string name="italian">Италијански</string>
+    <string name="notifications_usage_expl_camera">Со вклучување на оваа опција, ќе добивате известувања кога камерата ќе бидe користенa, ако е тоа возможно.</string>
+    <string name="notifications_usage_expl_mic">Со вклучување на оваа опција, ќе добивате известувања кога микрофонот ќе бидe користен, ако е тоа возможно.</string>
+    <string name="notifications_usage_expl_location">Со вклучување на оваа опција, ќе добивате известувања кога ГПС-от ќе бидe користен, ако е тоа возможно.</string>
+    <string name="logging_title">Записи</string>
+    <string name="log_permissions_title">Записи за дозволи</string>
+    <string name="log_power_title">Записи за полнење на телефон</string>
+    <string name="log_headset_title">Записи за слушалки</string>
+    <string name="log_notifications_title">Записи за известувања</string>
+    <string name="log_lockscreen_title">Записи за заклучување екран</string>
+    <string name="restart_service_for_changes_to_take_effect">Рестартирај го сервисот Vigilante, за промените да стапат во ефект</string>
 </resources>

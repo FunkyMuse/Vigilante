@@ -1,0 +1,3 @@
+### Improvements
+- Added an option enable/disable logs you want
+- Some performance code improvements and new goodies from Android

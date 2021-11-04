@@ -6,7 +6,7 @@ buildscript {
         hiltJetpackVersion = '1.0.0'
         crashyVersion = '1.2.0'
         room_version = "2.4.0-beta01"
-        paging_version = "3.1.0-beta01"
+        paging_version = "3.1.0-rc01"
         camerax_version = '1.1.0-alpha10'
         mockk = "1.12.0"
         nav_version = '2.4.0-beta01'

@@ -62,7 +62,7 @@ Some of the popular libraries and MVVM clean architecture used with Room databas
 * [StateFlow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-state-flow/) - A live data replacement
 
 * [Android JetPack](https://developer.android.com/jetpack) - Collection of libraries that help you design robust, testable, and maintainable apps.
-  * [Paging3](https://developer.android.com/topic/libraries/architecture/paging) - Load and display small chunks of data at a time.
+  * [Paging3](https://developer.android.com/topic/libraries/architecture/paging/v3-overview) - Load and display small chunks of data at a time.
   * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Stores UI-related data that isn't destroyed on UI changes.
   * [ViewBinding](https://developer.android.com/topic/libraries/view-binding) - A robust replacement for findViewById, kotlin sytnhetics and DataBinding
   * [Navigation Components](https://developer.android.com/guide/navigation/navigation-getting-started) - Navigate fragments as never easier before

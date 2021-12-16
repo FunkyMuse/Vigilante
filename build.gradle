@@ -5,7 +5,7 @@ buildscript {
         coroutines = "1.5.2-native-mt"
         hiltJetpackVersion = '1.0.0'
         crashyVersion = '1.2.0'
-        room_version = "2.4.0-rc01"
+        room_version = "2.4.0"
         paging_version = "3.1.0"
         camerax_version = '1.1.0-alpha11'
         mockk = "1.12.1"

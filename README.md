@@ -17,7 +17,7 @@ An app that focuses on your privacy and alerts you when a third-party applicatio
 - History when you connected/disconnected your headphones
 - History of your notifications
 - Lock screen history
-- Security sensible device informations
+- Security sensible device information
 - No useless permissions
 - Does not connect to the Internet
 - All of your data is encrypted (database and preferences)

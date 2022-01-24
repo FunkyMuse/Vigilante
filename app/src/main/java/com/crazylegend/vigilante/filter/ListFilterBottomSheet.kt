@@ -5,7 +5,6 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.navArgs
-import com.crazylegend.recyclerview.clickListeners.forItemClickListener
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractBottomSheet
@@ -43,7 +42,7 @@ class ListFilterBottomSheet : AbstractBottomSheet<LayoutRecyclerBinding>() {
             dismissAllowingStateLoss()
         }
         adapter.submitList(adapterList)
-        adapter.forItemClickListener = forItemClickListener { position, _, _ ->
+        adapter.forItemClickListener = { position, _, _ ->
             setFragmentResult(RESULT_REQUEST_KEY, bundleOf(BUNDLE_ARGUMENT_KEy to position))
             dismissAllowingStateLoss()
         }

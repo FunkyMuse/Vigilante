@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 
-import com.crazylegend.recyclerview.clickListeners.forItemClickListener
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
@@ -36,7 +35,7 @@ class PowerFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.layout_re
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         databaseLoadingProvider.provideListState(powerVM.powerHistory, binding.recycler, binding.noDataViewHolder.noDataView, adapter)
-        adapter.forItemClickListener = forItemClickListener { _, item, _ ->
+        adapter.forItemClickListener = { _, item, _ ->
             goToScreen(PowerFragmentDirections.destinationPowerDetails(item.id))
         }
     }

@@ -1,12 +1,12 @@
 package com.crazylegend.vigilante.paging
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.crazylegend.recyclerview.GenericDiffUtil
-import com.crazylegend.recyclerview.clickListeners.forItemClickListener
 import com.crazylegend.view.setOnClickListenerCooldown
 
 /**
@@ -21,8 +21,8 @@ abstract class AbstractPagingAdapter<T : Any, VH : RecyclerView.ViewHolder, VB :
         PagingDataAdapter<T, VH>(GenericDiffUtil(areItemsTheSameCallback, areContentsTheSameCallback)) {
     abstract fun bindItems(item: T?, holder: VH, position: Int, itemCount: Int)
 
-    var forItemClickListener: forItemClickListener<T>? = null
-    var onLongClickListener: forItemClickListener<T>? = null
+    var forItemClickListener: ((position: Int, item: T, view: View) -> Unit)? = null
+    var onLongClickListener: ((position: Int, item: T, view: View) -> Unit)? = null
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         val item: T? = getItem(position)
@@ -35,11 +35,11 @@ abstract class AbstractPagingAdapter<T : Any, VH : RecyclerView.ViewHolder, VB :
 
         holder.itemView.setOnClickListenerCooldown {
             if (holder.bindingAdapterPosition != RecyclerView.NO_POSITION)
-                getItem(holder.bindingAdapterPosition)?.let { item -> forItemClickListener?.forItem(holder.bindingAdapterPosition, item, it) }
+                getItem(holder.bindingAdapterPosition)?.let { item -> forItemClickListener?.invoke(holder.bindingAdapterPosition, item, it) }
         }
         holder.itemView.setOnLongClickListener {
             if (holder.bindingAdapterPosition != RecyclerView.NO_POSITION)
-                getItem(holder.bindingAdapterPosition)?.let { item -> onLongClickListener?.forItem(holder.bindingAdapterPosition, item, it) }
+                getItem(holder.bindingAdapterPosition)?.let { item -> onLongClickListener?.invoke(holder.bindingAdapterPosition, item, it) }
             true
         }
         return holder

@@ -15,8 +15,8 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.crazylegend.common.tryOrPrint
-import com.crazylegend.fragment.viewCoroutineScope
 import com.crazylegend.intent.newIntent
+import com.crazylegend.lifecycle.viewCoroutineScope
 import com.crazylegend.receivers.isServiceRunning
 import com.crazylegend.receivers.startForegroundService
 import com.crazylegend.view.dimen

@@ -5,7 +5,6 @@ import android.view.View
 import androidx.core.view.isGone
 import androidx.fragment.app.viewModels
 import com.crazylegend.lifecycle.repeatingJobOnStarted
-import com.crazylegend.recyclerview.clickListeners.forItemClickListener
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
@@ -44,7 +43,7 @@ class PermissionRequestsFragment : AbstractFragment<FragmentPermissionsBinding>(
                 binding.totalPermissionRequests.text = it.toString()
             }
         }
-        adapter.forItemClickListener = forItemClickListener { _, item, _ ->
+        adapter.forItemClickListener =  { _, item, _ ->
             item.packageRequestingThePermission?.let {
                 goToScreen(PermissionRequestsFragmentDirections.destinationPermissionDetails(it,
                         item.permissionMessage, item.date.time, item.settingsAppName))

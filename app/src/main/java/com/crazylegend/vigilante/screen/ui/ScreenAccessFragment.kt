@@ -42,8 +42,8 @@ class ScreenAccessFragment : AbstractFragment<FragmentScreenAccessBinding>(R.lay
         provideAdapterDataByFilterOrDefault()
 
         fragmentIntResult(ListFilterBottomSheet.RESULT_REQUEST_KEY, ListFilterBottomSheet.BUNDLE_ARGUMENT_KEy) {
-            this ?: return@fragmentIntResult
-            screenVM.updateFilterPosition(this)
+            val result = it ?: return@fragmentIntResult
+            screenVM.updateFilterPosition(result)
             provideAdapterDataByFilterOrDefault()
         }
 

@@ -3,8 +3,6 @@ package com.crazylegend.vigilante.notifications.ui
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
-
-import com.crazylegend.recyclerview.clickListeners.forItemClickListener
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.abstracts.AbstractFragment
@@ -35,7 +33,7 @@ class NotificationsFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.l
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         databaseLoadingProvider.provideListState(notificationsVM.notificationsAccess, binding.recycler, binding.noDataViewHolder.noDataView, adapter)
-        adapter.forItemClickListener = forItemClickListener { _, item, _ ->
+        adapter.forItemClickListener =  { _, item, _ ->
             goToScreen(NotificationsFragmentDirections.destinationNotificationDetails(item.id))
         }
     }

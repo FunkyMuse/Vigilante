@@ -6,7 +6,6 @@ import androidx.fragment.app.viewModels
 import com.crazylegend.common.tryOrElse
 import com.crazylegend.context.copyToClipboard
 import com.crazylegend.intent.openWebPage
-import com.crazylegend.recyclerview.clickListeners.forItemClickListener
 import com.crazylegend.toaster.Toaster
 import com.crazylegend.viewbinding.viewBinding
 import com.crazylegend.vigilante.R
@@ -38,7 +37,7 @@ class CrashFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.layout_re
         super.onViewCreated(view, savedInstanceState)
         binding.recycler.adapter = crashesAdapter
         crashesAdapter.submitList(crashVM.crashes)
-        crashesAdapter.forItemClickListener = forItemClickListener { position, item, _ ->
+        crashesAdapter.forItemClickListener =  { position, item, _ ->
             tryOrElse(defaultBlock = {
                 onUnableToCopyCrash(position)
             }) {

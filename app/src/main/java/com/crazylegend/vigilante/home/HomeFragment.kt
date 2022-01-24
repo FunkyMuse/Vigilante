@@ -6,7 +6,6 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.crazylegend.crashyreporter.CrashyReporter
-import com.crazylegend.recyclerview.clickListeners.forItemClickListener
 import com.crazylegend.toaster.Toaster
 import com.crazylegend.view.setOnClickListenerCooldown
 import com.crazylegend.viewbinding.viewBinding
@@ -70,7 +69,7 @@ class HomeFragment : AbstractFragment<FragmentHomeBinding>(R.layout.fragment_hom
         }
         sectionAdapter.submitList(sectionList)
 
-        sectionAdapter.forItemClickListener = forItemClickListener { _, item, _ ->
+        sectionAdapter.forItemClickListener =  { _, item, _ ->
             val directions = when (item.action) {
                 SectionItem.SectionItemAction.DEVICE_INFO -> HomeFragmentDirections.destinationDeviceInfo()
                 SectionItem.SectionItemAction.PERMISSIONS -> HomeFragmentDirections.destinationPermissionRequests()

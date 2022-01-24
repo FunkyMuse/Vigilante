@@ -9,12 +9,12 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import com.crazylegend.context.packageVersionName
 import com.crazylegend.coroutines.mainDispatcher
-import com.crazylegend.fragment.viewCoroutineScope
 import com.crazylegend.intent.openWebPage
 import com.crazylegend.kotlinextensions.preferences.booleanChangeListener
 import com.crazylegend.kotlinextensions.preferences.onClick
 import com.crazylegend.kotlinextensions.preferences.preference
 import com.crazylegend.kotlinextensions.preferences.stringChangeListener
+import com.crazylegend.lifecycle.viewCoroutineScope
 import com.crazylegend.locale.LocaleHelper
 import com.crazylegend.toaster.Toaster
 import com.crazylegend.vigilante.R

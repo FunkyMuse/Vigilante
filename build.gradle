@@ -9,7 +9,7 @@ buildscript {
         paging_version = "3.1.0"
         camerax_version = '1.1.0-alpha12'
         mockk = "1.12.2"
-        nav_version = '2.4.0-rc01'
+        nav_version = '2.5.0-alpha01'
         daggerVersion = '2.40.5'
         work_version = "2.7.1"
         kotlin_version = "1.6.10"

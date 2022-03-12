@@ -27,7 +27,6 @@ import com.crazylegend.vigilante.abstracts.AbstractFragment
 import com.crazylegend.vigilante.confirmation.DialogConfirmation
 import com.crazylegend.vigilante.databinding.FragmentCustomizationBinding
 import com.crazylegend.vigilante.di.providers.prefs.customization.CustomizationPrefs
-import com.crazylegend.vigilante.di.providers.prefs.customization.CustomizationPrefs.Companion.DEFAULT_SPACING
 import com.crazylegend.vigilante.home.HomeFragmentDirections
 import com.crazylegend.vigilante.service.VigilanteService
 import com.crazylegend.vigilante.utils.goToScreen
@@ -43,17 +42,10 @@ import javax.inject.Inject
  * Created by crazy on 11/8/20 to long live and prosper !
  */
 @AndroidEntryPoint
-class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.layout.fragment_customization) {
-
+class CustomizationFragment :
+    AbstractFragment<FragmentCustomizationBinding>(R.layout.fragment_customization) {
 
     companion object {
-        private const val COLOR_DOT_STATE = "colorState"
-        private const val LAYOUT_STATE = "layoutState"
-        private const val SIZE_STATE = "sizeState"
-        private const val COLOR_NOTIFICATION_STATE = "colorNotificationState"
-        private const val VIBRATION_STATE = "vibrationState"
-        private const val SPACING_STATE = "customSpacingState"
-
         const val COLOR_DOT_PREF_ADDITION = "colorChoice"
         const val COLOR_NOTIFICATION_PREF_ADDITION = "colorChoiceNotification"
         const val SIZE_PREF_ADDITION = "sizeChoice"
@@ -84,11 +76,6 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
     private val prefBaseName get() = navArgs.prefBaseName
 
 
-    private fun updatePreviewColor(newValue: Int?) {
-        newValue ?: return
-        binding.preview.setColorFilter(newValue)
-    }
-
     @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -103,19 +90,29 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
         //endregion
 
         //region color
-        pickedDotColor = viewModel.defaultDotColor
-        pickedNotificationLEDColor = viewModel.defaultNotificationLEDColor
+        pickedDotColor = viewModel.dotColor
+        pickedNotificationLEDColor = viewModel.notificationLEDColor
         updatePreviewColor(pickedDotColor)
         binding.colorPick.setOnClickListenerCooldown {
-            showColorPicker(requireContext(), R.string.pick_dot_color, COLOR_DOT_PREF_ADDITION, ::setDotColor)
+            showColorPicker(
+                requireContext(),
+                R.string.pick_dot_color,
+                COLOR_DOT_PREF_ADDITION,
+                ::setDotColor
+            )
         }
         binding.colorPickNotificationLed.setOnClickListenerCooldown {
-            showColorPicker(requireContext(), R.string.pick_notification_LED_color, COLOR_NOTIFICATION_PREF_ADDITION, ::setNotificationLEDColor)
+            showColorPicker(
+                requireContext(),
+                R.string.pick_notification_LED_color,
+                COLOR_NOTIFICATION_PREF_ADDITION,
+                ::setNotificationLEDColor
+            )
         }
         //endregion
 
         //region size
-        pickedSize = viewModel.defaultSize
+        pickedSize = viewModel.size
         updatePickedSize(pickedSize)
         binding.sizeSlider.addOnChangeListener { _, value, _ ->
             updatePreviewWidthAndHeight(value)
@@ -124,7 +121,7 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
         //endregion
 
         //region layout
-        pickedLayoutPosition = viewModel.defaultLayoutPosition
+        pickedLayoutPosition = viewModel.layoutPosition
         updateLayoutPosition(pickedLayoutPosition)
         binding.layoutPosition.onItemSelected { _, _, position, _ ->
             pickedLayoutPosition = position
@@ -132,7 +129,7 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
         //endregion
 
         //region vibration
-        pickedVibrationPosition = viewModel.defaultVibrationPosition
+        pickedVibrationPosition = viewModel.vibrationPosition
         updateVibrationPosition(pickedVibrationPosition)
 
         binding.vibration.onItemSelected { _, _, position, _ ->
@@ -140,7 +137,8 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
         }
         binding.vibrationExplanation.setOnClickListenerCooldown {
             val vibrationPosition = pickedVibrationPosition ?: return@setOnClickListenerCooldown
-            customizationPrefs.getVibrationEffect(vibrationPosition)?.let { longs -> requireContext().vibrate(longs, -1) }
+            customizationPrefs.getVibrationEffect(vibrationPosition)
+                ?.let { longs -> requireContext().vibrate(longs, -1) }
         }
         //endregion
 
@@ -160,27 +158,55 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
             backButtonClick()
         }
 
-        fragmentBooleanResult(DialogConfirmation.RESULT_KEY, DialogConfirmation.DEFAULT_REQ_KEY, onDenied = {
-            findNavController().navigateUp()
-        }, onGranted = {
-            customizationPrefs.saveSizePref(prefBaseName + SIZE_PREF_ADDITION, binding.sizeSlider.value)
-            pickedDotColor?.let { customizationPrefs.saveColorPref(prefBaseName + COLOR_DOT_PREF_ADDITION, it) }
-            pickedNotificationLEDColor?.let { customizationPrefs.saveNotificationColorPref(prefBaseName + COLOR_NOTIFICATION_PREF_ADDITION, it) }
-            pickedLayoutPosition?.let { customizationPrefs.savePositionPref(prefBaseName + POSITION_PREF_ADDITION, it) }
-            pickedVibrationPosition?.let { customizationPrefs.savePositionPref(prefBaseName + VIBRATION_PREF_ADDITION, it) }
-            binding.inputSpacing.textString.toIntOrNull()?.let { customizationPrefs.saveSpacing(prefBaseName, it) }
-            VigilanteService.serviceParamsListener?.updateForBasePref(prefBaseName)
-            goBack()
-        })
+        fragmentBooleanResult(
+            DialogConfirmation.RESULT_KEY,
+            DialogConfirmation.DEFAULT_REQ_KEY,
+            onDenied = {
+                findNavController().navigateUp()
+            },
+            onGranted = {
+                customizationPrefs.saveSizePref(
+                    prefBaseName + SIZE_PREF_ADDITION,
+                    binding.sizeSlider.value
+                )
+                pickedDotColor?.let {
+                    customizationPrefs.saveColorPref(
+                        prefBaseName + COLOR_DOT_PREF_ADDITION,
+                        it
+                    )
+                }
+                pickedNotificationLEDColor?.let {
+                    customizationPrefs.saveNotificationColorPref(
+                        prefBaseName + COLOR_NOTIFICATION_PREF_ADDITION,
+                        it
+                    )
+                }
+                pickedLayoutPosition?.let {
+                    customizationPrefs.savePositionPref(
+                        prefBaseName + POSITION_PREF_ADDITION,
+                        it
+                    )
+                }
+                pickedVibrationPosition?.let {
+                    customizationPrefs.savePositionPref(
+                        prefBaseName + VIBRATION_PREF_ADDITION,
+                        it
+                    )
+                }
+                binding.inputSpacing.textString.toIntOrNull()
+                    ?.let { customizationPrefs.saveSpacing(prefBaseName, it) }
+                VigilanteService.serviceParamsListener?.updateForBasePref(prefBaseName)
+                goBack()
+            })
     }
 
     private fun backButtonClick() {
         goToScreen(
-                HomeFragmentDirections.destinationConfirmation(
-                        cancelButtonText = getString(R.string.discard_changes),
-                        confirmationButtonText = getString(R.string.save),
-                        titleText = getString(R.string.save_progress_expl)
-                )
+            HomeFragmentDirections.destinationConfirmation(
+                cancelButtonText = getString(R.string.discard_changes),
+                confirmationButtonText = getString(R.string.save),
+                titleText = getString(R.string.save_progress_expl)
+            )
         )
     }
 
@@ -193,39 +219,26 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        pickedDotColor?.let { outState.putInt(COLOR_DOT_STATE, it) }
-        pickedLayoutPosition?.let { outState.putInt(LAYOUT_STATE, it) }
-        pickedVibrationPosition?.let { outState.putInt(VIBRATION_STATE, it) }
-        pickedSize?.let { outState.putFloat(SIZE_STATE, it) }
-        pickedNotificationLEDColor?.let { outState.putInt(COLOR_NOTIFICATION_STATE, it) }
-        pickedSpacing?.let { outState.putInt(SPACING_STATE, it) }
+        pickedDotColor?.let { viewModel.dotColor = it }
+        pickedLayoutPosition?.let { viewModel.layoutPosition = it }
+        pickedVibrationPosition?.let { viewModel.vibrationPosition = it }
+        pickedSize?.let { viewModel.size = it }
+        pickedNotificationLEDColor?.let { viewModel.notificationLEDColor = it }
+        pickedSpacing?.let { viewModel.spacing = it }
     }
 
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
-        pickedDotColor = savedInstanceState?.getInt(COLOR_DOT_STATE, viewModel.defaultDotColor)
-                ?: viewModel.defaultDotColor
-        pickedLayoutPosition = savedInstanceState?.getInt(LAYOUT_STATE, viewModel.defaultLayoutPosition)
-                ?: viewModel.defaultLayoutPosition
-        pickedSize = savedInstanceState?.getFloat(SIZE_STATE, viewModel.defaultSize)
-                ?: viewModel.defaultSize
-        pickedNotificationLEDColor = savedInstanceState?.getInt(COLOR_NOTIFICATION_STATE, viewModel.defaultNotificationLEDColor)
-        pickedVibrationPosition = savedInstanceState?.getInt(VIBRATION_STATE, viewModel.defaultVibrationPosition)
-                ?: viewModel.defaultVibrationPosition
-        pickedSpacing = savedInstanceState?.getInt(SPACING_STATE, DEFAULT_SPACING)
-                ?: viewModel.spacing
-        binding.inputSpacing.setTheText(pickedSpacing.toString())
-        updatePreviewColor(pickedDotColor)
-        updatePickedSize(pickedSize)
-        updateLayoutPosition(pickedLayoutPosition)
-        updateVibrationPosition(pickedVibrationPosition)
-    }
-
-    private inline fun showColorPicker(context: Context, @StringRes title: Int, prefAddition: String, crossinline onColorPicked: (ColorEnvelope?.() -> Unit)) {
+    private inline fun showColorPicker(
+        context: Context,
+        @StringRes title: Int,
+        prefAddition: String,
+        crossinline onColorPicked: (ColorEnvelope?.() -> Unit)
+    ) {
         ColorPickerDialog.Builder(context).apply {
             setTitle(getString(title))
             setPreferenceName(prefBaseName + prefAddition)
-            setPositiveButton(getString(R.string.select), ColorEnvelopeListener { envelope, _ -> envelope.onColorPicked() })
+            setPositiveButton(
+                getString(R.string.select),
+                ColorEnvelopeListener { envelope, _ -> envelope.onColorPicked() })
             setNegativeButton(getString(R.string.cancel)) { dialogInterface, _ -> dialogInterface.dismiss() }
             setBottomSpace(12)
             show()
@@ -255,6 +268,11 @@ class CustomizationFragment : AbstractFragment<FragmentCustomizationBinding>(R.l
         envelope ?: return
         pickedDotColor = envelope.color
         updatePreviewColor(pickedDotColor)
+    }
+
+    private fun updatePreviewColor(newValue: Int?) {
+        newValue ?: return
+        binding.preview.setColorFilter(newValue)
     }
 
     private fun updatePickedSize(pickedSize: Float?) {

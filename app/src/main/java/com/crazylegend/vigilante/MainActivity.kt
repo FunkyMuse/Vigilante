@@ -31,13 +31,11 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private val binding by viewBinding<ActivityMainBinding>(ActivityMainBinding::inflate)
+    private val binding by viewBinding(ActivityMainBinding::inflate)
 
     private val navController: NavController
         get() =
              binding.navHostContainer.getFragment<NavHostFragment>().navController
-
-
 
     override fun onSupportNavigateUp() = navController.navigateUp()
 

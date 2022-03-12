@@ -19,61 +19,92 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class CustomizationViewModel @Inject constructor(
-        private val cameraPrefs: CameraPrefs,
-        private val locationPrefs: LocationPrefs,
-        private val microphonePrefs: MicrophonePrefs,
-        private val savedStateHandle: SavedStateHandle) : ViewModel() {
-    private val prefBaseName get() = savedStateHandle.get<String>("prefBaseName")
+    private val cameraPrefs: CameraPrefs,
+    private val locationPrefs: LocationPrefs,
+    private val microphonePrefs: MicrophonePrefs,
+    private val savedStateHandle: SavedStateHandle
+) : ViewModel() {
 
-    val defaultDotColor
-        get() =
-            when (prefBaseName) {
-                CAMERA_CUSTOMIZATION_BASE_PREF -> cameraPrefs.getCameraColorPref
-                MIC_CUSTOMIZATION_BASE_PREF -> microphonePrefs.getMicColorPref
-                LOCATION_CUSTOMIZATION_BASE_PREF -> locationPrefs.getLocationColorPref
-                else -> throw throwMissingArgException()
-            }
+    private companion object {
+        private const val COLOR_DOT_STATE = "colorState"
+        private const val LAYOUT_STATE = "layoutState"
+        private const val SIZE_STATE = "sizeState"
+        private const val COLOR_NOTIFICATION_STATE = "colorNotificationState"
+        private const val VIBRATION_STATE = "vibrationState"
+        private const val SPACING_STATE = "customSpacingState"
+    }
 
-    val defaultNotificationLEDColor
-        get() = defaultDotColor
+    private val args = CustomizationFragmentArgs.fromSavedStateHandle(savedStateHandle)
+    private val prefBaseName get() = args.prefBaseName
 
-    val defaultSize
-        get() =
-            when (prefBaseName) {
-                CAMERA_CUSTOMIZATION_BASE_PREF -> cameraPrefs.getCameraSizePref
-                MIC_CUSTOMIZATION_BASE_PREF -> microphonePrefs.getMicSizePref
-                LOCATION_CUSTOMIZATION_BASE_PREF -> locationPrefs.getLocationSizePref
-                else -> throw throwMissingArgException()
-            }
+    var dotColor = 0
+        get() = savedStateHandle[COLOR_DOT_STATE] ?: when (prefBaseName) {
+            CAMERA_CUSTOMIZATION_BASE_PREF -> cameraPrefs.getCameraColorPref
+            MIC_CUSTOMIZATION_BASE_PREF -> microphonePrefs.getMicColorPref
+            LOCATION_CUSTOMIZATION_BASE_PREF -> locationPrefs.getLocationColorPref
+            else -> throw throwMissingArgException()
+        }
+        set(value) {
+            savedStateHandle[COLOR_DOT_STATE] = value
+            field = value
+        }
 
-    val defaultLayoutPosition
-        get() =
-            when (prefBaseName) {
-                CAMERA_CUSTOMIZATION_BASE_PREF -> cameraPrefs.getCameraPositionPref
-                MIC_CUSTOMIZATION_BASE_PREF -> microphonePrefs.getMicPositionPref
-                LOCATION_CUSTOMIZATION_BASE_PREF -> locationPrefs.getLocationPositionPref
-                else -> throw throwMissingArgException()
-            }
+    var notificationLEDColor = 0
+        get() = savedStateHandle[COLOR_NOTIFICATION_STATE] ?: dotColor
+        set(value) {
+            savedStateHandle[COLOR_NOTIFICATION_STATE] = value
+            field = value
+        }
+
+    var size = 0.0f
+        get() = savedStateHandle[SIZE_STATE] ?: when (prefBaseName) {
+            CAMERA_CUSTOMIZATION_BASE_PREF -> cameraPrefs.getCameraSizePref
+            MIC_CUSTOMIZATION_BASE_PREF -> microphonePrefs.getMicSizePref
+            LOCATION_CUSTOMIZATION_BASE_PREF -> locationPrefs.getLocationSizePref
+            else -> throw throwMissingArgException()
+        }
+        set(value) {
+            savedStateHandle[SIZE_STATE] = value
+            field = value
+        }
+
+    var layoutPosition = 0
+        get() = savedStateHandle[LAYOUT_STATE] ?: when (prefBaseName) {
+            CAMERA_CUSTOMIZATION_BASE_PREF -> cameraPrefs.getCameraPositionPref
+            MIC_CUSTOMIZATION_BASE_PREF -> microphonePrefs.getMicPositionPref
+            LOCATION_CUSTOMIZATION_BASE_PREF -> locationPrefs.getLocationPositionPref
+            else -> throw throwMissingArgException()
+        }
+        set(value) {
+            savedStateHandle[LAYOUT_STATE] = value
+            field = value
+        }
 
 
-    val defaultVibrationPosition
-        get() =
-            when (prefBaseName) {
-                CAMERA_CUSTOMIZATION_BASE_PREF -> cameraPrefs.getCameraVibrationPositionPref
-                MIC_CUSTOMIZATION_BASE_PREF -> microphonePrefs.getMicVibrationPositionPref
-                LOCATION_CUSTOMIZATION_BASE_PREF -> locationPrefs.getLocationVibrationPositionPref
-                else -> throw throwMissingArgException()
-            }
+    var vibrationPosition = 0
+        get() = savedStateHandle[VIBRATION_STATE] ?: when (prefBaseName) {
+            CAMERA_CUSTOMIZATION_BASE_PREF -> cameraPrefs.getCameraVibrationPositionPref
+            MIC_CUSTOMIZATION_BASE_PREF -> microphonePrefs.getMicVibrationPositionPref
+            LOCATION_CUSTOMIZATION_BASE_PREF -> locationPrefs.getLocationVibrationPositionPref
+            else -> throw throwMissingArgException()
+        }
+        set(value) {
+            savedStateHandle[VIBRATION_STATE] = value
+            field = value
+        }
 
 
-    val spacing
-        get() =
-            when (prefBaseName) {
-                CAMERA_CUSTOMIZATION_BASE_PREF -> cameraPrefs.getCameraSpacing
-                MIC_CUSTOMIZATION_BASE_PREF -> microphonePrefs.getMicSpacing
-                LOCATION_CUSTOMIZATION_BASE_PREF -> locationPrefs.getLocationSpacing
-                else -> throw throwMissingArgException()
-            }
+    var spacing = 0
+        get() = savedStateHandle[SPACING_STATE] ?: when (prefBaseName) {
+            CAMERA_CUSTOMIZATION_BASE_PREF -> cameraPrefs.getCameraSpacing
+            MIC_CUSTOMIZATION_BASE_PREF -> microphonePrefs.getMicSpacing
+            LOCATION_CUSTOMIZATION_BASE_PREF -> locationPrefs.getLocationSpacing
+            else -> throw throwMissingArgException()
+        }
+        set(value) {
+            savedStateHandle[SPACING_STATE] = value
+            field = value
+        }
 
 
     val title

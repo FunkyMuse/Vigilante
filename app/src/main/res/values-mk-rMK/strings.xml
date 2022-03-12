@@ -185,7 +185,6 @@
     <string name="log_lockscreen_title">Записи за заклучување екран</string>
     <string name="restart_service_for_changes_to_take_effect">Рестартирај го сервисот Vigilante, за промените да стапат во ефект</string>
     <string name="log_empty_notifications">Зачувување на празни исвестувања</string>
-    <string name="log_empty_notifications_summary">Some notifications have empty body, you can disable logging them, logging is enabled by default.</string>
     <string name="log_empty_notifications_summary">Некои известувања имаат празен наслов и текст, можете да исклучите да бидат зачувани, зачувувањето е уклучено доколку сами не го смените тоа.</string>
 
 

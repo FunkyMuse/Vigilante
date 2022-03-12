@@ -25,10 +25,6 @@ class DefaultPreferencessProvider @Inject constructor(
         private val workManager: WorkManager
 ) : DefaultPreferences {
 
-    companion object {
-
-    }
-
     //region date format
     override fun updateDateFormat(value: String) = defaultPrefs.putString(DATE_PREF_KEY, value)
     override val getDateFormat

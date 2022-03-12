@@ -10,6 +10,7 @@ import com.crazylegend.toaster.Toaster
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.settings.*
 import com.crazylegend.vigilante.utils.addSpacingForPreferenceBackButton
+import com.crazylegend.vigilante.utils.isVigilanteRunning
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -61,6 +62,8 @@ class LoggingPreferenceFragment : PreferenceFragmentCompat() {
     }
 
     private fun showRationaleMessage() {
-        toaster.shortToast(R.string.restart_service_for_changes_to_take_effect)
+        if (requireContext().isVigilanteRunning()) {
+            toaster.shortToast(R.string.restart_service_for_changes_to_take_effect)
+        }
     }
 }

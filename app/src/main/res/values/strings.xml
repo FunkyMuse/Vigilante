@@ -187,6 +187,8 @@
     <string name="bulgarian">Bulgarian</string>
     <string name="italian">Italian</string>
     <string name="restart_service_for_changes_to_take_effect">Restart Vigilante service to apply changes!</string>
+    <string name="log_empty_notifications">Log empty notifications</string>
+    <string name="log_empty_notifications_summary">Some notifications have empty body, you can disable logging them, logging is enabled by default.</string>
 
 
 </resources>

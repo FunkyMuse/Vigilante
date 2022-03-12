@@ -22,12 +22,26 @@
     <SwitchPreferenceCompat
         app:defaultValue="true"
         app:iconSpaceReserved="false"
-        app:key="pref_log_notifications"
-        app:title="@string/log_notifications_title" />
-
-    <SwitchPreferenceCompat
-        app:defaultValue="true"
-        app:iconSpaceReserved="false"
         app:key="pref_log_lockscreen"
         app:title="@string/log_lockscreen_title" />
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/notifications">
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:iconSpaceReserved="false"
+            app:key="pref_log_notifications"
+            app:title="@string/log_notifications_title" />
+
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:dependency="pref_log_notifications"
+            app:iconSpaceReserved="false"
+            app:summary="@string/log_empty_notifications_summary"
+            app:key="pref_log_empty_notifications"
+            app:title="@string/log_empty_notifications" />
+
+
+    </PreferenceCategory>
 </PreferenceScreen>

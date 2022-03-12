@@ -31,6 +31,9 @@ class LoggingPrefs @Inject constructor(@EncryptedPrefs private val defaultPrefs:
     override val isNotificationsLoggingEnabled: Boolean
         get() = getBooleanState(LOG_NOTIFICATIONS_KEY)
 
+    override val isEmptyNotificationsLoggingEnabled: Boolean
+        get() = getBooleanState(LOG_EMPTY_PERMISSIONS_KEY)
+
     override fun setNotificationsLoggingState(isEnabled: Boolean) = putBooleanState(LOG_NOTIFICATIONS_KEY, isEnabled)
 
     override val isLockScreenLoggingEnabled: Boolean

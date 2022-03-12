@@ -16,6 +16,7 @@ interface LoggingPreferences {
 
     val isNotificationsLoggingEnabled: Boolean
     fun setNotificationsLoggingState(isEnabled: Boolean)
+    val isEmptyNotificationsLoggingEnabled: Boolean
 
     val isLockScreenLoggingEnabled: Boolean
     fun setLockScreenLoggingState(isEnabled: Boolean)

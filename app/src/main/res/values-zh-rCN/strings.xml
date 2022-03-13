@@ -187,6 +187,8 @@
     <string name="bulgarian">保加利亚语</string>
     <string name="italian">意大利语</string>
     <string name="restart_service_for_changes_to_take_effect">重启 Vigilante 服务来使更改生效！</string>
+    <string name="log_empty_notifications">记录空白通知</string>
+    <string name="log_empty_notifications_summary">某些通知没有内容，你可以禁止记录它们，记录默认启用。</string>
 	
 	
 </resources>

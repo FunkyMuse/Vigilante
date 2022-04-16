@@ -1,0 +1,2 @@
+### Forbedringer
+- Fjernet unødvendige tilganger

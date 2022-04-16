@@ -1,0 +1,11 @@
+### Funksjoner
+Mange flere oversettelser
+
+### Fikset
+Prøv å fikse kameramerknad ved bruk av ytterligere kamerasensorer (makro og vidvinkel)
+Åpning av merknadsdetaljer
+
+### Forbedringer
+Grensesnitt
+Crowdin støtte (fjernet igjen til fordel for Weblate)
+Kode

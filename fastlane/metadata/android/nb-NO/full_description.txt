@@ -1,0 +1,20 @@
+Et program som fokuserer på personvernet og varsler deg når et tredjepartsprogram bruker enhetskamera eller mikrofon. I tillegg:
+-Merknader når mik./kamera brukes
+-Skjermdotter når mik./kamera brukes
+-Skjermdott-tilpasning når mik./kamera brukes (størrelse, farge, skjermposisjon)
+-Historikk om når programmer forespurte tilganger
+-Historikk om tilkobling/frakobling av lader
+-Historikk om tilkobling/frakobling av hodetelefoner
+-Historikk for merknader
+-Låseskjermshistorikk
+-Sikkerhetsinteressant enhetsinfo
+-Ingen suspekte tilganger
+-Kobler ikke til Internett
+-All data kryptert (database og innstillinger)
+-Mørk/lys drakt
+
+<b>Sjekk ut alle programmene mine:</b>
+https://funkymuse.dev
+
+<b>GitHub:</b>
+https://github.com/FunkyMuse

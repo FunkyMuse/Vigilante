@@ -49,7 +49,7 @@
     <string name="text_placeholder">Testo: %1$s</string>
     <string name="category_placeholder">Categoria: %1$s</string>
     <string name="group_placeholder">Gruppo: %1$s</string>
-    <string name="channel_id_placeholder">Id canale: %1$s</string>
+    <string name="channel_id_placeholder">ID canale: %1$s</string>
     <string name="notification_visibility_public">Notifiche visibili pubblicamente</string>
     <string name="notification_visibility_private">Notifica visibile privata</string>
     <string name="notification_visibility_secret">Notifica visibile segretamente</string>

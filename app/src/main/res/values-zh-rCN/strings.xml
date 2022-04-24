@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">Vigilante</string>
     <string name="vigilante_description">Vigilante 服务</string>
@@ -19,11 +20,12 @@
     <string name="notifications_usage_expl_location">启用此选项，如果可能的话，你将在位置启用时收到通知。</string>
     <string name="notifications_usage_title">启用使用通知</string>
     <string name="crash_report">崩溃报告 #%1$d</string>
-    <string name="no_crashes">未记录到崩溃！</string>
+    <string name="no_crashes">未记录到崩溃。</string>
     <string name="version">版本</string>
     <string name="date_format">日期格式</string>
     <string name="current_date_format">当前日期格式: %1$s</string>
-    <string name="no_results_expl">没有结果，请稍后再来，我们会继续警戒!</string>
+    <string name="no_results_expl">没有结果，长官。
+\n请稍后再来，我们会继续警戒！</string>
     <string name="screen_unlocked">屏幕解除锁定</string>
     <string name="screen_locked">屏幕锁定</string>
     <string name="total">总数</string>
@@ -45,7 +47,7 @@
     <string name="denied">被拒绝</string>
     <string name="denied_and_do_not_ask_again">"拒绝且不再询问 "</string>
     <string name="ask_every_time">每次询问</string>
-    <string name="permissions_requests_by_app_count">共 %1$d 次权限请求</string>
+    <string name="permissions_requests_by_app_count">共 %1$d 次权限请求。</string>
     <string name="total_permission_requests">总共的权限请求数</string>
     <string name="title_placeholder">标题: %1$s</string>
     <string name="big_text_placeholder">大字: %1$s</string>
@@ -66,7 +68,7 @@
     <string name="ac_charging">交流充电</string>
     <string name="usb_charging">USB 充电</string>
     <string name="wireless_charging">无线充电</string>
-    <string name="error_occurred">出错，请稍候再试！</string>
+    <string name="error_occurred">出错了。请稍候再试。</string>
     <string name="channel_name">Vigilante 使用通知</string>
     <string name="channel_description">当隐私使用发生时，会发送通知</string>
     <string name="mic_being_used">你的麦克风正被使用！</string>
@@ -76,8 +78,8 @@
     <string name="dot_usage_title">显示点使用</string>
     <string name="dot_usage_expl">启用这个选项，当相机/麦克风使用发生时，你会看到屏幕上出现一个圆点。</string>
     <string name="exclude_from_notifications_title">从通知中排除 Vigilante </string>
-    <string name="exclude_from_notifications_expl">启用此选项，你将不会在历史记录中看到此应用程序的通知。</string>
-    <string name="enable_dot_customization">先启用显示点使用</string>
+    <string name="exclude_from_notifications_expl">从历史记录中删除此应用程序的通知</string>
+    <string name="enable_dot_customization">先打开“显示点使用”！</string>
     <string name="microphone_title">麦克风</string>
     <string name="camera_title">相机</string>
     <string name="size_title">尺寸</string>
@@ -101,11 +103,11 @@
     <string name="save">保存</string>
     <string name="save_progress_expl">丢弃还是保存你当前的更改？</string>
     <string name="customize_cam_or_mic">自定义相机或麦克风参数？</string>
-    <string name="saved">已保存！</string>
+    <string name="saved">已保存</string>
     <string name="disk_status">磁盘状态</string>
-    <string name="crash_copied_to_clipboard">已将崩溃详情复制到剪贴板！</string>
-    <string name="content_copied_to_clipboard">已复制到剪贴板！</string>
-    <string name="web_browser_required">此操作需要 Web 浏览器！</string>
+    <string name="crash_copied_to_clipboard">崩溃细节已复制到剪贴板</string>
+    <string name="content_copied_to_clipboard">已复制到剪贴板</string>
+    <string name="web_browser_required">先安装 web 浏览器。</string>
     <string name="informational">信息</string>
     <string name="customizations">自定义</string>
     <string name="home_page">主页</string>
@@ -118,11 +120,12 @@
     <string name="magisk_not_detected">Magisk 不存在</string>
     <string name="magisk_detected">检测到 Magisk</string>
     <string name="next">下一步</string>
-    <string name="welcome_to_vigilante_you_have_chosen_privacy_thank_you_for_your_decision">欢迎来到 Vigilante，你已经选择了隐私，谢谢你的决定！</string>
+    <string name="welcome_to_vigilante_you_have_chosen_privacy_thank_you_for_your_decision">欢迎来到 Vigilante，
+\n你已经选择了隐私，谢谢你的决决定。</string>
     <string name="you_can_choose_the_size_color_and_the_position_of_the_dots_appearing_on_the_screen">你可以选择出现在屏幕上的点的大小、颜色和位置</string>
     <string name="and_many_other_customizations_and_options_available_within_the_simple_ui_in_the_application">以及许多其他在本应用的简单用户界面中可用的自定义和选项。</string>
     <string name="finish">完成</string>
-    <string name="final_expl">别忘了报告崩溃，建议新功能并记住， 如果某些服务在展示广告或不声明联网目的的情况下免费提供给你，那么你(作为用户)就是产品</string>
+    <string name="final_expl">别忘了报告崩溃，建议新功能。 如果一项服务免费提供给你，但显示广告或在未说明目的的情况下连接到互联网，那么你就是产品！</string>
     <string name="final_pre_expl">这个应用程序使用加密的偏好选择、数据库，并关注隐私和生产力。</string>
     <string name="the_app_is_an_open_source_project_and_will_remain_as_such_as_it_focuses_on_privacy_and_it_s_integrity">本应用程序是一个开源项目，并将一直如此，因为它注重隐私和诚信。</string>
     <string name="device_info">设备信息</string>
@@ -132,8 +135,8 @@
     <string name="unsupported_device">你的设备不支持生物特征认证。</string>
     <string name="verification_required">需要验证</string>
     <string name="prompt_info_expl">请验证您的身份来启用在程序启动时进行身份验证</string>
-    <string name="auth_failed">认证失败，请重试！</string>
-    <string name="verify_to_proceed">验证你的身份来打开本应用程序</string>
+    <string name="auth_failed">无法核实身份。请再试一次。</string>
+    <string name="verify_to_proceed">验证你的身份来打开本应用。</string>
     <string name="language_title">语言</string>
     <string name="notification_led_color">通知LED指示灯颜色</string>
     <string name="pick_notification_LED_color">挑选通知LED指示灯颜色</string>
@@ -146,16 +149,16 @@
     <string name="heavy">重</string>
     <string name="none">无</string>
     <string name="vibration_on_notification">收到通知时振动手机</string>
-    <string name="incompatible_os_version">你的安卓操作系统与这个功能不兼容</string>
+    <string name="incompatible_os_version">你的安卓系统版本不支持此功能。</string>
     <string name="vibrations_not_happening_expl">** 如果振动不起作用，转到应用程序信息 &gt; 通知 &gt; 使用情况通知并启用响铃振动。\n点击这里测试选择的振动。**</string>
     <string name="spacing">间距</string>
     <string name="spacing_expl">如遇圆角或凹槽堵塞点的可见性，使用间距</string>
-    <string name="too_large_to_copy_to_clipboard">太大以致无法复制到剪贴板，请发送这个屏幕的截图！</string>
-    <string name="app_not_installed">应用程序未安装！</string>
+    <string name="too_large_to_copy_to_clipboard">太大以致无法复制到剪贴板，请发送这个屏幕的截图。</string>
+    <string name="app_not_installed">应用未安装</string>
     <string name="history_deletion">删除历史</string>
     <string name="history_deletion_expl">30 天后删除整个历史记录以避免混乱</string>
     <string name="application">应用程序</string>
-    <string name="dot_indicator_customizations">自定义点状指示器</string>
+    <string name="dot_indicator_customizations">自定义点状指示器。</string>
     <string name="generate">生成</string>
     <string name="generate_one_time_password">生成一次性密码</string>
     <string name="password_length">密码长度</string>
@@ -166,7 +169,6 @@
     <string name="sound_pref_title">通知声音</string>
     <string name="sound_pref_summary">启用此选项后，当使用发生时，你会收到通知声音。</string>
     <string name="my_other_apps">我的其他应用</string>
-
     <!--Logging-->
     <string name="logging_title">记录</string>
     <string name="log_permissions_title">记录权限</string>
@@ -174,7 +176,6 @@
     <string name="log_headset_title">记录耳机操作</string>
     <string name="log_notifications_title">记录通知</string>
     <string name="log_lockscreen_title">记录锁屏</string>
-
     <!--Languages-->
     <string name="english">英语</string>
     <string name="spanish">西班牙语</string>
@@ -186,9 +187,7 @@
     <string name="french">法语</string>
     <string name="bulgarian">保加利亚语</string>
     <string name="italian">意大利语</string>
-    <string name="restart_service_for_changes_to_take_effect">重启 Vigilante 服务来使更改生效！</string>
+    <string name="restart_service_for_changes_to_take_effect">重启 Vigilante 服务来使用新更改。</string>
     <string name="log_empty_notifications">记录空白通知</string>
-    <string name="log_empty_notifications_summary">某些通知没有内容，你可以禁止记录它们，记录默认启用。</string>
-	
-	
+    <string name="log_empty_notifications_summary">删除正文空白的通知。(默认记录。)</string>
 </resources>

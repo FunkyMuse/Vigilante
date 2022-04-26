@@ -1,0 +1,11 @@
+### वैशिष्ट्ये
+रशियन, मॅसेडोनियन, चीनी, स्पॅनिश, पोर्तुगीज अनुवाद
+dnd आणि कंपनं पर्यायांना बायपास करण्याचे पर्याय
+Options to add spacing to circumvent the edged screen blocking the dot
+LED color picker for those phones that have the option
+
+
+### दुरुस्त केले
+UI सुधारणा
+अॅपच्या सुलभ भाषांतरासाठी crowdin समर्थन जोडले
+कोड सुधारणा

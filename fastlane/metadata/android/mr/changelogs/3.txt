@@ -1,0 +1,5 @@
+### सुधारणा
+- स्पॅनिश भाषांतरे
+
+### दुरुस्त केले
+- Layout overlaps due to edge-to-edge

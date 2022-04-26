@@ -1,0 +1,5 @@
+### सुधारणा
+https://github.com/FunkyMuse/Vigilante/issues/47
+
+### दुरुस्त केले
+https://github.com/FunkyMuse/Vigilante/issues/46

@@ -19,12 +19,10 @@ import com.crazylegend.intent.newIntent
 import com.crazylegend.lifecycle.viewCoroutineScope
 import com.crazylegend.receivers.isServiceRunning
 import com.crazylegend.receivers.startForegroundService
-import com.crazylegend.security.encryptedSharedPreferences
 import com.crazylegend.view.dimen
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.database.migrations.CameraAndMicRemovalMigration
 import com.crazylegend.vigilante.service.VigilanteService
-import com.crazylegend.vigilante.settings.THEME_PREF_KEY
 import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SupportFactory
 
@@ -89,5 +87,3 @@ fun PreferenceFragmentCompat.addSpacingForPreferenceBackButton() {
         updatePadding(bottom = dimen(R.dimen.padding_bottom_scroll).toInt())
     }
 }
-
-fun Context.darkMode() = encryptedSharedPreferences().getBoolean(THEME_PREF_KEY, false)

@@ -45,8 +45,8 @@ class LocationProcessor @Inject constructor(
         locationStatusReceiver = initLocationStatusReceiver()
 
         scope.launch {
-            locationStatus.collectLatest {
-                if (it) {
+            locationStatus.collectLatest { isGPSEnabled ->
+                if (isGPSEnabled) {
                     setLocationIsUsed()
                     VigilanteService.serviceLayoutListener?.showLocation()
                 } else {

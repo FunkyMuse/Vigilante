@@ -6,6 +6,7 @@ import androidx.lifecycle.ServiceLifecycleDispatcher
 import com.crazylegend.coroutines.makeIOCall
 import com.crazylegend.string.isNotNullOrEmpty
 import com.crazylegend.vigilante.contracts.service.ServiceLifecycle
+import com.crazylegend.vigilante.di.modules.coroutines.dispatchers.IoDispatcher
 import com.crazylegend.vigilante.permissions.db.PermissionRequestModel
 import com.crazylegend.vigilante.permissions.db.PermissionRequestsDAO
 import dagger.hilt.android.scopes.ServiceScoped
@@ -14,6 +15,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.util.concurrent.atomic.AtomicReference
 import javax.inject.Inject
+import kotlinx.coroutines.CoroutineDispatcher
 
 /**
  * Created by crazy on 10/21/20 to long live and prosper !
@@ -21,7 +23,8 @@ import javax.inject.Inject
 @ServiceScoped
 @SuppressLint("DefaultLocale")
 class PermissionsProcessor @Inject constructor(
-        private val permissionRequestsRepository: PermissionRequestsDAO
+        private val permissionRequestsRepository: PermissionRequestsDAO,
+        @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) : ServiceLifecycle {
 
     override val serviceLifecycleDispatcher: ServiceLifecycleDispatcher = ServiceLifecycleDispatcher(this)
@@ -44,7 +47,7 @@ class PermissionsProcessor @Inject constructor(
             val settingsTitle = settingsPermissionTitle.getAndSet(null)
             val permissionRequestModel = PermissionRequestModel(newPermissionMessage, currentPackageRef, settingsAppName = settingsTitle)
             settingsPermissionTitle.set(null)
-            scope.makeIOCall {
+            scope.launch(ioDispatcher) {
                 permissionRequestsRepository.insertPermissionRequest(permissionRequestModel)
             }
         }

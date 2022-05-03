@@ -1,6 +1,7 @@
 package com.crazylegend.vigilante.di.modules.coroutines.appScope
 
 import com.crazylegend.vigilante.di.modules.coroutines.dispatchers.DefaultDispatcher
+import com.crazylegend.vigilante.di.modules.coroutines.dispatchers.MainImmediateDispatcher
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,7 +22,7 @@ object CoroutinesScopesModule {
     @Singleton
     @Provides
     @ApplicationScope
-    fun providesCoroutineScope(@DefaultDispatcher defaultDispatcher: CoroutineDispatcher): CoroutineScope =
+    fun providesCoroutineScope(@MainImmediateDispatcher defaultDispatcher: CoroutineDispatcher): CoroutineScope =
             CoroutineScope(SupervisorJob() + defaultDispatcher)
 
 }

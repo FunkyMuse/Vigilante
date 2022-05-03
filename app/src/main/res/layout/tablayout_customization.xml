@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:padding="10dp"
         android:textAlignment="center"
-        android:textColor="@android:color/black"
+        android:textColor="@color/black"
         android:id="@+id/text"
         android:layout_height="wrap_content" />
 

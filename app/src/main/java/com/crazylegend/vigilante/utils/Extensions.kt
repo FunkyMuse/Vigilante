@@ -19,10 +19,12 @@ import com.crazylegend.intent.newIntent
 import com.crazylegend.lifecycle.viewCoroutineScope
 import com.crazylegend.receivers.isServiceRunning
 import com.crazylegend.receivers.startForegroundService
+import com.crazylegend.security.encryptedSharedPreferences
 import com.crazylegend.view.dimen
 import com.crazylegend.vigilante.R
 import com.crazylegend.vigilante.database.migrations.CameraAndMicRemovalMigration
 import com.crazylegend.vigilante.service.VigilanteService
+import com.crazylegend.vigilante.settings.THEME_PREF_KEY
 import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SupportFactory
 
@@ -37,10 +39,10 @@ const val MY_OTHER_APPS_URL = "https://funkymuse.dev/apps/"
 const val NEW_ISSUE_URL = "${GITHUB_URL}issues/new"
 const val DEFAULT_ANIM_TIME = 1000L
 val dismissPackages = setOf(
-        "com.google.android.permissioncontroller",
-        "com.android.systemui",
-        "com.google.android.packageinstaller",
-        "com.android.packageinstaller",
+    "com.google.android.permissioncontroller",
+    "com.android.systemui",
+    "com.google.android.packageinstaller",
+    "com.android.packageinstaller",
 )
 
 fun Context.startVigilante() {
@@ -58,18 +60,18 @@ inline fun <reified T : RoomDatabase> Context.instantiateDatabase(cameraDbName: 
     val passphrase = SQLiteDatabase.getBytes(packageName.toCharArray())
     val factory = SupportFactory(passphrase)
     return Room.databaseBuilder(this, T::class.java, cameraDbName)
-            .addMigrations(CameraAndMicRemovalMigration())
-            .openHelperFactory(factory)
-            .build()
+        .addMigrations(CameraAndMicRemovalMigration())
+        .openHelperFactory(factory)
+        .build()
 }
 
 @Suppress("UNCHECKED_CAST")
 inline fun <reified T : ViewModel> Fragment.assistedViewModel(
-        crossinline viewModelProducer: (SavedStateHandle) -> T
+    crossinline viewModelProducer: (SavedStateHandle) -> T
 ) = viewModels<T> {
     object : AbstractSavedStateViewModelFactory(this, arguments) {
         override fun <T : ViewModel> create(key: String, modelClass: Class<T>, handle: SavedStateHandle) =
-                viewModelProducer(handle) as T
+            viewModelProducer(handle) as T
     }
 }
 
@@ -87,3 +89,5 @@ fun PreferenceFragmentCompat.addSpacingForPreferenceBackButton() {
         updatePadding(bottom = dimen(R.dimen.padding_bottom_scroll).toInt())
     }
 }
+
+fun Context.darkMode() = encryptedSharedPreferences().getBoolean(THEME_PREF_KEY, false)

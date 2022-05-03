@@ -7,8 +7,11 @@ import com.crazylegend.vigilante.di.modules.coroutines.appScope.ApplicationScope
 import com.crazylegend.vigilante.screen.db.ScreenModel
 import com.crazylegend.vigilante.screen.db.ScreenRepository
 import dagger.hilt.android.scopes.ServiceScoped
-import kotlinx.coroutines.*
 import javax.inject.Inject
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.NonCancellable
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * Created by crazy on 10/30/20 to long live and prosper !
@@ -28,7 +31,7 @@ class ScreenReceiver @Inject constructor(
             else -> null
         }
         screenModel?.apply {
-            appScope.launch() {
+            appScope.launch {
                 withContext(NonCancellable) {
                     screenRepository.insertScreenAction(this@apply)
                 }

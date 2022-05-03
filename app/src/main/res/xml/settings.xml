@@ -26,7 +26,6 @@
             app:key="pref_my_other_apps"
             app:title="@string/my_other_apps" />
 
-
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -102,8 +101,5 @@
             app:title="@string/history_deletion" />
 
     </PreferenceCategory>
-
-
-
 
 </PreferenceScreen>

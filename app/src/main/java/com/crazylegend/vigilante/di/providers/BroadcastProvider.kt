@@ -6,6 +6,8 @@ import android.content.Intent
 import android.content.IntentFilter
 import androidx.lifecycle.ServiceLifecycleDispatcher
 import com.crazylegend.common.ifTrue
+import com.crazylegend.context.registerReceiverSafe
+import com.crazylegend.context.unRegisterReceiverSafe
 import com.crazylegend.vigilante.contracts.service.ServiceLifecycle
 import com.crazylegend.vigilante.di.providers.prefs.logging.LoggingPrefs
 import com.crazylegend.vigilante.headset.HeadsetReceiver
@@ -20,11 +22,12 @@ import javax.inject.Inject
 
 @ServiceScoped
 class BroadcastProvider @Inject constructor(
-        private val screenReceiver: ScreenReceiver,
-        private val headsetPlugReceiver: HeadsetReceiver,
-        private val powerReceiver: PowerReceiver,
-        private val service: Service,
-        private val loggingPrefs: LoggingPrefs) : ServiceLifecycle {
+    private val screenReceiver: ScreenReceiver,
+    private val headsetPlugReceiver: HeadsetReceiver,
+    private val powerReceiver: PowerReceiver,
+    private val service: Service,
+    private val loggingPrefs: LoggingPrefs
+) : ServiceLifecycle {
 
     override val serviceLifecycleDispatcher = ServiceLifecycleDispatcher(this)
 
@@ -37,9 +40,9 @@ class BroadcastProvider @Inject constructor(
     }
 
     override fun disposeResources() {
-        loggingPrefs.isHeadsetLoggingEnabled.ifTrue { service.unregisterReceiver(headsetPlugReceiver) }
-        loggingPrefs.isLockScreenLoggingEnabled.ifTrue { service.unregisterReceiver(screenReceiver) }
-        loggingPrefs.isPowerLoggingEnabled.ifTrue { service.unregisterReceiver(powerReceiver) }
+        service.unRegisterReceiverSafe(headsetPlugReceiver)
+        service.unRegisterReceiverSafe(screenReceiver)
+        service.unRegisterReceiverSafe(powerReceiver)
     }
 
     private fun registerPowerReceiver() {
@@ -58,9 +61,13 @@ class BroadcastProvider @Inject constructor(
         }
     }
 
-    private inline fun registerReceiver(initialAction: String, broadcastReceiver: BroadcastReceiver, filterConfig: IntentFilter.() -> Unit = {}) {
+    private inline fun registerReceiver(
+        initialAction: String,
+        broadcastReceiver: BroadcastReceiver,
+        filterConfig: IntentFilter.() -> Unit = {}
+    ) {
         val filter = IntentFilter(initialAction)
         filter.filterConfig()
-        service.registerReceiver(broadcastReceiver, filter)
+        service.registerReceiverSafe(broadcastReceiver, filter)
     }
 }

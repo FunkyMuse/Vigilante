@@ -16,7 +16,7 @@ import kotlin.coroutines.CoroutineContext
 interface ServiceLifecycle : LifecycleOwner, LifecycleEventObserver {
 
     val coroutineContext: CoroutineContext
-        get() = Dispatchers.Main
+        get() = Dispatchers.Main.immediate
 
     val scope: CoroutineScope
         get() = CoroutineScope(coroutineContext + SupervisorJob())

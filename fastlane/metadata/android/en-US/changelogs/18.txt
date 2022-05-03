@@ -1,0 +1,2 @@
+### Fix
+- Logs not displayed bug

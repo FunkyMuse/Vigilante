@@ -2,7 +2,7 @@ package com.crazylegend.vigilante.notifications.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.crazylegend.vigilante.notifications.db.NotificationsRepo
+import com.crazylegend.vigilante.notifications.db.NotificationsDAO
 import com.crazylegend.vigilante.paging.PagingProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -12,7 +12,7 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class NotificationsViewModel @Inject constructor(
-    private val repo: NotificationsRepo,
+    private val repo: NotificationsDAO,
     pagingProvider: PagingProvider
 ) : ViewModel() {
 

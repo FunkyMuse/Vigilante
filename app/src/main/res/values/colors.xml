@@ -16,4 +16,6 @@
     <color name="light_scrim">#DCDCDC</color>
     <color name="navigationBarColor">@color/dark_scrim</color>
     <color name="statusBarColor">@color/light_scrim</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
 </resources>

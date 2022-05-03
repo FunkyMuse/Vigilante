@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.crazylegend.kotlinextensions.misc.requestBatteryOptimizations
 import com.crazylegend.kotlinextensions.power.isIgnoringBatteryOptimization
@@ -20,10 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    override fun attachBaseContext(newBase: Context?) {
-        super.attachBaseContext(newBase)
-        applyOverrideConfiguration(Configuration())
-    }
+    override fun attachBaseContext(newBase: Context?) { super.attachBaseContext(newBase?.let { LocaleHelper.onAttach(it) })}
 
     override fun applyOverrideConfiguration(overrideConfiguration: Configuration?) {
         super.applyOverrideConfiguration(overrideConfiguration?.let {
@@ -35,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
     private val navController: NavController
         get() =
-             binding.navHostContainer.getFragment<NavHostFragment>().navController
+            binding.navHostContainer.getFragment<NavHostFragment>().navController
 
     override fun onSupportNavigateUp() = navController.navigateUp()
 

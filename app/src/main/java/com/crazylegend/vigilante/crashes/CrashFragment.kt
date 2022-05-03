@@ -44,6 +44,9 @@ class CrashFragment : AbstractFragment<LayoutRecyclerBinding>(R.layout.layout_re
                 uiAction { shareCrash(item) }
             }
         }
+        crashesAdapter.onLongClickListener = {position, _, _ ->
+            onUnableToCopyCrash(position)
+        }
     }
 
     private fun onUnableToCopyCrash(position: Int) {

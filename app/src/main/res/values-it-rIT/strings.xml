@@ -7,8 +7,8 @@
     <string name="enable_the_service">Si prega di attivare il servizio</string>
     <string name="disable_text">Disabilita</string>
     <string name="enable_text">Abilita</string>
-    <string name="disk_not_encrypted">Disco non criptato</string>
-    <string name="disk_encrypted">Disco criptato</string>
+    <string name="disk_not_encrypted">Non criptato</string>
+    <string name="disk_encrypted">Criptato</string>
     <string name="permissions_history">Cronologia autorizzazioni</string>
     <string name="headset_history">Cronologia auricolari</string>
     <string name="notifications_history">Cronologia notifiche</string>
@@ -156,4 +156,8 @@
     <string name="french">Francese</string>
     <string name="bulgarian">Bulgaro</string>
     <string name="italian">Italiano</string>
+    <string name="location_being_used">La tua posizione è attivata, è possibile che venga utilizzata!</string>
+    <string name="history_deletion">Elimina cronologia</string>
+    <string name="application">App</string>
+    <string name="history_deletion_expl">Cancella l\'intera cronologia dopo 30 giorni per evitare disordine</string>
 </resources>

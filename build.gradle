@@ -10,7 +10,7 @@ buildscript {
         camerax_version = '1.1.0-beta03'
         mockk = "1.12.3"
         nav_version = '2.5.0-beta01'
-        daggerVersion = '2.41'
+        daggerVersion = '2.42'
         work_version = "2.7.1"
         kotlin_version = "1.6.21"
     }

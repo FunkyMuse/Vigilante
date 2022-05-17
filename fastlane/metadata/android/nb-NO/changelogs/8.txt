@@ -1,0 +1,11 @@
+### Funksjoner
+Russisk, makedonsk, kinesisk, spansk, portutisk oversettelse
+Mulighet til å omgå ikke-forstyrr og vibrasjonsvalg
+Mulighet til å legge til mellomrom for å omgå at kanten av skjermen blokkerer dotten
+LED-fargevelger for enheter som har det valget
+
+
+### Forbedringer
+Grensesnittsforbedringer
+Crowdin ble brukt (og senere fjernet til fordel for Weblate)
+Kodeforbedringer

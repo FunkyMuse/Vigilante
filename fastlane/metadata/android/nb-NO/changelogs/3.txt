@@ -1,0 +1,5 @@
+### Forbedringer
+- Spansk oversettelse
+
+### Fikset
+- Overlapping som følge av kant-til-kant

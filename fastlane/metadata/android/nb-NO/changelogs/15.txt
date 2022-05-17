@@ -1,0 +1,3 @@
+### Forbedringer
+- Tillagt mulighet for å forstumme merknader
+- Feilfikser

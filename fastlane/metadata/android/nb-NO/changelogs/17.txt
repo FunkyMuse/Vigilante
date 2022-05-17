@@ -1,0 +1,3 @@
+### Forbedringer
+- Mulighet for å skru av/på loggføring
+- Noen ytelsesforbedringer, og nye godsaker fra Android

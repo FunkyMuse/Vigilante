@@ -1,0 +1,9 @@
+### Forbedringer
+- Mulighet til å generere engangspassord
+- Mulighet til å veksle dotter, merknader og ikke-forstyrr for kamera, mik., og posisjon
+- Posisjonsdott, når du skrur på GPS for å minne deg på om at den er påslått.
+- Forbedret plassering av dotter
+- Nederste og øverste dott er i midtlinjen av skjermen
+- Forbedret ytelse
+- Mulighet til å slette historikk etter 30 dager, som sletter alt.
+- Flyttet alle tilpasninger til innstillinger

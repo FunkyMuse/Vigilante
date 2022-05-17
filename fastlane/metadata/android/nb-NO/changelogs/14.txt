@@ -1,0 +1,3 @@
+### Fiks
+- Programmet krasjet ved tilpasning av dottene
+- Passord som ikke ble lagret ved rotering

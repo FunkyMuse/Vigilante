@@ -1,0 +1,11 @@
+### Funksjoner
+- Kant-til-kant
+
+### Fjernet
+- Kamera og mik.-historikk som følge av at Android som system ikke gir mulighet til å oppdage nåværende program ved bruk av pakken
+
+### Forbedringer
+- Merknader om mik. og kamera-bruk skrudd på som forvalg.
+
+### Fikset
+- Knapp oppdaget ikke korrekt info om tilgjengelighet #25

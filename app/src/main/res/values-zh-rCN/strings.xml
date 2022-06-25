@@ -131,7 +131,7 @@
     <string name="device_info">设备信息</string>
     <string name="security">安全</string>
     <string name="biometric_auth_expl">打开应用程序需要生物特征认证</string>
-    <string name="biometric_auth_title">启动时提示生物特征认证</string>
+    <string name="biometric_auth_title">通过生物特征启动应用</string>
     <string name="unsupported_device">您的设备不提供此功能。</string>
     <string name="verification_required">需要验证</string>
     <string name="prompt_info_expl">请验证您的身份</string>

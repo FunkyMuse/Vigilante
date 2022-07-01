@@ -1,0 +1,7 @@
+### שיפורים
+
+https://github.com/FunkyMuse/Vigilante/issues/47
+
+### תוקן
+
+https://github.com/FunkyMuse/Vigilante/issues/46

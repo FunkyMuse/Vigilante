@@ -7,4 +7,3 @@
 - Improved the performance
 - Added delete the history after 30 days, it cleans everything
 - Moved every customization into settings for more clarity
-

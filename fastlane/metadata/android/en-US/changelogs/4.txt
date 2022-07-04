@@ -1,3 +1,2 @@
 ### Improvements
 - Removed unnecessary permissions
-

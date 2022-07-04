@@ -1,4 +1,3 @@
 ### Fix
 - Application crashing when trying to customize the dots
 - Password not saved when rotating
-

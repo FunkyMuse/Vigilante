@@ -11,6 +11,8 @@
         <item>@string/french</item>
         <item>@string/bulgarian</item>
         <item>@string/italian</item>
+        <item>@string/marathi</item>
+        <item>@string/hebrew</item>
     </string-array>
 
     <string-array name="language_values">
@@ -24,5 +26,7 @@
         <item>fr</item>
         <item>bg</item>
         <item>it</item>
+        <item>mr</item>
+        <item>iw</item>
     </string-array>
 </resources>

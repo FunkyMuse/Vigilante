@@ -75,11 +75,11 @@
     <string name="location_being_used">您的定位功能已经打开，可能是有应用在使用！</string>
     <string name="cam_being_used">你的相机正被使用！</string>
     <string name="usage_title">检测到使用</string>
-    <string name="dot_usage_title">显示点使用</string>
+    <string name="dot_usage_title">显示使用点</string>
     <string name="dot_usage_expl">相机 / 麦克风启用时在屏幕上显示一个圆点。</string>
     <string name="exclude_from_notifications_title">不要通知</string>
     <string name="exclude_from_notifications_expl">从历史记录中删除此应用程序的通知</string>
-    <string name="enable_dot_customization">先打开“显示点使用”！</string>
+    <string name="enable_dot_customization">先打开“显示使用点”！</string>
     <string name="microphone_title">麦克风</string>
     <string name="camera_title">相机</string>
     <string name="size_title">点的大小</string>
@@ -190,5 +190,5 @@
     <string name="italian">意大利语</string>
     <string name="restart_service_for_changes_to_take_effect">重启 Vigilante 服务来使用新更改。</string>
     <string name="log_empty_notifications">记录空白通知</string>
-    <string name="log_empty_notifications_summary">删除正文空白的通知。(默认记录。)</string>
+    <string name="log_empty_notifications_summary">忽略正文空白的通知。(默认记录。)</string>
 </resources>

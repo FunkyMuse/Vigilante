@@ -191,4 +191,6 @@
     <string name="restart_service_for_changes_to_take_effect">重启 Vigilante 服务来使用新更改。</string>
     <string name="log_empty_notifications">记录空白通知</string>
     <string name="log_empty_notifications_summary">忽略正文空白的通知。(默认记录。)</string>
+    <string name="marathi">马拉地语</string>
+    <string name="hebrew">希伯来语</string>
 </resources>

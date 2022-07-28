@@ -7,7 +7,7 @@ buildscript {
         crashyVersion = '1.2.0'
         room_version = "2.4.2"
         paging_version = "3.1.1"
-        camerax_version = '1.2.0-alpha03'
+        camerax_version = '1.2.0-alpha04'
         mockk = "1.12.5"
         nav_version = '2.5.0'
         daggerVersion = '2.43'

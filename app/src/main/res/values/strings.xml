@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">Vigilante</string>
     <string name="vigilante_description">Vigilante service</string>
-    <string name="vigilante_summary">Listens for events and displays a dot when camera/mic usage occurs.</string>
+    <string name="vigilante_summary">Vigilante listens for events and displays a dot when camera/mic usage occurs.</string>
     <string name="home">Home</string>
     <string name="disable_the_service">Turn off the service manually</string>
     <string name="enable_the_service">Please turn on the service first</string>
@@ -47,7 +47,7 @@
     <string name="ask_every_time">Ask each time</string>
     <string name="permissions_requests_by_app_count">%1$d permission requests in total.</string>
     <string name="total_permission_requests">Total permission requests</string>
-    <string name="title_placeholder">Name: %1$s</string>
+    <string name="title_placeholder">Title: %1$s</string>
     <string name="big_text_placeholder">Big text: %1$s</string>
     <string name="text_placeholder">Text: %1$s</string>
     <string name="category_placeholder">Category: %1$s</string>

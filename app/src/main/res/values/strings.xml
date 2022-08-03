@@ -33,8 +33,8 @@
     <string name="locks_and_unlocks">Lockings and unlockings</string>
     <string name="locks_only">Lockingss only</string>
     <string name="unlocks_only">Unlockings only</string>
-    <string name="disconnected">Disconnected</string>
-    <string name="connected">Connected</string>
+    <string name="disconnected">Unplugged</string>
+    <string name="connected">Plugged in</string>
     <string name="connected_with_mic">Connected with mic</string>
     <string name="not_available">N/A</string>
     <string name="headset_connection_type_title">Headset %1$s</string>
@@ -139,7 +139,7 @@
     <string name="pick_notification_LED_color">Pick a notification LED-color</string>
     <string name="led_notification_expl">Only available for devices with a notification LED.</string>
     <string name="bypass_dnd_title">Disregard \"Do not disturb\"</string>
-    <string name="bypass_dnd_expl">Notifications of usage in all modes. Use with caution!</string>
+    <string name="bypass_dnd_expl">Notifications of usage in all modes.\nUse with caution!</string>
     <string name="notifications">Notifications</string>
     <string name="light">Light</string>
     <string name="medium">Medium</string>

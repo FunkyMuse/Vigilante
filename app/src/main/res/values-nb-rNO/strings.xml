@@ -33,7 +33,7 @@
     <string name="allowed_one_time">Tillat én gang</string>
     <string name="denied">Nektet</string>
     <string name="denied_and_do_not_ask_again">"Nektet permanent "</string>
-    <string name="locks">Låsing</string>
+    <string name="locks">Låsinger</string>
     <string name="unlocks_only">Kun opplåsing</string>
     <string name="locks_and_unlocks">Låsing og opplåsing</string>
     <string name="unlocks">Opplåsing</string>
@@ -68,7 +68,7 @@
     <string name="enable_dot_customization">Skru på «Vis dott-bruk» først.</string>
     <string name="microphone_title">Mik.</string>
     <string name="camera_title">Kamera</string>
-    <string name="size_title">Størrelse</string>
+    <string name="size_title">Dottstørrelse</string>
     <string name="pick_color">Velg farge</string>
     <string name="select">Velg</string>
     <string name="pick_dot_color">Velg dottfarge</string>
@@ -154,7 +154,7 @@
     <string name="french">Fransk</string>
     <string name="bulgarian">Bulgarsk</string>
     <string name="italian">Italiensk</string>
-    <string name="restart_service_for_changes_to_take_effect">Start programmet på ny for å bruke endringene.</string>
+    <string name="restart_service_for_changes_to_take_effect">Start Vigilante-tjenesten på ny for å bruke endringene.</string>
     <string name="log_empty_notifications">Loggfør tomme merknader</string>
     <string name="log_empty_notifications_summary">Forbigår merknader med tom kropp. (Logging derav er forvalget.)</string>
     <string name="vibrations_not_happening_expl">**Hvis vibrasjon ikke fungerer kan du gå til «Programinfo → Merknader → Bruksmerknader» og skru på «Lyd med vibrasjon».

@@ -1,0 +1,20 @@
+Eine App, die sich auf Ihre Privatsphäre konzentriert und Sie benachrichtigt, wenn eine Anwendung eines Drittanbieters die Kamera oder das Mikrofon Ihres Geräts verwendet, und zusätzlich erhalten Sie:
+- Benachrichtigungen, wenn Mikrofon/Kamera verwendet wird
+- Punkte auf dem Bildschirm, wenn Mikrofon/Kamera verwendet wird
+- (Anpassungen der Bildschirmpunkte bei Verwendung von Mikrofon/Kamera (Größe, Farbe, Bildschirmposition) sind möglich)
+- Verlauf, wenn Anwendungen Berechtigungen angefordert haben
+- Verlauf, wenn Sie Ihr Ladegerät abgetrennt/angeschlossen haben
+- Verlauf, wenn Sie Ihre Kopfhörer angeschlossen/abgetrennt haben
+- Historie der Benachrichtigungen
+- Verlauf des Sperrbildschirms
+- Sicherheitssensible Geräteinformationen
+- keine unnötigen Berechtigungen
+- Vigilante stellt keine Verbindung zum Internet her
+- Alle Ihre Daten sind verschlüsselt (Datenbank und Einstellungen)
+- Dunkles Theme (Dark mode) und helles Theme (Light mode)
+
+<b>Sehen Sie sich alle meine Anwendungen an:</b>
+https://funkymuse.dev
+
+<b>GitHub:</b>
+https://github.com/FunkyMuse

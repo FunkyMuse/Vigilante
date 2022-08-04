@@ -1,0 +1,3 @@
+### Verbesserungen
+- Option zum Stummschalten von Benachrichtigungen hinzugefügt
+- Fehlerbehebung

@@ -1,0 +1,3 @@
+### Verbesserungen
+- Option hinzugefügt, um die Apps von mir zu sehen
+- Einige Leistungsverbesserungen des Codes und neue Goodies von Android

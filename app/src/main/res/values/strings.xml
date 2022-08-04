@@ -68,13 +68,13 @@
     <string name="wireless_charging">Wireless charging</string>
     <string name="error_occurred">An error occurred. Try again later.</string>
     <string name="channel_name">Vigilante usage notifications</string>
-    <string name="channel_description">Notifications are sent when usage occurs</string>
+    <string name="channel_description">Notifications are sent when specified usage occurs</string>
     <string name="mic_being_used">Your mic is being used!</string>
     <string name="location_being_used">Your location is turned on, could be it\'s being used!</string>
     <string name="cam_being_used">Your camera is being used!</string>
     <string name="usage_title">Usage detected</string>
-    <string name="dot_usage_title">Show dot usage</string>
-    <string name="dot_usage_expl">Displays a dot on your screen during use.</string>
+    <string name="dot_usage_title">Show usage dot</string>
+    <string name="dot_usage_expl">Displays a dot on your screen during specified use.</string>
     <string name="exclude_from_notifications_title">No notifications</string>
     <string name="exclude_from_notifications_expl">Removes ones from this app from the history</string>
     <string name="enable_dot_customization">Turn on \"Show dot usage\" first!</string>
@@ -159,7 +159,7 @@
     <string name="generate">Generate</string>
     <string name="generate_one_time_password">Generate one-time password</string>
     <string name="password_length">8+ characters</string>
-    <string name="password_length_expl">(Fewer characters makes your password easier to guess</string>
+    <string name="password_length_expl">(Fewer characters makes your password easier to guess)</string>
     <string name="shuffle_characters">Shuffle characters</string>
     <string name="password_too_short">Too short</string>
     <string name="location_title">Location</string>

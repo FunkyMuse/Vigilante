@@ -1,0 +1,2 @@
+### Verbesserungen
+App ist jetzt F-Droid kompatibel

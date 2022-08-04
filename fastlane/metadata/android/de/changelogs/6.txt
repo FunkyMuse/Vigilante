@@ -1,0 +1,5 @@
+### Verbesserungen
+https://github.com/FunkyMuse/Vigilante/issues/47
+
+### Behoben
+https://github.com/FunkyMuse/Vigilante/issues/46

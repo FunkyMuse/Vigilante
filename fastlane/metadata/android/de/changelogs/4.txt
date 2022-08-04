@@ -1,0 +1,2 @@
+### Verbesserungen
+- Unnötige Berechtigungen wurden entfernt

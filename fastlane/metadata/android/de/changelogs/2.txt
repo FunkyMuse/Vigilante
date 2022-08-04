@@ -1,0 +1,11 @@
+### Feature
+- Kante an Kante
+
+### Entfernt
+- Kamera- und Mikrofonverlauf, da Android als System keine Möglichkeit bietet, die aktuelle App mit dem Paket zu erkennen
+
+### Verbesserungen
+- Die Benachrichtigung über die Mikrofon- und Kameranutzung ist standardmäßig eingeschaltet
+
+### Behoben
+- Schaltfläche erkennt nicht die korrekten Informationen zur Barrierefreiheit #25

@@ -1,0 +1,3 @@
+### Behoben
+- Die Anwendung stürzt ab, wenn man versucht, die Punkte anzupassen
+- Passwort wird beim Drehen nicht gespeichert

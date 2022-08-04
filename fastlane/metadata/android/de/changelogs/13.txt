@@ -1,0 +1,9 @@
+### Verbesserungen
+- Es wurde die Möglichkeit hinzugefügt, ein einmaliges Passwort zu generieren
+- Es wurde die Möglichkeit zugefügt, Punkte, Benachrichtigungen und DND für Kamera, Mikrofon und Standort zu aktivieren
+- Es wurde ein Ortungspunkt hinzugefügt, der Sie daran erinnert, dass Ihr GPS eingeschaltet ist, wenn Sie es aktivieren!
+- Die Positionierung der Punkte wurde verbessert
+- Es wurde eine horizontale Mitte für die Positionierung der Punkte oben und unten hinzugefügt
+- Die Leistung wurde verbessert
+- Der Verlauf wird jetzt nach 30 Tagen gelöscht, damit ist alles sauber
+- Alle Anpassungen wurden in die Einstellungen verschoben, um mehr Klarheit zu schaffen

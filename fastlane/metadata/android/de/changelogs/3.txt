@@ -1,0 +1,5 @@
+### Verbesserungen
+- Spanische Übersetzungen
+
+### Behoben
+- Layout-Überschneidungen aufgrund von Rand-zu-Rand

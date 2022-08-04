@@ -1,0 +1,3 @@
+### Verbesserungen
+- Option zum Aktivieren/Deaktivieren der gewünschten Protokolle hinzugefügt
+- Einige Leistungsverbesserungen im Code und neue Funktionen von Android

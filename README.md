@@ -43,12 +43,6 @@ Help translate the app at [Hosted Weblate](https://hosted.weblate.org/projects/v
 <a href="https://hosted.weblate.org/engage/vigilante/">
 <img src="https://hosted.weblate.org/widgets/vigilante/-/horizontal-blue.svg" alt="Translation status" />
 </a>
-* 🇨🇳 [@sr093906](https://github.com/sr093906)
-* 🇫🇷 [@Trukmuch](https://github.com/Trukmuch)
-* 🇲🇰 [@FunkyMuse](https://github.com/FunkyMuse)
-* 🇵🇹 [@mezysinc](https://github.com/mezysinc)
-* 🇷🇺 [@ferhadnecef](https://github.com/ferhadnecef)
-* 🇪🇸 [@miguelcanosantana](https://github.com/miguelcanosantana)
 
 Pull requests are also possible, Crowdin was removed because it isn't good, and only worked 1 out of 12 times.
 

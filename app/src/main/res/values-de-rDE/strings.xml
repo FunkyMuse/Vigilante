@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="vigilante_description">Vigilantedienst</string>
-    <string name="vigilante_summary">Vigilantedienst-Listener, welcher einen Punkt anzeigt, wenn die Kamera oder das Mikrofon verwendet wird.</string>
+    <string name="vigilante_summary">Vigilante-Service, der einen Punkt anzeigt, wenn die Kamera oder das Mikrofon verwendet wird.</string>
     <string name="home">Start</string>
     <string name="disable_the_service">Dienst manuell deaktivieren</string>
     <string name="enable_the_service">Bitte den Dienst zuerst aktivieren</string>
@@ -9,10 +9,10 @@
     <string name="enable_text">Aktivieren</string>
     <string name="disk_not_encrypted">Speicher nicht verschlüsselt</string>
     <string name="disk_encrypted">Speicher verschlüsselt</string>
-    <string name="permissions_history">Berechtigungsverlauf</string>
-    <string name="headset_history">Kopfhörerverlauf</string>
-    <string name="notifications_history">Benachrichtigungsverlauf</string>
-    <string name="lock_screen_history">Sperrbildschirmverlauf</string>
+    <string name="permissions_history">Berechtigungen</string>
+    <string name="headset_history">Kopfhörer</string>
+    <string name="notifications_history">Benachrichtigungen</string>
+    <string name="lock_screen_history">Sperrbildschirm</string>
     <string name="notifications_usage_expl">Wenn Sie diese Option aktivieren erhalten Sie Benachrichtigungen, wenn Kamera/Mikrofon/etc. verwendet wird, falls möglich.</string>
     <string name="notifications_usage_title">Nutzungs-Benachrichtigungen aktivieren</string>
     <string name="crash_report">Absturzbericht #%1$d</string>
@@ -24,8 +24,8 @@
     <string name="screen_unlocked">Bildschirm entsperrt</string>
     <string name="screen_locked">Bildschirm gesperrt</string>
     <string name="total">Gesamt</string>
-    <string name="locks">Gesperrt</string>
-    <string name="unlocks">Entsperrt</string>
+    <string name="locks">Sperrungen</string>
+    <string name="unlocks">Entsperrungen</string>
     <string name="content_description_lock_screen_filter">Sperrbildschirm-Filter</string>
     <string name="locks_and_unlocks">Sperren und Entsperren</string>
     <string name="locks_only">Nur Sperrungen</string>
@@ -40,7 +40,7 @@
     <string name="always_allowed">Immer Zugelassen</string>
     <string name="allowed_one_time">Nur einmal zulassen</string>
     <string name="denied">Abgelehnt</string>
-    <string name="denied_and_do_not_ask_again">"Abgelehnt, nicht mehr fragen "</string>
+    <string name="denied_and_do_not_ask_again">Abgelehnt, nicht mehr fragen</string>
     <string name="ask_every_time">Immer nachfragen</string>
     <string name="permissions_requests_by_app_count">Insgesamt %1$d Berechtigungsanfragen.</string>
     <string name="total_permission_requests">Alle Berechtigungsanfragen</string>
@@ -81,7 +81,7 @@
     <string name="select">Auswählen</string>
     <string name="pick_dot_color">Punktfarbe auswählen</string>
     <string name="dot_mic">Mikrofon-Punkt</string>
-    <string name="dot_camera">Kamerapunkt</string>
+    <string name="dot_camera">Kamera-Punkt</string>
     <string name="dot_indicator">Punkt-Indikator</string>
     <string name="top_right_corner">Oben rechts</string>
     <string name="top_left_corner">Oben links</string>
@@ -110,7 +110,8 @@
     <string name="magisk_not_detected">Magisk nicht vorhanden</string>
     <string name="magisk_detected">Magisk erkannt</string>
     <string name="next">Weiter</string>
-    <string name="welcome_to_vigilante_you_have_chosen_privacy_thank_you_for_your_decision">Willkommen bei Vigilante, Sie haben sich für den Schutz Ihrer Privatsphäre entschieden, vielen Dank.</string>
+    <string name="welcome_to_vigilante_you_have_chosen_privacy_thank_you_for_your_decision">Willkommen bei Vigilante,
+\nSie haben sich für den Schutz Ihrer Privatsphäre entschieden, vielen Dank.</string>
     <string name="you_can_choose_the_size_color_and_the_position_of_the_dots_appearing_on_the_screen">Sie können die Größe, Farbe und die Position der Punkte auf dem Bildschirm auswählen</string>
     <string name="and_many_other_customizations_and_options_available_within_the_simple_ui_in_the_application">und viele weitere Anpassungen und Optionen innerhalb der einfachen Benutzeroberfläche in der Anwendung.</string>
     <string name="finish">Fertig</string>
@@ -119,7 +120,7 @@
     <string name="the_app_is_an_open_source_project_and_will_remain_as_such_as_it_focuses_on_privacy_and_it_s_integrity">Die App ist und bleibt ein Open-Source Projekt, zentrales Ziel ist der Schutz der Privatsphäre und die langfristige Integrität des Projekts.</string>
     <string name="device_info">Geräteinformation</string>
     <string name="security">Sicherheit</string>
-    <string name="biometric_auth_expl">Biometrische Authentifizierung bei jedem Öffnen der App verlangen</string>
+    <string name="biometric_auth_expl">Biometrische Authentifizierung (Fingerabdruck oder Gesicht) bei jedem Öffnen der App verlangen</string>
     <string name="biometric_auth_title">Biometrische Authentifizierung beim Start</string>
     <string name="unsupported_device">Ihr Gerät unterstützt keine biometrische Authentifizierung.</string>
     <string name="verification_required">Verifizierung erforderlich</string>
@@ -131,14 +132,15 @@
     <string name="pick_notification_LED_color">LED-Farbe für Benachrichtigungen auswählen</string>
     <string name="led_notification_expl">Nur für Telefone mit Benachrichtigungs-LED.</string>
     <string name="bypass_dnd_title">\"Bitte nicht stören\" umgehen</string>
-    <string name="bypass_dnd_expl">Indem Sie diese Option aktivieren, werden Sie den \"Nicht stören\" Modus umgehen und erhalten Benachrichtigungen über die Verwendung. Bitte mit Vorsicht verwenden!</string>
+    <string name="bypass_dnd_expl">Indem Sie diese Option aktivieren, werden Sie den \"Nicht stören\" Modus umgehen und erhalten Benachrichtigungen über die Verwendung.
+\nBitte mit Vorsicht verwenden!</string>
     <string name="notifications">Benachrichtigungen</string>
     <string name="light">Hell</string>
     <string name="medium">Mittel</string>
     <string name="heavy">Stark</string>
     <string name="none">Keine</string>
     <string name="vibration_on_notification">Vibration bei Benachrichtigung</string>
-    <string name="incompatible_os_version">Ihre Androidversion ist inkompatibel mit dieser Funktion.</string>
+    <string name="incompatible_os_version">Ihre Android-Version ist inkompatibel mit dieser Funktion.</string>
     <string name="vibrations_not_happening_expl">** Wenn die Vibrationen nicht funktionieren, öffnen Sie \"App-Info &gt; Benachrichtigungen &gt; Nutzungsbenachrichtigungen\" und aktivieren Sie Sound mit Vibration.
 \nHier tippen, um die Vibration zu testen.**</string>
     <string name="spacing">Abstand</string>
@@ -169,7 +171,7 @@
     <string name="italian">Italienisch</string>
     <string name="restart_service_for_changes_to_take_effect">Starten Sie den Vigilante-Dienst neu, damit die neuen Änderungen übernommen werden.</string>
     <string name="log_empty_notifications_summary">Lässt Benachrichtigungen aus, die einen leeren Textkörper haben. (Standardmäßig protokolliert.)</string>
-    <string name="history_deletion">Verlauf löschen</string>
+    <string name="history_deletion">Verlauf limitieren</string>
     <string name="password_too_short">Zu kurz</string>
     <string name="location_title">Standort</string>
     <string name="sound_pref_title">Benachrichtigungston</string>

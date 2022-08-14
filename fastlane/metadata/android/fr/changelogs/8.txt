@@ -1,0 +1,11 @@
+### Caractéristiques
+Traductions en russe, macédonien, chinois, espagnol et portugais.
+Options pour contourner le dnd et les options de vibration
+Options permettant d'ajouter un espacement pour contourner le bord de l'écran bloquant le point
+Sélecteur de couleur de LED pour les téléphones qui ont cette option.
+
+
+### Améliorations
+l'interface utilisateur
+Ajout du support crowdin pour faciliter la traduction de l'application
+Améliorations du code

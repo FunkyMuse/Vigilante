@@ -1,0 +1,11 @@
+### Caractéristiques
+- Bord à bord
+
+### Supprimé
+- L'historique de l'appareil photo et du microphone, car le système Android ne permet pas de détecter l'application en cours qui utilise le paquet.
+
+### Améliorations
+- Les notifications sur l'utilisation du microphone et de la caméra sont activées par défaut.
+
+### Corrigé
+- Le bouton ne détecte pas les informations correctes sur l'accessibilité #25

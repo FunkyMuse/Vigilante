@@ -1,0 +1,3 @@
+### Améliorations
+- Ajout d'une option pour voir les applications qui m'appartiennent
+- Quelques améliorations du code de performance et de nouveaux goodies d'Android

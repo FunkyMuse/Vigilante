@@ -1,0 +1,11 @@
+### Caractéristiques
+Beaucoup plus de traductions
+
+### Correction
+Tentative de correction, la notification de l'appareil photo ne fonctionne pas lors de l'utilisation de capteurs supplémentaires (macro et grand angle).
+Détails de la notification d'ouverture
+
+### Améliorations
+l'interface utilisateur
+Ajout du support du crowdin pour faciliter la traduction de l'application
+Améliorations du code

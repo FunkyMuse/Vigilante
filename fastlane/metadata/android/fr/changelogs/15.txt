@@ -1,0 +1,3 @@
+### Améliorations
+- Ajout d'une option pour mettre en sourdine les notifications
+- Correction de bugs

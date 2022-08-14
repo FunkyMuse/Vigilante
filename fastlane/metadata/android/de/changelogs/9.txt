@@ -1,0 +1,11 @@
+### Merkmale
+Viele weitere Übersetzungen
+
+### Behebung
+Versuch zu beheben, dass die Kamerabenachrichtigung bei Verwendung zusätzlicher Sensoren (Makro und Weitwinkel) nicht funktioniert
+Öffnen der Benachrichtigungsdetails
+
+### Verbesserungen
+UI-Verbesserungen
+Crowdin-Unterstützung für einfachere Übersetzung der App hinzugefügt
+Code-Verbesserungen

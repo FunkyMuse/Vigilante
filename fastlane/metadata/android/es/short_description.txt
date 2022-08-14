@@ -1,0 +1,1 @@
+Saber cuándo una aplicación de terceros utiliza la cámara/micrófono de su dispositivo

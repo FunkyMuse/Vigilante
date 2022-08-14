@@ -1,0 +1,3 @@
+### Améliorations
+- Ajout d'une option permettant d'activer/désactiver les journaux que vous souhaitez.
+- Quelques améliorations du code de performance et de nouveaux goodies d'Android

@@ -1,0 +1,3 @@
+### Fix
+- L'application se plante lorsqu'on essaie de personnaliser les points.
+- Mot de passe non sauvegardé lors de la rotation

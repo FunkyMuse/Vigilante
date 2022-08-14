@@ -1,0 +1,5 @@
+### Améliorations
+- Traductions en espagnol
+
+### Correction
+- Chevauchement de la mise en page en raison de l'utilisation du bord à bord

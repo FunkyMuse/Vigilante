@@ -1,0 +1,2 @@
+### Fonctionnalité
+- nouvelles traductions et mise à jour des SDK

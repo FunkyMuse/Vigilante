@@ -1,0 +1,9 @@
+### Améliorations
+- Ajout de la possibilité de générer un mot de passe unique
+- Ajout de la possibilité de basculer les points, les notifications et la mise en veille de la caméra, du micro et de la localisation.
+- Ajout d'un point de localisation, lorsque vous activez votre GPS, il est là pour vous rappeler qu'il est activé !
+- Amélioration du positionnement des points
+- Ajout d'un centre horizontal pour le positionnement des points en haut et en bas.
+- Amélioration des performances
+- Ajout de la suppression de l'historique après 30 jours, ce qui permet de tout nettoyer
+- Déplacement de toutes les personnalisations dans les paramètres pour plus de clarté

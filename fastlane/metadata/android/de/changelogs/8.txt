@@ -1,0 +1,11 @@
+### Merkmale
+Übersetzungen in Russisch, Mazedonisch, Chinesisch, Spanisch und Portugiesisch
+Optionen zum Umgehen von dnd und Vibrations-Optionen 
+Optionen zum Hinzufügen von Abständen, um die Blockierung des Punktes durch den umrandeten Bildschirm zu umgehen
+LED-Farbauswahl für Handys, die diese Option haben
+
+
+### Verbesserungen
+UI-Verbesserungen
+Crowdin-Unterstützung für einfachere Übersetzung der App hinzugefügt
+Code-Verbesserungen

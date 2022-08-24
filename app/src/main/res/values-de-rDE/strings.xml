@@ -20,7 +20,8 @@
     <string name="version">Version</string>
     <string name="date_format">Datumsformat</string>
     <string name="current_date_format">Aktuelles Datumsformat: %1$s</string>
-    <string name="no_results_expl">Es gibt keine Ergebnisse Chef. Kommen Sie später wieder vorbei, wir werden unterdessen weitersuchen!</string>
+    <string name="no_results_expl">Es gibt keine Ergebnisse Chef.
+\nKommen Sie später wieder vorbei, wir werden unterdessen weitersuchen!</string>
     <string name="screen_unlocked">Bildschirm entsperrt</string>
     <string name="screen_locked">Bildschirm gesperrt</string>
     <string name="total">Gesamt</string>
@@ -55,7 +56,7 @@
     <string name="notification_visibility_secret">Geheime Benachrichtigung</string>
     <string name="notification_visibility_placeholder">Sichtbarkeit: %1$s</string>
     <string name="notification_color_placeholder">Benachrichtigungsfarbe: %1$s</string>
-    <string name="notification_color_copied_to_clipboard">Benachrichtigungsfarbe in die Zwischenablage kopiert!</string>
+    <string name="notification_color_copied_to_clipboard">Benachrichtigungsfarbe wurde in die Zwischenablage kopiert</string>
     <string name="date_placeholder">Datum: %1$s</string>
     <string name="power_history">Ladeverlauf</string>
     <string name="power_disconnected">Strom getrennt</string>
@@ -63,7 +64,7 @@
     <string name="ac_charging">Schnellladen</string>
     <string name="usb_charging">Laden per USB</string>
     <string name="wireless_charging">Kabelloses Laden</string>
-    <string name="error_occurred">Fehler aufgetreten, versuchen Sie es später nocheinmal!</string>
+    <string name="error_occurred">Fehler aufgetreten, versuchen Sie es bitte später nocheinmal.</string>
     <string name="channel_name">Vigilante Nutzungsbenachrichtigungen</string>
     <string name="channel_description">Benachrichtigungen werden gesendet wenn Ereignisse auftreten, die ihre Privatsphäre betreffen</string>
     <string name="mic_being_used">Ihr Mikrofon wird verwendet!</string>
@@ -116,7 +117,7 @@
     <string name="and_many_other_customizations_and_options_available_within_the_simple_ui_in_the_application">und viele weitere Anpassungen und Optionen innerhalb der einfachen Benutzeroberfläche in der Anwendung.</string>
     <string name="finish">Fertig</string>
     <string name="final_expl">Nicht vergessen, die Abstürze zu melden, neue Funktionen vorzuschlagen und daran zu denken, dass, wenn ein Dienst kostenlos angeboten wird, und Werbung zeigt oder einfach mit dem Internet verbunden ist, ohne das Ziel anzugeben, dann sind Sie (als Nutzer) das Produkt!</string>
-    <string name="final_pre_expl">Diese App benutzt zum Speichern der Einstellungen eine verschlüsselte Datenbank und fokussiert sich auf den Schutz der Privatsphäre bei maximaler Produktivität</string>
+    <string name="final_pre_expl">Diese App benutzt zum Speichern der Einstellungen eine verschlüsselte Datenbank und fokussiert sich auf den Schutz der Privatsphäre bei maximaler Produktivität.</string>
     <string name="the_app_is_an_open_source_project_and_will_remain_as_such_as_it_focuses_on_privacy_and_it_s_integrity">Die App ist und bleibt ein Open-Source Projekt, zentrales Ziel ist der Schutz der Privatsphäre und die langfristige Integrität des Projekts.</string>
     <string name="device_info">Geräteinformation</string>
     <string name="security">Sicherheit</string>

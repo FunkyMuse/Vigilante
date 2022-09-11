@@ -1,0 +1,11 @@
+### Características
+- De borde a borde
+
+### Eliminados
+- El historial de la cámara y del micrófono debido a que Android como sistema no provee una opción para detectar la aplicación actual usando el paquete
+
+### Mejorías
+- Las notificaciones sobre el uso del micrófono y de la cámara están activadas por defecto
+
+### Corregido
+- El botón que no detectaba la información correcta sobre la accesibilidad #25

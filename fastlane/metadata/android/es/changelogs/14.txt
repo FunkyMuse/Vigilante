@@ -1,0 +1,3 @@
+### Arreglo
+- La aplicación se bloquea al intentar personalizar los puntos
+- La contraseña no se guarda al girar

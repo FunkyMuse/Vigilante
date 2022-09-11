@@ -1,0 +1,2 @@
+### Arreglo
+- Error en la visualización de los registros

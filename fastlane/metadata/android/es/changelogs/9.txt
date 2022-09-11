@@ -1,0 +1,11 @@
+https://hosted.weblate.org/translate/vigilante/metadata/es/?checksum=d8a4fd891b978f37### Características
+Muchas más traducciones
+
+### Arreglo
+Intento de corrección, la notificación de la cámara no funciona cuando se utilizan sensores adicionales (macro y gran angular)
+Abrir detalles de notificación
+
+### Mejorías
+Mejoras en la Interfaz de Usuario
+Añadido soporte de crowdin para facilitar la traducción de la aplicación
+Mejoras en el código

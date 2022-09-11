@@ -1,0 +1,11 @@
+### Características
+Traducciones al ruso, macedonio, chino, español y portugués
+Opciones para evitar las opciones de vibración y dnd
+Opciones para añadir espacio para evitar que la pantalla con bordes bloquee el punto
+Selector de color de LED para aquellos teléfonos que tienen la opción
+
+
+### Mejorías
+Mejoras en la Interfaz de Usuario
+Añadido soporte de crowdin para facilitar la traducción de la aplicación
+Mejoras en el código

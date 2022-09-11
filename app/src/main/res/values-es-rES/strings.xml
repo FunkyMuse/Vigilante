@@ -139,7 +139,7 @@
     <string name="none">Ninguno</string>
     <string name="vibration_on_notification">Vibrar en notificación</string>
     <string name="incompatible_os_version">Tu SO Android no es compatible con esta función.</string>
-    <string name="vibrations_not_happening_expl">** Si la vibración no funciona, ve a Información de la App > Notificaciones > Notificaciones de uso y activa Sonido y vibración. Pulsa aquí para probar la vibración seleccionada.**</string>
+    <string name="vibrations_not_happening_expl">** Si la vibración no funciona, ve a Información de la App &gt; Notificaciones &gt; Notificaciones de uso y activa Sonido y vibración. Pulsa aquí para probar la vibración seleccionada.**</string>
     <string name="spacing">Espaciado</string>
     <string name="spacing_expl">En caso de esquinas redondas o que el notch bloquee la visibilidad del punto usa el espaciado</string>
     <string name="too_large_to_copy_to_clipboard">¡Demasiado pesado para copiar al portapapeles, por favor envía capturas de pantalla!</string>
@@ -173,4 +173,18 @@
     <string name="shuffle_characters">Mezclar caracteres</string>
     <string name="password_too_short">Contraseña demasiado corta</string>
     <string name="location_title">Idioma</string>
+    <string name="sound_pref_summary">Sonidos de notificación para señalar el uso.</string>
+    <string name="my_other_apps">Otras aplicaciones de FunkyMuse</string>
+    <string name="log_permissions_title">Permisos</string>
+    <string name="restart_service_for_changes_to_take_effect">Reinicie el servicio de Vigilante para utilizar los nuevos cambios.</string>
+    <string name="log_empty_notifications_summary">Omite notificaciones que tienen un cuerpo vacío. (Registradas por defecto.)</string>
+    <string name="sound_pref_title">Sonido de notificación</string>
+    <string name="logging_title">Registro</string>
+    <string name="log_power_title">Potencia de registro</string>
+    <string name="log_headset_title">Registro de Auriculares de cabeza</string>
+    <string name="log_notifications_title">Notificaciones de registro</string>
+    <string name="log_lockscreen_title">Registro de la pantalla de bloqueo</string>
+    <string name="log_empty_notifications">Registrar notificaciones vacías</string>
+    <string name="hebrew">Hebreo</string>
+    <string name="marathi">Maratí</string>
 </resources>

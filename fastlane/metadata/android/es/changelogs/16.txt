@@ -1,0 +1,3 @@
+### Mejorías
+- Se ha añadido una opción para ver las aplicaciones de los míos
+- Algunas mejoras en el código de rendimiento y nuevas golosinas de Android

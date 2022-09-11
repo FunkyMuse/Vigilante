@@ -1,0 +1,2 @@
+### Mejorías
+- Han sido eliminados permisos innecesarios

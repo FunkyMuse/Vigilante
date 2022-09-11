@@ -1,0 +1,2 @@
+### Mejorías
+Muchas mejoras realizadas, el contador se ha roto y he perdido la cuenta

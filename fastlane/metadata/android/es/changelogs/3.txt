@@ -1,0 +1,5 @@
+### Mejorías
+- Traducciones al español
+
+### Corregidas
+- Superposiciones de diseño causadas por borde-a-borde

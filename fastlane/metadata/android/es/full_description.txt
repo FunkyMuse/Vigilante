@@ -1,0 +1,20 @@
+Una aplicación centrada en tu privacidad y te avisa cuando una aplicación de terceros usa la cámara o el micrófono de tu dispositivo, y además tienes:
+-Notificaciones cuando se utiliza el micrófono/cámara
+-Puntos de pantalla cuando se utiliza el micrófono/cámara
+-Personalización de los puntos de la pantalla cuando se utiliza el micrófono/cámara (tamaño, color, posición de la pantalla)
+-Historial cuando las aplicaciones solicitan permisos
+-Historial cuando se desconecta/conecta el cargador
+-Historial de la conexión/desconexión de los auriculares
+-Historia de tus notificaciones
+-Historial de la pantalla de bloqueo
+-Informaciones del dispositivo sensibles a la seguridad
+-Sin permisos inútiles
+-No se conecta a Internet
+-Todos tus datos son encriptados (base de datos y preferencias)
+-Modo oscuro/modo claro
+
+<b>Revisa todas mis aplcaciones:</b>
+https://funkymuse.dev
+
+<b>GitHub:</b>
+https://github.com/FunkyMuse

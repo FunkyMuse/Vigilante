@@ -10,9 +10,9 @@
     <string name="disk_not_encrypted">Non chiffré</string>
     <string name="disk_encrypted">Chiffré</string>
     <string name="permissions_history">Historique des permissions</string>
-    <string name="headset_history">Historique du casque</string>
-    <string name="notifications_history">Historique des notifications</string>
-    <string name="lock_screen_history">Historique de l\'écran de verrouillage</string>
+    <string name="headset_history">Casque</string>
+    <string name="notifications_history">Notifications</string>
+    <string name="lock_screen_history">L\'écran de verrouillage</string>
     <string name="notifications_usage_expl">Vous envoie des notifications lorsque la caméra/microphone/etc. est utilisé, lorsque cela est possible.</string>
     <string name="notifications_usage_title">Activer les notifications</string>
     <string name="crash_report">Rapport de plantage #%1$d</string>
@@ -40,7 +40,7 @@
     <string name="always_allowed">Toujours autorisé</string>
     <string name="allowed_one_time">Autorisé une seule fois</string>
     <string name="denied">Refusé</string>
-    <string name="denied_and_do_not_ask_again">"Refusé et \"ne plus demander\" "</string>
+    <string name="denied_and_do_not_ask_again">Refusé et \"ne plus demander\"</string>
     <string name="ask_every_time">Toujours demander</string>
     <string name="permissions_requests_by_app_count">%1$d demandes d\'autorisation au total.</string>
     <string name="total_permission_requests">Nombre total de demandes d\'autorisation</string>

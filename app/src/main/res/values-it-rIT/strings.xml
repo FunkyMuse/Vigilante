@@ -160,4 +160,25 @@
     <string name="history_deletion">Elimina cronologia</string>
     <string name="application">App</string>
     <string name="history_deletion_expl">Cancella l\'intera cronologia dopo 30 giorni per evitare disordine</string>
+    <string name="notifications_usage_expl_mic">Notifica l\'utilizzo del microfono, se/quando possibile.</string>
+    <string name="notifications_usage_expl_camera">Notifica l\'utilizzo della telecamera, se/quando possibile.</string>
+    <string name="password_length">8+ caratteri</string>
+    <string name="dot_indicator_customizations">Personalizzazione degli indicatori a punti.</string>
+    <string name="password_length_expl">(Un numero minore di caratteri rende la password più facile da indovinare)</string>
+    <string name="password_too_short">Troppo breve</string>
+    <string name="top_center_horizontal">Parte superiore centrale</string>
+    <string name="generate">Generare</string>
+    <string name="sound_pref_summary">Suoni di notifica per segnalare l\'uso.</string>
+    <string name="my_other_apps">Altre applicazioni FunkyMuse</string>
+    <string name="notifications_usage_expl_location">Notifica quando la localizzazione è attiva, se/quando possibile.</string>
+    <string name="shuffle_characters">Mischiare i personaggi</string>
+    <string name="bottom_center_horizontal">Fondo centrale</string>
+    <string name="generate_one_time_password">Generare una password unica</string>
+    <string name="location_title">Posizione</string>
+    <string name="sound_pref_title">Suono di notifica</string>
+    <string name="logging_title">Registrazione</string>
+    <string name="log_permissions_title">Permissioni</string>
+    <string name="marathi">Marathi</string>
+    <string name="log_empty_notifications_summary">Tralascia le notifiche che hanno un corpo vuoto. (Registrate per impostazione predefinita).</string>
+    <string name="restart_service_for_changes_to_take_effect">Riavviare il servizio Vigilante per utilizzare le nuove modifiche.</string>
 </resources>

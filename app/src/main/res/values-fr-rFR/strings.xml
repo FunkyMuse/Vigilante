@@ -16,7 +16,7 @@
     <string name="notifications_usage_expl">Vous envoie des notifications lorsque la caméra/microphone/etc. est utilisé, lorsque cela est possible.</string>
     <string name="notifications_usage_title">Activer les notifications</string>
     <string name="crash_report">Rapport de plantage #%1$d</string>
-    <string name="no_crashes">Il n\'y a aucun plantage enregistré !</string>
+    <string name="no_crashes">Il n\'y a aucun plantage enregistré.</string>
     <string name="version">Version</string>
     <string name="date_format">Format de la date</string>
     <string name="current_date_format">Format actuel de la date : %1$s</string>
@@ -181,4 +181,10 @@
     <string name="log_power_title">Puissance de la journalisation</string>
     <string name="log_headset_title">Casque de journalisation</string>
     <string name="restart_service_for_changes_to_take_effect">Redémarrez le service Vigilante pour appliquer les changements !</string>
+    <string name="log_notifications_title">Journal de notifications</string>
+    <string name="log_lockscreen_title">Écran de verrouillage du journal</string>
+    <string name="marathi">Marathi</string>
+    <string name="top_center_horizontal">Haut de page central</string>
+    <string name="bottom_center_horizontal">Centre en bas</string>
+    <string name="hebrew">Hébreu</string>
 </resources>

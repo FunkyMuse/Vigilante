@@ -1,0 +1,2 @@
+### Funkciók
+- új fordítások és SDKk frissítése

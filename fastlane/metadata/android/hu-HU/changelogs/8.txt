@@ -1,0 +1,11 @@
+### Funkciók
+Orosz, Makedón, Kínai, Spanyol, Portugál fordítasok
+Opcióa "ne zavarjanak" és a rezgési beállítások figyelmen kívul hagyására
+Opció designbeli változásra, hogy a pont ne legyen takarva
+LED szín választás azon eszközökön, ahol lehetséges
+
+
+### Javítások
+Felhasználói felület javítások
+Crowdin támogatás, hogy könnyebben le lehessen fordítani az appot
+Kód javítások

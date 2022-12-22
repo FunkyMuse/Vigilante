@@ -1,0 +1,9 @@
+### Javítások
+- Egyszerhasználatos jelszavak hozzáadva
+- Pontok, értesítések, ne zavarjanak kamerához, mikrofonhoz és helyadatokhoz ki/bekapcsolása
+- Helyadat pont hozzáadása, ha bekapcsolja a GPSt a pont emlékezteti önt, hogy be van kapcsolva!
+- Pontok pozícionálásának javítása
+- Középső vízszintes opció hozzáadva a felső és alsó pont pozicionálásához
+- Teljesítmény javítása
+- Az elmúlt 30 nap előzményének törlése, mindent töröl
+- Minden testreszabási opció a beállításokba lettek elhelyezve

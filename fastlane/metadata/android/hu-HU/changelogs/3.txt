@@ -1,0 +1,5 @@
+### Javítások
+- Spanyol fordítás
+
+### Javítva
+- Layout fedések a "széltől szélig" miatt

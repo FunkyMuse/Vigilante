@@ -1,0 +1,3 @@
+### Javítások
+- Saját appok megmézésének hozzáadása
+- Néhány teljesítménybeli változtatás és újdonságok az Androidtól

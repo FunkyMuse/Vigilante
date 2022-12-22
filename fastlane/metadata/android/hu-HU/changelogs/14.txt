@@ -1,0 +1,3 @@
+### Kijavítva
+- Összeomlás, mikor a felhadználó személyre akarta szabni a pontokat
+- Jelszó nem volt elmentve, ha el volt fordítva az eszköz

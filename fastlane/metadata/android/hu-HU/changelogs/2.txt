@@ -1,0 +1,11 @@
+### Funkció
+- Széltől szélig
+
+### Eltávolítva
+- Kamera és mikrofon előzmények az Android limitációjai miatt
+
+### Javítás
+- Értesítések a kamera és mikrofon használatról be van kapcsolva alapból
+
+### Javítva
+- Gomb nem érzékelte az információt az elérhetőségről #25

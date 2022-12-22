@@ -1,0 +1,20 @@
+Egy app, ami az ön magánéletére fókusz és értesíti önt, amikor egy harmadik féltől származó app használja a mikrofont/kamerát és ezek mellett:
+-Értesítés, amikor a kamera/mikrofon használatban van
+-Pontok a kepernyőn, amikor a kamera/mikrofon használatban van
+-Pontok a kepernyőn, amikor a kamera/mikrofon használatban van testreszabása (mérety szín, pozíciója a képernyőn)
+-Appok engedély kérése mentése előzményként
+-Töltőkábel kihúzásának/bedugásának mebtése előzményként
+-Fej/fülhallgató csatlakoztatásának/leválasztásának mentése előzményként
+-Értesítések mentése előzményként
+-Zárolt képernyő mentése előzményként
+-Biztonsággal kapcsolatos eszközinformációk
+-Nem használ felesleges engedélyeket
+-Nem kapcsolódik az internethez
+-Minden adat kódolva van (adatbázis és preferenciák)
+-Sötét/világos mód
+
+<b>A többi appom:</b>
+https://funkymuse.dev
+
+<b>GitHub:</b>
+https://github.com/FunkyMuse

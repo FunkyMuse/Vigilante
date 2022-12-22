@@ -1,0 +1,11 @@
+### Funkciók
+Sok fordítás
+
+### Javítva
+Nem jelezte, ha más szenzor volt használatban (makró és széleslátó)
+Értesítési beállítások megnyitása
+
+### Javítás
+Felhasználói felület javítása
+Crowdin támogatás, hogy könnyebben le lehessen fordítani az appot
+Kód javítások

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="vigilante_description">Servicio de Vigilante</string>
-    <string name="vigilante_summary">Detector del servicio de Vigilante que muestra un punto cuando la cámara o el micrófono son usados.</string>
+    <string name="vigilante_summary">Servicio de detección de eventos Vigilante que muestra un punto cuando se usa la cámara o el micrófono.</string>
     <string name="home">Inicio</string>
-    <string name="disable_the_service">Desactivar el servicio manualmente</string>
-    <string name="enable_the_service">Por favor activa el servicio</string>
-    <string name="disable_text">Desactivar</string>
+    <string name="disable_the_service">Deshabilitar el servicio manualmente</string>
+    <string name="enable_the_service">Por favor, active el servicio</string>
+    <string name="disable_text">Deshabilitar</string>
     <string name="enable_text">Activar</string>
     <string name="disk_not_encrypted">Disco no encriptado</string>
     <string name="disk_encrypted">Disco encriptado</string>

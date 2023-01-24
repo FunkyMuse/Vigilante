@@ -8,12 +8,12 @@ plugins {
 }
 
 android {
-    compileSdkVersion 32
+    compileSdkVersion 33
 
     defaultConfig {
         applicationId "com.crazylegend.vigilante"
         minSdkVersion 24
-        targetSdkVersion 32
+        targetSdkVersion 33
         versionCode 19
         versionName "1.2.6"
         vectorDrawables.useSupportLibrary = true

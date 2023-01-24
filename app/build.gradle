@@ -13,8 +13,8 @@ android {
         applicationId "com.crazylegend.vigilante"
         minSdkVersion 24
         targetSdkVersion 33
-        versionCode 19
-        versionName "1.2.6"
+        versionCode 20
+        versionName "1.2.7"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 

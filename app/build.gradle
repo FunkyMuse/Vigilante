@@ -8,9 +8,8 @@ plugins {
 }
 
 android {
-    compileSdkVersion 33
-
     defaultConfig {
+        compileSdk = 33
         applicationId "com.crazylegend.vigilante"
         minSdkVersion 24
         targetSdkVersion 33

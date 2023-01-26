@@ -1,7 +1,7 @@
 buildscript {
     ext {
         utilsVersion = "3.4.5"
-        lifecycle = '2.6.0-alpha04'
+        lifecycle = '2.6.0-alpha05'
         coroutines = "1.6.3-native-mt"
         hiltJetpackVersion = '1.0.0'
         crashyVersion = '1.2.0'

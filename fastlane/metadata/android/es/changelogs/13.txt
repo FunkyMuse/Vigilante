@@ -1,9 +1,9 @@
-### Mejorías
-- Se ha añadido la posibilidad de generar una contraseña única
-- Se ha añadido la posibilidad de alternar puntos, notificaciones y DND para cámara, micrófono y ubicación
-- ¡Añadido un punto de localización, cuando activas tu GPS está ahí para recordarte que está ENCENDIDO!
-- Mejorado el posicionamiento de los puntos
-- Añadido un centro horizontal para el posicionamiento de los puntos superior e inferior
+### Mejoras
+- Posibilidad de generar una contraseña
+- Posibilidad de alternar puntos, notificaciones y DND para la cámara, el micrófono y la ubicación
+- Punto de localización, cuando activas el GPS, recordarte que está activado.
+- Mejoras del posicionamiento de puntos
+- Añadido un centro horizontal para la parte superior e inferior de posicionamiento de puntos
 - Mejorado el rendimiento
-- Añadido el borrado del historial después de 30 días, lo limpia todo
-- Movido cada personalización en la configuración para una mayor claridad
+- Borra el historial después de 30 días, lo limpia todo.
+- Configuración personalizada para mayor claridad

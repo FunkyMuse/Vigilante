@@ -1,0 +1,2 @@
+### Características
+- Compatible con Android 13

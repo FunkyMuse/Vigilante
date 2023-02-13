@@ -1,0 +1,20 @@
+Gizliliğinize odaklanan ve üçüncü taraf bir uygulama cihazınızın kamerasını veya mikrofonunu kullandığında sizi uyaran ve ek olarak sahip olduğunuz bir uygulama:
+-Mikrofon/kamera kullanıldığında bildirimler
+-Mikrofon/kamera kullanıldığında ekran noktaları
+-Mikrofon/kamera kullanıldığında ekran noktaları özelleştirmeleri (boyut, renk, ekran konumu)
+-Uygulamaların izin istediği zamanların geçmişi
+-Şarj cihazınızın bağlantısını kestiğiniz/bağladığınız tarih
+-Kulaklığınızı bağladığınız/bağlantısını kestiğiniz tarih
+-Bildirimlerinizin geçmişi
+-Kilit ekranı geçmişi
+-Güvenlik duyarlı cihaz bilgileri
+-Gereksiz izinler yok
+-İnternete bağlanmaz
+-Tüm verileriniz şifrelenir (veritabanı ve tercihler)
+-Koyu/açık mod
+
+<b>Tüm uygulamalarıma göz atın:</b>
+https://funkymuse.dev
+
+<b>GitHub:</b>
+https://github.com/FunkyMuse

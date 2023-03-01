@@ -97,4 +97,10 @@
     <string name="notifications">Notificações</string>
     <string name="log_lockscreen_title">Registro de bloqueio de tela</string>
     <string name="marathi">Marati</string>
+    <string name="text_placeholder">Texto: %1$s</string>
+    <string name="notification_visibility_placeholder">Visibilidade: %1$s</string>
+    <string name="cancel">Cancelar</string>
+    <string name="dot_position">Posição na tela</string>
+    <string name="discard_changes">Descartar</string>
+    <string name="informational">Informação</string>
 </resources>

@@ -103,4 +103,15 @@
     <string name="dot_position">Posição na tela</string>
     <string name="discard_changes">Descartar</string>
     <string name="informational">Informação</string>
+    <string name="notifications_usage_expl">Notifica você quando a câmera/mic/etc. estiver em uso, se/quando possível.</string>
+    <string name="notifications_usage_expl_camera">Notifica você quando a câmera estiver em uso, se/quando possível.</string>
+    <string name="notifications_usage_expl_location">Notifica você quando localização estiver ligada, se/quando possível.</string>
+    <string name="notifications_usage_expl_mic">Notifica você quando o microfone estiver em uso, se/quando possível.</string>
+    <string name="allowed_one_time">Permitido apenas uma vez</string>
+    <string name="always_allowed">Permitido sempre</string>
+    <string name="permissions_requests_by_app_count">%1$d pedidos de permissão no total.</string>
+    <string name="mic_being_used">Seu microfone está sendo usado!</string>
+    <string name="auth_failed">Não foi possível verificar identidade. Por favor, tente novamente.</string>
+    <string name="history_deletion">Limitar histórico</string>
+    <string name="headset_connection_type_title">Fone de ouvido %1$s</string>
 </resources>

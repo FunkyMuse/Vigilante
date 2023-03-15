@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="home">خانه</string>
+    <string name="vigilante_description">سرویس Vigilante</string>
+    <string name="vigilante_summary">Vigilante به وقایع گوش می‌کند و وقتی از دوربین/میکروفون استفاده شود یک نقطه نمایش می‌دهد.</string>
+</resources>

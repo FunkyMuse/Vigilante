@@ -31,7 +31,7 @@
     <string name="unlocks">Unlockings</string>
     <string name="content_description_lock_screen_filter">Lockscreen filter</string>
     <string name="locks_and_unlocks">Lockings and unlockings</string>
-    <string name="locks_only">Lockingss only</string>
+    <string name="locks_only">Lockings only</string>
     <string name="unlocks_only">Unlockings only</string>
     <string name="disconnected">Unplugged</string>
     <string name="connected">Plugged in</string>

@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="home">ଗୃହ</string>
+    <string name="version">ସଂସ୍କରଣ</string>
+    <string name="notifications_history">ଵିଜ୍ଞପ୍ତି</string>
+</resources>

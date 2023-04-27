@@ -138,7 +138,7 @@ dependencies {
     implementation "com.github.FunkyMuse:Crashy:$crashyVersion"
 
     //sql cipher
-    implementation "net.zetetic:android-database-sqlcipher:4.5.3"
+    implementation "net.zetetic:android-database-sqlcipher:4.5.4"
     implementation "androidx.sqlite:sqlite-ktx:2.3.1"
 
     implementation "androidx.room:room-ktx:$room_version"

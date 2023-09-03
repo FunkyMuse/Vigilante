@@ -3,9 +3,6 @@
 [![API](https://img.shields.io/badge/API-24%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
 [![GitHub release (including pre-releases)](https://img.shields.io/github/v/release/FunkyMuse/Vigilante?include_prereleases)](https://github.com/FunkyMuse/Vigilante/releases/latest)
 
-### If my noble work has helped you, consider becoming a [![Sponsor me](https://img.shields.io/badge/sponsor-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#EA4AAA)](https://github.com/sponsors/FunkyMuse/).
-
-
 An app that focuses on your privacy and alerts you when a third-party app uses your device camera or mic, plus few other goodies.
 
 ## Features

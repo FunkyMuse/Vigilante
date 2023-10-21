@@ -1,4 +1,4 @@
-# Vigilante
+# Vigilante [THIS PROJECT IS UNMAINTAINED DUE TO THIS FUNCTIONALITY ALREADY PRESENT IN THE OS INTEGRATION]
 
 [![API](https://img.shields.io/badge/API-24%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
 [![GitHub release (including pre-releases)](https://img.shields.io/github/v/release/FunkyMuse/Vigilante?include_prereleases)](https://github.com/FunkyMuse/Vigilante/releases/latest)
